@@ -6,7 +6,7 @@
   "author": "Marcus Wood",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack --env prod",
+    "build": "set NODE_ENV=production && webpack --env prod",
     "codegen": "npx playwright codegen",
     "dev": "webpack serve --env dev",
     "test": "npx playwright test",
