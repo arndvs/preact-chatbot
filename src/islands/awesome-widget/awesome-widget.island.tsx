@@ -1,8 +1,29 @@
 import { createIsland, createIslandWebComponent } from 'preact-island'
+import { useState } from 'preact/hooks'
+
 
 
 export const AwesomeWidget = () => {
-    return <div>awesome widget!</div>
+
+    const [isOpen, setIsOpen] = useState(false)
+
+
+
+    return  <div>
+    <button
+
+
+      onClick={() => setIsOpen(true)}
+      data-testid="callToAction"
+    >
+      Click here to open
+    </button>
+
+    {isOpen && (
+        <div> is open </div>
+    )}
+
+    </div>
   }
 
 // const islandName = 'awesome-widget-island'
