@@ -24,7 +24,7 @@ export const AwesomeWidget  = ({backgroundColor,
         onClick={() => setIsOpen(true)}
         data-testid="callToAction"
       >
-        Click here to open modal
+        {!isOpen ? 'Close' : 'Open'} Modal
       </button>
 
       {isOpen && (
