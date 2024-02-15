@@ -76,7 +76,9 @@ export const CallToAction = ({
 //   selector: 'call-to-action-island',
 // })
 
-const island = createIsland(CallToAction )
-island.render({
-  selector: 'call-to-action-island',
-})
+document.addEventListener('DOMContentLoaded', () => {
+    const island = createIsland(CallToAction)
+    island.render({
+      selector: 'call-to-action-island',
+    })
+  })
