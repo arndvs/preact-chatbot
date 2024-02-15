@@ -1,6 +1,6 @@
 import '../../reset.css'
 
-import { createIslandWebComponent, WebComponentPortal } from 'preact-island'
+import { createIsland, createIslandWebComponent, WebComponentPortal } from 'preact-island'
 import { useState } from 'preact/hooks'
 import cx from 'clsx'
 import { Box, Button, Text } from '../../components'
@@ -38,7 +38,7 @@ export const CallToAction = ({
         onClick={() => setIsOpen(true)}
         data-testid="callToAction"
       >
-        Alll expenses paid island vacation. Click to enter!
+        Click here to open modal
       </button>
 
       {isOpen && (
@@ -71,7 +71,12 @@ export const CallToAction = ({
   )
 }
 
-const island = createIslandWebComponent(islandName, CallToAction)
+// const island = createIslandWebComponent(islandName, CallToAction)
+// island.render({
+//   selector: 'call-to-action-island',
+// })
+
+const island = createIsland(CallToAction )
 island.render({
-  selector: islandName,
+  selector: 'call-to-action-island',
 })

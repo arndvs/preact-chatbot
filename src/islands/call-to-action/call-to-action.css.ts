@@ -31,7 +31,7 @@ export const dimmerVisible = style({
 export const modal = style({
   position: 'fixed',
   outline: 'none',
-  zIndex: '100',
+  zIndex: '9000',
   backgroundColor: 'white',
   display: 'none !important',
   width: '380px',
