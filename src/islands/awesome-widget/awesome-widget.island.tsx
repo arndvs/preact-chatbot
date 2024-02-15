@@ -11,7 +11,7 @@ export const AwesomeWidget  = ({backgroundColor,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
-  useWebComponentEvents(islandName)
+//   useWebComponentEvents(islandName)
 
     return  (
     <>
