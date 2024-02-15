@@ -1,12 +1,12 @@
-import './reset.css'
+import '../../reset.css'
 
 import { createIslandWebComponent } from 'preact-island'
-import { Box, Button, Input, Text, Form } from './components'
+import { Box, Button, Input, Text, Form } from '../../components'
 import { useState } from 'preact/hooks'
 import axios from 'redaxios'
-import { API_URL } from './config/env'
+import { API_URL } from '../../config/env'
 import { JSXInternal } from 'preact/src/jsx'
-import { useWebComponentEvents } from './hooks/useWebComponentEvents'
+import { useWebComponentEvents } from '../../hooks/useWebComponentEvents'
 
 const islandName = 'pokemon-island'
 

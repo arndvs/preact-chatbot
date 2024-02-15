@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { getByTestId, getIsland } from './test-utils/helpers'
+import { getByTestId, getIsland } from '../../test-utils/helpers'
 
 test('should render the island allow the modal to render', async ({ page }) => {
   const island = await getIsland(page, 'call-to-action-island')

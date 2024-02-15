@@ -1,12 +1,12 @@
-import './reset.css'
+import '../../reset.css'
 
 import { createIslandWebComponent, WebComponentPortal } from 'preact-island'
 import { useState } from 'preact/hooks'
 import cx from 'clsx'
-import { Box, Button, Text } from './components'
+import { Box, Button, Text } from '../../components'
 import * as styles from './call-to-action.css'
 import { FC } from 'preact/compat'
-import { useWebComponentEvents } from './hooks/useWebComponentEvents'
+import { useWebComponentEvents } from '../../hooks/useWebComponentEvents'
 
 const islandName = 'call-to-action-island'
 
@@ -38,7 +38,7 @@ export const CallToAction = ({
         onClick={() => setIsOpen(true)}
         data-testid="callToAction"
       >
-        All expenses paid island vacation. Click to enter!
+        Alll expenses paid island vacation. Click to enter!
       </button>
 
       {isOpen && (
