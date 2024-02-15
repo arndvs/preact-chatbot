@@ -1,3 +1,5 @@
+import '../../reset.css'
+
 import { createIsland, createIslandWebComponent } from 'preact-island'
 import { useState } from 'preact/hooks'
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
