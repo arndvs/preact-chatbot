@@ -37,10 +37,7 @@ export const AwesomeWidget = () => {
     </button>
 
     {isOpen && (
-        <Portalize name="starter-modal" parent={islandName}><div> is open  <button
-
-
-        onClick={() => setIsOpen(false)}>click to close</button></div></Portalize>
+        <Portalize name="starter-modal" parent={islandName}><div> is open  </div></Portalize>
 
     )}
 
