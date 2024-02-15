@@ -69,16 +69,20 @@ export const CallToAction = ({
       )}
     </div>
   )
+
 }
-
-// const island = createIslandWebComponent(islandName, CallToAction)
-// island.render({
-//   selector: 'call-to-action-island',
-// })
-
 document.addEventListener('DOMContentLoaded', () => {
-    const island = createIsland(CallToAction)
-    island.render({
-      selector: 'call-to-action-island',
-    })
-  })
+const island = createIslandWebComponent(islandName, CallToAction)
+island.render({
+  selector: islandName,
+})
+
+}
+)
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const island = createIsland(CallToAction)
+//     island.render({
+//       selector: 'call-to-action-island',
+//     })
+//   })
