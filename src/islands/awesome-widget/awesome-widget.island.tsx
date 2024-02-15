@@ -1,5 +1,6 @@
 import { createIsland, createIslandWebComponent } from 'preact-island'
 import { useState } from 'preact/hooks'
+import { Box, Button, Text } from 'src/components'
 
 const islandName = 'awesome-widget-island'
 
@@ -9,7 +10,8 @@ export const AwesomeWidget = () => {
 
 
 
-    return  <div>
+    return  (
+    <> <div>
     <button
 
 
@@ -24,6 +26,39 @@ export const AwesomeWidget = () => {
     )}
 
     </div>
+    <div>
+      <button
+
+        onClick={() => setIsOpen(true)}
+        data-testid="callToAction"
+      >
+        Click here to open modal
+      </button>
+
+      {isOpen && (
+
+          <Box
+             >
+            <Text>Open</Text>
+            <Button className="cta_button" onClick={() => setIsOpen(false)}>
+              close
+            </Button>
+          </Box>
+
+      )}
+      {isOpen && (
+
+          <Box
+            data-testId="modal-dimmer"
+
+            onClick={() => setIsOpen(false)}
+          />
+
+      )}
+    </div></>
+
+
+    )
   }
 
 // const islandName = 'awesome-widget-island'
