@@ -1,6 +1,7 @@
 import { createIsland, createIslandWebComponent } from 'preact-island'
 import { useState } from 'preact/hooks'
-import { Box, Button, Text } from 'src/components'
+import { Box, Button, Text } from '../../components'
+
 
 const islandName = 'awesome-widget-island'
 
