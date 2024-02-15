@@ -30,18 +30,6 @@ export const CallToAction = ({
 
   useWebComponentEvents(islandName)
 
-  useEffect(() => {
-    // Delay rendering by 100ms
-    const delayRender = setTimeout(() => {
-         const island = createIsland(CallToAction)
-    island.render({
-      selector: 'call-to-action-island',
-      });
-    }, 100);
-
-    return () => clearTimeout(delayRender); // Cleanup the timeout
-  }, []);
-
   return (
     <div>
       <button
@@ -90,7 +78,7 @@ export const CallToAction = ({
 //     })
 // })
 
-    // const island = createIsland(CallToAction)
-    // island.render({
-    //   selector: 'call-to-action-island',
-    // })
+const island = createIslandWebComponent(islandName, CallToAction)
+    island.render({
+    selector: islandName,
+    })
