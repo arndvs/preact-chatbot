@@ -10,16 +10,16 @@ const islandName = 'awesome-widget-island'
 
 
 
-const Portalize: FC<{ name: string; parent: string }> = ({
-    children,
-    name,
-    parent,
-  }) => {
-    useWebComponentEvents(name, parent)
+// const Portalize: FC<{ name: string; parent: string }> = ({
+//     children,
+//     name,
+//     parent,
+//   }) => {
+//     useWebComponentEvents(name, parent)
 
-    // @ts-ignore types are wrong
-    return <WebComponentPortal name={name}>{children}</WebComponentPortal>
-  }
+//     // @ts-ignore types are wrong
+//     return <WebComponentPortal name={name}>{children}</WebComponentPortal>
+//   }
 
 
 
@@ -27,7 +27,7 @@ export const AwesomeWidget = () => {
 
     const [isOpen, setIsOpen] = useState(false)
 
-    useWebComponentEvents(islandName)
+    // useWebComponentEvents(islandName)
 
     return  (
         <div>
@@ -40,7 +40,7 @@ export const AwesomeWidget = () => {
         </Button>
 
         {isOpen && (
-          <Portalize name="starter-modal" parent={islandName}>
+        //   <Portalize name="starter-modal" parent={islandName}>
             <Box
               data-testId="modal-content"
 
@@ -51,16 +51,16 @@ export const AwesomeWidget = () => {
                 close
               </Button>
             </Box>
-          </Portalize>
+        //   </Portalize>
         )}
         {isOpen && (
-          <Portalize name="starter-dimmer" parent={islandName}>
+        //   <Portalize name="starter-dimmer" parent={islandName}>
             <Box
               data-testId="modal-dimmer"
 
               onClick={() => setIsOpen(false)}
             />
-          </Portalize>
+        //   </Portalize>
         )}
       </div>
     )
