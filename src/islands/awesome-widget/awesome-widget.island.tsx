@@ -4,28 +4,25 @@ import { Box, Button, Text } from '../../components'
 import * as styles from './awesome-widget.css'
 import cx from 'clsx'
 
-
-const islandName = 'awesome-widget-island'
-
 export const AwesomeWidget  = ({backgroundColor,
 }: {
   backgroundColor?: string
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
-
-
     return  (
     <>
    <div>
+   {!isOpen && (
       <button
         className={styles.button}
         style={{ backgroundColor: backgroundColor }}
         onClick={() => setIsOpen(true)}
         data-testid="callToAction"
       >
-        {!isOpen ? 'Close' : 'Open'} Modal
+        Open Modal
       </button>
+    )}
 
       {isOpen && (
         // <Portalize name="starter-modal" parent={islandName}>
@@ -33,11 +30,8 @@ export const AwesomeWidget  = ({backgroundColor,
             data-testId="modal-content"
             className={cx(styles.modal, isOpen && styles.modalVisible)}
           >
-            <img
-              className={styles.image}
-              src="https://github.com/mwood23/preact-island/raw/master/docs/preact-island.svg"
-            />
-            <Text>Portals work with web component islands too!</Text>
+
+            <Text>The modal is open</Text>
             <Button className="cta_button" onClick={() => setIsOpen(false)}>
               close
             </Button>
@@ -60,14 +54,8 @@ export const AwesomeWidget  = ({backgroundColor,
     )
   }
 
-// const islandName = 'awesome-widget-island'
 
-
-// const island = createIsland(AwesomeWidget )
-// island.render({
-//   selector: 'awesome-widget-island',
-// })
-
+const islandName = 'awesome-widget-island'
 
 const island = createIslandWebComponent(islandName, AwesomeWidget )
 island.render({
