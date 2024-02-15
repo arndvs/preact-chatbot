@@ -1,10 +1,7 @@
-import '../../reset.css'
-
-import { createIslandWebComponent } from 'preact-island'
+import { createIsland, createIslandWebComponent } from 'preact-island'
 import { useState } from 'preact/hooks'
 
 const islandName = 'awesome-widget-island'
-
 
 export const AwesomeWidget = () => {
 
@@ -12,28 +9,31 @@ export const AwesomeWidget = () => {
 
 
 
-    return  (
-        <div>
-        <button
-
-          onClick={() => setIsOpen(true)}
-
-        >
-          Click here to open
-        </button>
-
-        {isOpen && (
-
-              <button onClick={() => setIsOpen(false)}>
-                close
-              </button>
+    return  <div>
+    <button
 
 
-        )}
+      onClick={() => setIsOpen(true)}
+      data-testid="callToAction"
+    >
+      Click here to open
+    </button>
 
-      </div>
-    )
+    {isOpen && (
+        <div> is open </div>
+    )}
+
+    </div>
   }
+
+// const islandName = 'awesome-widget-island'
+
+
+// const island = createIsland(AwesomeWidget )
+// island.render({
+//   selector: 'awesome-widget-island',
+// })
+
 
 const island = createIslandWebComponent(islandName, AwesomeWidget )
 island.render({
