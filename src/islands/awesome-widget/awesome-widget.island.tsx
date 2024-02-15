@@ -25,17 +25,17 @@ export const AwesomeWidget = () => {
 
     const [isOpen, setIsOpen] = useState(false)
 
-
+    useWebComponentEvents(islandName)
 
     return  (
         <div>
-        <button
+        <Button
 
           onClick={() => setIsOpen(true)}
           data-testid="callToAction"
         >
           Click here to open
-        </button>
+        </Button>
 
         {isOpen && (
           <Portalize name="starter-modal" parent={islandName}>
