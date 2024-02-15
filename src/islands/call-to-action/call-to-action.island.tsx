@@ -33,9 +33,9 @@ export const CallToAction = ({
   useEffect(() => {
     // Delay rendering by 100ms
     const delayRender = setTimeout(() => {
-      const island = createIsland(CallToAction);
-      island.render({
-        selector: islandName,
+         const island = createIsland(CallToAction)
+    island.render({
+      selector: 'call-to-action-island',
       });
     }, 100);
 
