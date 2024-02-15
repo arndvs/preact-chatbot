@@ -1,7 +1,24 @@
 import { createIsland, createIslandWebComponent } from 'preact-island'
 import { useState } from 'preact/hooks'
+import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
+import { FC } from 'preact/compat'
 
 const islandName = 'awesome-widget-island'
+
+
+
+const Portalize: FC<{ name: string; parent: string }> = ({
+    children,
+    name,
+    parent,
+  }) => {
+    useWebComponentEvents(name, parent)
+
+    // @ts-ignore types are wrong
+    return <WebComponentPortal name={name}>{children}</WebComponentPortal>
+  }
+
+
 
 export const AwesomeWidget = () => {
 
@@ -20,7 +37,8 @@ export const AwesomeWidget = () => {
     </button>
 
     {isOpen && (
-        <div> is open </div>
+        <Portalize name="starter-modal" parent={islandName}><div> is open </div></Portalize>
+
     )}
 
     </div>
