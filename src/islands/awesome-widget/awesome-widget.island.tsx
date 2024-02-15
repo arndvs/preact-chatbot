@@ -7,10 +7,12 @@ export const AwesomeWidget = () => {
 
 // const islandName = 'awesome-widget-island'
 
+document.addEventListener('DOMContentLoaded', () => {
 
 const island = createIsland(AwesomeWidget )
 island.render({
   selector: 'awesome-widget-island',
+})
 })
 
 // const island = createIslandWebComponent(islandName, AwesomeWidget )
