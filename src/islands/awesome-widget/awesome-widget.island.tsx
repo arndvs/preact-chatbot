@@ -1,7 +1,7 @@
 import { createIsland, createIslandWebComponent } from 'preact-island'
 import { useState } from 'preact/hooks'
 
-
+const islandName = 'awesome-widget-island'
 
 export const AwesomeWidget = () => {
 
@@ -29,13 +29,13 @@ export const AwesomeWidget = () => {
 // const islandName = 'awesome-widget-island'
 
 
-const island = createIsland(AwesomeWidget )
-island.render({
-  selector: 'awesome-widget-island',
-})
-
-
-// const island = createIslandWebComponent(islandName, AwesomeWidget )
+// const island = createIsland(AwesomeWidget )
 // island.render({
-//   selector: islandName,
+//   selector: 'awesome-widget-island',
 // })
+
+
+const island = createIslandWebComponent(islandName, AwesomeWidget )
+island.render({
+  selector: islandName,
+})
