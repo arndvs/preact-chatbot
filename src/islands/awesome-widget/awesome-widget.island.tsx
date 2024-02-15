@@ -2,6 +2,7 @@ import { createIsland, createIslandWebComponent } from 'preact-island'
 import { useState } from 'preact/hooks'
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import { FC } from 'preact/compat'
+import { Box, Button, Text } from 'src/components';
 
 const islandName = 'awesome-widget-island'
 
@@ -26,22 +27,41 @@ export const AwesomeWidget = () => {
 
 
 
-    return  <div>
-    <button
+    return  (
+        <div>
+        <button
 
+          onClick={() => setIsOpen(true)}
+          data-testid="callToAction"
+        >
+          Click here to open
+        </button>
 
-      onClick={() => setIsOpen(true)}
-      data-testid="callToAction"
-    >
-      Click here to open
-    </button>
+        {isOpen && (
+          <Portalize name="starter-modal" parent={islandName}>
+            <Box
+              data-testId="modal-content"
 
-    {isOpen && (
-        <Portalize name="starter-modal" parent={islandName}><div> is open  </div></Portalize>
+            >
 
-    )}
+              <Text>This is open</Text>
+              <Button className="cta_button" onClick={() => setIsOpen(false)}>
+                close
+              </Button>
+            </Box>
+          </Portalize>
+        )}
+        {isOpen && (
+          <Portalize name="starter-dimmer" parent={islandName}>
+            <Box
+              data-testId="modal-dimmer"
 
-    </div>
+              onClick={() => setIsOpen(false)}
+            />
+          </Portalize>
+        )}
+      </div>
+    )
   }
 
 // const islandName = 'awesome-widget-island'
