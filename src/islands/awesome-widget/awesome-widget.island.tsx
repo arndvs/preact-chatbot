@@ -3,7 +3,7 @@ import { useState } from 'preact/hooks'
 import { Box, Button, Text } from '../../components'
 import * as styles from './awesome-widget.css'
 import cx from 'clsx'
-import { useWebComponentEvents } from '../../hooks/useWebComponentEvents'
+import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents'
 
 export const AwesomeWidget  = ({backgroundColor,
 }: {
