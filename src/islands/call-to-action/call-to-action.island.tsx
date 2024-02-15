@@ -1,7 +1,7 @@
 import '../../reset.css'
 
 import { createIsland, createIslandWebComponent, WebComponentPortal } from 'preact-island'
-import { useState } from 'preact/hooks'
+import { useState, useEffect } from 'preact/hooks';
 import cx from 'clsx'
 import { Box, Button, Text } from '../../components'
 import * as styles from './call-to-action.css'
@@ -29,6 +29,18 @@ export const CallToAction = ({
   const [isOpen, setIsOpen] = useState(false)
 
   useWebComponentEvents(islandName)
+
+  useEffect(() => {
+    // Delay rendering by 100ms
+    const delayRender = setTimeout(() => {
+      const island = createIsland(CallToAction);
+      island.render({
+        selector: islandName,
+      });
+    }, 100);
+
+    return () => clearTimeout(delayRender); // Cleanup the timeout
+  }, []);
 
   return (
     <div>
@@ -78,9 +90,7 @@ export const CallToAction = ({
 //     })
 // })
 
-document.addEventListener('DOMContentLoaded', () => {
-    const island = createIsland(CallToAction)
-    island.render({
-      selector: 'call-to-action-island',
-    })
-  })
+    // const island = createIsland(CallToAction)
+    // island.render({
+    //   selector: 'call-to-action-island',
+    // })
