@@ -96,14 +96,19 @@ const buildCssLayersFromEntryPoints = () => {
                   return
                 }
 
-                console.log('test', e.detail.target, styleTarget)
-                document
-                  .querySelector(`#${e.detail.target}`)
-                  .attachShadow({ mode: 'open' })
 
-                var target = document.querySelector(
-                  `#${e.detail.target}`,
-                ).shadowRoot
+                // TODO: This is a hack to get around the fact that the shadow dom is not available
+                // console.log('test', e.detail.target, styleTarget)
+                // document
+                //   .querySelector(`#${e.detail.target}`)
+                //   .attachShadow({ mode: 'open' })
+
+                // var target = document.querySelector(
+                //   `#${e.detail.target}`,
+                // ).shadowRoot
+
+
+                var target = document.querySelector(e.detail.target).shadowRoot
 
                 if (!target) {
                   console.error(
