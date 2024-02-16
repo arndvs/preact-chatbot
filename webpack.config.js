@@ -100,13 +100,15 @@ const buildCssLayersFromEntryPoints = () => {
                 setTimeout(() => {
                   console.log('inserting styles!')
                 }, 1000)
-                var test = document.querySelector(`#${e.detail.target}`)
+                var test = document.querySelector(
+                  `#${e.detail.target}`,
+                ).shadowRoot
                 console.log(test)
                 var target = document.querySelector(
                   `#${e.detail.target}`,
                 )?.shadowRoot
 
-                if (!target) {
+                if (!test) {
                   console.error(
                     `Could not find a web component query selector target for "${styleTarget}". No styles will be appended. Did you name the web component at createIslandWebComponent something different than your file name? If so, you will need to override it at getIslands inside of the webpack config. This is what is expected
 
@@ -120,7 +122,7 @@ createIslandWebComponent('${styleTarget}', YourComponent).render({
 
                 // We need to clone because it's going to be inserted into separate shadow doms. If you don't clone it
                 // the tag can only be active in one context
-                target.prepend(styleTag.cloneNode(true))
+                test.prepend(styleTag.cloneNode(true))
               })
             },
           },
