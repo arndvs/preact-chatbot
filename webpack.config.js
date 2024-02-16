@@ -102,7 +102,9 @@ const buildCssLayersFromEntryPoints = () => {
                 }, 1000)
                 var test = document.querySelector(`#${e.detail.target}`)
                 console.log(test)
-                var target = document.querySelector(e.detail.target)?.shadowRoot
+                var target = document.querySelector(
+                  `#${e.detail.target}`,
+                )?.shadowRoot
 
                 if (!target) {
                   console.error(
