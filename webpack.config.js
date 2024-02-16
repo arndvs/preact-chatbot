@@ -96,6 +96,10 @@ const buildCssLayersFromEntryPoints = () => {
                   return
                 }
 
+                console.log(e.detail.target, styleTarget)
+                setTimeout(() => {
+                  console.log('inserting style')
+                }, 1000)
                 var target = document.querySelector(e.detail.target).shadowRoot
 
                 if (!target) {
