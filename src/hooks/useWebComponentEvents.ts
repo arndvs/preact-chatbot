@@ -14,7 +14,7 @@ export const useWebComponentEvents = (name: string, parent?: string) => {
         detail: { target: name, parent },
         bubbles: true,
       })
-
+      console.log(event)
       dispatchEvent(event)
     }
   }, [name])
