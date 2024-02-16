@@ -96,10 +96,10 @@ const buildCssLayersFromEntryPoints = () => {
                   return
                 }
 
-                console.log('test', e.detail.target, styleTarget)
-                document
-                  .querySelector(e.detail.target)
-                  .attachShadow({ mode: 'open' })
+                // console.log('test', e.detail.target, styleTarget)
+                // document
+                //   .querySelector(e.detail.target)
+                //   .attachShadow({ mode: 'open' })
 
                 var target = document.querySelector(e.detail.target).shadowRoot
 
