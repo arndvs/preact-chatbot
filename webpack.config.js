@@ -96,7 +96,7 @@ const buildCssLayersFromEntryPoints = () => {
                   return
                 }
 
-                console.log(e.detail.target, styleTarget)
+                console.log('test', e.detail.target, styleTarget)
                 setTimeout(() => {
                   console.log('inserting styles!')
                 }, 1000)
