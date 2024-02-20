@@ -11,6 +11,7 @@ import { FC } from 'preact/compat'
 import cx from 'clsx'
 import { Box, Button, Text } from '../../components'
 import { ChatIcon } from 'src/assets/chat-icon'
+import { ChevronDownIcon } from 'src/assets/chevron-down-icon'
 
 const Portalize: FC<{ name: string; parent: string }> = ({
     children,
@@ -47,16 +48,23 @@ export const ChatWidget  = () => {
     <button
       className={styles.chatBubbleButton}
 
-      onClick={() => setIsOpen(true)}
+      onClick={() => setIsOpen(!isOpen)}
       data-testid="chat-bubble-button"
     >
       <div className={styles.chatBubbleButtonContent}>
-  <ChatIcon
-                  className="text-blue mr-2 h-5 w-5 "
+  {!isOpen ? ( <ChatIcon
+                  className={styles.chatBubbleButtonImage}
                   aria-hidden="true"
-                />{' '}
+                />) : (
+                    <>
+                    <ChevronDownIcon
+                    className={styles.chatBubbleButtonImage}
+                    aria-hidden="true"
+                    />
+                    </>
 
-    {/* <img src="" className={styles.chatBubbleButtonImage} /> */}
+                )}
+
   </div>
     </button>
 

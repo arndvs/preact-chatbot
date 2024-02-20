@@ -18,7 +18,7 @@ export const chatBubbleButton = style({
     width: '50px',
     height: '50px',
     borderRadius: '25px',
-    backgroundColor: 'blue',
+    backgroundColor: 'white',
     boxShadow: 'rgba(0, 0, 0, 0.2) 0px 4px 8px 0px',
     cursor: 'pointer',
     zIndex: '555555',
