@@ -10,6 +10,7 @@ import { useWebComponentEvents } from "src/hooks/useWebComponentEvents"
 import { FC } from 'preact/compat'
 import cx from 'clsx'
 import { Box, Button, Text } from '../../components'
+import { ChatIcon } from 'src/assets/chat-icon'
 
 const Portalize: FC<{ name: string; parent: string }> = ({
     children,
@@ -31,21 +32,39 @@ export const ChatWidget  = () => {
     useWebComponentEvents(islandName)
 
     return  (
-    <><div>
+    <>
+    {/* <div id="chat-bubble-button" className={styles.chatBubbleButton}>
+  <div className={styles.chatBubbleButtonContent}>
+  <ChatIcon
+                  className="text-blue mr-2 h-5 w-5 "
+                  aria-hidden="true"
+                />{' '}
+
+  </div>
+</div> */}
+
+    <div>
     <button
-      className={styles.button}
+      className={styles.chatBubbleButton}
 
       onClick={() => setIsOpen(true)}
-      data-testid="subscribeEmail"
+      data-testid="chat-bubble-button"
     >
-      Chat Widget
+      <div className={styles.chatBubbleButtonContent}>
+  <ChatIcon
+                  className="text-blue mr-2 h-5 w-5 "
+                  aria-hidden="true"
+                />{' '}
+
+    {/* <img src="" className={styles.chatBubbleButtonImage} /> */}
+  </div>
     </button>
 
     {isOpen && (
-      <Portalize name="starter-modal" parent={islandName}>
+      <Portalize name="chat-dialog" parent={islandName}>
         <Box
           data-testId="modal-content"
-          className={cx(styles.modal, isOpen && styles.modalVisible)}
+          className={cx(styles.chatDialog, isOpen && styles.chatDialogVisible)}
         >
           <Chatbot
             config={ChatConfig}
@@ -57,10 +76,10 @@ export const ChatWidget  = () => {
       </Portalize>
     )}
     {isOpen && (
-      <Portalize name="starter-dimmer" parent={islandName}>
+      <Portalize name="chat-dialog-dimmer" parent={islandName}>
         <Box
           data-testId="modal-dimmer"
-          className={cx(styles.dimmer, isOpen && styles.dimmerVisible)}
+          className={cx(styles.chatDialogDimmer, isOpen && styles.chatDialogDimmerVisible)}
           onClick={() => setIsOpen(false)}
         />
       </Portalize>
