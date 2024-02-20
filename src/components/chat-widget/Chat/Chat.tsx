@@ -10,7 +10,7 @@ import {
   createChatMessage,
 } from './chatUtils';
 
-import './Chat.css';
+
 import {
   ICustomComponents,
   ICustomMessage,
@@ -19,6 +19,7 @@ import {
 import { IMessage } from 'src/interfaces/IMessages';
 import { RefObject } from 'preact';
 import { ChangeEvent } from 'preact/compat';
+import * as styles from '../ChatWidget.css';
 
 interface IChatProps {
   setState?: (state: any) => void;
@@ -267,26 +268,27 @@ const Chat = ({
   }
 
   return (
-    <div className="react-chatbot-kit-chat-container">
-      <div className="react-chatbot-kit-chat-inner-container">
+
+     <div className={styles.reactChatbotKitChatContainer}>
+      <div className={styles.reactChatbotKitChatInnerContainer}>
         {/* <ConditionallyRender
           condition={!!customComponents.header}
           show={
             customComponents.header && customComponents.header(actionProvider)
           }
           elseShow={
-            <div className="react-chatbot-kit-chat-header">{header}</div>
+            <div className={reactChatbotKitChatHeader}>{header}</div>
           }
         /> */}
 
         {customComponents.header && customComponents.header(actionProvider) ? (
           customComponents.header && customComponents.header(actionProvider)
         ) : (
-          <div className="react-chatbot-kit-chat-header">{header}</div>
+          <div className={styles.reactChatbotKitChatHeader}>{header}</div>
         )}
 
         <div
-          className="react-chatbot-kit-chat-message-container"
+          className={styles.reactChatbotKitChatMessageContainer}
           ref={messageContainerRef}
         >
           {/* <ConditionallyRender
@@ -308,13 +310,13 @@ const Chat = ({
           <div style={{ paddingBottom: '15px' }} />
         </div>
 
-        <div className="react-chatbot-kit-chat-input-container">
+        <div className={styles.reactChatbotKitChatInputContainer}>
           <form
-            className="react-chatbot-kit-chat-input-form"
+            className={styles.reactChatbotKitChatInputForm}
             onSubmit={handleSubmit}
           >
             <input
-              className="react-chatbot-kit-chat-input"
+              className={styles.reactChatbotKitChatInput}
               placeholder={placeholder}
               value={input}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -323,15 +325,16 @@ const Chat = ({
               }}
             />
             <button
-              className="react-chatbot-kit-chat-btn-send"
+              className={styles.reactChatbotKitChatBtnSend}
               style={customButtonStyle}
             >
-              <img src="src/assets/icons/paper-plane.svg" className="react-chatbot-kit-chat-btn-send-icon" />
+              <img src="src/assets/icons/paper-plane.svg" className={styles.reactChatbotKitChatBtnSendIcon} />
             </button>
           </form>
         </div>
       </div>
-    </div>
+      </div>
+
   );
 };
 
@@ -609,20 +612,20 @@ export default Chat;
 //   }
 
 //   return (
-//     <div className="react-chatbot-kit-chat-container">
-//       <div className="react-chatbot-kit-chat-inner-container">
+//     <div className={reactChatbotKitChatContainer}>
+//       <div className={reactChatbotKitChatInnerContainer}>
 //         <ConditionallyRender
 //           condition={!!customComponents.header}
 //           show={
 //             customComponents.header && customComponents.header(actionProvider)
 //           }
 //           elseShow={
-//             <div className="react-chatbot-kit-chat-header">{header}</div>
+//             <div className={reactChatbotKitChatHeader}>{header}</div>
 //           }
 //         />
 
 //         <div
-//           className="react-chatbot-kit-chat-message-container"
+//           className={reactChatbotKitChatMessageContainer}
 //           ref={messageContainerRef}
 //         >
 //           <ConditionallyRender
@@ -640,22 +643,22 @@ export default Chat;
 //           <div style={{ paddingBottom: '15px' }} />
 //         </div>
 
-//         <div className="react-chatbot-kit-chat-input-container">
+//         <div className={reactChatbotKitChatInputContainer}>
 //           <form
-//             className="react-chatbot-kit-chat-input-form"
+//             className={reactChatbotKitChatInputForm}
 //             onSubmit={handleSubmit}
 //           >
 //             <input
-//               className="react-chatbot-kit-chat-input"
+//               className={reactChatbotKitChatInput}
 //               placeholder={placeholder}
 //               value={input}
 //               onChange={(e) => setInputValue(e.target.value)}
 //             />
 //             <button
-//               className="react-chatbot-kit-chat-btn-send"
+//               className={reactChatbotKitChatBtnSend}
 //               style={customButtonStyle}
 //             >
-//               <ChatIcon className="react-chatbot-kit-chat-btn-send-icon" />
+//               <ChatIcon className={reactChatbotKitChatBtnSendIcon} />
 //             </button>
 //           </form>
 //         </div>

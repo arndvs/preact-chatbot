@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css'
 
 export const button = style({
   border: 'none',
-  backgroundColor: '#294eab',
+  backgroundColor: '#ff0000',
   borderRadius: '5px',
   padding: '10px',
   fontWeight: 'bold',

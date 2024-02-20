@@ -1,12 +1,14 @@
 import React from 'react';
+import * as styles from '../../ChatWidget.css';
+
 
 const ChatbotMessageAvatar = () => {
   return (
-    <div className="react-chatbot-kit-chat-bot-avatar">
-      <div className="react-chatbot-kit-chat-bot-avatar-container">
-        <p className="react-chatbot-kit-chat-bot-avatar-letter">B</p>
+
+      <div className={styles.reactChatbotKitChatBotAvatarContainer}>
+        <p className={styles.reactChatbotKitChatBotAvatarLetter}>B</p>
       </div>
-    </div>
+
   );
 };
 

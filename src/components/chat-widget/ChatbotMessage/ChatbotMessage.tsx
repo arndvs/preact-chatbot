@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import ChatbotMessageAvatar from './ChatBotMessageAvatar/ChatbotMessageAvatar';
 import Loader from '../Loader/Loader';
 
-import './ChatbotMessage.css';
+
 import { callIfExists } from '../Chat/chatUtils';
 import { ICustomComponents, ICustomStyles } from 'src/interfaces/IConfig';
+import { reactChatbotKitChatBotMessage, reactChatbotKitChatBotMessageArrow, reactChatbotKitChatBotMessageContainer } from '../ChatWidget.css';
 
 interface IChatbotMessageProps {
   message: string;
@@ -80,7 +81,7 @@ const ChatbotMessage = ({
     <>
     {show && (
 
-      <div className="react-chatbot-kit-chat-bot-message-container">
+      <div className={reactChatbotKitChatBotMessageContainer}>
          {withAvatar && customComponents?.botAvatar ? (
             callIfExists(customComponents.botAvatar)
           ) : (
@@ -94,13 +95,13 @@ const ChatbotMessage = ({
             })
           ) : (
             <div
-              className="react-chatbot-kit-chat-bot-message"
+              className={reactChatbotKitChatBotMessage}
               style={chatBoxCustomStyles}
             >
                {loading ? <Loader /> : <span>{message}</span>}
                {withAvatar && (
                 <div
-                  className="react-chatbot-kit-chat-bot-message-arrow"
+                  className={reactChatbotKitChatBotMessageArrow}
                   style={arrowCustomStyles}
                   ></div>
                   )}
