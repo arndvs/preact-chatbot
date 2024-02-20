@@ -269,26 +269,26 @@ const Chat = ({
 
   return (
 
-     <div className={styles.reactChatbotKitChatContainer}>
-      <div className={styles.reactChatbotKitChatInnerContainer}>
+     <div className={styles.ChatContainer}>
+      <div className={styles.ChatInnerContainer}>
         {/* <ConditionallyRender
           condition={!!customComponents.header}
           show={
             customComponents.header && customComponents.header(actionProvider)
           }
           elseShow={
-            <div className={reactChatbotKitChatHeader}>{header}</div>
+            <div className={styles.ChatHeader}>{header}</div>
           }
         /> */}
 
         {customComponents.header && customComponents.header(actionProvider) ? (
           customComponents.header && customComponents.header(actionProvider)
         ) : (
-          <div className={styles.reactChatbotKitChatHeader}>{header}</div>
+          <div className={styles.ChatHeader}>{header}</div>
         )}
 
         <div
-          className={styles.reactChatbotKitChatMessageContainer}
+          className={styles.ChatMessageContainer}
           ref={messageContainerRef}
         >
           {/* <ConditionallyRender
@@ -310,13 +310,13 @@ const Chat = ({
           <div style={{ paddingBottom: '15px' }} />
         </div>
 
-        <div className={styles.reactChatbotKitChatInputContainer}>
+        <div className={styles.ChatInputContainer}>
           <form
-            className={styles.reactChatbotKitChatInputForm}
+            className={styles.ChatInputForm}
             onSubmit={handleSubmit}
           >
             <input
-              className={styles.reactChatbotKitChatInput}
+              className={styles.ChatInput}
               placeholder={placeholder}
               value={input}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -325,10 +325,10 @@ const Chat = ({
               }}
             />
             <button
-              className={styles.reactChatbotKitChatBtnSend}
+              className={styles.ChatBtnSend}
               style={customButtonStyle}
             >
-              <img src="src/assets/icons/paper-plane.svg" className={styles.reactChatbotKitChatBtnSendIcon} />
+              <img src="src/assets/icons/paper-plane.svg" className={styles.ChatBtnSendIcon} />
             </button>
           </form>
         </div>
@@ -612,20 +612,20 @@ export default Chat;
 //   }
 
 //   return (
-//     <div className={reactChatbotKitChatContainer}>
-//       <div className={reactChatbotKitChatInnerContainer}>
+//     <div className={styles.ChatContainer}>
+//       <div className={styles.ChatInnerContainer}>
 //         <ConditionallyRender
 //           condition={!!customComponents.header}
 //           show={
 //             customComponents.header && customComponents.header(actionProvider)
 //           }
 //           elseShow={
-//             <div className={reactChatbotKitChatHeader}>{header}</div>
+//             <div className={styles.ChatHeader}>{header}</div>
 //           }
 //         />
 
 //         <div
-//           className={reactChatbotKitChatMessageContainer}
+//           className={styles.ChatMessageContainer}
 //           ref={messageContainerRef}
 //         >
 //           <ConditionallyRender
@@ -643,22 +643,22 @@ export default Chat;
 //           <div style={{ paddingBottom: '15px' }} />
 //         </div>
 
-//         <div className={reactChatbotKitChatInputContainer}>
+//         <div className={styles.ChatInputContainer}>
 //           <form
-//             className={reactChatbotKitChatInputForm}
+//             className={styles.ChatInputForm}
 //             onSubmit={handleSubmit}
 //           >
 //             <input
-//               className={reactChatbotKitChatInput}
+//               className={styles.ChatInput}
 //               placeholder={placeholder}
 //               value={input}
 //               onChange={(e) => setInputValue(e.target.value)}
 //             />
 //             <button
-//               className={reactChatbotKitChatBtnSend}
+//               className={styles.ChatBtnSend}
 //               style={customButtonStyle}
 //             >
-//               <ChatIcon className={reactChatbotKitChatBtnSendIcon} />
+//               <ChatIcon className={styles.ChatBtnSendIcon} />
 //             </button>
 //           </form>
 //         </div>

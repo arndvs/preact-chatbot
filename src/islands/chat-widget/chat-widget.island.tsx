@@ -12,12 +12,14 @@ export const ChatWidget  = () => {
     useWebComponentEvents(islandName)
 
     return  (
+        <>
+          <Chatbot
+            config={ChatConfig}
+            messageParser={MessageParser}
+            actionProvider={ActionProvider}
+          />
+          </>
 
-        <Chatbot
-          config={ChatConfig}
-          messageParser={MessageParser}
-          actionProvider={ActionProvider}
-        />
 
     )
   }

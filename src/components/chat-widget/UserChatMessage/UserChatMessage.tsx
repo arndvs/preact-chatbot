@@ -6,7 +6,7 @@ import { callIfExists } from '../Chat/chatUtils';
 
 
 import { ICustomComponents } from 'src/interfaces/IConfig';
-import { reactChatbotKitUserAvatarContainer, reactChatbotKitUserAvatarIcon, reactChatbotKitUserChatMessage, reactChatbotKitUserChatMessageArrow, reactChatbotKitUserChatMessageContainer } from '../ChatWidget.css';
+import * as styles from '../ChatWidget.css';
 
 interface IUserChatMessageProps {
   message: string;
@@ -22,9 +22,9 @@ const UserChatMessage = ({
       return callIfExists(customComponents.userChatMessage, { message });
     } else {
       return (
-        <div className={reactChatbotKitUserChatMessage}>
+        <div className={styles.UserChatMessage}>
           {message}
-          <div className={reactChatbotKitUserChatMessageArrow}></div>
+          <div className={styles.UserChatMessageArrow}></div>
         </div>
       );
     }
@@ -36,10 +36,10 @@ const UserChatMessage = ({
     } else {
       return (
 
-          <div className={reactChatbotKitUserAvatarContainer}>
+          <div className={styles.UserAvatarContainer}>
             <img
               src='src/assets/icons/user-alt.svg'
-              className={reactChatbotKitUserAvatarIcon}
+              className={styles.UserAvatarIcon}
               alt="User Avatar"
             />
           </div>
@@ -49,7 +49,7 @@ const UserChatMessage = ({
   };
 
   return (
-    <div className={reactChatbotKitUserChatMessageContainer}>
+    <div className={styles.UserChatMessageContainer}>
       {renderUserChatMessage()}
       {renderUserAvatar()}
     </div>
@@ -79,16 +79,16 @@ export default UserChatMessage;
 //   customComponents,
 // }: IUserChatMessageProps) => {
 //   return (
-//     <div className={reactChatbotKitUserChatMessageContainer}>
+//     <div className={styles.UserChatMessageContainer}>
 //       <ConditionallyRender
 //         condition={!!customComponents.userChatMessage}
 //         show={callIfExists(customComponents.userChatMessage, {
 //           message,
 //         })}
 //         elseShow={
-//           <div className={reactChatbotKitUserChatMessage}>
+//           <div className={styles.UserChatMessage}>
 //             {message}
-//             <div className={reactChatbotKitUserChatMessageArrow}></div>
+//             <div className={styles.UserChatMessageArrow}></div>
 //           </div>
 //         }
 //       />
@@ -97,9 +97,9 @@ export default UserChatMessage;
 //         show={callIfExists(customComponents.userAvatar)}
 //         elseShow={
 //           <div className="react-chatbot-kit-user-avatar">
-//             <div className={reactChatbotKitUserAvatarContainer}>
-//                 <img src={UserIcon} className={reactChatbotKitUserAvatarIcon} />
-//               {/* <UserIcon className={reactChatbotKitUserAvatarIcon} /> */}
+//             <div className={styles.UserAvatarContainer}>
+//                 <img src={UserIcon} className={styles.UserAvatarIcon} />
+//               {/* <UserIcon className={styles.UserAvatarIcon} /> */}
 //             </div>
 //           </div>
 //         }

@@ -5,8 +5,8 @@ import * as styles from '../../ChatWidget.css';
 const ChatbotMessageAvatar = () => {
   return (
 
-      <div className={styles.reactChatbotKitChatBotAvatarContainer}>
-        <p className={styles.reactChatbotKitChatBotAvatarLetter}>B</p>
+      <div className={styles.ChatBotAvatarContainer}>
+        <p className={styles.ChatBotAvatarLetter}>B</p>
       </div>
 
   );

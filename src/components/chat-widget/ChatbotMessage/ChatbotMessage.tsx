@@ -7,7 +7,7 @@ import Loader from '../Loader/Loader';
 
 import { callIfExists } from '../Chat/chatUtils';
 import { ICustomComponents, ICustomStyles } from 'src/interfaces/IConfig';
-import { reactChatbotKitChatBotMessage, reactChatbotKitChatBotMessageArrow, reactChatbotKitChatBotMessageContainer } from '../ChatWidget.css';
+import * as styles from '../ChatWidget.css';
 
 interface IChatbotMessageProps {
   message: string;
@@ -81,7 +81,7 @@ const ChatbotMessage = ({
     <>
     {show && (
 
-      <div className={reactChatbotKitChatBotMessageContainer}>
+      <div className={styles.ChatBotMessageContainer}>
          {withAvatar && customComponents?.botAvatar ? (
             callIfExists(customComponents.botAvatar)
           ) : (
@@ -95,13 +95,13 @@ const ChatbotMessage = ({
             })
           ) : (
             <div
-              className={reactChatbotKitChatBotMessage}
+              className={styles.ChatBotMessage}
               style={chatBoxCustomStyles}
             >
                {loading ? <Loader /> : <span>{message}</span>}
                {withAvatar && (
                 <div
-                  className={reactChatbotKitChatBotMessageArrow}
+                  className={styles.ChatBotMessageArrow}
                   style={arrowCustomStyles}
                   ></div>
                   )}

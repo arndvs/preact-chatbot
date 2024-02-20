@@ -24,14 +24,14 @@ export const bgRed = style({
   })
 
 // react-chatbot-kit-user-chat-message-container
-export const reactChatbotKitUserChatMessageContainer = style({
+export const UserChatMessageContainer = style({
     display: 'flex',
     margin: '15px 0',
     justifyContent: 'flex-end',
   });
 
   // react-chatbot-kit-user-avatar-container
-  export const reactChatbotKitUserAvatarContainer = style({
+  export const UserAvatarContainer = style({
     width: '40px',
     height: '40px',
     borderRadius: '50%',
@@ -43,14 +43,14 @@ export const reactChatbotKitUserChatMessageContainer = style({
   });
 
   // react-chatbot-kit-user-avatar-icon
-  export const reactChatbotKitUserAvatarIcon = style({
+  export const UserAvatarIcon = style({
     fill: '#fff',
     width: '15px',
     height: '15px',
   });
 
   // react-chatbot-kit-user-chat-message
-  export const reactChatbotKitUserChatMessage = style({
+  export const UserChatMessage = style({
     backgroundColor: '#f1f1f1',
     padding: '10px',
     borderRadius: '5px',
@@ -62,7 +62,7 @@ export const reactChatbotKitUserChatMessageContainer = style({
   });
 
   // react-chatbot-kit-user-chat-message-arrow
-  export const reactChatbotKitUserChatMessageArrow = style({
+  export const UserChatMessageArrow = style({
     width: '0',
     height: '0',
     borderTop: '8px solid transparent',
@@ -77,7 +77,7 @@ export const reactChatbotKitUserChatMessageContainer = style({
 
 
   // react-chatbot-kit-chat-bot-message-container
-  export const reactChatbotKitChatBotMessageContainer = style({
+  export const ChatBotMessageContainer = style({
     display: 'flex',
     margin: '15px 0',
     justifyContent: 'flex-start',
@@ -86,7 +86,7 @@ export const reactChatbotKitUserChatMessageContainer = style({
 
 
 // react-chatbot-kit-chat-bot-avatar-container
-export const reactChatbotKitChatBotAvatarContainer = style({
+export const ChatBotAvatarContainer = style({
   width: '40px',
   height: '40px',
   borderRadius: '50%',
@@ -100,14 +100,14 @@ export const reactChatbotKitChatBotAvatarContainer = style({
 
 
 // react-chatbot-kit-chat-bot-avatar-icon
-export const reactChatbotKitChatBotAvatarIcon = style({
+export const ChatBotAvatarIcon = style({
     fill: '#494646',
     width: '22.5px',
     height: '22.5px',
   });
 
 // react-chatbot-kit-chat-bot-avatar-letter
-export const reactChatbotKitChatBotAvatarLetter = style({
+export const ChatBotAvatarLetter = style({
     color: '#1d1d1d',
     margin: '0',
     padding: '0',
@@ -115,7 +115,7 @@ export const reactChatbotKitChatBotAvatarLetter = style({
 
 
 // react-chatbot-kit-chat-bot-message
-export const reactChatbotKitChatBotMessage = style({
+export const ChatBotMessage = style({
     backgroundColor: '#2898ec',
     padding: '10px',
     borderRadius: '5px',
@@ -130,7 +130,7 @@ export const reactChatbotKitChatBotMessage = style({
 
 
   // react-chatbot-kit-chat-bot-message-arrow
-  export const reactChatbotKitChatBotMessageArrow = style({
+  export const ChatBotMessageArrow = style({
     width: '0',
     height: '0',
     borderTop: '8px solid transparent',
@@ -143,7 +143,7 @@ export const reactChatbotKitChatBotMessage = style({
 
 
 // react-chatbot-kit-chat-bot-loading-icon-container
-export const reactChatbotKitChatBotLoadingIconContainer = style({
+export const ChatBotLoadingIconContainer = style({
     height: '17px',
     width: '25px',
   });
@@ -199,14 +199,14 @@ const keyframes = {
   };
 
 //react-chatbot-kit-chat-container
-export const reactChatbotKitChatContainer = style({
+export const ChatContainer = style({
     position: 'relative',
     width: '275px',
   });
 
 
 // react-chatbot-kit-chat-inner-container
-export const reactChatbotKitChatInnerContainer = style({
+export const ChatInnerContainer = style({
     height: '500px',
     backgroundColor: '#fff',
     borderRadius: '5px',
@@ -214,7 +214,7 @@ export const reactChatbotKitChatInnerContainer = style({
 
 
 // react-chatbot-kit-chat-header
-export const reactChatbotKitChatHeader = style({
+export const ChatHeader = style({
     borderTopRightRadius: '5px',
     borderTopLeftRadius: '5px',
     backgroundColor: '#efefef',
@@ -229,7 +229,7 @@ export const reactChatbotKitChatHeader = style({
 
 
 // react-chatbot-kit-chat-input-container
-export const reactChatbotKitChatInputContainer = style({
+export const ChatInputContainer = style({
     position: 'absolute',
     bottom: '0',
     width: '100%',
@@ -239,7 +239,7 @@ export const reactChatbotKitChatInputContainer = style({
 
 
 // react-chatbot-kit-chat-message-container
-export const reactChatbotKitChatMessageContainer = style({
+export const ChatMessageContainer = style({
     padding: '0 17.5px 10px 17.5px',
     overflow: 'scroll',
     height: '424px',
@@ -247,7 +247,7 @@ export const reactChatbotKitChatMessageContainer = style({
 
 
 // react-chatbot-kit-chat-input
-export const reactChatbotKitChatInput = style({
+export const ChatInput = style({
     width: '100%',
     padding: '12.5px',
     border: 'none',
@@ -257,7 +257,7 @@ export const reactChatbotKitChatInput = style({
   });
 
 // react-chatbot-kit-chat-input-form
-export const reactChatbotKitChatInputForm = style({
+export const ChatInputForm = style({
     width: '100%',
     display: 'flex',
   });
@@ -267,14 +267,14 @@ export const reactChatbotKitChatInputForm = style({
 //   .react-chatbot-kit-chat-input::placeholder {
 //     color: #585858;
 //   }
-export const reactChatbotKitChatInputPlaceholder = style({
+export const ChatInputPlaceholder = style({
     '::placeholder': {
       color: '#585858',
     },
   });
 
   // react-chatbot-kit-chat-btn-send
-  export const reactChatbotKitChatBtnSend = style({
+  export const ChatBtnSend = style({
     backgroundColor: '#2898ec',
     width: '100px',
     border: 'none',
@@ -284,7 +284,7 @@ export const reactChatbotKitChatInputPlaceholder = style({
 
 
   // react-chatbot-kit-chat-btn-send-icon
-  export const reactChatbotKitChatBtnSendIcon = style({
+  export const ChatBtnSendIcon = style({
     fill: '#fff',
     width: '15px',
     margin: '0 auto',
@@ -292,7 +292,7 @@ export const reactChatbotKitChatInputPlaceholder = style({
 
 
 // react-chatbot-kit-error
-export const reactChatbotKitError = style({
+export const Error = style({
     backgroundColor: '#fff',
     borderRadius: '3px',
     padding: '15px',
@@ -300,19 +300,19 @@ export const reactChatbotKitError = style({
 
 
 // react-chatbot-kit-error-container
-export const reactChatbotKitErrorContainer = style({
+export const ErrorContainer = style({
     width: '260px',
   });
 
 // react-chatbot-kit-error-header
-export const reactChatbotKitErrorHeader = style({
+export const ErrorHeader = style({
     fontSize: '1.3rem',
     color: '#1d1d1d',
     marginBottom: '30px',
   });
 
   // react-chatbot-kit-error-docs
-  export const reactChatbotKitErrorDocs = style({
+  export const ErrorDocs = style({
     display: 'block',
     margin: '25px auto',
     color: 'rgb(56, 104, 139)',

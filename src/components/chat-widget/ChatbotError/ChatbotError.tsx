@@ -11,11 +11,11 @@ interface IChatbotErrorProps {
 
 const ChatbotError = ({ message }: IChatbotErrorProps) => {
   return (
-    <div className={styles.reactChatbotKitError}>
-      <h1 className={styles.reactChatbotKitErrorHeader}>
+    <div className={styles.Error}>
+      <h1 className={styles.ErrorHeader}>
         Ooops. Something is missing.
       </h1>
-      <div className={styles.reactChatbotKitErrorContainer}>
+      <div className={styles.ErrorContainer}>
         <ChatbotMessage
           message={message}
           withAvatar
