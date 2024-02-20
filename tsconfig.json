@@ -23,7 +23,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "noPropertyAccessFromIndexSignature": false,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
         "react": ["./node_modules/preact/compat/"],
         "react-dom": ["./node_modules/preact/compat/"]

@@ -2,6 +2,7 @@ import { FunctionalComponent, h, ComponentChildren, cloneElement, VNode } from '
 
 interface MessageParserProps {
   actions: {
+    handleHello: () => void;
     handleMenu: () => void;
     handleHoursLocation: () => void;
     // handleDeals: () => void;
@@ -20,6 +21,10 @@ const MessageParser: FunctionalComponent<MessageParserProps> = ({
   const parse = (message: string): void => {
     console.log('parse message', message);
     const lowerCaseMessage = message.toLowerCase();
+
+    if (message.includes('hello')) {
+        actions.handleHello();
+      }
 
     if (message.includes('hello')) {
         console.log('hi');
@@ -53,7 +58,7 @@ const MessageParser: FunctionalComponent<MessageParserProps> = ({
     <div>
       {vnodeChildren.map((child: VNode) => {
         return cloneElement(child, {
-          parse,
+            parse: parse,
           actions,
           ...props
         });
