@@ -6,7 +6,7 @@ import cx from 'clsx'
 import { Box, Button, Text } from '../../components'
 import * as styles from './call-to-action.css'
 import { FC } from 'preact/compat'
-import { useWebComponentEvents } from '../../hooks/useWebComponentEvents'
+import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents'
 
 const islandName = 'call-to-action-island'
 

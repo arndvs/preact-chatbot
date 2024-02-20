@@ -6,7 +6,7 @@ import { useState } from 'preact/hooks'
 import axios from 'redaxios'
 import { API_URL } from '../../config/env'
 import { JSXInternal } from 'preact/src/jsx'
-import { useWebComponentEvents } from '../../hooks/useWebComponentEvents'
+import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents'
 
 const islandName = 'pokemon-island'
 
