@@ -1,29 +1,29 @@
 import React from 'react';
 
-import { callIfExists } from './chatUtils';
+import { callIfExists } from '../../utils/chatbot-message-utils';
 
 // import UserIcon from 'src/assets/icons/user-alt.svg';
 
 import { ICustomComponents } from 'src/types/IConfig';
 import * as styles from '../../styles/ChatWidget.css';
 
-interface IUserChatMessageProps {
+interface IChatbotUserMessageProps {
   message: string;
   customComponents: ICustomComponents;
 }
 
-const UserChatMessage = ({
+const ChatbotUserMessage = ({
   message,
   customComponents
-}: IUserChatMessageProps) => {
-  const renderUserChatMessage = () => {
+}: IChatbotUserMessageProps) => {
+  const renderChatbotUserMessage = () => {
     if (customComponents.userChatMessage) {
       return callIfExists(customComponents.userChatMessage, { message });
     } else {
       return (
-        <div className={styles.UserChatMessage}>
+        <div className={styles.ChatbotUserMessage}>
           {message}
-          <div className={styles.UserChatMessageArrow}></div>
+          <div className={styles.ChatbotUserMessageArrow}></div>
         </div>
       );
     }
@@ -46,11 +46,11 @@ const UserChatMessage = ({
   };
 
   return (
-    <div className={styles.UserChatMessageContainer}>
-      {renderUserChatMessage()}
+    <div className={styles.ChatbotUserMessageContainer}>
+      {renderChatbotUserMessage()}
       {renderUserAvatar()}
     </div>
   );
 };
 
-export default UserChatMessage;
+export default ChatbotUserMessage;

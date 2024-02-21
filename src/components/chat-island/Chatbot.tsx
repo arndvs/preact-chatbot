@@ -12,11 +12,11 @@ import {
   getBotName,
   getCustomMessages,
   isConstructor
-} from './utils';
+} from '../../utils/chatbot-config-utils';
 
 import useChatbot from 'src/hooks/useChatbot';
 import { IMessage } from 'src/types/IMessages';
-import { createChatBotMessage } from './chatUtils';
+import { createChatBotMessage } from '../../utils/chatbot-message-utils';
 
 interface IChatbotProps {
   chatbotActionProvider: any;

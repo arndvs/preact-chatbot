@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
 
-import UserChatMessage from './user-chat-message';
+import ChatbotUserMessage from './chatbot-user-message';
 import ChatbotMessage from './chatbot-message';
 
 import {
@@ -8,7 +8,7 @@ import {
   userMessage,
   customMessage,
   createChatMessage
-} from './chatUtils';
+} from '../../utils/chatbot-message-utils';
 
 import {
   ICustomComponents,
@@ -151,7 +151,7 @@ const Chat = ({
     });
     return (
       <>
-        <UserChatMessage
+        <ChatbotUserMessage
           message={messageObject.message}
           key={messageObject.id}
           customComponents={customComponents}
@@ -347,7 +347,7 @@ export default Chat;
 // import React, { useState, useRef, useEffect, SetStateAction } from 'react';
 // import ConditionallyRender from 'react-conditionally-render';
 
-// import UserChatMessage from '../UserChatMessage/UserChatMessage';
+// import ChatbotUserMessage from '../ChatbotUserMessage/ChatbotUserMessage';
 // import ChatbotMessage from '../ChatbotMessage/ChatbotMessage';
 
 // import {
@@ -503,7 +503,7 @@ export default Chat;
 //     });
 //     return (
 //       <>
-//         <UserChatMessage
+//         <ChatbotUserMessage
 //           message={messageObject.message}
 //           key={messageObject.id}
 //           customComponents={customComponents}

@@ -1,6 +1,6 @@
-import { getObject } from './utils';
+import { getObject } from 'src/utils/chatbot-config-utils';
 
-class WidgetRegistry {
+class ChatbotWidgetRegistry {
   constructor(setStateFunc, chatbotActionProvider) {
     this.setState = setStateFunc;
     this.chatbotActionProvider = chatbotActionProvider;
@@ -54,4 +54,4 @@ class WidgetRegistry {
   };
 }
 
-export default WidgetRegistry;
+export default ChatbotWidgetRegistry;

@@ -20,7 +20,7 @@ const ChatbotActionProvider: FunctionalComponent<
   };
 
   return (
-    <div>
+    <>
       {Array.isArray(children)
         ? children.map((child, index) => {
             if (isValidElement(child)) {
@@ -36,7 +36,7 @@ const ChatbotActionProvider: FunctionalComponent<
             actions: { handleHello }
           })
         : children}
-    </div>
+    </>
   );
 };
 

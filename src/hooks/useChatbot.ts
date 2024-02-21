@@ -3,14 +3,14 @@ import {
   createClientMessage,
   createChatBotMessage,
   createCustomMessage
-} from 'src/components/chat-island/chatUtils';
+} from 'src/utils/chatbot-message-utils';
 import {
   getInitialState,
   getWidgets,
   isConstructor,
   validateProps
-} from 'src/components/chat-island/utils';
-import WidgetRegistry from 'src/components/chat-island/WidgetRegistry';
+} from 'src/utils/chatbot-config-utils';
+import ChatbotWidgetRegistry from 'src/utils/chatbot-widget-registry';
 import IConfig from 'src/types/IConfig';
 import { IMessage } from 'src/types/IMessages';
 import IWidget from 'src/types/IWidget';
@@ -102,7 +102,7 @@ const useChatbot = ({
   }, [state]);
 
   let actionProv;
-  let widgetRegistry: WidgetRegistry;
+  let widgetRegistry: ChatbotWidgetRegistry;
   let messagePars;
   let widgets;
 
@@ -122,7 +122,7 @@ const useChatbot = ({
       rest
     );
 
-    widgetRegistry = new WidgetRegistry(setState, actionProv);
+    widgetRegistry = new ChatbotWidgetRegistry(setState, actionProv);
     messagePars = new chatbotMessageParser(actionProv, stateRef.current);
 
     widgets = getWidgets(config);
@@ -132,7 +132,7 @@ const useChatbot = ({
   } else {
     actionProv = chatbotActionProvider;
     messagePars = chatbotMessageParser;
-    widgetRegistry = new WidgetRegistry(setState, null);
+    widgetRegistry = new ChatbotWidgetRegistry(setState, null);
 
     widgets = getWidgets(config);
     widgets.forEach((widget: IWidget) =>

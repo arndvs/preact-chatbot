@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import ChatbotMessageAvatar from './chatbot-message-avatar';
 
-import { callIfExists } from './chatUtils';
+import { callIfExists } from '../../utils/chatbot-message-utils';
 import { ICustomComponents, ICustomStyles } from 'src/types/IConfig';
 import * as styles from 'src/styles/ChatWidget.css';
 import ChatbotLoaderContainer from 'src/components/chat-island/chatbot-loader-container';
