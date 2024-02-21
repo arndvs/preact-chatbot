@@ -1,18 +1,18 @@
-export interface IBaseMessage {
+export interface IChatbotBaseMessage {
   message: string;
   type: string;
   id: number;
 }
 
-export interface IMessageOptions {
+export interface IChatbotMessageOptions {
   loading?: boolean;
   widget?: string;
   delay?: number;
   payload?: any;
 }
 
-export interface IMessage extends IBaseMessage {
-  options?: IMessageOptions;
+export interface IChatbotMessage extends IChatbotBaseMessage {
+  options?: IChatbotMessageOptions;
   loading?: boolean;
   widget?: string;
   delay?: number;

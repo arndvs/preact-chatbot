@@ -11,16 +11,16 @@ import {
   validateProps
 } from 'src/utils/chatbot-config-utils';
 import ChatbotWidgetRegistry from 'src/utils/chatbot-widget-registry';
-import IConfig from 'src/types/IConfig';
-import { IMessage } from 'src/types/IMessages';
-import IWidget from 'src/types/IWidget';
+import IChatbotConfig from 'src/types/IChatbotConfig';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
+import IChatbotWidget from 'src/types/IChatbotWidget';
 
 interface IUseChatbotParams {
-  config: IConfig | null;
+  config: IChatbotConfig | null;
   chatbotActionProvider: any;
   chatbotMessageParser: any;
-  messageHistory?: IMessage[] | string;
-  saveMessages?: (messages: IMessage[], html: string) => any | null;
+  messageHistory?: IChatbotMessage[] | string;
+  saveMessages?: (messages: IChatbotMessage[], html: string) => any | null;
   runInitialMessagesWithHistory?: Boolean;
 }
 
@@ -126,7 +126,7 @@ const useChatbot = ({
     messagePars = new chatbotMessageParser(actionProv, stateRef.current);
 
     widgets = getWidgets(config);
-    widgets.forEach((widget: IWidget) =>
+    widgets.forEach((widget: IChatbotWidget) =>
       widgetRegistry?.addWidget(widget, rest)
     );
   } else {
@@ -135,7 +135,7 @@ const useChatbot = ({
     widgetRegistry = new ChatbotWidgetRegistry(setState, null);
 
     widgets = getWidgets(config);
-    widgets.forEach((widget: IWidget) =>
+    widgets.forEach((widget: IChatbotWidget) =>
       widgetRegistry?.addWidget(widget, rest)
     );
   }

@@ -1,10 +1,8 @@
-
-
-interface IWidget {
+interface IChatbotWidget {
   widgetName: string;
   widgetFunc: (props: any) => preact.VNode;
   props: any;
   mapStateToProps: string[];
 }
 
-export default IWidget;
+export default IChatbotWidget;

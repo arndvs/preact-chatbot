@@ -1,27 +1,27 @@
-import IConfig from 'src/types/IConfig';
+import IChatbotConfig from 'src/types/IChatbotConfig';
 
-export const getCustomStyles = (config: IConfig) => {
+export const getCustomStyles = (config: IChatbotConfig) => {
   if (config.customStyles) {
     return config.customStyles;
   }
   return {};
 };
 
-export const getInitialState = (config: IConfig) => {
+export const getInitialState = (config: IChatbotConfig) => {
   if (config.state) {
     return config.state;
   }
   return {};
 };
 
-export const getWidgets = (config: IConfig) => {
+export const getWidgets = (config: IChatbotConfig) => {
   if (config.widgets) {
     return config.widgets;
   }
   return [];
 };
 
-export const getCustomComponents = (config: IConfig) => {
+export const getCustomComponents = (config: IChatbotConfig) => {
   if (config.customComponents) {
     return config.customComponents;
   }
@@ -29,7 +29,7 @@ export const getCustomComponents = (config: IConfig) => {
   return {};
 };
 
-export const getBotName = (config: IConfig) => {
+export const getBotName = (config: IChatbotConfig) => {
   if (config.botName) {
     return config.botName;
   }
@@ -41,14 +41,17 @@ export const getObject = (object: Object) => {
   return {};
 };
 
-export const getCustomMessages = (config: IConfig) => {
+export const getCustomMessages = (config: IChatbotConfig) => {
   if (config.customMessages) {
     return config.customMessages;
   }
   return {};
 };
 
-export const validateProps = (config: IConfig, ChatbotMessageParser: any) => {
+export const validateProps = (
+  config: IChatbotConfig,
+  ChatbotMessageParser: any
+) => {
   const errors = [];
   if (!config.initialMessages) {
     errors.push(

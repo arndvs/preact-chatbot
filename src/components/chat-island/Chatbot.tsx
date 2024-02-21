@@ -4,7 +4,7 @@ import Chat from './Chat';
 
 import ChatbotError from './chatbot-error';
 
-import IConfig from 'src/types/IConfig';
+import IChatbotConfig from 'src/types/IChatbotConfig';
 
 import {
   getCustomStyles,
@@ -12,20 +12,20 @@ import {
   getBotName,
   getCustomMessages,
   isConstructor
-} from '../../utils/chatbot-config-utils';
+} from 'src/utils/chatbot-config-utils';
 
 import useChatbot from 'src/hooks/useChatbot';
-import { IMessage } from 'src/types/IMessages';
-import { createChatBotMessage } from '../../utils/chatbot-message-utils';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
+import { createChatBotMessage } from 'src/utils/chatbot-message-utils';
 
 interface IChatbotProps {
   chatbotActionProvider: any;
   chatbotMessageParser: any;
-  config: IConfig;
+  config: IChatbotConfig;
   headerText?: string;
   placeholderText?: string;
   saveMessages?: (ref: any) => any;
-  messageHistory?: IMessage[] | string;
+  messageHistory?: IChatbotMessage[] | string;
   validator?: (input: string) => Boolean;
   runInitialMessagesWithHistory?: Boolean;
   disableScrollToBottom?: boolean;

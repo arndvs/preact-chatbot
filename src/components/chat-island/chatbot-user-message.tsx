@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { callIfExists } from '../../utils/chatbot-message-utils';
+import { callIfExists } from 'src/utils/chatbot-message-utils';
 
 // import UserIcon from 'src/assets/icons/user-alt.svg';
 
-import { ICustomComponents } from 'src/types/IConfig';
-import * as styles from '../../styles/ChatWidget.css';
+import { IChatbotCustomComponents } from 'src/types/IChatbotConfig';
+import * as styles from 'src/styles/ChatWidget.css';
 
 interface IChatbotUserMessageProps {
   message: string;
-  customComponents: ICustomComponents;
+  customComponents: IChatbotCustomComponents;
 }
 
 const ChatbotUserMessage = ({

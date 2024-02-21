@@ -1,28 +1,31 @@
 import {
-  IBaseMessage,
-  IMessage,
-  IMessageOptions,
-} from 'src/types/IMessages';
+  IChatbotBaseMessage,
+  IChatbotMessage,
+  IChatbotMessageOptions
+} from 'src/types/IChatbotMessages';
 
 export const uniqueId = () => {
   return Math.round(Date.now() * Math.random());
 };
 
-export const botMessage = (message: IMessage) => {
+export const botMessage = (message: IChatbotMessage) => {
   if (message.type === 'bot') {
     return true;
   }
   return false;
 };
 
-export const userMessage = (message: IMessage) => {
+export const userMessage = (message: IChatbotMessage) => {
   if (message.type === 'user') {
     return true;
   }
   return false;
 };
 
-export const customMessage = (message: IMessage, customMessages: any) => {
+export const customMessage = (
+  message: IChatbotMessage,
+  customMessages: any
+) => {
   const customMessage = customMessages[message.type];
 
   if (customMessage) {
@@ -35,32 +38,32 @@ export const createChatMessage = (message: string, type: string) => {
   return {
     message: message,
     type: type,
-    id: uniqueId(),
+    id: uniqueId()
   };
 };
 
 export const createChatBotMessage = (
   message: string,
-  options?: IMessageOptions
+  options?: IChatbotMessageOptions
 ) => {
   return {
     ...createChatMessage(message, 'bot'),
     ...options,
-    loading: true,
+    loading: true
   };
 };
 
 export const createCustomMessage = (
   message: string,
   type: string,
-  options: IMessageOptions
+  options: IChatbotMessageOptions
 ) => {
   return { ...createChatMessage(message, type), ...options };
 };
 
 export const createClientMessage = (
   message: string,
-  options: IMessageOptions
+  options: IChatbotMessageOptions
 ) => {
   return { ...createChatMessage(message, 'user'), ...options };
 };

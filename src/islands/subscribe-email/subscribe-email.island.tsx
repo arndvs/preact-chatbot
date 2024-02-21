@@ -3,7 +3,7 @@ import 'src/styles/reset.css';
 import { createIslandWebComponent, WebComponentPortal } from 'preact-island';
 import { useState } from 'preact/hooks';
 import cx from 'clsx';
-import { Box, Button, Text } from '../../components/ui';
+import { Box, Button, Text } from 'src/components/ui';
 import * as styles from 'src/styles/subscribe-email.css';
 import { FC } from 'preact/compat';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';

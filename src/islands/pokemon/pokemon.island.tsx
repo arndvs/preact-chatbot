@@ -1,10 +1,10 @@
-import '../../styles/reset.css';
+import 'src/styles/reset.css';
 
 import { createIslandWebComponent } from 'preact-island';
-import { Box, Button, Input, Text, Form } from '../../components/ui';
+import { Box, Button, Input, Text, Form } from 'src/components/ui';
 import { useState } from 'preact/hooks';
 import axios from 'redaxios';
-import { API_URL } from '../../utils/api_url';
+import { API_URL } from 'src/utils/api_url';
 import { JSXInternal } from 'preact/src/jsx';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 

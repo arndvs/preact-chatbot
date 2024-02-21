@@ -1,5 +1,5 @@
 import { Box, BoxProps } from './box';
-import { text, TextVariants } from '../../styles/text.css';
+import { text, TextVariants } from 'src/styles/text.css';
 import cx from 'clsx';
 
 export type TextProps = BoxProps & {

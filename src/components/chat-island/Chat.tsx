@@ -8,33 +8,33 @@ import {
   userMessage,
   customMessage,
   createChatMessage
-} from '../../utils/chatbot-message-utils';
+} from 'src/utils/chatbot-message-utils';
 
 import {
-  ICustomComponents,
-  ICustomMessage,
-  ICustomStyles
-} from 'src/types/IConfig';
-import { IMessage } from 'src/types/IMessages';
+  IChatbotCustomComponents,
+  IChatbotCustomMessage,
+  IChatbotCustomStyles
+} from 'src/types/IChatbotConfig';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { RefObject } from 'preact';
 import { ChangeEvent } from 'preact/compat';
-import * as styles from '../../styles/ChatWidget.css';
+import * as styles from 'src/styles/ChatWidget.css';
 
 interface IChatProps {
   setState?: (state: any) => void;
   widgetRegistry: any;
   chatbotMessageParser: any;
   chatbotActionProvider: any;
-  customComponents: ICustomComponents;
+  customComponents: IChatbotCustomComponents;
   botName: string;
-  customStyles: ICustomStyles;
+  customStyles: IChatbotCustomStyles;
   headerText?: string;
-  customMessages: ICustomMessage;
+  customMessages: IChatbotCustomMessage;
   placeholderText?: string;
   validator: ((input: string) => Boolean) | undefined;
   state: any;
   disableScrollToBottom?: boolean;
-  messageHistory?: IMessage[] | string;
+  messageHistory?: IChatbotMessage[] | string;
   parse?: (message: string) => void;
   actions?: object;
   messageContainerRef: any;
@@ -89,7 +89,7 @@ const Chat = ({
   };
 
   const renderMessages = () => {
-    return messages.map((messageObject: IMessage, index: number) => {
+    return messages.map((messageObject: IChatbotMessage, index: number) => {
       if (botMessage(messageObject)) {
         return (
           <div key={messageObject.id}>
@@ -112,7 +112,7 @@ const Chat = ({
     });
   };
 
-  const renderCustomMessage = (messageObject: IMessage) => {
+  const renderCustomMessage = (messageObject: IChatbotMessage) => {
     const customMessage = customMessages[messageObject.type];
 
     const props = {
@@ -142,7 +142,7 @@ const Chat = ({
     return customMessage(props);
   };
 
-  const renderUserMessage = (messageObject: IMessage) => {
+  const renderUserMessage = (messageObject: IChatbotMessage) => {
     const widget = widgetRegistry.getWidget(messageObject.widget, {
       ...state,
       scrollIntoView,
@@ -161,7 +161,10 @@ const Chat = ({
     );
   };
 
-  const renderChatbotMessage = (messageObject: IMessage, index: number) => {
+  const renderChatbotMessage = (
+    messageObject: IChatbotMessage,
+    index: number
+  ) => {
     let withAvatar;
     if (messageObject.withAvatar) {
       withAvatar = messageObject.withAvatar;
@@ -347,8 +350,8 @@ export default Chat;
 // import React, { useState, useRef, useEffect, SetStateAction } from 'react';
 // import ConditionallyRender from 'react-conditionally-render';
 
-// import ChatbotUserMessage from '../ChatbotUserMessage/ChatbotUserMessage';
-// import ChatbotMessage from '../ChatbotMessage/ChatbotMessage';
+// import ChatbotUserMessage from 'src/ChatbotUserMessage/ChatbotUserMessage';
+// import ChatbotMessage from 'src/ChatbotMessage/ChatbotMessage';
 
 // import {
 //   botMessage,
@@ -361,28 +364,28 @@ export default Chat;
 
 // import './Chat.css';
 // import {
-//   ICustomComponents,
-//   ICustomMessage,
-//   ICustomStyles,
-// } from 'src/interfaces/IConfig';
+//   IChatbotCustomComponents,
+//   IChatbotCustomMessage,
+//   IChatbotCustomStyles,
+// } from 'src/interfaces/IChatbotConfig';
 
-// import { IMessage } from 'src/interfaces/IMessages';
+// import { IChatbotMessage } from 'src/interfaces/IChatbotMessages';
 
 // interface IChatProps {
 //   setState: any;
 //   widgetRegistry: any;
 //   chatbotMessageParser: any;
 //   chatbotActionProvider: any;
-//   customComponents: ICustomComponents;
+//   customComponents: IChatbotCustomComponents;
 //   botName: string;
-//   customStyles: ICustomStyles;
+//   customStyles: IChatbotCustomStyles;
 //   headerText?: string;
-//   customMessages: ICustomMessage;
+//   customMessages: IChatbotCustomMessage;
 //   placeholderText?: string;
 //   validator?: (input: string) => Boolean;
 //   state: any;
 //   disableScrollToBottom?: boolean;
-//   messageHistory?: IMessage[] | string;
+//   messageHistory?: IChatbotMessage[] | string;
 //   parse?: (message: string) => void;
 //   actions?: object;
 //   messageContainerRef: React.MutableRefObject<HTMLDivElement>;
@@ -437,7 +440,7 @@ export default Chat;
 //   };
 
 //   const renderMessages = () => {
-//     return messages.map((messageObject: IMessage, index: number) => {
+//     return messages.map((messageObject: IChatbotMessage, index: number) => {
 //       if (botMessage(messageObject)) {
 //         return (
 //           <React.Fragment key={messageObject.id}>
@@ -464,7 +467,7 @@ export default Chat;
 //     });
 //   };
 
-//   const renderCustomMessage = (messageObject: IMessage) => {
+//   const renderCustomMessage = (messageObject: IChatbotMessage) => {
 //     const customMessage = customMessages[messageObject.type];
 
 //     const props = {
@@ -494,7 +497,7 @@ export default Chat;
 //     return customMessage(props);
 //   };
 
-//   const renderUserMessage = (messageObject: IMessage) => {
+//   const renderUserMessage = (messageObject: IChatbotMessage) => {
 //     const widget = widgetRegistry.getWidget(messageObject.widget, {
 //       ...state,
 //       scrollIntoView,
@@ -513,7 +516,7 @@ export default Chat;
 //     );
 //   };
 
-//   const renderChatbotMessage = (messageObject: IMessage, index: number) => {
+//   const renderChatbotMessage = (messageObject: IChatbotMessage, index: number) => {
 //     let withAvatar;
 //     if (messageObject.withAvatar) {
 //       withAvatar = messageObject.withAvatar;
