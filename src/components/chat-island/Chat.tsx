@@ -23,8 +23,8 @@ import * as styles from '../../styles/ChatWidget.css';
 interface IChatProps {
   setState?: (state: any) => void;
   widgetRegistry: any;
-  messageParser: any;
-  actionProvider: any;
+  chatbotMessageParser: any;
+  chatbotActionProvider: any;
   customComponents: ICustomComponents;
   botName: string;
   customStyles: ICustomStyles;
@@ -44,10 +44,10 @@ const Chat = ({
   state,
   setState,
   widgetRegistry,
-  messageParser,
+  chatbotMessageParser,
   parse,
   customComponents,
-  actionProvider,
+  chatbotActionProvider,
   botName,
   customStyles,
   headerText,
@@ -119,7 +119,7 @@ const Chat = ({
       setState,
       state,
       scrollIntoView,
-      actionProvider,
+      chatbotActionProvider,
       payload: messageObject.payload,
       actions
     };
@@ -228,14 +228,14 @@ const Chat = ({
         if (parse) {
           return parse(input);
         }
-        messageParser.parse(input);
+        chatbotMessageParser.parse(input);
       }
     } else {
       handleValidMessage();
       if (parse) {
         return parse(input);
       }
-      messageParser.parse(input);
+      chatbotMessageParser.parse(input);
     }
   };
 
@@ -272,15 +272,17 @@ const Chat = ({
         {/* <ConditionallyRender
           condition={!!customComponents.header}
           show={
-            customComponents.header && customComponents.header(actionProvider)
+            customComponents.header && customComponents.header(chatbotActionProvider)
           }
           elseShow={
             <div className={styles.ChatHeader}>{header}</div>
           }
         /> */}
 
-        {customComponents.header && customComponents.header(actionProvider) ? (
-          customComponents.header && customComponents.header(actionProvider)
+        {customComponents.header &&
+        customComponents.header(chatbotActionProvider) ? (
+          customComponents.header &&
+          customComponents.header(chatbotActionProvider)
         ) : (
           <div className={styles.ChatHeader}>{header}</div>
         )}
@@ -369,8 +371,8 @@ export default Chat;
 // interface IChatProps {
 //   setState: any;
 //   widgetRegistry: any;
-//   messageParser: any;
-//   actionProvider: any;
+//   chatbotMessageParser: any;
+//   chatbotActionProvider: any;
 //   customComponents: ICustomComponents;
 //   botName: string;
 //   customStyles: ICustomStyles;
@@ -390,10 +392,10 @@ export default Chat;
 //   state,
 //   setState,
 //   widgetRegistry,
-//   messageParser,
+//   chatbotMessageParser,
 //   parse,
 //   customComponents,
-//   actionProvider,
+//   chatbotActionProvider,
 //   botName,
 //   customStyles,
 //   headerText,
@@ -469,7 +471,7 @@ export default Chat;
 //       setState,
 //       state,
 //       scrollIntoView,
-//       actionProvider,
+//       chatbotActionProvider,
 //       payload: messageObject.payload,
 //       actions,
 //     };
@@ -574,14 +576,14 @@ export default Chat;
 //         if (parse) {
 //           return parse(input);
 //         }
-//         messageParser.parse(input);
+//         chatbotMessageParser.parse(input);
 //       }
 //     } else {
 //       handleValidMessage();
 //       if (parse) {
 //         return parse(input);
 //       }
-//       messageParser.parse(input);
+//       chatbotMessageParser.parse(input);
 //     }
 //   };
 
@@ -616,7 +618,7 @@ export default Chat;
 //         <ConditionallyRender
 //           condition={!!customComponents.header}
 //           show={
-//             customComponents.header && customComponents.header(actionProvider)
+//             customComponents.header && customComponents.header(chatbotActionProvider)
 //           }
 //           elseShow={
 //             <div className={styles.ChatHeader}>{header}</div>

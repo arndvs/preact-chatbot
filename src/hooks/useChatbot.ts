@@ -17,8 +17,8 @@ import IWidget from 'src/types/IWidget';
 
 interface IUseChatbotParams {
   config: IConfig | null;
-  actionProvider: any;
-  messageParser: any;
+  chatbotActionProvider: any;
+  chatbotMessageParser: any;
   messageHistory?: IMessage[] | string;
   saveMessages?: (messages: IMessage[], html: string) => any | null;
   runInitialMessagesWithHistory?: Boolean;
@@ -26,8 +26,8 @@ interface IUseChatbotParams {
 
 const useChatbot = ({
   config,
-  actionProvider,
-  messageParser,
+  chatbotActionProvider,
+  chatbotMessageParser,
   messageHistory,
   runInitialMessagesWithHistory,
   saveMessages,
@@ -36,14 +36,14 @@ const useChatbot = ({
   let configurationError = '';
   let invalidPropsError = '';
 
-  if (!config || !actionProvider || !messageParser) {
+  if (!config || !chatbotActionProvider || !chatbotMessageParser) {
     configurationError =
       'I think you forgot to feed me some props. Did you remember to pass a config, a messageparser and an actionprovider?';
 
     return { configurationError };
   }
 
-  const propsErrors = validateProps(config, messageParser);
+  const propsErrors = validateProps(config, chatbotMessageParser);
 
   if (propsErrors.length) {
     invalidPropsError = propsErrors.reduce((prev, cur) => {
@@ -106,11 +106,14 @@ const useChatbot = ({
   let messagePars;
   let widgets;
 
-  const ActionProvider = actionProvider;
-  const MessageParser = messageParser;
+  const ChatbotActionProvider = chatbotActionProvider;
+  const ChatbotMessageParser = chatbotMessageParser;
 
-  if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {
-    actionProv = new actionProvider(
+  if (
+    isConstructor(ChatbotActionProvider) &&
+    isConstructor(ChatbotMessageParser)
+  ) {
+    actionProv = new chatbotActionProvider(
       createChatBotMessage,
       setState,
       createClientMessage,
@@ -120,15 +123,15 @@ const useChatbot = ({
     );
 
     widgetRegistry = new WidgetRegistry(setState, actionProv);
-    messagePars = new messageParser(actionProv, stateRef.current);
+    messagePars = new chatbotMessageParser(actionProv, stateRef.current);
 
     widgets = getWidgets(config);
     widgets.forEach((widget: IWidget) =>
       widgetRegistry?.addWidget(widget, rest)
     );
   } else {
-    actionProv = actionProvider;
-    messagePars = messageParser;
+    actionProv = chatbotActionProvider;
+    messagePars = chatbotMessageParser;
     widgetRegistry = new WidgetRegistry(setState, null);
 
     widgets = getWidgets(config);
@@ -146,8 +149,8 @@ const useChatbot = ({
     state,
     setState,
     messageContainerRef,
-    ActionProvider,
-    MessageParser
+    ChatbotActionProvider,
+    ChatbotMessageParser
   };
 };
 

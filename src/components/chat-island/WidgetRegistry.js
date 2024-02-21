@@ -1,9 +1,9 @@
 import { getObject } from './utils';
 
 class WidgetRegistry {
-  constructor(setStateFunc, actionProvider) {
+  constructor(setStateFunc, chatbotActionProvider) {
     this.setState = setStateFunc;
-    this.actionProvider = actionProvider;
+    this.chatbotActionProvider = chatbotActionProvider;
   }
 
   addWidget = (
@@ -29,7 +29,7 @@ class WidgetRegistry {
       ...getObject(widgetObject.props),
       ...this.mapStateToProps(widgetObject.mapStateToProps, options),
       setState: this.setState,
-      actionProvider: this.actionProvider || options.actions,
+      chatbotActionProvider: this.chatbotActionProvider || options.actions,
       actions: options.actions,
       state: options,
       payload: options.payload

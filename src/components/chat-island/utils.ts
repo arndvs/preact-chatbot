@@ -48,7 +48,7 @@ export const getCustomMessages = (config: IConfig) => {
   return {};
 };
 
-export const validateProps = (config: IConfig, MessageParser: any) => {
+export const validateProps = (config: IConfig, ChatbotMessageParser: any) => {
   const errors = [];
   if (!config.initialMessages) {
     errors.push(
@@ -56,8 +56,8 @@ export const validateProps = (config: IConfig, MessageParser: any) => {
     );
   }
 
-  // const messageParser = new MessageParser();
-  // if (!messageParser['parse']) {
+  // const chatbotMessageParser = new ChatbotMessageParser();
+  // if (!chatbotMessageParser['parse']) {
   //   errors.push(
   //     "Messageparser must implement the method 'parse', please add this method to your object. The signature is parse(message: string)."
   //   );

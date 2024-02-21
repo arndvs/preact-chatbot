@@ -19,8 +19,8 @@ import { IMessage } from 'src/types/IMessages';
 import { createChatBotMessage } from './chatUtils';
 
 interface IChatbotProps {
-  actionProvider: any;
-  messageParser: any;
+  chatbotActionProvider: any;
+  chatbotMessageParser: any;
   config: IConfig;
   headerText?: string;
   placeholderText?: string;
@@ -32,8 +32,8 @@ interface IChatbotProps {
 }
 
 const Chatbot = ({
-  actionProvider,
-  messageParser,
+  chatbotActionProvider,
+  chatbotMessageParser,
   config,
   headerText,
   placeholderText,
@@ -47,8 +47,8 @@ const Chatbot = ({
   const {
     configurationError,
     invalidPropsError,
-    ActionProvider,
-    MessageParser,
+    ChatbotActionProvider,
+    ChatbotMessageParser,
     widgetRegistry,
     messageContainerRef,
     actionProv,
@@ -57,8 +57,8 @@ const Chatbot = ({
     setState
   } = useChatbot({
     config,
-    actionProvider,
-    messageParser,
+    chatbotActionProvider,
+    chatbotMessageParser,
     messageHistory,
     saveMessages,
     runInitialMessagesWithHistory,
@@ -78,14 +78,17 @@ const Chatbot = ({
   const botName = getBotName(config);
   const customMessages = getCustomMessages(config);
 
-  if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {
+  if (
+    isConstructor(ChatbotActionProvider) &&
+    isConstructor(ChatbotMessageParser)
+  ) {
     return (
       <Chat
         state={state}
         setState={setState}
         widgetRegistry={widgetRegistry}
-        actionProvider={actionProv}
-        messageParser={messagePars}
+        chatbotActionProvider={actionProv}
+        chatbotMessageParser={messagePars}
         customMessages={customMessages}
         customComponents={{ ...customComponents }}
         botName={botName}
@@ -100,18 +103,18 @@ const Chatbot = ({
     );
   } else {
     return (
-      <ActionProvider
+      <ChatbotActionProvider
         state={state}
         setState={setState}
         createChatBotMessage={createChatBotMessage}
       >
-        <MessageParser>
+        <ChatbotMessageParser>
           <Chat
             state={state}
             setState={setState}
             widgetRegistry={widgetRegistry}
-            actionProvider={ActionProvider}
-            messageParser={MessageParser}
+            chatbotActionProvider={ChatbotActionProvider}
+            chatbotMessageParser={ChatbotMessageParser}
             customMessages={customMessages}
             customComponents={{ ...customComponents }}
             botName={botName}
@@ -123,8 +126,8 @@ const Chatbot = ({
             disableScrollToBottom={disableScrollToBottom}
             messageContainerRef={messageContainerRef}
           />
-        </MessageParser>
-      </ActionProvider>
+        </ChatbotMessageParser>
+      </ChatbotActionProvider>
     );
   }
 };
