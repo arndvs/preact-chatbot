@@ -1,14 +1,34 @@
 import { getObject } from 'src/utils/chatbot-config-utils';
 
+interface WidgetProps {
+  [key: string]: any;
+}
+
+type MapStateToProps = (props: string[], state: any) => WidgetProps;
+
 class ChatbotWidgetRegistry {
-  constructor(setStateFunc, chatbotActionProvider) {
+  setState: Function;
+  chatbotActionProvider: any;
+  [key: string]: any; // Index signature
+
+  constructor(setStateFunc: Function, chatbotActionProvider: any) {
     this.setState = setStateFunc;
     this.chatbotActionProvider = chatbotActionProvider;
   }
 
   addWidget = (
-    { widgetName, widgetFunc, mapStateToProps, props },
-    parentProps
+    {
+      widgetName,
+      widgetFunc,
+      mapStateToProps,
+      props
+    }: {
+      widgetName: string;
+      widgetFunc: Function;
+      mapStateToProps: MapStateToProps;
+      props: WidgetProps;
+    },
+    parentProps: WidgetProps
   ) => {
     this[widgetName] = {
       widget: widgetFunc,
@@ -18,12 +38,12 @@ class ChatbotWidgetRegistry {
     };
   };
 
-  getWidget = (widgetName, options) => {
+  getWidget = (widgetName: string, options: any) => {
     const widgetObject = this[widgetName];
 
     if (!widgetObject) return;
 
-    let props = {
+    let props: WidgetProps = {
       scrollIntoView: options.scrollIntoView,
       ...widgetObject.parentProps,
       ...getObject(widgetObject.props),
@@ -44,10 +64,10 @@ class ChatbotWidgetRegistry {
     return null;
   };
 
-  mapStateToProps = (props, state) => {
-    if (!props) return;
+  mapStateToProps: MapStateToProps = (props, state) => {
+    if (!props) return {};
 
-    return props.reduce((acc, prop) => {
+    return props.reduce((acc: WidgetProps, prop: string) => {
       acc[prop] = state[prop];
       return acc;
     }, {});
