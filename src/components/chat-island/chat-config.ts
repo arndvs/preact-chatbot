@@ -1,4 +1,4 @@
-import { createChatBotMessage } from './Chat/chatUtils';
+import { createChatBotMessage } from './chatUtils';
 
 const ChatConfig = {
   initialMessages: [

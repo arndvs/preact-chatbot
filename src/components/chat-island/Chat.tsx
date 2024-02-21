@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
 
-import UserChatMessage from '../../chat-island/user-chat-message';
-import ChatbotMessage from '../../chat-island/chatbot-message';
+import UserChatMessage from './user-chat-message';
+import ChatbotMessage from './chatbot-message';
 
 import {
   botMessage,
@@ -18,7 +18,7 @@ import {
 import { IMessage } from 'src/types/IMessages';
 import { RefObject } from 'preact';
 import { ChangeEvent } from 'preact/compat';
-import * as styles from '../../../styles/ChatWidget.css';
+import * as styles from '../../styles/ChatWidget.css';
 
 interface IChatProps {
   setState?: (state: any) => void;

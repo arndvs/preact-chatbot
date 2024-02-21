@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Chat from '../Chat/Chat';
+import Chat from './Chat';
 
-import ChatbotError from '../../chat-island/chatbot-error';
+import ChatbotError from './chatbot-error';
 
 import IConfig from 'src/types/IConfig';
 
@@ -16,7 +16,7 @@ import {
 
 import useChatbot from 'src/hooks/useChatbot';
 import { IMessage } from 'src/types/IMessages';
-import { createChatBotMessage } from '../Chat/chatUtils';
+import { createChatBotMessage } from './chatUtils';
 
 interface IChatbotProps {
   actionProvider: any;

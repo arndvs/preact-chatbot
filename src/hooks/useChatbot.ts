@@ -3,14 +3,14 @@ import {
   createClientMessage,
   createChatBotMessage,
   createCustomMessage
-} from 'src/components/chat-widget/Chat/chatUtils';
+} from 'src/components/chat-island/chatUtils';
 import {
   getInitialState,
   getWidgets,
   isConstructor,
   validateProps
-} from 'src/components/chat-widget/Chatbot/utils';
-import WidgetRegistry from 'src/components/chat-widget/WidgetRegistry/WidgetRegistry';
+} from 'src/components/chat-island/utils';
+import WidgetRegistry from 'src/components/chat-island/WidgetRegistry';
 import IConfig from 'src/types/IConfig';
 import { IMessage } from 'src/types/IMessages';
 import IWidget from 'src/types/IWidget';

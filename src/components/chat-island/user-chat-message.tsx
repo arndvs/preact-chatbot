@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { callIfExists } from '../chat-widget/Chat/chatUtils';
+import { callIfExists } from './chatUtils';
 
 // import UserIcon from 'src/assets/icons/user-alt.svg';
 
