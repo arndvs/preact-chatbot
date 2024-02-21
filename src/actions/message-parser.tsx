@@ -1,4 +1,10 @@
-import { FunctionalComponent, h, ComponentChildren, cloneElement, VNode } from 'preact';
+import {
+  FunctionalComponent,
+  h,
+  ComponentChildren,
+  cloneElement,
+  VNode
+} from 'preact';
 
 interface MessageParserProps {
   actions: {
@@ -8,9 +14,7 @@ interface MessageParserProps {
     // handleDeals: () => void;
     handleDefault: (message: string) => void;
   };
-  children?:
-    | ComponentChildren
-    | readonly ComponentChildren[];
+  children?: ComponentChildren | readonly ComponentChildren[];
 }
 
 const MessageParser: FunctionalComponent<MessageParserProps> = ({
@@ -23,12 +27,12 @@ const MessageParser: FunctionalComponent<MessageParserProps> = ({
     const lowerCaseMessage = message.toLowerCase();
 
     if (message.includes('hello')) {
-        actions.handleHello();
-      }
+      actions.handleHello();
+    }
 
     if (message.includes('hello')) {
-        console.log('hi');
-      }
+      console.log('hi');
+    }
 
     if (lowerCaseMessage.includes('menu')) {
       actions.handleMenu();
@@ -52,18 +56,20 @@ const MessageParser: FunctionalComponent<MessageParserProps> = ({
   };
 
   // Filter out non-VNode elements from children
-  const vnodeChildren = (Array.isArray(children) ? children : [children]).filter(child => typeof child === 'object' && 'type' in child) as VNode[];
+  const vnodeChildren = (
+    Array.isArray(children) ? children : [children]
+  ).filter((child) => typeof child === 'object' && 'type' in child) as VNode[];
 
   return (
-    <div>
+    <>
       {vnodeChildren.map((child: VNode) => {
         return cloneElement(child, {
-            parse: parse,
+          parse: parse,
           actions,
           ...props
         });
       })}
-    </div>
+    </>
   );
 };
 
