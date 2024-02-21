@@ -6,6 +6,10 @@ interface WidgetProps {
 
 type MapStateToProps = (props: string[], state: any) => WidgetProps;
 
+interface ParentProps {
+  [key: string]: any;
+}
+
 class ChatbotWidgetRegistry {
   setState: Function;
   chatbotActionProvider: any;
@@ -28,7 +32,7 @@ class ChatbotWidgetRegistry {
       mapStateToProps: MapStateToProps;
       props: WidgetProps;
     },
-    parentProps: WidgetProps
+    parentProps: ParentProps
   ) => {
     this[widgetName] = {
       widget: widgetFunc,
