@@ -12,6 +12,8 @@ import Chatbot from 'src/components/chat-widget/Chatbot/Chatbot';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import * as styles from 'src/styles/chat-widget.css';
 import { IIsland } from 'src/types/IIsland';
+import ChatBubbleButton from 'src/components/chat/chat-bubble-button';
+import ChatModal from 'src/components/chat/chat-modal';
 
 const Portalize: FC<{ name: string; parent: string }> = ({
   children,
@@ -25,7 +27,7 @@ const Portalize: FC<{ name: string; parent: string }> = ({
 };
 
 interface ChatIslandProps {
-  islandName: IIsland['name'];
+  islandName: string;
 }
 
 const ChatIsland = ({ islandName }: ChatIslandProps) => {
@@ -34,25 +36,12 @@ const ChatIsland = ({ islandName }: ChatIslandProps) => {
 
   return (
     <>
-      <button
-        className={styles.chatBubbleButton}
-        onClick={() => setIsOpen(!isOpen)}
-        data-testid="chat-bubble-button"
-      >
-        <div className={styles.chatBubbleButtonContent}>
-          {!isOpen ? (
-            <ChatIcon
-              className={styles.chatBubbleButtonImage}
-              aria-hidden="true"
-            />
-          ) : (
-            <XMarkIcon
-              className={styles.chatBubbleButtonImage}
-              aria-hidden="true"
-            />
-          )}
-        </div>
-      </button>
+      <ChatBubbleButton
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+
+      <ChatModal />
       {isOpen && (
         <Portalize
           name="chat-dialog"
