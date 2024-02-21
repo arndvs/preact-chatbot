@@ -2,7 +2,7 @@ import React from 'react';
 
 import Chat from '../Chat/Chat';
 
-import ChatbotError from '../ChatbotError/ChatbotError';
+import ChatbotError from '../../chat-island/chatbot-error';
 
 import IConfig from 'src/types/IConfig';
 
@@ -11,13 +11,12 @@ import {
   getCustomComponents,
   getBotName,
   getCustomMessages,
-  isConstructor,
+  isConstructor
 } from './utils';
 
 import useChatbot from 'src/hooks/useChatbot';
 import { IMessage } from 'src/types/IMessages';
 import { createChatBotMessage } from '../Chat/chatUtils';
-
 
 interface IChatbotProps {
   actionProvider: any;
@@ -55,7 +54,7 @@ const Chatbot = ({
     actionProv,
     messagePars,
     state,
-    setState,
+    setState
   } = useChatbot({
     config,
     actionProvider,
@@ -63,7 +62,7 @@ const Chatbot = ({
     messageHistory,
     saveMessages,
     runInitialMessagesWithHistory,
-    ...rest,
+    ...rest
   });
 
   if (configurationError) {

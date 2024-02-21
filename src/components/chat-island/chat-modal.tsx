@@ -4,11 +4,12 @@ import cx from 'clsx';
 import { FC } from 'preact/compat';
 import ActionProvider from 'src/actions/action-provider';
 import MessageParser from 'src/actions/message-parser';
-import { Box } from 'src/components/_shared';
+import { Box } from 'src/components/ui';
 import Chatbot from 'src/components/chat-widget/Chatbot/Chatbot';
 import ChatConfig from 'src/components/chat-widget/chat-config';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import * as styles from 'src/styles/chat-widget.css';
+import ChatBot from 'src/components/chat-island/chat-bot';
 
 interface ChatModalProps {
   isOpen: boolean;
@@ -42,6 +43,7 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
               isOpen && styles.chatOverlayVisible
             )}
           >
+            <ChatBot />
             <Chatbot
               config={ChatConfig}
               messageParser={MessageParser}

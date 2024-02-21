@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
+import ChatbotMessageAvatar from './chatbot-message-avatar';
 
-import ChatbotMessageAvatar from './ChatBotMessageAvatar/ChatbotMessageAvatar';
-import Loader from '../Loader/Loader';
-
-
-import { callIfExists } from '../Chat/chatUtils';
+import { callIfExists } from '../chat-widget/Chat/chatUtils';
 import { ICustomComponents, ICustomStyles } from 'src/types/IConfig';
-import * as styles from '../../../styles/ChatWidget.css';
+import * as styles from 'src/styles/ChatWidget.css';
+import ChatbotLoaderContainer from 'src/components/chat-island/chatbot-loader-container';
 
 interface IChatbotMessageProps {
   message: string;
@@ -29,29 +27,26 @@ const ChatbotMessage = ({
   setState,
   customStyles,
   delay,
-  id,
+  id
 }: IChatbotMessageProps) => {
   const [show, toggleShow] = useState(false);
 
   useEffect(() => {
     let timeoutId: any;
-    const disableLoading = (
-      messages: any[],
-      setState: any
-    ) => {
+    const disableLoading = (messages: any[], setState: any) => {
       let defaultDisableTime = 750;
       if (delay) defaultDisableTime += delay;
 
       timeoutId = setTimeout(() => {
-        const newMessages = [...messages].map(message => {
+        const newMessages = [...messages].map((message) => {
           if (message.id === id) {
-            return {...message, loading: false, delay: undefined};
+            return { ...message, loading: false, delay: undefined };
           }
 
           return message;
         });
 
-        setState((state: any) => ({...state, messages: newMessages}));
+        setState((state: any) => ({ ...state, messages: newMessages }));
       }, defaultDisableTime);
     };
 
@@ -79,38 +74,37 @@ const ChatbotMessage = ({
 
   return (
     <>
-    {show && (
-
-      <div className={styles.ChatBotMessageContainer}>
-         {withAvatar && customComponents?.botAvatar ? (
+      {show && (
+        <div className={styles.ChatBotMessageContainer}>
+          {withAvatar && customComponents?.botAvatar ? (
             callIfExists(customComponents.botAvatar)
           ) : (
             <ChatbotMessageAvatar />
           )}
 
-        {customComponents?.botChatMessage ? (
+          {customComponents?.botChatMessage ? (
             callIfExists(customComponents.botChatMessage, {
               message,
-              loader: <Loader />,
+              loader: <ChatbotLoaderContainer />
             })
           ) : (
             <div
               className={styles.ChatBotMessage}
               style={chatBoxCustomStyles}
             >
-               {loading ? <Loader /> : <span>{message}</span>}
-               {withAvatar && (
+              {loading ? <ChatbotLoaderContainer /> : <span>{message}</span>}
+              {withAvatar && (
                 <div
                   className={styles.ChatBotMessageArrow}
                   style={arrowCustomStyles}
-                  ></div>
-                  )}
-                </div>
+                ></div>
               )}
             </div>
           )}
-        </>
-      );
-    };
+        </div>
+      )}
+    </>
+  );
+};
 
 export default ChatbotMessage;

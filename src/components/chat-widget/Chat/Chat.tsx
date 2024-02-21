@@ -1,20 +1,19 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
 
-import UserChatMessage from '../UserChatMessage/UserChatMessage';
-import ChatbotMessage from '../ChatbotMessage/ChatbotMessage';
+import UserChatMessage from '../../chat-island/user-chat-message';
+import ChatbotMessage from '../../chat-island/chatbot-message';
 
 import {
   botMessage,
   userMessage,
   customMessage,
-  createChatMessage,
+  createChatMessage
 } from './chatUtils';
-
 
 import {
   ICustomComponents,
   ICustomMessage,
-  ICustomStyles,
+  ICustomStyles
 } from 'src/types/IConfig';
 import { IMessage } from 'src/types/IMessages';
 import { RefObject } from 'preact';
@@ -58,7 +57,7 @@ const Chat = ({
   disableScrollToBottom,
   messageHistory,
   actions,
-  messageContainerRef,
+  messageContainerRef
 }: IChatProps) => {
   const { messages } = state;
 
@@ -93,23 +92,21 @@ const Chat = ({
     return messages.map((messageObject: IMessage, index: number) => {
       if (botMessage(messageObject)) {
         return (
-            <div key={messageObject.id}>{renderChatbotMessage(messageObject, index)}</div>
+          <div key={messageObject.id}>
+            {renderChatbotMessage(messageObject, index)}
+          </div>
         );
       }
 
       if (userMessage(messageObject)) {
         return (
-            <div key={messageObject.id}>
-            {renderUserMessage(messageObject)}
-          </div>
+          <div key={messageObject.id}>{renderUserMessage(messageObject)}</div>
         );
       }
 
       if (customMessage(messageObject, customMessages)) {
         return (
-            <div key={messageObject.id}>
-            {renderCustomMessage(messageObject)}
-          </div>
+          <div key={messageObject.id}>{renderCustomMessage(messageObject)}</div>
         );
       }
     });
@@ -124,7 +121,7 @@ const Chat = ({
       scrollIntoView,
       actionProvider,
       payload: messageObject.payload,
-      actions,
+      actions
     };
 
     if (messageObject.widget) {
@@ -132,7 +129,7 @@ const Chat = ({
         ...state,
         scrollIntoView,
         payload: messageObject.payload,
-        actions,
+        actions
       });
       return (
         <>
@@ -150,7 +147,7 @@ const Chat = ({
       ...state,
       scrollIntoView,
       payload: messageObject.payload,
-      actions,
+      actions
     });
     return (
       <>
@@ -179,7 +176,7 @@ const Chat = ({
       customComponents,
       widgetRegistry,
       messages,
-      actions,
+      actions
     };
 
     if (messageObject.widget) {
@@ -187,7 +184,7 @@ const Chat = ({
         ...state,
         scrollIntoView,
         payload: messageObject.payload,
-        actions,
+        actions
       });
       return (
         <>
@@ -197,7 +194,9 @@ const Chat = ({
             {...chatbotMessageProps}
             key={messageObject.id}
           />
-            {chatbotMessageProps.loading !== undefined && !chatbotMessageProps.loading && (widget ? widget : null)}
+          {chatbotMessageProps.loading !== undefined &&
+            !chatbotMessageProps.loading &&
+            (widget ? widget : null)}
 
           {/* <ConditionallyRender
             condition={!chatbotMessageProps.loading}
@@ -244,7 +243,7 @@ const Chat = ({
     if (setState) {
       setState((state: any) => ({
         ...state,
-        messages: [...state.messages, createChatMessage(input, 'user')],
+        messages: [...state.messages, createChatMessage(input, 'user')]
       }));
 
       scrollIntoView();
@@ -268,8 +267,7 @@ const Chat = ({
   }
 
   return (
-
-     <div className={styles.ChatContainer}>
+    <div className={styles.ChatContainer}>
       <div className={styles.ChatInnerContainer}>
         {/* <ConditionallyRender
           condition={!!customComponents.header}
@@ -303,7 +301,9 @@ const Chat = ({
           /> */}
 
           {typeof messageHistory === 'string' && Boolean(messageHistory) && (
-            <div dangerouslySetInnerHTML={{ __html: messageHistory as string }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: messageHistory as string }}
+            />
           )}
 
           {renderMessages()}
@@ -328,19 +328,19 @@ const Chat = ({
               className={styles.ChatBtnSend}
               style={customButtonStyle}
             >
-              <img src="src/assets/icons/paper-plane.svg" className={styles.ChatBtnSendIcon} />
+              <img
+                src="src/assets/icons/paper-plane.svg"
+                className={styles.ChatBtnSendIcon}
+              />
             </button>
           </form>
         </div>
       </div>
-      </div>
-
+    </div>
   );
 };
 
 export default Chat;
-
-
 
 // import React, { useState, useRef, useEffect, SetStateAction } from 'react';
 // import ConditionallyRender from 'react-conditionally-render';
@@ -363,7 +363,6 @@ export default Chat;
 //   ICustomMessage,
 //   ICustomStyles,
 // } from 'src/interfaces/IConfig';
-
 
 // import { IMessage } from 'src/interfaces/IMessages';
 

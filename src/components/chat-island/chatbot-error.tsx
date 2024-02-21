@@ -1,9 +1,7 @@
 import React from 'react';
 
-import ChatbotMessage from '../ChatbotMessage/ChatbotMessage';
-import * as styles from '../../../styles/ChatWidget.css';
-
-
+import ChatbotMessage from './chatbot-message';
+import * as styles from 'src/styles/ChatWidget.css';
 
 interface IChatbotErrorProps {
   message: string;
@@ -12,9 +10,7 @@ interface IChatbotErrorProps {
 const ChatbotError = ({ message }: IChatbotErrorProps) => {
   return (
     <div className={styles.Error}>
-      <h1 className={styles.ErrorHeader}>
-        Ooops. Something is missing.
-      </h1>
+      <h1 className={styles.ErrorHeader}>Ooops. Something is missing.</h1>
       <div className={styles.ErrorContainer}>
         <ChatbotMessage
           message={message}

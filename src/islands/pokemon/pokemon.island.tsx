@@ -1,64 +1,67 @@
-import '../../styles/reset.css'
+import '../../styles/reset.css';
 
-import { createIslandWebComponent } from 'preact-island'
-import { Box, Button, Input, Text, Form } from '../../components/_shared'
-import { useState } from 'preact/hooks'
-import axios from 'redaxios'
-import { API_URL } from '../../config/env'
-import { JSXInternal } from 'preact/src/jsx'
-import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents'
+import { createIslandWebComponent } from 'preact-island';
+import { Box, Button, Input, Text, Form } from '../../components/ui';
+import { useState } from 'preact/hooks';
+import axios from 'redaxios';
+import { API_URL } from '../../utils/api_url';
+import { JSXInternal } from 'preact/src/jsx';
+import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 
-const islandName = 'pokemon-island'
+const islandName = 'pokemon-island';
 
 export const Pokemon = () => {
-  useWebComponentEvents(islandName)
+  useWebComponentEvents(islandName);
   const [pokemonDetails, setPokemonDetails] = useState<{
-    name: string
-    sprite: string
-    number: number
-  } | null>(null)
-  const [pokemonInput, setPokemonInput] = useState('')
+    name: string;
+    sprite: string;
+    number: number;
+  } | null>(null);
+  const [pokemonInput, setPokemonInput] = useState('');
   const [pokemonError, setPokemonError] = useState<JSXInternal.Element | null>(
-    null,
-  )
-  const [pokemonLoading, setPokemonLoading] = useState(false)
+    null
+  );
+  const [pokemonLoading, setPokemonLoading] = useState(false);
 
   const onSubmit = async () => {
-    setPokemonLoading(true)
+    setPokemonLoading(true);
     const resp = await axios
       .get(`${API_URL}/pokemon/${pokemonInput}`)
       .catch((err) => {
-        setPokemonDetails(null)
-        setPokemonError(<Text>An error ocurred.</Text>)
+        setPokemonDetails(null);
+        setPokemonError(<Text>An error ocurred.</Text>);
       })
       .finally(() => {
-        setPokemonLoading(false)
-      })
+        setPokemonLoading(false);
+      });
 
     if (!resp) {
-      setPokemonDetails(null)
-      setPokemonError(<Text>Pokemon not found</Text>)
-      return
+      setPokemonDetails(null);
+      setPokemonError(<Text>Pokemon not found</Text>);
+      return;
     }
 
-    setPokemonError(null)
+    setPokemonError(null);
     setPokemonDetails({
       name: resp.data.name,
       number: resp.data.id,
-      sprite: resp.data.sprites.front_default,
-    })
-  }
+      sprite: resp.data.sprites.front_default
+    });
+  };
 
   return (
     <Box p="4">
-      <Text size="md" mb="2">
+      <Text
+        size="md"
+        mb="2"
+      >
         Search a pokemon
       </Text>
       <Form
         mb="6"
         onSubmit={(e) => {
-          e.preventDefault()
-          onSubmit
+          e.preventDefault();
+          onSubmit;
         }}
       >
         <Input
@@ -77,7 +80,11 @@ export const Pokemon = () => {
         </Button>
         {pokemonError}
       </Form>
-      <Box border="sm" borderColor={'gray'} p="4">
+      <Box
+        border="sm"
+        borderColor={'gray'}
+        p="4"
+      >
         {pokemonDetails != null ? (
           <Box data-testId="pokemonDetails">
             <Text mb="2">Pokemon Details</Text>
@@ -100,10 +107,10 @@ export const Pokemon = () => {
         )}
       </Box>
     </Box>
-  )
-}
+  );
+};
 
 createIslandWebComponent(islandName, Pokemon).render({
   selector: islandName,
-  initialProps: {},
-})
+  initialProps: {}
+});

@@ -2,18 +2,18 @@ import { useState, useRef, useEffect } from 'preact/hooks';
 import {
   createClientMessage,
   createChatBotMessage,
-  createCustomMessage,
-} from '../components/chat-widget/Chat/chatUtils';
+  createCustomMessage
+} from 'src/components/chat-widget/Chat/chatUtils';
 import {
   getInitialState,
   getWidgets,
   isConstructor,
-  validateProps,
-} from '../components/chat-widget/Chatbot/utils';
-import WidgetRegistry from '../components/chat-widget/WidgetRegistry/WidgetRegistry';
-import IConfig from '../types/IConfig';
-import { IMessage } from '../types/IMessages';
-import IWidget from '../types/IWidget';
+  validateProps
+} from 'src/components/chat-widget/Chatbot/utils';
+import WidgetRegistry from 'src/components/chat-widget/WidgetRegistry/WidgetRegistry';
+import IConfig from 'src/types/IConfig';
+import { IMessage } from 'src/types/IMessages';
+import IWidget from 'src/types/IWidget';
 
 interface IUseChatbotParams {
   config: IConfig | null;
@@ -66,7 +66,7 @@ const useChatbot = ({
 
   const [state, setState] = useState({
     messages: [...config.initialMessages],
-    ...initialState,
+    ...initialState
   });
   const messagesRef = useRef(state.messages);
   const stateRef = useRef();
@@ -80,7 +80,7 @@ const useChatbot = ({
     if (messageHistory && Array.isArray(messageHistory)) {
       setState((prevState: any) => ({
         ...prevState,
-        messages: messageHistory,
+        messages: messageHistory
       }));
     }
   }, []);
@@ -147,7 +147,7 @@ const useChatbot = ({
     setState,
     messageContainerRef,
     ActionProvider,
-    MessageParser,
+    MessageParser
   };
 };
 
