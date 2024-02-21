@@ -6,8 +6,8 @@ import Loader from '../Loader/Loader';
 
 
 import { callIfExists } from '../Chat/chatUtils';
-import { ICustomComponents, ICustomStyles } from 'src/interfaces/IConfig';
-import * as styles from '../ChatWidget.css';
+import { ICustomComponents, ICustomStyles } from 'src/types/IConfig';
+import * as styles from '../../../styles/ChatWidget.css';
 
 interface IChatbotMessageProps {
   message: string;

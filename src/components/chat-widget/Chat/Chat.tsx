@@ -15,11 +15,11 @@ import {
   ICustomComponents,
   ICustomMessage,
   ICustomStyles,
-} from 'src/interfaces/IConfig';
-import { IMessage } from 'src/interfaces/IMessages';
+} from 'src/types/IConfig';
+import { IMessage } from 'src/types/IMessages';
 import { RefObject } from 'preact';
 import { ChangeEvent } from 'preact/compat';
-import * as styles from '../ChatWidget.css';
+import * as styles from '../../../styles/ChatWidget.css';
 
 interface IChatProps {
   setState?: (state: any) => void;
@@ -262,7 +262,7 @@ const Chat = ({
     header = headerText;
   }
 
-  let placeholder = 'Write your message here';
+  let placeholder = 'Ask a  question...';
   if (placeholderText) {
     placeholder = placeholderText;
   }
@@ -307,7 +307,7 @@ const Chat = ({
           )}
 
           {renderMessages()}
-          <div style={{ paddingBottom: '15px' }} />
+          <div style={{ paddingBottom: '15px', backgroundColor: 'red' }} />
         </div>
 
         <div className={styles.ChatInputContainer}>

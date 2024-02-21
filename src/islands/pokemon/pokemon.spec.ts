@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { getByTestId, getIsland } from '../../test-utils/helpers'
+import { getByTestId, getIsland } from 'src/utils/helpers'
 
 test('should render the island and allow the form to be submitted', async ({
   page,

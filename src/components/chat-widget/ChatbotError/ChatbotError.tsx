@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ChatbotMessage from '../ChatbotMessage/ChatbotMessage';
-import * as styles from '../ChatWidget.css';
+import * as styles from '../../../styles/ChatWidget.css';
 
 
 

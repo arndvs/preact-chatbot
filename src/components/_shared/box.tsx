@@ -1,6 +1,6 @@
 import { ComponentChildren, ComponentProps } from 'preact'
-import { baseReset } from '../reset.css'
-import { layoutProperties, sprinkles } from '../sprinkles.css'
+import { baseReset } from '../../styles/reset.css'
+import { layoutProperties, sprinkles } from '../../styles/sprinkles.css'
 import cx from 'clsx'
 
 /**

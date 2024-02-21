@@ -9,9 +9,10 @@ import * as styles from './chat-widget.css'
 import { useWebComponentEvents } from "src/hooks/useWebComponentEvents"
 import { FC } from 'preact/compat'
 import cx from 'clsx'
-import { Box, Button, Text } from '../../components'
+import { Box, Button, Text } from '../../components/_shared'
 import { ChatIcon } from 'src/assets/chat-icon'
 import { ChevronDownIcon } from 'src/assets/chevron-down-icon'
+import { XMarkIcon } from 'src/assets/x-mark-icon'
 
 const Portalize: FC<{ name: string; parent: string }> = ({
     children,
@@ -34,15 +35,7 @@ export const ChatWidget  = () => {
 
     return  (
     <>
-    {/* <div id="chat-bubble-button" className={styles.chatBubbleButton}>
-  <div className={styles.chatBubbleButtonContent}>
-  <ChatIcon
-                  className="text-blue mr-2 h-5 w-5 "
-                  aria-hidden="true"
-                />{' '}
 
-  </div>
-</div> */}
 
     <div>
     <button
@@ -57,7 +50,7 @@ export const ChatWidget  = () => {
                   aria-hidden="true"
                 />) : (
                     <>
-                    <ChevronDownIcon
+                    <XMarkIcon
                     className={styles.chatBubbleButtonImage}
                     aria-hidden="true"
                     />

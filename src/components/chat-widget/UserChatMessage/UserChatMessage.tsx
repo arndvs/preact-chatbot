@@ -5,8 +5,8 @@ import { callIfExists } from '../Chat/chatUtils';
 // import UserIcon from 'src/assets/icons/user-alt.svg';
 
 
-import { ICustomComponents } from 'src/interfaces/IConfig';
-import * as styles from '../ChatWidget.css';
+import { ICustomComponents } from 'src/types/IConfig';
+import * as styles from '../../../styles/ChatWidget.css';
 
 interface IUserChatMessageProps {
   message: string;

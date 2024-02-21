@@ -1,4 +1,4 @@
-import { SvgProps } from 'src/interfaces/svg';
+import { SvgProps } from 'src/types/svg';
 
 export function ChevronDownIcon(props: SvgProps) {
   return (

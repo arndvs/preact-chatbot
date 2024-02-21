@@ -4,7 +4,7 @@ import Chat from '../Chat/Chat';
 
 import ChatbotError from '../ChatbotError/ChatbotError';
 
-import IConfig from 'src/interfaces/IConfig';
+import IConfig from 'src/types/IConfig';
 
 import {
   getCustomStyles,
@@ -15,7 +15,7 @@ import {
 } from './utils';
 
 import useChatbot from 'src/hooks/useChatbot';
-import { IMessage } from 'src/interfaces/IMessages';
+import { IMessage } from 'src/types/IMessages';
 import { createChatBotMessage } from '../Chat/chatUtils';
 
 

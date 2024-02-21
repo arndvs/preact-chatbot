@@ -123,7 +123,7 @@ export const ChatBotMessage = style({
     color: '#fff',
     fontWeight: 'medium',
     position: 'relative',
-    width: '184.5px',
+    width: '100%',
     marginLeft: 'auto',
     textAlign: 'left',
   });
@@ -201,13 +201,13 @@ const keyframes = {
 //react-chatbot-kit-chat-container
 export const ChatContainer = style({
     position: 'relative',
-    width: '275px',
+    width: '100%',
   });
 
 
 // react-chatbot-kit-chat-inner-container
 export const ChatInnerContainer = style({
-    height: '500px',
+    height: '100%',
     backgroundColor: '#fff',
     borderRadius: '5px',
   });
@@ -275,7 +275,7 @@ export const ChatInputPlaceholder = style({
 
   // react-chatbot-kit-chat-btn-send
   export const ChatBtnSend = style({
-    backgroundColor: '#2898ec',
+    backgroundColor: '#ff8800',
     width: '100px',
     border: 'none',
     color: '#fff',

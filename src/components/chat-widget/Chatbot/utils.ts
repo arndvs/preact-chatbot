@@ -1,4 +1,4 @@
-import IConfig from 'src/interfaces/IConfig';
+import IConfig from 'src/types/IConfig';
 
 export const getCustomStyles = (config: IConfig) => {
   if (config.customStyles) {

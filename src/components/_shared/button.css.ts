@@ -1,8 +1,8 @@
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes'
-import { buttonReset } from '../reset.css'
-import { sprinkles } from '../sprinkles.css'
+import { buttonReset } from '../../styles/reset.css'
+import { sprinkles } from '../../styles/sprinkles.css'
 import { keyframes, style } from '@vanilla-extract/css'
-import { vars } from '../vars.css'
+import { vars } from '../../styles/vars.css'
 
 export const button = recipe({
   base: [

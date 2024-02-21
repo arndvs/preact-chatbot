@@ -11,9 +11,9 @@ import {
   validateProps,
 } from '../components/chat-widget/Chatbot/utils';
 import WidgetRegistry from '../components/chat-widget/WidgetRegistry/WidgetRegistry';
-import IConfig from '../interfaces/IConfig';
-import { IMessage } from '../interfaces/IMessages';
-import IWidget from '../interfaces/IWidget';
+import IConfig from '../types/IConfig';
+import { IMessage } from '../types/IMessages';
+import IWidget from '../types/IWidget';
 
 interface IUseChatbotParams {
   config: IConfig | null;

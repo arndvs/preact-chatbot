@@ -1,9 +1,9 @@
-import '../../reset.css'
+import '../../styles/reset.css'
 
 import { createIslandWebComponent, WebComponentPortal } from 'preact-island'
 import { useState } from 'preact/hooks'
 import cx from 'clsx'
-import { Box, Button, Text } from '../../components'
+import { Box, Button, Text } from '../../components/_shared'
 import * as styles from './subscribe-email.css'
 import { FC } from 'preact/compat'
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents'

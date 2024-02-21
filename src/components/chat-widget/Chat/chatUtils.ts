@@ -2,7 +2,7 @@ import {
   IBaseMessage,
   IMessage,
   IMessageOptions,
-} from 'src/interfaces/IMessages';
+} from 'src/types/IMessages';
 
 export const uniqueId = () => {
   return Math.round(Date.now() * Math.random());

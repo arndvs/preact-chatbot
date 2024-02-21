@@ -1,8 +1,8 @@
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes'
 import { style } from '@vanilla-extract/css'
-import { inputReset } from '../reset.css'
-import { vars } from '../vars.css'
-import { sprinkles } from '../sprinkles.css'
+import { inputReset } from '../../styles/reset.css'
+import { vars } from '../../styles/vars.css'
+import { sprinkles } from '../../styles/sprinkles.css'
 
 export const input = recipe({
   base: [inputReset],

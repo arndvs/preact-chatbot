@@ -3,7 +3,7 @@ const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { DefinePlugin } = require('webpack')
-const FileSizePlugin = require('./FileSizePlugin')
+const FileSizePlugin = require('./src/utils/FileSizePlugin')
 const glob = require('glob')
 
 /**

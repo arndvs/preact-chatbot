@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes'
-import { sprinkles } from '../sprinkles.css'
+import { sprinkles } from '../../styles/sprinkles.css'
 
 export const text = recipe({
   variants: {
