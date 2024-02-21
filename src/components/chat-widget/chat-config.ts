@@ -1,8 +1,9 @@
-import { createChatBotMessage } from "./Chat/chatUtils";
-
+import { createChatBotMessage } from './Chat/chatUtils';
 
 const ChatConfig = {
-    initialMessages: [createChatBotMessage(`Hello world`)],
-  };
+  initialMessages: [
+    createChatBotMessage(`👋 Hi! I am ChatbotName. How can i help?`)
+  ]
+};
 
-  export default ChatConfig;
+export default ChatConfig;
