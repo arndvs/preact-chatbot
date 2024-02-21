@@ -1,24 +1,24 @@
-const path = require('path')
-const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const { DefinePlugin } = require('webpack')
-const FileSizePlugin = require('./src/utils/FileSizePlugin')
-const glob = require('glob')
+const path = require('path');
+const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const { DefinePlugin } = require('webpack');
+const IslandFileSizePlugin = require('./src/utils/IslandFileSizePlugin');
+const glob = require('glob');
 
 /**
  * @returns {Array.<{import: string, name: string, layer: string, elementName: string}>}
  */
 const getIslands = () => {
-  const paths = glob.sync('./src/islands/**/*.island.{ts,tsx}')
+  const paths = glob.sync('./src/islands/**/*.island.{ts,tsx}');
 
   return paths.map((path) => {
     const name = path
       .split('/')
       .pop()
-      .replace(/.island.(tsx|ts)/g, '')
+      .replace(/.island.(tsx|ts)/g, '');
 
-    let elementName = `${name}-island`
+    let elementName = `${name}-island`;
     /**
      * If you want to name your web component something different than the filename of the island (not
      * recommended). Please override them here.
@@ -31,26 +31,26 @@ const getIslands = () => {
       path,
       name,
       elementName,
-      layer: name,
-    }
-  })
-}
+      layer: name
+    };
+  });
+};
 
-const islands = getIslands()
+const islands = getIslands();
 
 // This builds the entry points for all of your islands.
 const buildEntryPoints = () => {
-  const entryPoints = {}
+  const entryPoints = {};
 
   islands.forEach((island) => {
     entryPoints[island.name] = {
       import: island.path,
-      layer: island.layer,
-    }
-  })
+      layer: island.layer
+    };
+  });
 
-  return entryPoints
-}
+  return entryPoints;
+};
 
 const buildCssLayersFromEntryPoints = () => {
   return islands.map(({ layer, elementName }) => {
@@ -67,7 +67,7 @@ const buildCssLayersFromEntryPoints = () => {
           options: {
             injectType: 'singletonStyleTag',
             attributes: {
-              'data-style-for': elementName,
+              'data-style-for': elementName
             },
             /**
              * It appears the node given to you is initially blank with styles applied after the fact so you
@@ -78,14 +78,14 @@ const buildCssLayersFromEntryPoints = () => {
              * NOTE: This runs untranspiled in the browser so watch out!
              */
             insert: (styleTag) => {
-              var styleTarget = styleTag.dataset.styleFor
+              var styleTarget = styleTag.dataset.styleFor;
 
               if (!styleTarget) {
                 console.error(
-                  'Did not get a style target in the insert command from the style loader. No styles will be inserted. Did you override something in getIslands incorrectly?',
-                )
+                  'Did not get a style target in the insert command from the style loader. No styles will be inserted. Did you override something in getIslands incorrectly?'
+                );
 
-                return
+                return;
               }
 
               window.addEventListener('web-component-mount', (e) => {
@@ -93,9 +93,8 @@ const buildCssLayersFromEntryPoints = () => {
                   styleTarget !== e.detail.target &&
                   styleTarget !== e.detail.parent
                 ) {
-                  return
+                  return;
                 }
-
 
                 // TODO: This is a hack to get around the fact that the shadow dom is not available
                 // console.log('test', e.detail.target, styleTarget)
@@ -107,8 +106,7 @@ const buildCssLayersFromEntryPoints = () => {
                 //   `#${e.detail.target}`,
                 // ).shadowRoot
 
-
-                var target = document.querySelector(e.detail.target).shadowRoot
+                var target = document.querySelector(e.detail.target).shadowRoot;
 
                 if (!target) {
                   console.error(
@@ -117,33 +115,33 @@ const buildCssLayersFromEntryPoints = () => {
 createIslandWebComponent('${styleTarget}', YourComponent).render({
   selector: ${styleTarget},
   initialProps: {},
-})`,
-                  )
-                  return
+})`
+                  );
+                  return;
                 }
 
                 // We need to clone because it's going to be inserted into separate shadow doms. If you don't clone it
                 // the tag can only be active in one context
-                target.prepend(styleTag.cloneNode(true))
-              })
-            },
-          },
+                target.prepend(styleTag.cloneNode(true));
+              });
+            }
+          }
         },
-        'css-loader',
-      ],
-    }
-  })
-}
+        'css-loader'
+      ]
+    };
+  });
+};
 
 module.exports = ({ dev, prod }) => {
-  const isDev = dev === true
-  const isProd = prod === true
+  const isDev = dev === true;
+  const isProd = prod === true;
 
   if (isDev) {
     console.log(
-      "Stubbing environmental variables for development from './env.local'",
-    )
-    require('dotenv').config({ path: './.env.local' })
+      "Stubbing environmental variables for development from './env.local'"
+    );
+    require('dotenv').config({ path: './.env.local' });
   }
 
   /** @type { import('webpack').Configuration } */
@@ -161,19 +159,19 @@ module.exports = ({ dev, prod }) => {
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
         'react-dom': 'preact/compat', // Must be below test-utils
-        'react/jsx-runtime': 'preact/jsx-runtime',
-      },
+        'react/jsx-runtime': 'preact/jsx-runtime'
+      }
     },
     devServer: {
       port: 7777,
-      hot: false,
+      hot: false
     },
     devtool: isDev ? 'eval' : false,
     entry: buildEntryPoints(),
     output: {
       path: path.join(__dirname, 'dist/islands'),
       filename: '[name].island.umd.js',
-      libraryTarget: 'umd',
+      libraryTarget: 'umd'
     },
     module: {
       rules: [
@@ -190,27 +188,27 @@ module.exports = ({ dev, prod }) => {
                   ['@babel/preset-react', { runtime: 'automatic' }],
                   [
                     '@babel/preset-env',
-                    { targets: { node: 16 }, modules: false },
-                  ],
+                    { targets: { node: 16 }, modules: false }
+                  ]
                 ],
-                plugins: ['@vanilla-extract/babel-plugin'],
-              },
-            },
-          ],
+                plugins: ['@vanilla-extract/babel-plugin']
+              }
+            }
+          ]
         },
         {
           test: /\.css$/i,
-          oneOf: buildCssLayersFromEntryPoints(),
+          oneOf: buildCssLayersFromEntryPoints()
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
           use: [
             {
-              loader: 'file-loader',
-            },
-          ],
-        },
-      ],
+              loader: 'file-loader'
+            }
+          ]
+        }
+      ]
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -251,7 +249,7 @@ module.exports = ({ dev, prod }) => {
             .map((island) => {
               return `<div class="preview">
             <${island.elementName}></${island.elementName}>
-          </div>`
+          </div>`;
             })
             .join('')}
 
@@ -267,26 +265,26 @@ module.exports = ({ dev, prod }) => {
          * the index.html file is served from the root.
          */
         publicPath: isDev ? '/' : '/islands',
-        filename: isDev ? 'index.html' : '../index.html',
+        filename: isDev ? 'index.html' : '../index.html'
       }),
       new VanillaExtractPlugin(),
       /**
        * Define environmental variables here that you need for the islands to function.
        */
       new DefinePlugin({
-        ISLAND_API_URL: JSON.stringify(process.env.ISLAND_API_URL),
+        ISLAND_API_URL: JSON.stringify(process.env.ISLAND_API_URL)
       }),
-      ...(isProd ? [new FileSizePlugin()] : []),
+      ...(isProd ? [new IslandFileSizePlugin()] : [])
     ],
     stats: 'errors-warnings',
     experiments: {
-      layers: true,
+      layers: true
     },
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin()],
-    },
-  }
+      minimizer: [new TerserPlugin()]
+    }
+  };
 
-  return config
-}
+  return config;
+};
