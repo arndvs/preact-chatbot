@@ -2,7 +2,7 @@ import { createIslandWebComponent } from 'preact-island';
 
 import ChatIsland from 'src/components/chat/chat-island-component';
 
-const islandName = 'chat';
+const islandName = 'chat-island';
 
 export const Chat = () => {
   return <ChatIsland islandName={islandName} />;
