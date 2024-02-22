@@ -1,15 +1,17 @@
 import { h, ComponentChildren, FunctionalComponent } from 'preact';
 import { isValidElement, cloneElement } from 'preact';
 
-interface ChatbotActionProviderProps {
+interface ActionProviderProps {
   createChatBotMessage: any; // Adjust the type as per your requirement
   setState: any; // Adjust the type as per your requirement
   children?: ComponentChildren;
 }
 
-const ChatbotActionProvider: FunctionalComponent<
-  ChatbotActionProviderProps
-> = ({ createChatBotMessage, setState, children }) => {
+const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
+  createChatBotMessage,
+  setState,
+  children
+}) => {
   const handleHello = () => {
     const botMessage = createChatBotMessage('Hello. Nice to meet you.');
 
@@ -40,4 +42,4 @@ const ChatbotActionProvider: FunctionalComponent<
   );
 };
 
-export default ChatbotActionProvider;
+export default ActionProvider;

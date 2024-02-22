@@ -2,8 +2,8 @@ import { WebComponentPortal } from 'preact-island';
 
 import cx from 'clsx';
 import { FC } from 'preact/compat';
-import ChatbotActionProvider from 'src/actions/chatbot-action-provider';
-import MessageParser from 'src/actions/chatbot-message-parser';
+import ActionProvider from 'src/actions/action-provider';
+import MessageParser from 'src/actions/message-parser';
 import { Box } from 'src/components/ui';
 import Chatbot from 'src/components/chat-island/Chatbot';
 import ChatbotConfig from 'src/utils/chatbot-config';
@@ -47,7 +47,7 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
             <Chatbot
               config={ChatbotConfig}
               messageParser={MessageParser}
-              chatbotActionProvider={ChatbotActionProvider}
+              actionProvider={ActionProvider}
             />
           </Box>
         </ChatOverlay>

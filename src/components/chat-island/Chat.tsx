@@ -24,7 +24,7 @@ interface IChatProps {
   setState?: (state: any) => void;
   widgetRegistry: any;
   messageParser: any;
-  chatbotActionProvider: any;
+  actionProvider: any;
   customComponents: IChatbotCustomComponents;
   botName: string;
   customStyles: IChatbotCustomStyles;
@@ -47,7 +47,7 @@ const Chat = ({
   messageParser,
   parse,
   customComponents,
-  chatbotActionProvider,
+  actionProvider,
   botName,
   customStyles,
   headerText,
@@ -119,7 +119,7 @@ const Chat = ({
       setState,
       state,
       scrollIntoView,
-      chatbotActionProvider,
+      actionProvider,
       payload: messageObject.payload,
       actions
     };
@@ -275,17 +275,15 @@ const Chat = ({
         {/* <ConditionallyRender
           condition={!!customComponents.header}
           show={
-            customComponents.header && customComponents.header(chatbotActionProvider)
+            customComponents.header && customComponents.header(actionProvider)
           }
           elseShow={
             <div className={styles.ChatHeader}>{header}</div>
           }
         /> */}
 
-        {customComponents.header &&
-        customComponents.header(chatbotActionProvider) ? (
-          customComponents.header &&
-          customComponents.header(chatbotActionProvider)
+        {customComponents.header && customComponents.header(actionProvider) ? (
+          customComponents.header && customComponents.header(actionProvider)
         ) : (
           <div className={styles.ChatHeader}>{header}</div>
         )}
@@ -375,7 +373,7 @@ export default Chat;
 //   setState: any;
 //   widgetRegistry: any;
 //   messageParser: any;
-//   chatbotActionProvider: any;
+//   actionProvider: any;
 //   customComponents: IChatbotCustomComponents;
 //   botName: string;
 //   customStyles: IChatbotCustomStyles;
@@ -398,7 +396,7 @@ export default Chat;
 //   messageParser,
 //   parse,
 //   customComponents,
-//   chatbotActionProvider,
+//   actionProvider,
 //   botName,
 //   customStyles,
 //   headerText,
@@ -474,7 +472,7 @@ export default Chat;
 //       setState,
 //       state,
 //       scrollIntoView,
-//       chatbotActionProvider,
+//       actionProvider,
 //       payload: messageObject.payload,
 //       actions,
 //     };
@@ -621,7 +619,7 @@ export default Chat;
 //         <ConditionallyRender
 //           condition={!!customComponents.header}
 //           show={
-//             customComponents.header && customComponents.header(chatbotActionProvider)
+//             customComponents.header && customComponents.header(actionProvider)
 //           }
 //           elseShow={
 //             <div className={styles.ChatHeader}>{header}</div>

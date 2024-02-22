@@ -17,7 +17,7 @@ import IChatbotWidget from 'src/types/IChatbotWidget';
 
 interface IUseChatbotParams {
   config: IChatbotConfig | null;
-  chatbotActionProvider: any;
+  actionProvider: any;
   messageParser: any;
   messageHistory?: IChatbotMessage[] | string;
   saveMessages?: (messages: IChatbotMessage[], html: string) => any | null;
@@ -26,7 +26,7 @@ interface IUseChatbotParams {
 
 const useChatbot = ({
   config,
-  chatbotActionProvider,
+  actionProvider,
   messageParser,
   messageHistory,
   runInitialMessagesWithHistory,
@@ -36,7 +36,7 @@ const useChatbot = ({
   let configurationError = '';
   let invalidPropsError = '';
 
-  if (!config || !chatbotActionProvider || !messageParser) {
+  if (!config || !actionProvider || !messageParser) {
     configurationError =
       'I think you forgot to feed me some props. Did you remember to pass a config, a messageparser and an actionprovider?';
 
@@ -106,11 +106,11 @@ const useChatbot = ({
   let messagePars;
   let widgets;
 
-  const ChatbotActionProvider = chatbotActionProvider;
+  const ActionProvider = actionProvider;
   const MessageParser = messageParser;
 
-  if (isConstructor(ChatbotActionProvider) && isConstructor(MessageParser)) {
-    actionProv = new chatbotActionProvider(
+  if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {
+    actionProv = new actionProvider(
       createChatBotMessage,
       setState,
       createClientMessage,
@@ -127,7 +127,7 @@ const useChatbot = ({
       widgetRegistry?.addWidget(widget, rest)
     );
   } else {
-    actionProv = chatbotActionProvider;
+    actionProv = actionProvider;
     messagePars = messageParser;
     widgetRegistry = new ChatbotWidgetRegistry(setState, null);
 
@@ -146,7 +146,7 @@ const useChatbot = ({
     state,
     setState,
     messageContainerRef,
-    ChatbotActionProvider,
+    ActionProvider,
     MessageParser
   };
 };

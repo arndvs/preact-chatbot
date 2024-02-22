@@ -12,12 +12,12 @@ interface ParentProps {
 
 class ChatbotWidgetRegistry {
   setState: Function;
-  chatbotActionProvider: any;
+  actionProvider: any;
   [key: string]: any; // Index signature
 
-  constructor(setStateFunc: Function, chatbotActionProvider: any) {
+  constructor(setStateFunc: Function, actionProvider: any) {
     this.setState = setStateFunc;
-    this.chatbotActionProvider = chatbotActionProvider;
+    this.actionProvider = actionProvider;
   }
 
   addWidget = (
@@ -53,7 +53,7 @@ class ChatbotWidgetRegistry {
       ...getObject(widgetObject.props),
       ...this.mapStateToProps(widgetObject.mapStateToProps, options),
       setState: this.setState,
-      chatbotActionProvider: this.chatbotActionProvider || options.actions,
+      actionProvider: this.actionProvider || options.actions,
       actions: options.actions,
       state: options,
       payload: options.payload
