@@ -106,6 +106,8 @@ const buildCssLayersFromEntryPoints = () => {
                 //   `#${e.detail.target}`,
                 // ).shadowRoot
 
+                // the error is happenign here on the .shadowRoot
+                console.log('e.detail.target', e.detail.target);
                 var target = document.querySelector(e.detail.target).shadowRoot;
 
                 if (!target) {
