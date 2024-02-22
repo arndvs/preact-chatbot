@@ -332,6 +332,7 @@ const Chat = ({
               className={styles.ChatBtnSend}
               style={customButtonStyle}
             >
+              <span>send</span>
               <AirplaneIcon className={styles.ChatBtnSendIcon} />
             </button>
           </form>
