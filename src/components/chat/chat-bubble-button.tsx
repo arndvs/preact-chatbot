@@ -14,6 +14,7 @@ const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
       onClick={() => setIsOpen(!isOpen)}
       data-testid="chat-bubble-button"
     >
+      <span>bubble button</span>
       <div className={styles.chatBubbleButtonContent}>
         {!isOpen ? (
           <ChatIcon
