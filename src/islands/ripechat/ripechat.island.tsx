@@ -2,13 +2,13 @@ import { createIslandWebComponent } from 'preact-island';
 
 import ChatIsland from 'src/components/chat/chat-island-component';
 
-const islandName = 'chatbot-island';
+const islandName = 'ripe-chat-island';
 
-export const Chat = () => {
+export const RipeChat = () => {
   return <ChatIsland islandName={islandName} />;
 };
 
-const island = createIslandWebComponent(islandName, Chat);
+const island = createIslandWebComponent(islandName, RipeChat);
 island.render({
   selector: islandName
 });
