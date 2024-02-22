@@ -6,7 +6,7 @@ import {
   VNode
 } from 'preact';
 
-interface ChatbotMessageParserProps {
+interface MessageParserProps {
   actions: {
     handleHello: () => void;
     handleMenu: () => void;
@@ -17,7 +17,7 @@ interface ChatbotMessageParserProps {
   children?: ComponentChildren | readonly ComponentChildren[];
 }
 
-const ChatbotMessageParser: FunctionalComponent<ChatbotMessageParserProps> = ({
+const MessageParser: FunctionalComponent<MessageParserProps> = ({
   children = null,
   actions,
   ...props
@@ -73,4 +73,4 @@ const ChatbotMessageParser: FunctionalComponent<ChatbotMessageParserProps> = ({
   );
 };
 
-export default ChatbotMessageParser;
+export default MessageParser;

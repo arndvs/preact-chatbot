@@ -23,7 +23,7 @@ import * as styles from 'src/styles/ChatWidget.css';
 interface IChatProps {
   setState?: (state: any) => void;
   widgetRegistry: any;
-  chatbotMessageParser: any;
+  messageParser: any;
   chatbotActionProvider: any;
   customComponents: IChatbotCustomComponents;
   botName: string;
@@ -44,7 +44,7 @@ const Chat = ({
   state,
   setState,
   widgetRegistry,
-  chatbotMessageParser,
+  messageParser,
   parse,
   customComponents,
   chatbotActionProvider,
@@ -231,14 +231,14 @@ const Chat = ({
         if (parse) {
           return parse(input);
         }
-        chatbotMessageParser.parse(input);
+        messageParser.parse(input);
       }
     } else {
       handleValidMessage();
       if (parse) {
         return parse(input);
       }
-      chatbotMessageParser.parse(input);
+      messageParser.parse(input);
     }
   };
 
@@ -374,7 +374,7 @@ export default Chat;
 // interface IChatProps {
 //   setState: any;
 //   widgetRegistry: any;
-//   chatbotMessageParser: any;
+//   messageParser: any;
 //   chatbotActionProvider: any;
 //   customComponents: IChatbotCustomComponents;
 //   botName: string;
@@ -395,7 +395,7 @@ export default Chat;
 //   state,
 //   setState,
 //   widgetRegistry,
-//   chatbotMessageParser,
+//   messageParser,
 //   parse,
 //   customComponents,
 //   chatbotActionProvider,
@@ -579,14 +579,14 @@ export default Chat;
 //         if (parse) {
 //           return parse(input);
 //         }
-//         chatbotMessageParser.parse(input);
+//         messageParser.parse(input);
 //       }
 //     } else {
 //       handleValidMessage();
 //       if (parse) {
 //         return parse(input);
 //       }
-//       chatbotMessageParser.parse(input);
+//       messageParser.parse(input);
 //     }
 //   };
 

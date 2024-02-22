@@ -20,7 +20,7 @@ import { createChatBotMessage } from 'src/utils/chatbot-message-utils';
 
 interface IChatbotProps {
   chatbotActionProvider: any;
-  chatbotMessageParser: any;
+  messageParser: any;
   config: IChatbotConfig;
   headerText?: string;
   placeholderText?: string;
@@ -33,7 +33,7 @@ interface IChatbotProps {
 
 const Chatbot = ({
   chatbotActionProvider,
-  chatbotMessageParser,
+  messageParser,
   config,
   headerText,
   placeholderText,
@@ -48,7 +48,7 @@ const Chatbot = ({
     configurationError,
     invalidPropsError,
     ChatbotActionProvider,
-    ChatbotMessageParser,
+    MessageParser,
     widgetRegistry,
     messageContainerRef,
     actionProv,
@@ -58,7 +58,7 @@ const Chatbot = ({
   } = useChatbot({
     config,
     chatbotActionProvider,
-    chatbotMessageParser,
+    messageParser,
     messageHistory,
     saveMessages,
     runInitialMessagesWithHistory,
@@ -78,17 +78,14 @@ const Chatbot = ({
   const botName = getBotName(config);
   const customMessages = getCustomMessages(config);
 
-  if (
-    isConstructor(ChatbotActionProvider) &&
-    isConstructor(ChatbotMessageParser)
-  ) {
+  if (isConstructor(ChatbotActionProvider) && isConstructor(MessageParser)) {
     return (
       <Chat
         state={state}
         setState={setState}
         widgetRegistry={widgetRegistry}
         chatbotActionProvider={actionProv}
-        chatbotMessageParser={messagePars}
+        messageParser={messagePars}
         customMessages={customMessages}
         customComponents={{ ...customComponents }}
         botName={botName}
@@ -108,13 +105,13 @@ const Chatbot = ({
         setState={setState}
         createChatBotMessage={createChatBotMessage}
       >
-        <ChatbotMessageParser>
+        <MessageParser>
           <Chat
             state={state}
             setState={setState}
             widgetRegistry={widgetRegistry}
             chatbotActionProvider={ChatbotActionProvider}
-            chatbotMessageParser={ChatbotMessageParser}
+            messageParser={MessageParser}
             customMessages={customMessages}
             customComponents={{ ...customComponents }}
             botName={botName}
@@ -126,7 +123,7 @@ const Chatbot = ({
             disableScrollToBottom={disableScrollToBottom}
             messageContainerRef={messageContainerRef}
           />
-        </ChatbotMessageParser>
+        </MessageParser>
       </ChatbotActionProvider>
     );
   }
