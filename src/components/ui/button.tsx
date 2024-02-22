@@ -6,7 +6,7 @@ import {
   ButtonVariants,
   loadingDot,
   disabled
-} from 'src/styles/button.css';
+} from 'src/styles/ui-button.css';
 
 export type ButtonProps = BoxProps &
   ComponentProps<'div'> & {

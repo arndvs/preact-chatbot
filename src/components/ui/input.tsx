@@ -1,6 +1,6 @@
 import { ComponentProps } from 'preact';
 import { Box, BoxProps } from './box';
-import { input, InputVariants } from 'src/styles/input.css';
+import { input, InputVariants } from 'src/styles/ui-input.css';
 import cx from 'clsx';
 
 export type InputProps = BoxProps & {
