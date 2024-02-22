@@ -9,8 +9,13 @@ export const Ripechat = () => {
   return <ChatIsland islandName={islandName} />;
 };
 
-const island = createIslandWebComponent(islandName, Ripechat);
-island.render({
+// const island = createIslandWebComponent(islandName, Ripechat);
+// island.render({
+//   selector: islandName,
+//   initialProps: {}
+// });
+
+createIslandWebComponent(islandName, Ripechat).render({
   selector: islandName,
   initialProps: {}
 });
