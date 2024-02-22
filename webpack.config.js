@@ -116,6 +116,8 @@ const buildCssLayersFromEntryPoints = () => {
                   `#${e.detail.target}`
                 ).shadowRoot;
 
+                console.log('target', target);
+
                 if (!target) {
                   console.error(
                     `Could not find a web component query selector target for "${styleTarget}". No styles will be appended. Did you name the web component at createIslandWebComponent something different than your file name? If so, you will need to override it at getIslands inside of the webpack config. This is what is expected
