@@ -19,6 +19,7 @@ import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { RefObject } from 'preact';
 import { ChangeEvent } from 'preact/compat';
 import * as styles from 'src/styles/ChatWidget.css';
+import { AirplaneIcon } from 'src/assets/airplane-icon';
 
 interface IChatProps {
   setState?: (state: any) => void;
@@ -331,10 +332,7 @@ const Chat = ({
               className={styles.ChatBtnSend}
               style={customButtonStyle}
             >
-              <img
-                src="src/assets/icons/paper-plane.svg"
-                className={styles.ChatBtnSendIcon}
-              />
+              <AirplaneIcon className={styles.ChatBtnSendIcon} />
             </button>
           </form>
         </div>
