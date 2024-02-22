@@ -106,7 +106,10 @@ const buildCssLayersFromEntryPoints = () => {
                 //   `#${e.detail.target}`,
                 // ).shadowRoot
 
-                // the error is happenign here on the .shadowRoot
+                // the error is happening here on the .shadowRoot
+                console.log(
+                  'the "Uncaught TypeError: Cannot read properties of null (reading `shadowRoot`)" error is happening here on the .shadowRoot'
+                );
                 console.log('e.detail.target', e.detail.target);
                 var target = document.querySelector(e.detail.target).shadowRoot;
 
