@@ -11,5 +11,6 @@ export const Ripechat = () => {
 
 const island = createIslandWebComponent(islandName, Ripechat);
 island.render({
-  selector: islandName
+  selector: islandName,
+  initialProps: {}
 });
