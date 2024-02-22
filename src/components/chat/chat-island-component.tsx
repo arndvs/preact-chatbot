@@ -13,7 +13,6 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
 
   return (
     <>
-      <span>test</span>
       <ChatBubbleButton
         isOpen={isOpen}
         setIsOpen={setIsOpen}
