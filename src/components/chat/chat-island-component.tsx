@@ -1,13 +1,13 @@
 import { useState } from 'preact/compat';
-import ChatBubbleButton from 'src/components/chat-island/chat-bubble-button';
-import ChatModal from 'src/components/chat-island/chat-modal';
+import ChatBubbleButton from 'src/components/chat/chat-bubble-button';
+import ChatModal from 'src/components/chat/chat-modal';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 
-interface ChatIslandProps {
+interface ChatIslandComponentProps {
   islandName: string;
 }
 
-const ChatIsland = ({ islandName }: ChatIslandProps) => {
+const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   useWebComponentEvents(islandName);
 
@@ -28,4 +28,4 @@ const ChatIsland = ({ islandName }: ChatIslandProps) => {
   );
 };
 
-export default ChatIsland;
+export default ChatIslandComponent;
