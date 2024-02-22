@@ -23,6 +23,7 @@
 import { useEffect } from 'preact/hooks';
 
 export const useWebComponentEvents = (name: string, parent?: string) => {
+  console.log('useWebComponentEvents mounted');
   useEffect(() => {
     const event = new CustomEvent('web-component-mount', {
       detail: { target: name, parent },
