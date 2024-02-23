@@ -13,8 +13,8 @@
     "test-headed": "npx playwright test --headed",
     "test-headed-slow": "SLOW=true npx playwright test --headed",
     "tsc": "tsc --noEmit -p tsconfig.app.json",
-    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "prettier-fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint-fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@preact/compat": "^17.1.2",

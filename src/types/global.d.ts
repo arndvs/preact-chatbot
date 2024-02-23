@@ -1,1 +1,1 @@
-declare const ISLAND_API_URL: string
+declare const ISLAND_API_URL: string;
