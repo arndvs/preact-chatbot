@@ -8,7 +8,7 @@ interface ChatbotHeaderProps {
   botName: string;
 }
 
-const ChatbotHeader = ({
+const ChatbotHeaderContainer = ({
   customComponents,
   actionProvider,
   botName,
@@ -30,4 +30,4 @@ const ChatbotHeader = ({
   );
 };
 
-export default ChatbotHeader;
+export default ChatbotHeaderContainer;

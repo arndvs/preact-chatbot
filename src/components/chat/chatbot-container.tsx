@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
 
-import ChatbotMessage from './chatbot-message';
-import ChatbotUserMessage from './chatbot-user-message';
-
 import {
   botMessage,
   createChatMessage,
@@ -10,12 +7,15 @@ import {
   userMessage
 } from 'src/utils/chatbot-message-utils';
 
-import { ChangeEvent } from 'preact/compat';
-import { AirplaneIcon } from 'src/assets/airplane-icon';
-import ChatbotHeader from 'src/components/chat/chatbot-header';
+import { scrollIntoView } from 'src/actions/scroll-into-view';
+import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
+import ChatbotMessageContainer from 'src/components/chat/chatbot-message-container';
 import * as styles from 'src/styles/chat-widget.css';
-import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
+import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
+import ChatbotUserMessage from 'src/components/chat/chatbot-user-message';
+import ChatbotMessage from 'src/components/chat/chatbot-message';
 
 const ChatbotContainer = ({
   state,
@@ -40,18 +40,9 @@ const ChatbotContainer = ({
 
   const [input, setInputValue] = useState('');
 
-  const scrollIntoView = () => {
-    setTimeout(() => {
-      if (messageContainerRef?.current) {
-        messageContainerRef.current.scrollTop =
-          messageContainerRef?.current?.scrollHeight;
-      }
-    }, 50);
-  };
-
   useEffect(() => {
     if (disableScrollToBottom) return;
-    scrollIntoView();
+    scrollIntoView(messageContainerRef);
   });
 
   const showAvatar = (messages: any[], index: number) => {
@@ -194,97 +185,46 @@ const ChatbotContainer = ({
     );
   };
 
-  const handleSubmit = (e: Event) => {
-    e.preventDefault();
-
-    if (validator && typeof validator === 'function') {
-      if (validator(input)) {
-        handleValidMessage();
-        if (parse) {
-          return parse(input);
-        }
-        messageParser.parse(input);
-      }
-    } else {
-      handleValidMessage();
-      if (parse) {
-        return parse(input);
-      }
-      messageParser.parse(input);
-    }
-  };
-
-  const handleValidMessage = () => {
-    if (setState) {
-      setState((state: any) => ({
-        ...state,
-        messages: [...state.messages, createChatMessage(input, 'user')]
-      }));
-
-      scrollIntoView();
-      setInputValue('');
-    }
-  };
-
-  const customButtonStyle = { backgroundColor: '' };
-  if (customStyles && customStyles.chatButton) {
-    customButtonStyle.backgroundColor = customStyles.chatButton.backgroundColor;
-  }
-
-  let placeholder = 'Ask a  question...';
-  if (placeholderText) {
-    placeholder = placeholderText;
-  }
-
   return (
     <div className={styles.ChatContainer}>
       <div className={styles.ChatInnerContainer}>
-        <ChatbotHeader
+        <ChatbotHeaderContainer
           botName={botName}
           headerText={headerText}
           customComponents={customComponents}
           actionProvider={actionProvider}
         />
         {/* <ChatbotMessageContainer
-        messageHistory={messageHistory}
-        messageContainerRef={messageContainerRef}
-      /> */}
+          widgetRegistry={widgetRegistry}
+          customMessages={customMessages}
+          actions={actions}
+          messages={messages}
+          messageHistory={messageHistory}
+          messageContainerRef={messageContainerRef}
+        /> */}
         <div
           className={styles.ChatMessageContainer}
           ref={messageContainerRef}
         >
-          {typeof messageHistory === 'string' && Boolean(messageHistory) && (
+          {typeof messageHistory === 'string' && Boolean(messageHistory) ? (
             <div
               dangerouslySetInnerHTML={{ __html: messageHistory as string }}
             />
-          )}
-
+          ) : null}
           {renderMessages()}
-          <div style={{ paddingBottom: '15px', backgroundColor: 'red' }} />
+          <div style={{ paddingBottom: '15px' }} />
         </div>
-        {/* <ChatbotInputContainer /> */}
-        <div className={styles.ChatInputContainer}>
-          <form
-            className={styles.ChatInputForm}
-            onSubmit={handleSubmit}
-          >
-            <input
-              className={styles.ChatInput}
-              placeholder={placeholder}
-              value={input}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                const target = e.target as HTMLInputElement;
-                setInputValue(target.value);
-              }}
-            />
-            <button
-              className={styles.ChatBtnSend}
-              style={customButtonStyle}
-            >
-              <AirplaneIcon className={styles.ChatBtnSendIcon} />
-            </button>
-          </form>
-        </div>
+        <ChatbotInputContainer
+          setState={setState}
+          validator={validator}
+          input={input}
+          setInputValue={setInputValue}
+          parse={parse}
+          messageParser={messageParser}
+          messageContainerRef={messageContainerRef}
+          placeholderText={placeholderText}
+          customStyles={customStyles}
+        />
       </div>
     </div>
   );
