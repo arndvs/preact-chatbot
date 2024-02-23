@@ -1,26 +1,26 @@
-import { ComponentChildren, ComponentProps } from 'preact'
-import { baseReset } from '../reset.css'
-import { layoutProperties, sprinkles } from '../sprinkles.css'
-import cx from 'clsx'
+import { ComponentChildren, ComponentProps } from 'preact';
+import { baseReset } from 'src/styles/reset.css';
+import { layoutProperties, sprinkles } from 'src/styles/sprinkles.css';
+import cx from 'clsx';
 
 /**
  * Parses out what properties are sprinkles compared to props
  */
 const parsePropsFromSprinkles = (props: any) => {
-  const componentProps: Record<any, any> = {}
-  const sprinkleProps: Record<any, any> = {}
+  const componentProps: Record<any, any> = {};
+  const sprinkleProps: Record<any, any> = {};
 
   for (const key in props) {
     // @ts-ignore not worth the effort to type the index signature
     if (layoutProperties['styles'][key]) {
-      sprinkleProps[key] = props[key]
+      sprinkleProps[key] = props[key];
     } else {
-      componentProps[key] = props[key]
+      componentProps[key] = props[key];
     }
   }
 
-  return [componentProps, sprinkleProps]
-}
+  return [componentProps, sprinkleProps];
+};
 
 /**
  * Add props to the pick as you need them.
@@ -29,11 +29,11 @@ export type BoxProps = Pick<
   ComponentProps<'div'>,
   'role' | 'className' | 'style' | 'onClick' | 'onKeyDown' | 'href'
 > & {
-  as?: any
-  children?: ComponentChildren | ComponentChildren[]
-  testId?: string
-  id?: string
-} & Parameters<typeof sprinkles>[0]
+  as?: any;
+  children?: ComponentChildren | ComponentChildren[];
+  testId?: string;
+  id?: string;
+} & Parameters<typeof sprinkles>[0];
 
 /**
  * This is a base primitive that all over elements are built off of.
@@ -47,7 +47,7 @@ export const Box = ({
   ...maybeSprinkles
 }: BoxProps) => {
   const [componentProps, sprinkleProps] =
-    parsePropsFromSprinkles(maybeSprinkles)
+    parsePropsFromSprinkles(maybeSprinkles);
 
   return (
     <Component
@@ -58,5 +58,5 @@ export const Box = ({
     >
       {children}
     </Component>
-  )
-}
+  );
+};

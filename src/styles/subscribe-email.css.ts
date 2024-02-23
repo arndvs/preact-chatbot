@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css'
 
 export const button = style({
   border: 'none',
-  backgroundColor: '#294eab',
+  backgroundColor: '#ff0000',
   borderRadius: '5px',
   padding: '10px',
   fontWeight: 'bold',
@@ -31,7 +31,7 @@ export const dimmerVisible = style({
 export const modal = style({
   position: 'fixed',
   outline: 'none',
-  zIndex: '9000',
+  zIndex: '100',
   backgroundColor: 'white',
   display: 'none !important',
   width: '380px',

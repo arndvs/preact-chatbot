@@ -23,7 +23,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "noPropertyAccessFromIndexSignature": false,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"]
+    },
+    "outDir": "./dist"
   },
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/utils/IslandFileSizePlugin.js"
+  ]
 }

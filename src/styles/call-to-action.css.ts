@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css';
 
 export const button = style({
   border: 'none',
@@ -8,8 +8,8 @@ export const button = style({
   fontWeight: 'bold',
   color: 'white',
   cursor: 'pointer',
-  fontFamily: 'inherit',
-})
+  fontFamily: 'inherit'
+});
 
 export const dimmer = style({
   position: 'fixed',
@@ -19,19 +19,19 @@ export const dimmer = style({
   left: '0',
   right: '0',
   bottom: '0',
-  backgroundColor: 'rgba(0, 0, 0, 0.6)',
-})
+  backgroundColor: 'rgba(0, 0, 0, 0.6)'
+});
 
 export const dimmerVisible = style({
   display: 'block',
   animation: 'show 0.2s',
-  animationFillMode: 'forwards',
-})
+  animationFillMode: 'forwards'
+});
 
 export const modal = style({
   position: 'fixed',
   outline: 'none',
-  zIndex: '9000',
+  zIndex: '100',
   backgroundColor: 'white',
   display: 'none !important',
   width: '380px',
@@ -43,16 +43,16 @@ export const modal = style({
   fontFamily: 'inherit',
   overflowY: 'auto',
   height: '650px',
-  textAlign: 'center',
-})
+  textAlign: 'center'
+});
 
 export const image = style({
   width: '100%',
-  marginBottom: '1rem',
-})
+  marginBottom: '1rem'
+});
 
 export const modalVisible = style({
   display: 'block !important',
   animation: 'show 0.3s',
-  animationFillMode: 'forwards',
-})
+  animationFillMode: 'forwards'
+});

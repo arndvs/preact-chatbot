@@ -1,12 +1,12 @@
-import { ComponentProps } from 'preact'
-import { Box, BoxProps } from './box'
-import { input, InputVariants } from './input.css'
-import cx from 'clsx'
+import { ComponentProps } from 'preact';
+import { Box, BoxProps } from './box';
+import { input, InputVariants } from 'src/styles/ui-input.css';
+import cx from 'clsx';
 
 export type InputProps = BoxProps & {
-  as?: never
+  as?: never;
 } & Omit<ComponentProps<'input'>, 'size' | 'width'> &
-  InputVariants
+  InputVariants;
 
 export const Input = ({ size, theme, className, ...rest }: InputProps) => {
   return (
@@ -16,5 +16,5 @@ export const Input = ({ size, theme, className, ...rest }: InputProps) => {
       className={cx(input({ size, theme }), className)}
       {...rest}
     />
-  )
-}
+  );
+};
