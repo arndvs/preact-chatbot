@@ -1,8 +1,49 @@
-interface IChatbotWidget {
+import { Ref } from 'preact';
+import {
+  IChatbotCustomComponents,
+  IChatbotCustomMessage,
+  IChatbotCustomStyles
+} from 'src/types/IChatbotConfig';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
+
+export interface ParentProps {
+  [key: string]: any;
+}
+
+export interface WidgetProps {
+  [key: string]: any;
+}
+export interface MapStateToProps {
+  (props: string[], state: any): WidgetProps;
+}
+export interface IChatbotWidget {
   widgetName: string;
   widgetFunc: (props: any) => preact.VNode;
   props: any;
-  mapStateToProps: string[];
+  mapStateToProps: MapStateToProps;
 }
 
-export default IChatbotWidget;
+export interface ChatbotMessageContainerProps {
+  messageHistory?: IChatbotMessage[] | string;
+  messageContainerRef: Ref<HTMLDivElement> | undefined;
+}
+
+export interface IChatbotContainerProps {
+  setState?: (state: any) => void;
+  widgetRegistry: any;
+  messageParser: any;
+  actionProvider: any;
+  customComponents: IChatbotCustomComponents;
+  botName: string;
+  customStyles: IChatbotCustomStyles;
+  headerText?: string;
+  customMessages: IChatbotCustomMessage;
+  placeholderText?: string;
+  validator: ((input: string) => Boolean) | undefined;
+  state: any;
+  disableScrollToBottom?: boolean;
+  messageHistory?: IChatbotMessage[] | string;
+  parse?: (message: string) => void;
+  actions?: object;
+  messageContainerRef: any;
+}

@@ -13,7 +13,7 @@ import {
 import ChatbotWidgetRegistry from 'src/utils/chatbot-widget-registry';
 import IChatbotConfig from 'src/types/IChatbotConfig';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
-import IChatbotWidget from 'src/types/IChatbotWidget';
+import { IChatbotWidget } from 'src/types/IChatbotWidget';
 
 interface IUseChatbotParams {
   config: IChatbotConfig | null;
