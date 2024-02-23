@@ -1,4 +1,9 @@
-import { IChatbotCustomComponents } from 'src/types/IChatbotConfig';
+import { MessageContainerRefProps } from 'src/actions/scroll-into-view';
+import {
+  IChatbotCustomComponents,
+  IChatbotCustomMessage,
+  IChatbotCustomStyles
+} from 'src/types/IChatbotConfig';
 
 export interface IChatbotBaseMessage {
   message: string;
@@ -37,4 +42,19 @@ export interface IChatbotMessageContainerProps {
 export interface IChatbotUserMessageContainerProps {
   message: string;
   customComponents: IChatbotCustomComponents;
+}
+
+export interface IChatbotMessageRetrieverProps {
+  actionProvider: any;
+  actions?: object;
+  customComponents: IChatbotCustomComponents;
+  customMessages: IChatbotCustomMessage;
+  customStyles: IChatbotCustomStyles;
+  messageContainerRef: MessageContainerRefProps;
+  messageHistory?: IChatbotMessage[] | string;
+  messages: any[];
+  scrollIntoView: (messageContainerRef: MessageContainerRefProps) => void;
+  setState?: any;
+  state: any;
+  widgetRegistry: any;
 }

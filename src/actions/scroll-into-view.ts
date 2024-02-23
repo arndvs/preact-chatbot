@@ -1,4 +1,4 @@
-interface MessageContainerRefProps {
+export interface MessageContainerRefProps {
   current: HTMLDivElement | null;
 }
 

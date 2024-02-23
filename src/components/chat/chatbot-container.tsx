@@ -1,38 +1,30 @@
 import { useEffect, useState } from 'preact/hooks';
 
-import {
-  botMessage,
-  customMessage,
-  userMessage
-} from 'src/utils/chatbot-message-utils';
-
-import { scrollIntoView } from 'src/actions/scroll-into-view';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container';
 import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
-import ChatbotMessage from 'src/components/chat/chatbot-message-container';
-import ChatbotUserMessage from 'src/components/chat/chatbot-user-message-container';
-import * as styles from 'src/styles/chat-widget.css';
-import { IChatbotMessage } from 'src/types/IChatbotMessages';
+import ChatbotMessageRetriever from 'src/components/chat/chatbot-message-retriever';
+import { scrollIntoView } from 'src/actions/scroll-into-view';
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
+import * as styles from 'src/styles/chat-widget.css';
 
 const ChatbotContainer = ({
-  state,
-  setState,
-  widgetRegistry,
+  actionProvider,
+  actions,
+  botName,
+  customComponents,
+  customMessages,
+  customStyles,
+  disableScrollToBottom,
+  headerText,
+  messageContainerRef,
+  messageHistory,
   messageParser,
   parse,
-  customComponents,
-  actionProvider,
-  botName,
-  customStyles,
-  headerText,
-  customMessages,
   placeholderText,
+  setState,
+  state,
   validator,
-  disableScrollToBottom,
-  messageHistory,
-  actions,
-  messageContainerRef
+  widgetRegistry
 }: IChatbotContainerProps) => {
   const { messages } = state;
 
@@ -43,185 +35,39 @@ const ChatbotContainer = ({
     scrollIntoView(messageContainerRef);
   });
 
-  const showAvatar = (messages: any[], index: number) => {
-    if (index === 0) return true;
-
-    const lastMessage = messages[index - 1];
-
-    if (lastMessage.type === 'bot' && !lastMessage.widget) {
-      return false;
-    }
-    return true;
-  };
-
-  const renderMessages = () => {
-    return messages.map((messageObject: IChatbotMessage, index: number) => {
-      if (botMessage(messageObject)) {
-        return (
-          <div key={messageObject.id}>
-            {renderChatbotMessage(messageObject, index)}
-          </div>
-        );
-      }
-
-      if (userMessage(messageObject)) {
-        return (
-          <div key={messageObject.id}>{renderUserMessage(messageObject)}</div>
-        );
-      }
-
-      if (customMessage(messageObject, customMessages)) {
-        return (
-          <div key={messageObject.id}>{renderCustomMessage(messageObject)}</div>
-        );
-      }
-    });
-  };
-
-  const renderCustomMessage = (messageObject: IChatbotMessage) => {
-    const customMessage = customMessages[messageObject.type];
-
-    const props = {
-      setState,
-      state,
-      scrollIntoView,
-      actionProvider,
-      payload: messageObject.payload,
-      actions
-    };
-
-    if (messageObject.widget) {
-      const widget = widgetRegistry.getWidget(messageObject.widget, {
-        ...state,
-        scrollIntoView,
-        payload: messageObject.payload,
-        actions
-      });
-      return (
-        <>
-          {customMessage(props)}
-          {widget ? widget : null}
-        </>
-      );
-    }
-
-    return customMessage(props);
-  };
-
-  const renderUserMessage = (messageObject: IChatbotMessage) => {
-    const widget = widgetRegistry.getWidget(messageObject.widget, {
-      ...state,
-      scrollIntoView,
-      payload: messageObject.payload,
-      actions
-    });
-    return (
-      <>
-        <ChatbotUserMessage
-          message={messageObject.message}
-          key={messageObject.id}
-          customComponents={customComponents}
-        />
-        {widget ? widget : null}
-      </>
-    );
-  };
-
-  const renderChatbotMessage = (
-    messageObject: IChatbotMessage,
-    index: number
-  ) => {
-    let withAvatar;
-    if (messageObject.withAvatar) {
-      withAvatar = messageObject.withAvatar;
-    } else {
-      withAvatar = showAvatar(messages, index);
-    }
-
-    const chatbotMessageProps = {
-      ...messageObject,
-      setState,
-      state,
-      customComponents,
-      widgetRegistry,
-      messages,
-      actions
-    };
-
-    if (messageObject.widget) {
-      const widget = widgetRegistry.getWidget(chatbotMessageProps.widget, {
-        ...state,
-        scrollIntoView,
-        payload: messageObject.payload,
-        actions
-      });
-      return (
-        <>
-          <ChatbotMessage
-            customStyles={customStyles.botMessageBox}
-            withAvatar={withAvatar}
-            {...chatbotMessageProps}
-            key={messageObject.id}
-          />
-          {chatbotMessageProps.loading !== undefined &&
-            !chatbotMessageProps.loading &&
-            (widget ? widget : null)}
-        </>
-      );
-    }
-
-    return (
-      <ChatbotMessage
-        customStyles={customStyles.botMessageBox}
-        key={messageObject.id}
-        withAvatar={withAvatar}
-        {...chatbotMessageProps}
-        customComponents={customComponents}
-        messages={messages}
-        setState={setState}
-      />
-    );
-  };
-
   return (
     <div className={styles.ChatContainer}>
       <div className={styles.ChatInnerContainer}>
         <ChatbotHeaderContainer
-          botName={botName}
-          headerText={headerText}
-          customComponents={customComponents}
           actionProvider={actionProvider}
+          botName={botName}
+          customComponents={customComponents}
+          headerText={headerText}
         />
-        {/* <ChatbotMessageRetriever
-          widgetRegistry={widgetRegistry}
-          customMessages={customMessages}
+        <ChatbotMessageRetriever
+          actionProvider={actionProvider}
           actions={actions}
-          messages={messages}
-          messageHistory={messageHistory}
-          messageContainerRef={messageContainerRef}
-        /> */}
-        <div
-          className={styles.ChatMessageContainer}
-          ref={messageContainerRef}
-        >
-          {typeof messageHistory === 'string' && Boolean(messageHistory) ? (
-            <div
-              dangerouslySetInnerHTML={{ __html: messageHistory as string }}
-            />
-          ) : null}
-          {renderMessages()}
-          <div style={{ paddingBottom: '15px' }} />
-        </div>
-        <ChatbotInputContainer
-          setState={setState}
-          validator={validator}
-          input={input}
-          setInputValue={setInputValue}
-          parse={parse}
-          messageParser={messageParser}
-          messageContainerRef={messageContainerRef}
-          placeholderText={placeholderText}
+          customComponents={customComponents}
+          customMessages={customMessages}
           customStyles={customStyles}
+          messageContainerRef={messageContainerRef}
+          messageHistory={messageHistory}
+          messages={messages}
+          scrollIntoView={scrollIntoView}
+          setState={setState}
+          state={state}
+          widgetRegistry={widgetRegistry}
+        />
+        <ChatbotInputContainer
+          customStyles={customStyles}
+          input={input}
+          messageContainerRef={messageContainerRef}
+          messageParser={messageParser}
+          parse={parse}
+          placeholderText={placeholderText}
+          setState={setState}
+          setInputValue={setInputValue}
+          validator={validator}
         />
       </div>
     </div>
