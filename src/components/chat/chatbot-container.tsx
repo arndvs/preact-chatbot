@@ -2,20 +2,18 @@ import { useEffect, useState } from 'preact/hooks';
 
 import {
   botMessage,
-  createChatMessage,
   customMessage,
   userMessage
 } from 'src/utils/chatbot-message-utils';
 
 import { scrollIntoView } from 'src/actions/scroll-into-view';
-import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
-import ChatbotMessageContainer from 'src/components/chat/chatbot-message-retriever';
-import * as styles from 'src/styles/chat-widget.css';
-import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container';
-import { IChatbotMessage } from 'src/types/IChatbotMessages';
-import ChatbotUserMessage from 'src/components/chat/chatbot-user-message';
+import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
 import ChatbotMessage from 'src/components/chat/chatbot-message-container';
+import ChatbotUserMessage from 'src/components/chat/chatbot-user-message';
+import * as styles from 'src/styles/chat-widget.css';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
+import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotContainer = ({
   state,

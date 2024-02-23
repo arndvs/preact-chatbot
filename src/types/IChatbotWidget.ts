@@ -1,5 +1,5 @@
 import { Ref } from 'preact';
-import {
+import IChatbotConfig, {
   IChatbotCustomComponents,
   IChatbotCustomMessage,
   IChatbotCustomStyles
@@ -21,6 +21,19 @@ export interface IChatbotWidget {
   widgetFunc: (props: any) => preact.VNode;
   props: any;
   mapStateToProps: MapStateToProps;
+}
+
+export interface IChatbotWidgetProps {
+  actionProvider: any;
+  messageParser: any;
+  config: IChatbotConfig;
+  headerText?: string;
+  placeholderText?: string;
+  saveMessages?: (ref: any) => any;
+  messageHistory?: IChatbotMessage[] | string;
+  validator?: (input: string) => Boolean;
+  runInitialMessagesWithHistory?: Boolean;
+  disableScrollToBottom?: boolean;
 }
 
 export interface ChatbotMessageContainerProps {
@@ -49,18 +62,18 @@ export interface IChatbotContainerProps {
 }
 
 export interface ChatbotInputContainerProps {
-  setState: any;
-  validator: any;
+  setState?: (state: any) => void;
+  validator: ((input: string) => Boolean) | undefined;
   input: string;
   setInputValue: any;
-  parse: any;
+  parse?: (message: string) => void;
   messageParser: any;
   messageContainerRef: any;
   placeholderText?: string;
   customStyles: IChatbotCustomStyles;
 }
 
-export interface ChatbotHeaderProps {
+export interface ChatbotHeaderContainerProps {
   customComponents: IChatbotCustomComponents;
   actionProvider: any;
   headerText?: string;

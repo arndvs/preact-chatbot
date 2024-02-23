@@ -1,12 +1,12 @@
 import * as styles from 'src/styles/chat-widget.css';
-import { ChatbotHeaderProps } from 'src/types/IChatbotWidget';
+import { ChatbotHeaderContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotHeaderContainer = ({
   customComponents,
   actionProvider,
   botName,
   headerText
-}: ChatbotHeaderProps) => {
+}: ChatbotHeaderContainerProps) => {
   let header = `Conversation with ${botName}`;
   if (headerText) {
     header = headerText;
