@@ -1,3 +1,5 @@
+import { IChatbotCustomComponents } from 'src/types/IChatbotConfig';
+
 export interface IChatbotBaseMessage {
   message: string;
   type: string;
@@ -18,4 +20,21 @@ export interface IChatbotMessage extends IChatbotBaseMessage {
   delay?: number;
   withAvatar?: boolean;
   payload?: any;
+}
+
+export interface IChatbotMessageProps {
+  message: string;
+  withAvatar?: boolean;
+  loading?: boolean;
+  messages: any[];
+  delay?: number;
+  id: number;
+  setState?: any;
+  customComponents?: IChatbotCustomComponents;
+  customStyles?: { backgroundColor: string };
+}
+
+export interface IChatbotUserMessageProps {
+  message: string;
+  customComponents: IChatbotCustomComponents;
 }

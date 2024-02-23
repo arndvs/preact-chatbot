@@ -5,10 +5,10 @@ import { FC } from 'preact/compat';
 import ActionProvider from 'src/actions/action-provider';
 import MessageParser from 'src/actions/message-parser';
 import { Box } from 'src/components/ui';
-import Chatbot from 'src/components/chat/Chatbot';
 import ChatbotConfig from 'src/utils/chatbot-config';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import * as styles from 'src/styles/chat-overlay.css';
+import ChatbotWidget from 'src/components/chat/chatbot-widget';
 
 interface ChatModalProps {
   isOpen: boolean;
@@ -42,7 +42,7 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
               isOpen && styles.chatOverlayVisible
             )}
           >
-            <Chatbot
+            <ChatbotWidget
               config={ChatbotConfig}
               messageParser={MessageParser}
               actionProvider={ActionProvider}

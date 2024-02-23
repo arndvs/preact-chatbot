@@ -1,26 +1,10 @@
-import React, { useEffect, useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import ChatbotMessageAvatar from './chatbot-message-avatar';
-
-import { callIfExists } from 'src/utils/chatbot-message-utils';
-import {
-  IChatbotCustomComponents,
-  IChatbotCustomStyles
-} from 'src/types/IChatbotConfig';
-import * as styles from 'src/styles/chat-widget.css';
 import ChatbotLoaderContainer from 'src/components/chat/chatbot-loader-container';
+import * as styles from 'src/styles/chat-widget.css';
+import { IChatbotMessageProps } from 'src/types/IChatbotMessages';
+import { callIfExists } from 'src/utils/chatbot-message-utils';
 
-interface IChatbotMessageProps {
-  message: string;
-  withAvatar?: boolean;
-  loading?: boolean;
-  messages: any[];
-  delay?: number;
-  id: number;
-  setState?: any;
-  customComponents?: IChatbotCustomComponents;
-  customStyles?: { backgroundColor: string };
-}
 const ChatbotMessage = ({
   message,
   withAvatar = true,
