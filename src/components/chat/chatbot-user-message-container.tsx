@@ -1,12 +1,12 @@
 import { UserIcon } from 'src/assets/user-icon';
 import * as styles from 'src/styles/chat-widget.css';
-import { IChatbotUserMessageProps } from 'src/types/IChatbotMessages';
+import { IChatbotUserMessageContainerProps } from 'src/types/IChatbotMessages';
 import { callIfExists } from 'src/utils/chatbot-message-utils';
 
-const ChatbotUserMessage = ({
+const ChatbotUserMessageContainer = ({
   message,
   customComponents
-}: IChatbotUserMessageProps) => {
+}: IChatbotUserMessageContainerProps) => {
   const renderChatbotUserMessage = () => {
     if (customComponents.userChatMessage) {
       return callIfExists(customComponents.userChatMessage, { message });
@@ -40,4 +40,4 @@ const ChatbotUserMessage = ({
   );
 };
 
-export default ChatbotUserMessage;
+export default ChatbotUserMessageContainer;
