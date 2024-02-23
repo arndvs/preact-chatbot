@@ -13,7 +13,7 @@ import {
 import useChatbot from 'src/hooks/useChatbot';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { createChatBotMessage } from 'src/utils/chatbot-message-utils';
-import Chatbot from './chatbot';
+import Chatbot from 'src/components/chat/Chatbot';
 
 interface IChatbotProps {
   actionProvider: any;
