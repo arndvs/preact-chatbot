@@ -8,7 +8,12 @@ const islandName = 'ripechat-island';
 
 export const RipechatIsland = () => {
   console.log('Ripechat mounted');
-  return <ChatIsland islandName={islandName} />;
+  return (
+    <ChatIsland
+      islandName={islandName}
+      data-testid="RipechatIsland"
+    />
+  );
 };
 
 const island = createIslandWebComponent('ripechat-island', RipechatIsland);
