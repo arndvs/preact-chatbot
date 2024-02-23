@@ -3,7 +3,7 @@ import { scrollIntoView } from 'src/actions/scroll-into-view';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
 import * as styles from 'src/styles/chat-widget.css';
 import { ChatbotInputContainerProps } from 'src/types/IChatbotWidget';
-import { createChatMessage } from 'src/utils/chatbot-message-utils';
+import { createChatMessage } from 'src/actions/chatbot-message-utils';
 
 const ChatbotInputContainer = ({
   setState,

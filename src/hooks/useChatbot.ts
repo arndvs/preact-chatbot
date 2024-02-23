@@ -3,13 +3,13 @@ import {
   createClientMessage,
   createChatBotMessage,
   createCustomMessage
-} from 'src/utils/chatbot-message-utils';
+} from 'src/actions/chatbot-message-utils';
 import {
   getInitialState,
   getWidgets,
   isConstructor,
   validateProps
-} from 'src/utils/chatbot-config-utils';
+} from 'src/actions/chatbot-config-utils';
 import ChatbotWidgetRegistry from 'src/utils/chatbot-widget-registry';
 import IChatbotConfig from 'src/types/IChatbotConfig';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';

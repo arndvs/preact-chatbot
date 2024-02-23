@@ -3,7 +3,7 @@ import ChatbotMessageAvatar from './chatbot-message-avatar';
 import ChatbotLoadingDots from 'src/components/chat/chatbot-loading-dots';
 import * as styles from 'src/styles/chat-widget.css';
 import { IChatbotMessageContainerProps } from 'src/types/IChatbotMessages';
-import { callIfExists } from 'src/utils/chatbot-message-utils';
+import { callIfExists } from 'src/actions/chatbot-message-utils';
 
 const ChatbotMessageContainer = ({
   message,
