@@ -7,8 +7,9 @@ import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 
 const islandName = 'ripechat-island';
 
+useWebComponentEvents(islandName);
+
 export const RipechatIsland = () => {
-  useWebComponentEvents(islandName);
   console.log('Ripechat mounted');
   return (
     <ChatIsland
