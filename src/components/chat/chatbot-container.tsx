@@ -13,11 +13,9 @@ import {
 import { ChangeEvent } from 'preact/compat';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
 import ChatbotHeader from 'src/components/chat/chatbot-header';
-import ChatbotMessageContainer from 'src/components/chat/chatbot-message-container';
 import * as styles from 'src/styles/chat-widget.css';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
-import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
 
 const ChatbotContainer = ({
   state,
