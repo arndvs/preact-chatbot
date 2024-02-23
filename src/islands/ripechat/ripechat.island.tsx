@@ -16,8 +16,8 @@ export const RipechatIsland = () => {
   );
 };
 
-const island = createIslandWebComponent('ripechat-island', RipechatIsland);
+const island = createIslandWebComponent(islandName, RipechatIsland);
 island.render({
-  selector: 'ripechat-island',
+  selector: islandName,
   initialProps: {}
 });
