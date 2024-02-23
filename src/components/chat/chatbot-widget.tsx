@@ -1,5 +1,6 @@
-import ChatbotError from './chatbot-error';
-import IChatbotConfig from 'src/types/IChatbotConfig';
+import ChatbotContainer from 'src/components/chat/chatbot-container';
+import useChatbot from 'src/hooks/useChatbot';
+import { IChatbotWidgetProps } from 'src/types/IChatbotWidget';
 import {
   getBotName,
   getCustomComponents,
@@ -7,23 +8,8 @@ import {
   getCustomStyles,
   isConstructor
 } from 'src/utils/chatbot-config-utils';
-import useChatbot from 'src/hooks/useChatbot';
-import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { createChatBotMessage } from 'src/utils/chatbot-message-utils';
-import ChatbotContainer from 'src/components/chat/chatbot-container';
-
-interface IChatbotProps {
-  actionProvider: any;
-  messageParser: any;
-  config: IChatbotConfig;
-  headerText?: string;
-  placeholderText?: string;
-  saveMessages?: (ref: any) => any;
-  messageHistory?: IChatbotMessage[] | string;
-  validator?: (input: string) => Boolean;
-  runInitialMessagesWithHistory?: Boolean;
-  disableScrollToBottom?: boolean;
-}
+import ChatbotError from './chatbot-error';
 
 const ChatbotWidget = ({
   actionProvider,
@@ -37,7 +23,7 @@ const ChatbotWidget = ({
   disableScrollToBottom,
   validator,
   ...rest
-}: IChatbotProps) => {
+}: IChatbotWidgetProps) => {
   const {
     configurationError,
     invalidPropsError,

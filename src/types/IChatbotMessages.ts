@@ -22,7 +22,7 @@ export interface IChatbotMessage extends IChatbotBaseMessage {
   payload?: any;
 }
 
-export interface IChatbotMessageProps {
+export interface IChatbotMessageContainerProps {
   message: string;
   withAvatar?: boolean;
   loading?: boolean;
