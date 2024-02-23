@@ -10,7 +10,7 @@ import { scrollIntoView } from 'src/actions/scroll-into-view';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container';
 import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
 import ChatbotMessage from 'src/components/chat/chatbot-message-container';
-import ChatbotUserMessage from 'src/components/chat/chatbot-user-message';
+import ChatbotUserMessage from 'src/components/chat/chatbot-user-message-container';
 import * as styles from 'src/styles/chat-widget.css';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';

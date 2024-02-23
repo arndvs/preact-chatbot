@@ -34,7 +34,7 @@ export interface IChatbotMessageContainerProps {
   customStyles?: { backgroundColor: string };
 }
 
-export interface IChatbotUserMessageProps {
+export interface IChatbotUserMessageContainerProps {
   message: string;
   customComponents: IChatbotCustomComponents;
 }
