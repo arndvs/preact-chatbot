@@ -1,7 +1,6 @@
 import { useState } from 'preact/compat';
 import ChatBubbleButton from 'src/components/chat/chat-bubble-button';
 import ChatModal from 'src/components/chat/chat-modal';
-import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 
 interface ChatIslandComponentProps {
   islandName: string;
@@ -9,7 +8,6 @@ interface ChatIslandComponentProps {
 
 const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  useWebComponentEvents(islandName);
 
   return (
     <>
