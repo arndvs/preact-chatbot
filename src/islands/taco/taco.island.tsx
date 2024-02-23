@@ -3,10 +3,13 @@ import 'src/styles/reset.css';
 import { createIslandWebComponent } from 'preact-island';
 
 import * as styles from 'src/styles/taco.css';
+import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 
 const islandName = 'taco-island';
 
 export const Taco = () => {
+  useWebComponentEvents(islandName);
+
   return (
     <div>
       <button
