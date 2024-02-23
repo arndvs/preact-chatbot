@@ -12,35 +12,12 @@ import {
 
 import { ChangeEvent } from 'preact/compat';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
+import ChatbotHeader from 'src/components/chat/chatbot-header';
 import * as styles from 'src/styles/chat-widget.css';
-import {
-  IChatbotCustomComponents,
-  IChatbotCustomMessage,
-  IChatbotCustomStyles
-} from 'src/types/IChatbotConfig';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
+import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 
-interface IChatProps {
-  setState?: (state: any) => void;
-  widgetRegistry: any;
-  messageParser: any;
-  actionProvider: any;
-  customComponents: IChatbotCustomComponents;
-  botName: string;
-  customStyles: IChatbotCustomStyles;
-  headerText?: string;
-  customMessages: IChatbotCustomMessage;
-  placeholderText?: string;
-  validator: ((input: string) => Boolean) | undefined;
-  state: any;
-  disableScrollToBottom?: boolean;
-  messageHistory?: IChatbotMessage[] | string;
-  parse?: (message: string) => void;
-  actions?: object;
-  messageContainerRef: any;
-}
-
-const Chatbot = ({
+const ChatbotContainer = ({
   state,
   setState,
   widgetRegistry,
@@ -58,7 +35,7 @@ const Chatbot = ({
   messageHistory,
   actions,
   messageContainerRef
-}: IChatProps) => {
+}: IChatbotContainerProps) => {
   const { messages } = state;
 
   const [input, setInputValue] = useState('');
@@ -254,11 +231,6 @@ const Chatbot = ({
     customButtonStyle.backgroundColor = customStyles.chatButton.backgroundColor;
   }
 
-  let header = `Conversation with ${botName}`;
-  if (headerText) {
-    header = headerText;
-  }
-
   let placeholder = 'Ask a  question...';
   if (placeholderText) {
     placeholder = placeholderText;
@@ -267,12 +239,16 @@ const Chatbot = ({
   return (
     <div className={styles.ChatContainer}>
       <div className={styles.ChatInnerContainer}>
-        {customComponents.header && customComponents.header(actionProvider) ? (
-          customComponents.header && customComponents.header(actionProvider)
-        ) : (
-          <div className={styles.ChatHeader}>{header}</div>
-        )}
-
+        <ChatbotHeader
+          botName={botName}
+          headerText={headerText}
+          customComponents={customComponents}
+          actionProvider={actionProvider}
+        />
+        {/* <ChatbotMessageContainer
+        messageHistory={messageHistory}
+        messageContainerRef={messageContainerRef}
+      /> */}
         <div
           className={styles.ChatMessageContainer}
           ref={messageContainerRef}
@@ -286,7 +262,7 @@ const Chatbot = ({
           {renderMessages()}
           <div style={{ paddingBottom: '15px', backgroundColor: 'red' }} />
         </div>
-
+        {/* <ChatbotInputContainer /> */}
         <div className={styles.ChatInputContainer}>
           <form
             className={styles.ChatInputForm}
@@ -314,4 +290,4 @@ const Chatbot = ({
   );
 };
 
-export default Chatbot;
+export default ChatbotContainer;

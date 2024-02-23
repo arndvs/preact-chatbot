@@ -118,24 +118,24 @@ const buildCssLayersFromEntryPoints = () => {
                 //     ? targetElement.shadowRoot
                 //     : null;
 
-                setTimeout(() => {
-                  // Access the shadowRoot here
-                  const targetElement = document.querySelector(e.detail.target);
-                  const target =
-                    targetElement && targetElement.shadowRoot
-                      ? targetElement.shadowRoot
-                      : null;
-                  console.log('target', target);
+                // setTimeout(() => {
 
-                  if (!target) {
-                    console.error(
-                      `Could not find a web component query selector target for "${styleTarget}". No styles will be appended.`
-                    );
-                    return;
-                  }
+                //   const targetElement = document.querySelector(e.detail.target);
+                //   const target =
+                //     targetElement && targetElement.shadowRoot
+                //       ? targetElement.shadowRoot
+                //       : null;
+                //   console.log('target', target);
 
-                  // Continue with your logic here
-                }, 100); // Adjust the delay time as needed
+                //   if (!target) {
+                //     console.error(
+                //       `Could not find a web component query selector target for "${styleTarget}". No styles will be appended.`
+                //     );
+                //     return;
+                //   }
+
+                //   // Continue with your logic here
+                // }, 100); // Adjust the delay time as needed
 
                 console.log('target', target);
 
