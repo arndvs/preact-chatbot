@@ -1,5 +1,3 @@
-import Chat from './chatbot';
-
 import ChatbotError from './chatbot-error';
 
 import IChatbotConfig from 'src/types/IChatbotConfig';
