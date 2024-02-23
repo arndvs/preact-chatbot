@@ -40,7 +40,8 @@ export const chatBubbleButtonContent = style({
 export const chatBubbleButtonImage = style({
   width: '50px',
   height: '50px',
-  borderRadius: '25px'
+  borderRadius: '25px',
+  color: 'black'
 });
 
 export const image = style({
