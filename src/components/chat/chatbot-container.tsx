@@ -12,34 +12,10 @@ import {
 
 import { ChangeEvent } from 'preact/compat';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
-import * as styles from 'src/styles/chat-widget.css';
-import {
-  IChatbotCustomComponents,
-  IChatbotCustomMessage,
-  IChatbotCustomStyles
-} from 'src/types/IChatbotConfig';
-import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import ChatbotHeader from 'src/components/chat/chatbot-header';
-
-interface IChatProps {
-  setState?: (state: any) => void;
-  widgetRegistry: any;
-  messageParser: any;
-  actionProvider: any;
-  customComponents: IChatbotCustomComponents;
-  botName: string;
-  customStyles: IChatbotCustomStyles;
-  headerText?: string;
-  customMessages: IChatbotCustomMessage;
-  placeholderText?: string;
-  validator: ((input: string) => Boolean) | undefined;
-  state: any;
-  disableScrollToBottom?: boolean;
-  messageHistory?: IChatbotMessage[] | string;
-  parse?: (message: string) => void;
-  actions?: object;
-  messageContainerRef: any;
-}
+import * as styles from 'src/styles/chat-widget.css';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
+import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotContainer = ({
   state,
@@ -59,7 +35,7 @@ const ChatbotContainer = ({
   messageHistory,
   actions,
   messageContainerRef
-}: IChatProps) => {
+}: IChatbotContainerProps) => {
   const { messages } = state;
 
   const [input, setInputValue] = useState('');
@@ -255,11 +231,6 @@ const ChatbotContainer = ({
     customButtonStyle.backgroundColor = customStyles.chatButton.backgroundColor;
   }
 
-  let header = `Conversation with ${botName}`;
-  if (headerText) {
-    header = headerText;
-  }
-
   let placeholder = 'Ask a  question...';
   if (placeholderText) {
     placeholder = placeholderText;
@@ -274,7 +245,10 @@ const ChatbotContainer = ({
           customComponents={customComponents}
           actionProvider={actionProvider}
         />
-
+        {/* <ChatbotMessageContainer
+        messageHistory={messageHistory}
+        messageContainerRef={messageContainerRef}
+      /> */}
         <div
           className={styles.ChatMessageContainer}
           ref={messageContainerRef}
@@ -288,7 +262,7 @@ const ChatbotContainer = ({
           {renderMessages()}
           <div style={{ paddingBottom: '15px', backgroundColor: 'red' }} />
         </div>
-
+        {/* <ChatbotInputContainer /> */}
         <div className={styles.ChatInputContainer}>
           <form
             className={styles.ChatInputForm}
