@@ -19,6 +19,7 @@ import {
   IChatbotCustomStyles
 } from 'src/types/IChatbotConfig';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
+import ChatbotHeader from 'src/components/chat/chatbot-header';
 
 interface IChatProps {
   setState?: (state: any) => void;
@@ -267,11 +268,12 @@ const ChatbotContainer = ({
   return (
     <div className={styles.ChatContainer}>
       <div className={styles.ChatInnerContainer}>
-        {customComponents.header && customComponents.header(actionProvider) ? (
-          customComponents.header && customComponents.header(actionProvider)
-        ) : (
-          <div className={styles.ChatHeader}>{header}</div>
-        )}
+        <ChatbotHeader
+          botName={botName}
+          headerText={headerText}
+          customComponents={customComponents}
+          actionProvider={actionProvider}
+        />
 
         <div
           className={styles.ChatMessageContainer}
