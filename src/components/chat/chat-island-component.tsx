@@ -15,7 +15,6 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
       />
-
       <ChatModal
         isOpen={isOpen}
         setIsOpen={setIsOpen}
