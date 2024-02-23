@@ -1,5 +1,5 @@
-import * as z from "zod";
+import * as z from 'zod';
 
 export const UserInputSchema = z.object({
-    message: z.string().min(1)
-  });
+  message: z.string().min(1)
+});

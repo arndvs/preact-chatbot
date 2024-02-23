@@ -1,5 +1,5 @@
-import { style } from '@vanilla-extract/css'
-import { vars } from './vars.css'
+import { style } from '@vanilla-extract/css';
+import { vars } from './vars.css';
 
 export const baseReset = style({
   margin: 0,
@@ -10,33 +10,33 @@ export const baseReset = style({
   fontFamily: 'inherit',
   verticalAlign: 'baseline',
   WebkitTapHighlightColor: 'transparent',
-  color: vars.color.text,
-})
+  color: vars.color.text
+});
 
 const inheritFontReset = style({
-  fontFamily: 'inherit',
-})
+  fontFamily: 'inherit'
+});
 
 const blockReset = style({
-  display: 'block',
-})
+  display: 'block'
+});
 
 const lineHeightReset = style({
-  lineHeight: '1',
-})
+  lineHeight: '1'
+});
 
 const appearanceReset = style({
-  appearance: 'none',
-})
+  appearance: 'none'
+});
 
 const activeReset = style({
   boxShadow: 'none',
-  outline: 'none',
-})
+  outline: 'none'
+});
 
 const transparentReset = style({
-  backgroundColor: 'transparent',
-})
+  backgroundColor: 'transparent'
+});
 
 const field = style([
   blockReset,
@@ -44,25 +44,25 @@ const field = style([
   transparentReset,
   inheritFontReset,
   lineHeightReset,
-  activeReset,
-])
+  activeReset
+]);
 
 export const buttonReset = style([
   baseReset,
   transparentReset,
-  inheritFontReset,
-])
+  inheritFontReset
+]);
 
 export const inputReset = style([
   field,
   style({
     selectors: {
       '&::-ms-clear': {
-        display: 'none',
+        display: 'none'
       },
       '&::-webkit-search-cancel-button': {
-        WebkitAppearance: 'none',
-      },
-    },
-  }),
-])
+        WebkitAppearance: 'none'
+      }
+    }
+  })
+]);

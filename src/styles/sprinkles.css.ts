@@ -1,11 +1,11 @@
-import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles'
-import { mediaQueries, vars } from './vars.css'
+import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles';
+import { mediaQueries, vars } from './vars.css';
 
 export const layoutProperties = defineProperties({
   conditions: {
     mobile: {},
     tablet: { '@media': mediaQueries.tablet },
-    desktop: { '@media': mediaQueries.desktop },
+    desktop: { '@media': mediaQueries.desktop }
   },
   defaultCondition: 'mobile',
   properties: {
@@ -21,7 +21,7 @@ export const layoutProperties = defineProperties({
       'flex-start',
       'center',
       'flex-end',
-      'space-between',
+      'space-between'
     ],
     width: ['100%', '25%', '50%', 'auto'],
     textAlign: ['left', 'center', 'right'],
@@ -44,7 +44,7 @@ export const layoutProperties = defineProperties({
     borderBottom: vars.border,
     borderColor: vars.color,
     background: vars.color,
-    color: vars.color,
+    color: vars.color
   },
   shorthands: {
     p: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
@@ -60,9 +60,9 @@ export const layoutProperties = defineProperties({
     mt: ['marginTop'],
     mb: ['marginBottom'],
     mr: ['marginRight'],
-    ml: ['marginLeft'],
+    ml: ['marginLeft']
   },
-  responsiveArray: ['mobile', 'tablet', 'desktop'],
-})
+  responsiveArray: ['mobile', 'tablet', 'desktop']
+});
 
-export const sprinkles = createSprinkles(layoutProperties)
+export const sprinkles = createSprinkles(layoutProperties);
