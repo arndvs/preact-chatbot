@@ -5,7 +5,8 @@ import { callIfExists } from 'src/utils/chatbot-message-utils';
 // import UserIcon from 'src/assets/icons/user-alt.svg';
 
 import { IChatbotCustomComponents } from 'src/types/IChatbotConfig';
-import * as styles from 'src/styles/ChatWidget.css';
+import * as styles from 'src/styles/chat-widget.css';
+import { UserIcon } from 'src/assets/user-icon';
 
 interface IChatbotUserMessageProps {
   message: string;
@@ -35,11 +36,7 @@ const ChatbotUserMessage = ({
     } else {
       return (
         <div className={styles.UserAvatarContainer}>
-          <img
-            src="src/assets/icons/user-alt.svg"
-            className={styles.UserAvatarIcon}
-            alt="User Avatar"
-          />
+          <UserIcon className={styles.UserAvatarIcon} />
         </div>
       );
     }

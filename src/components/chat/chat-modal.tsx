@@ -8,8 +8,7 @@ import { Box } from 'src/components/ui';
 import Chatbot from 'src/components/chat/Chatbot';
 import ChatbotConfig from 'src/utils/chatbot-config';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import * as styles from 'src/styles/chat-widget.css';
-import ChatBot from 'src/components/chat/chat-bot';
+import * as styles from 'src/styles/chat-overlay.css';
 
 interface ChatModalProps {
   isOpen: boolean;
@@ -43,7 +42,6 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
               isOpen && styles.chatOverlayVisible
             )}
           >
-            <ChatBot />
             <Chatbot
               config={ChatbotConfig}
               messageParser={MessageParser}

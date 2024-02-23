@@ -7,7 +7,7 @@ import {
   IChatbotCustomComponents,
   IChatbotCustomStyles
 } from 'src/types/IChatbotConfig';
-import * as styles from 'src/styles/ChatWidget.css';
+import * as styles from 'src/styles/chat-widget.css';
 import ChatbotLoaderContainer from 'src/components/chat/chatbot-loader-container';
 
 interface IChatbotMessageProps {

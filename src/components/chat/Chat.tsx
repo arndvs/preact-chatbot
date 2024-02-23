@@ -12,7 +12,7 @@ import {
 
 import { ChangeEvent } from 'preact/compat';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
-import * as styles from 'src/styles/ChatWidget.css';
+import * as styles from 'src/styles/chat-widget.css';
 import {
   IChatbotCustomComponents,
   IChatbotCustomMessage,

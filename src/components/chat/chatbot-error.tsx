@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ChatbotMessage from './chatbot-message';
-import * as styles from 'src/styles/ChatWidget.css';
+import * as styles from 'src/styles/chat-widget.css';
 
 interface IChatbotErrorProps {
   message: string;

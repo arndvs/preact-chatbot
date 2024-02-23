@@ -1,5 +1,5 @@
 import React from 'react';
-import * as styles from 'src/styles/ChatWidget.css';
+import * as styles from 'src/styles/chat-widget.css';
 
 const ChatbotMessageAvatar = () => {
   return (

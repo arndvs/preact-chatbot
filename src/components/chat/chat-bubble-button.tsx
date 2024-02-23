@@ -1,6 +1,6 @@
 import { ChatIcon } from 'src/assets/chat-icon';
 import { XMarkIcon } from 'src/assets/x-mark-icon';
-import * as styles from 'src/styles/chat-widget.css';
+import * as styles from 'src/styles/chat-bubble.css';
 
 interface ChatBubbleButtonProps {
   isOpen: boolean;
@@ -14,7 +14,6 @@ const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
       onClick={() => setIsOpen(!isOpen)}
       data-testid="chat-bubble-button"
     >
-      <span>chat button</span>
       <div className={styles.chatBubbleButtonContent}>
         {!isOpen ? (
           <ChatIcon
