@@ -30,6 +30,11 @@ const ChatOverlay: FC<{ name: string; parent: string }> = ({
 const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
   return (
     <>
+      <ChatbotWidget
+        config={ChatbotConfig}
+        messageParser={MessageParser}
+        actionProvider={ActionProvider}
+      />
       {isOpen && (
         <ChatOverlay
           name="chat-overlay"

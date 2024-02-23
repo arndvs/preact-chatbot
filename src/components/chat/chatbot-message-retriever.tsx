@@ -10,7 +10,7 @@ import {
   botMessage,
   customMessage,
   userMessage
-} from 'src/utils/chatbot-message-utils';
+} from 'src/actions/chatbot-message-utils';
 import { showAvatar } from 'src/actions/show-avatar';
 
 const ChatbotMessageRetriever = ({

@@ -1,4 +1,4 @@
-import { getObject } from 'src/utils/chatbot-config-utils';
+import { getObject } from 'src/actions/chatbot-config-utils';
 
 interface WidgetProps {
   [key: string]: any;

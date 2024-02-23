@@ -1,7 +1,7 @@
 import { UserIcon } from 'src/assets/user-icon';
 import * as styles from 'src/styles/chat-widget.css';
 import { IChatbotUserMessageContainerProps } from 'src/types/IChatbotMessages';
-import { callIfExists } from 'src/utils/chatbot-message-utils';
+import { callIfExists } from 'src/actions/chatbot-message-utils';
 
 const ChatbotUserMessageContainer = ({
   message,

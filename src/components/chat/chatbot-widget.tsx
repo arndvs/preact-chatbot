@@ -7,8 +7,8 @@ import {
   getCustomMessages,
   getCustomStyles,
   isConstructor
-} from 'src/utils/chatbot-config-utils';
-import { createChatBotMessage } from 'src/utils/chatbot-message-utils';
+} from 'src/actions/chatbot-config-utils';
+import { createChatBotMessage } from 'src/actions/chatbot-message-utils';
 import ChatbotError from './chatbot-error';
 
 const ChatbotWidget = ({
@@ -58,26 +58,26 @@ const ChatbotWidget = ({
   const botName = getBotName(config);
   const customMessages = getCustomMessages(config);
 
+  const chatbotContainerProps = {
+    state,
+    setState,
+    widgetRegistry,
+    actionProvider: isConstructor(ActionProvider) ? actionProv : ActionProvider,
+    messageParser: isConstructor(MessageParser) ? messagePars : MessageParser,
+    customMessages,
+    customComponents,
+    botName,
+    customStyles,
+    headerText,
+    placeholderText,
+    validator,
+    messageHistory,
+    disableScrollToBottom,
+    messageContainerRef
+  };
+
   if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {
-    return (
-      <ChatbotContainer
-        state={state}
-        setState={setState}
-        widgetRegistry={widgetRegistry}
-        actionProvider={actionProv}
-        messageParser={messagePars}
-        customMessages={customMessages}
-        customComponents={{ ...customComponents }}
-        botName={botName}
-        customStyles={{ ...customStyles }}
-        headerText={headerText}
-        placeholderText={placeholderText}
-        validator={validator}
-        messageHistory={messageHistory}
-        disableScrollToBottom={disableScrollToBottom}
-        messageContainerRef={messageContainerRef}
-      />
-    );
+    return <ChatbotContainer {...chatbotContainerProps} />;
   } else {
     return (
       <ActionProvider
@@ -86,23 +86,7 @@ const ChatbotWidget = ({
         createChatBotMessage={createChatBotMessage}
       >
         <MessageParser>
-          <ChatbotContainer
-            state={state}
-            setState={setState}
-            widgetRegistry={widgetRegistry}
-            actionProvider={ActionProvider}
-            messageParser={MessageParser}
-            customMessages={customMessages}
-            customComponents={{ ...customComponents }}
-            botName={botName}
-            customStyles={{ ...customStyles }}
-            headerText={headerText}
-            placeholderText={placeholderText}
-            validator={validator}
-            messageHistory={messageHistory}
-            disableScrollToBottom={disableScrollToBottom}
-            messageContainerRef={messageContainerRef}
-          />
+          <ChatbotContainer {...chatbotContainerProps} />
         </MessageParser>
       </ActionProvider>
     );
