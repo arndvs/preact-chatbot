@@ -40,7 +40,7 @@ interface IChatProps {
   messageContainerRef: any;
 }
 
-const Chatbot = ({
+const ChatbotContainer = ({
   state,
   setState,
   widgetRegistry,
@@ -314,4 +314,4 @@ const Chatbot = ({
   );
 };
 
-export default Chatbot;
+export default ChatbotContainer;

@@ -1,7 +1,5 @@
 import ChatbotError from './chatbot-error';
-
 import IChatbotConfig from 'src/types/IChatbotConfig';
-
 import {
   getBotName,
   getCustomComponents,
@@ -9,11 +7,10 @@ import {
   getCustomStyles,
   isConstructor
 } from 'src/utils/chatbot-config-utils';
-
 import useChatbot from 'src/hooks/useChatbot';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { createChatBotMessage } from 'src/utils/chatbot-message-utils';
-import Chatbot from 'src/components/chat/Chatbot';
+import ChatbotContainer from 'src/components/chat/chatbot-container';
 
 interface IChatbotProps {
   actionProvider: any;
@@ -77,7 +74,7 @@ const ChatbotWidget = ({
 
   if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {
     return (
-      <Chatbot
+      <ChatbotContainer
         state={state}
         setState={setState}
         widgetRegistry={widgetRegistry}
@@ -103,7 +100,7 @@ const ChatbotWidget = ({
         createChatBotMessage={createChatBotMessage}
       >
         <MessageParser>
-          <Chatbot
+          <ChatbotContainer
             state={state}
             setState={setState}
             widgetRegistry={widgetRegistry}
