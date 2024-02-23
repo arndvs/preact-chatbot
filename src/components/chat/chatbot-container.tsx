@@ -9,13 +9,13 @@ import {
 
 import { scrollIntoView } from 'src/actions/scroll-into-view';
 import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
-import ChatbotMessageContainer from 'src/components/chat/chatbot-message-container';
+import ChatbotMessageContainer from 'src/components/chat/chatbot-message-retriever';
 import * as styles from 'src/styles/chat-widget.css';
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import ChatbotUserMessage from 'src/components/chat/chatbot-user-message';
-import ChatbotMessage from 'src/components/chat/chatbot-message';
+import ChatbotMessage from 'src/components/chat/chatbot-message-container';
 
 const ChatbotContainer = ({
   state,
@@ -194,7 +194,7 @@ const ChatbotContainer = ({
           customComponents={customComponents}
           actionProvider={actionProvider}
         />
-        {/* <ChatbotMessageContainer
+        {/* <ChatbotMessageRetriever
           widgetRegistry={widgetRegistry}
           customMessages={customMessages}
           actions={actions}

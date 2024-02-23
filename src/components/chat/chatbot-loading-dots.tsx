@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ChatbotLoaderContainer = () => {
+const ChatbotLoadingDots = () => {
   return (
     <div className="chatbot-loader-container">
       <svg
@@ -44,4 +44,4 @@ const ChatbotLoaderContainer = () => {
   );
 };
 
-export default ChatbotLoaderContainer;
+export default ChatbotLoadingDots;

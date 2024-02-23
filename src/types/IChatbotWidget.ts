@@ -47,3 +47,22 @@ export interface IChatbotContainerProps {
   actions?: object;
   messageContainerRef: any;
 }
+
+export interface ChatbotInputContainerProps {
+  setState: any;
+  validator: any;
+  input: string;
+  setInputValue: any;
+  parse: any;
+  messageParser: any;
+  messageContainerRef: any;
+  placeholderText?: string;
+  customStyles: IChatbotCustomStyles;
+}
+
+export interface ChatbotHeaderProps {
+  customComponents: IChatbotCustomComponents;
+  actionProvider: any;
+  headerText?: string;
+  botName: string;
+}

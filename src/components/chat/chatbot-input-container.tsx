@@ -2,20 +2,8 @@ import { ChangeEvent } from 'preact/compat';
 import { scrollIntoView } from 'src/actions/scroll-into-view';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
 import * as styles from 'src/styles/chat-widget.css';
-import { IChatbotCustomStyles } from 'src/types/IChatbotConfig';
+import { ChatbotInputContainerProps } from 'src/types/IChatbotWidget';
 import { createChatMessage } from 'src/utils/chatbot-message-utils';
-
-interface ChatbotInputContainerProps {
-  setState: any;
-  validator: any;
-  input: string;
-  setInputValue: any;
-  parse: any;
-  messageParser: any;
-  messageContainerRef: any;
-  placeholderText?: string;
-  customStyles: IChatbotCustomStyles;
-}
 
 const ChatbotInputContainer = ({
   setState,
@@ -28,14 +16,14 @@ const ChatbotInputContainer = ({
   placeholderText,
   customStyles
 }: ChatbotInputContainerProps) => {
-  let placeholder = 'Ask a  question...';
-  if (placeholderText) {
-    placeholder = placeholderText;
-  }
-
   const customButtonStyle = { backgroundColor: '' };
   if (customStyles && customStyles.chatButton) {
     customButtonStyle.backgroundColor = customStyles.chatButton.backgroundColor;
+  }
+
+  let placeholder = 'Ask a  question...';
+  if (placeholderText) {
+    placeholder = placeholderText;
   }
 
   const handleSubmit = (e: Event) => {

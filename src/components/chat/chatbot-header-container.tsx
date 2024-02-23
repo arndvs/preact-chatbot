@@ -1,12 +1,5 @@
 import * as styles from 'src/styles/chat-widget.css';
-import { IChatbotCustomComponents } from 'src/types/IChatbotConfig';
-
-interface ChatbotHeaderProps {
-  customComponents: IChatbotCustomComponents;
-  actionProvider: any;
-  headerText?: string;
-  botName: string;
-}
+import { ChatbotHeaderProps } from 'src/types/IChatbotWidget';
 
 const ChatbotHeaderContainer = ({
   customComponents,
@@ -20,13 +13,13 @@ const ChatbotHeaderContainer = ({
   }
 
   return (
-    <div>
+    <>
       {customComponents.header && customComponents.header(actionProvider) ? (
         customComponents.header && customComponents.header(actionProvider)
       ) : (
         <div className={styles.ChatHeader}>{header}</div>
       )}
-    </div>
+    </>
   );
 };
 
