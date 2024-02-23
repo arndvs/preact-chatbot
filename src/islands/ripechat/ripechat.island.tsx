@@ -3,11 +3,8 @@ import 'src/styles/reset.css';
 import { createIslandWebComponent } from 'preact-island';
 
 import ChatIsland from 'src/components/chat/chat-island-component';
-import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 
 const islandName = 'ripechat-island';
-
-useWebComponentEvents(islandName);
 
 export const RipechatIsland = () => {
   console.log('Ripechat mounted');
