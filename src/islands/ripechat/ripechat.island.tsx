@@ -4,12 +4,14 @@ import { createIslandWebComponent } from 'preact-island';
 
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import ChatIslandComponent from 'src/components/chat/chat-island-component';
+import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 
 const islandName = 'ripechat-island';
 
 export const RipechatIsland = () => {
-  console.log('Ripechat mounted');
   useWebComponentEvents(islandName);
+  useDynamicWebIsland(islandName);
+
   return (
     <ChatIslandComponent
       islandName={islandName}

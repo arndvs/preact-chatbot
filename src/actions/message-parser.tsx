@@ -23,7 +23,6 @@ const MessageParser: FunctionalComponent<MessageParserProps> = ({
   ...props
 }) => {
   const parse = (message: string): void => {
-    console.log('parse message', message);
     const lowerCaseMessage = message.toLowerCase();
 
     if (message.includes('hello')) {

@@ -96,48 +96,7 @@ const buildCssLayersFromEntryPoints = () => {
                   return;
                 }
 
-                // TODO: This is a hack to get around the fact that the shadow dom is not available
-                // console.log('test', e.detail.target, styleTarget)
-                // document
-                //   .querySelector(`#${e.detail.target}`)
-                //   .attachShadow({ mode: 'open' })
-
-                // var target = document.querySelector(
-                //   `#${e.detail.target}`,
-                // ).shadowRoot
-
-                // the error is happening here on the .shadowRoot
-                console.log('e.detail.target', e.detail.target);
-
                 var target = document.querySelector(e.detail.target).shadowRoot;
-                // var targetElement = document.querySelector(e.detail.target);
-
-                // console.log('targetElement', targetElement);
-                // var target =
-                //   targetElement && targetElement.shadowRoot
-                //     ? targetElement.shadowRoot
-                //     : null;
-
-                // setTimeout(() => {
-
-                //   const targetElement = document.querySelector(e.detail.target);
-                //   const target =
-                //     targetElement && targetElement.shadowRoot
-                //       ? targetElement.shadowRoot
-                //       : null;
-                //   console.log('target', target);
-
-                //   if (!target) {
-                //     console.error(
-                //       `Could not find a web component query selector target for "${styleTarget}". No styles will be appended.`
-                //     );
-                //     return;
-                //   }
-
-                //   // Continue with your logic here
-                // }, 100); // Adjust the delay time as needed
-
-                console.log('target', target);
 
                 if (!target) {
                   console.error(
