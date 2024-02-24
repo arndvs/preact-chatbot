@@ -1,23 +1,21 @@
 {
-  "name": "preact-island-starter",
+  "name": "ripemetrics-preact-islands",
   "version": "1.0.0",
-  "description": "No configuration starter project for Preact Island",
-  "license": "MIT",
-  "author": "Marcus Wood",
+  "description": "RipeMetrics Preact Islands Repo",
+  "author": "RipeMetrics",
   "main": "index.js",
-  "scripts": {
-    "build": "set NODE_ENV=production && webpack --env prod",
+   "scripts": {
+    "build": "NODE_ENV=production webpack --env prod",
     "codegen": "npx playwright codegen",
     "dev": "webpack serve --env dev",
     "test": "npx playwright test",
     "test-headed": "npx playwright test --headed",
     "test-headed-slow": "SLOW=true npx playwright test --headed",
     "tsc": "tsc --noEmit -p tsconfig.app.json",
-    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint-fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "prettier-fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
-    "@preact/compat": "^17.1.2",
     "@preact/preset-vite": "^2.3.0",
     "@vanilla-extract/css": "^1.7.2",
     "@vanilla-extract/dynamic": "^2.0.2",
@@ -28,10 +26,7 @@
     "preact": "^10.5.7",
     "preact-island": "^1.1.0",
     "preact-render-to-string": "^5.1.12",
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
-    "redaxios": "^0.4.1",
-    "zod": "^3.22.4"
+    "redaxios": "^0.4.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.9",
@@ -43,15 +38,18 @@
     "@vanilla-extract/webpack-plugin": "^2.1.11",
     "babel-loader": "^8.2.5",
     "brotli-size": "^4.0.0",
-    "css-loader": "^6.7.1",
+    "css-loader": "^6.10.0",
     "dotenv": "^10.0.0",
     "glob": "^8.0.3",
     "gzip-size": "^6.0.0",
     "html-webpack-plugin": "^5.5.0",
     "kleur": "^4.1.5",
+    "postcss": "^8.4.35",
+    "postcss-loader": "^8.1.0",
     "prettier": "^2.6.2",
     "pretty-bytes": "^5.0.0",
-    "style-loader": "^3.3.1",
+    "style-loader": "^3.3.4",
+    "tailwindcss": "^3.4.1",
     "ts-node": "~10.8.0",
     "typescript": "^4.6.4",
     "webpack": "^5.74.0",
