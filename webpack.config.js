@@ -102,10 +102,10 @@ const buildCssLayersFromEntryPoints = () => {
                   console.error(
                     `Could not find a web component query selector target for "${styleTarget}". No styles will be appended. Did you name the web component at createIslandWebComponent something different than your file name? If so, you will need to override it at getIslands inside of the webpack config. This is what is expected
 
-createIslandWebComponent('${styleTarget}', YourComponent).render({
-  selector: ${styleTarget},
-  initialProps: {},
-})`
+                    createIslandWebComponent('${styleTarget}', YourComponent).render({
+                    selector: ${styleTarget},
+                    initialProps: {},
+                    })`
                   );
                   return;
                 }
@@ -117,7 +117,8 @@ createIslandWebComponent('${styleTarget}', YourComponent).render({
             }
           }
         },
-        'css-loader'
+        'css-loader',
+        'postcss-loader'
       ]
     };
   });
