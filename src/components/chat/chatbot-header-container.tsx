@@ -1,4 +1,3 @@
-import * as styles from 'src/styles/chat-widget.css';
 import { ChatbotHeaderContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotHeaderContainer = ({
@@ -17,7 +16,9 @@ const ChatbotHeaderContainer = ({
       {customComponents.header && customComponents.header(actionProvider) ? (
         customComponents.header && customComponents.header(actionProvider)
       ) : (
-        <div className={styles.ChatHeader}>{header}</div>
+        <div className="p-5 font-bold bg-red-500 border-none rounded-lg cursor-pointer">
+          {header}
+        </div>
       )}
     </>
   );

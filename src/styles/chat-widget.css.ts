@@ -138,21 +138,21 @@ export const ChatBotLoadingIconContainer = style({
   width: '25px'
 });
 
-// chatbot-loader-container
-export const chatbotLoaderContainer = style({
+// chatbot-loading-dots
+export const chatbotLoadingDots = style({
   display: 'flex',
   width: '100%',
   justifyContent: 'center'
 });
 
-//   #chatbot-loader #chatbot-loader-dot1 {
+// #chatbot-loader #chatbotLoadingDots1 {
 //     animation: load 1s infinite;
 //   }
 export const loaderDot1 = style({
   animation: 'load 1s infinite'
 });
 
-//   #chatbot-loader #chatbot-loader-dot2 {
+//   #chatbot-loader #chatbotLoadingDots2 {
 //     animation: load 1s infinite;
 //     animation-delay: 0.2s;
 //   }
@@ -161,7 +161,7 @@ export const loaderDot2 = style({
   animationDelay: '0.2s'
 });
 
-//   #chatbot-loader #chatbot-loader-dot3 {
+//   #chatbot-loader #chatbotLoadingDots3 {
 //     animation: load 1s infinite;
 //     animation-delay: 0.4s;
 //   }

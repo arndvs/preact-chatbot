@@ -36,8 +36,8 @@ const ChatbotContainer = ({
   });
 
   return (
-    <div className={styles.ChatContainer}>
-      <div className={styles.ChatInnerContainer}>
+    <div className="relative w-full">
+      <div className="h-full max-h-full overflow-hidden bg-white rounded-lg shadow-md">
         <ChatbotHeaderContainer
           actionProvider={actionProvider}
           botName={botName}

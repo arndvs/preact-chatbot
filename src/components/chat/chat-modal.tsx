@@ -27,24 +27,23 @@ const ChatOverlay: FC<{ name: string; parent: string }> = ({
   return <WebComponentPortal name={name}>{children}</WebComponentPortal>;
 };
 
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ');
+}
+
 const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
   return (
     <>
-      <ChatbotWidget
-        config={ChatbotConfig}
-        messageParser={MessageParser}
-        actionProvider={ActionProvider}
-      />
-      {isOpen && (
-        <ChatOverlay
-          name="chat-overlay"
-          parent={islandName}
-        >
+      <ChatOverlay
+        name="chat-overlay"
+        parent={islandName}
+      >
+        {isOpen && (
           <Box
             data-testId="overlay-content"
-            className={cx(
-              styles.chatOverlay,
-              isOpen && styles.chatOverlayVisible
+            className={classNames(
+              isOpen && 'block animate-show',
+              'border-none fixed flex flex-col justify-between shadow bottom-20 right-4 w-72 h-85vh max-h-[824px] rounded-lg overflow-hidden bg-orange-500 z-50 outline-none'
             )}
           >
             <ChatbotWidget
@@ -53,18 +52,18 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
               actionProvider={ActionProvider}
             />
           </Box>
-        </ChatOverlay>
-      )}
+        )}
+      </ChatOverlay>
       {isOpen && (
         <ChatOverlay
-          name="chat-overylay-dimmer"
+          name="chat-overlay-dimmer"
           parent={islandName}
         >
           <Box
             data-testId="overlay-dimmer"
-            className={cx(
-              styles.chatOverlayDimmer,
-              isOpen && styles.chatOverlayDimmerVisible
+            className={classNames(
+              isOpen && 'block animate-show',
+              'fixed hidden z-90 top-0 left-0 right-0 bottom-0'
             )}
             onClick={() => setIsOpen(false)}
           />

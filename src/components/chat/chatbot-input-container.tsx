@@ -59,13 +59,13 @@ const ChatbotInputContainer = ({
   };
 
   return (
-    <div className={styles.ChatInputContainer}>
+    <div className="flex items-center justify-between px-4 py-2 bg-white border-t border-gray-200">
       <form
-        className={styles.ChatInputForm}
+        className="flex-grow mr-4"
         onSubmit={handleSubmit}
       >
         <input
-          className={styles.ChatInput}
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
           placeholder={placeholder}
           value={input}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -73,13 +73,13 @@ const ChatbotInputContainer = ({
             setInputValue(target.value);
           }}
         />
-        <button
-          className={styles.ChatBtnSend}
-          style={customButtonStyle}
-        >
-          <AirplaneIcon className={styles.ChatBtnSendIcon} />
-        </button>
       </form>
+      <button
+        className={`flex items-center justify-center w-12 h-12 rounded-full bg-orange-500 text-white ${customButtonStyle}`}
+        onClick={handleSubmit}
+      >
+        <AirplaneIcon className="w-6 h-6" />
+      </button>
     </div>
   );
 };
