@@ -1,14 +1,12 @@
 import { WebComponentPortal } from 'preact-island';
 
-import cx from 'clsx';
 import { FC } from 'preact/compat';
 import ActionProvider from 'src/actions/action-provider';
 import MessageParser from 'src/actions/message-parser';
-import { Box } from 'src/components/ui';
-import ChatbotConfig from 'src/utils/chatbot-config';
-import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import * as styles from 'src/styles/chat-overlay.css';
 import ChatbotWidget from 'src/components/chat/chatbot-widget';
+import { Box } from 'src/components/ui';
+import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
+import ChatbotConfig from 'src/utils/chatbot-config';
 
 interface ChatModalProps {
   isOpen: boolean;

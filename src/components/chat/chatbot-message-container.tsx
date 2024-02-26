@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import ChatbotMessageAvatar from './chatbot-message-avatar';
-import ChatbotLoadingDots from 'src/components/chat/chatbot-loading-dots';
-import * as styles from 'src/styles/chat-widget.css';
-import { IChatbotMessageContainerProps } from 'src/types/IChatbotMessages';
 import { callIfExists } from 'src/actions/chatbot-message-utils';
+import ChatbotLoadingDots from 'src/components/chat/chatbot-loading-dots';
+import { IChatbotMessageContainerProps } from 'src/types/IChatbotMessages';
+import ChatbotMessageAvatar from './chatbot-message-avatar';
 
 const ChatbotMessageContainer = ({
   message,
@@ -62,7 +61,7 @@ const ChatbotMessageContainer = ({
   return (
     <>
       {show && (
-        <div className={styles.ChatBotMessageContainer}>
+        <div className="flex justify-start my-4">
           {withAvatar && customComponents?.botAvatar ? (
             callIfExists(customComponents.botAvatar)
           ) : (
@@ -76,13 +75,13 @@ const ChatbotMessageContainer = ({
             })
           ) : (
             <div
-              className={styles.ChatBotMessage}
+              className="relative w-full p-2 ml-auto text-base font-medium text-left text-white bg-blue-500 rounded-md"
               style={chatBoxCustomStyles}
             >
               {loading ? <ChatbotLoadingDots /> : <span>{message}</span>}
               {withAvatar && (
                 <div
-                  className={styles.ChatBotMessageArrow}
+                  className="absolute w-0 h-0 border-t-8 border-b-8 border-r-8 border-transparent border-blue-500 -left-1/2 top-2"
                   style={arrowCustomStyles}
                 ></div>
               )}

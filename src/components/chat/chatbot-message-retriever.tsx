@@ -1,17 +1,15 @@
-import * as styles from 'src/styles/chat-widget.css';
-
-import ChatbotMessageContainer from 'src/components/chat/chatbot-message-container';
-import ChatbotUserMessageContainer from 'src/components/chat/chatbot-user-message-container';
-import {
-  IChatbotMessage,
-  IChatbotMessageRetrieverProps
-} from 'src/types/IChatbotMessages';
 import {
   botMessage,
   customMessage,
   userMessage
 } from 'src/actions/chatbot-message-utils';
 import { showAvatar } from 'src/actions/show-avatar';
+import ChatbotMessageContainer from 'src/components/chat/chatbot-message-container';
+import ChatbotUserMessageContainer from 'src/components/chat/chatbot-user-message-container';
+import {
+  IChatbotMessage,
+  IChatbotMessageRetrieverProps
+} from 'src/types/IChatbotMessages';
 
 const ChatbotMessageRetriever = ({
   actionProvider,
@@ -158,14 +156,14 @@ const ChatbotMessageRetriever = ({
 
   return (
     <div
-      className={styles.ChatMessageContainer}
+      className="px-7.5 py-10 overflow-scroll h-[40rem]"
       ref={messageContainerRef}
     >
       {typeof messageHistory === 'string' && Boolean(messageHistory) ? (
         <div dangerouslySetInnerHTML={{ __html: messageHistory as string }} />
       ) : null}
       {renderMessages()}
-      <div style={{ paddingBottom: '15px' }} />
+      <div className="pb-4" />
     </div>
   );
 };
