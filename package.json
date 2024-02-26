@@ -4,7 +4,7 @@
   "description": "RipeMetrics Preact Islands Repo",
   "author": "RipeMetrics",
   "main": "index.js",
-   "scripts": {
+  "scripts": {
     "build": "NODE_ENV=production webpack --env prod",
     "codegen": "npx playwright codegen",
     "dev": "webpack serve --env dev",
@@ -21,6 +21,7 @@
     "@vanilla-extract/dynamic": "^2.0.2",
     "@vanilla-extract/recipes": "^0.2.5",
     "@vanilla-extract/sprinkles": "^1.4.1",
+    "axios": "^1.6.7",
     "clsx": "^1.2.1",
     "polished": "^4.2.2",
     "preact": "^10.5.7",

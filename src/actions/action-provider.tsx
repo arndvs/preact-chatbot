@@ -21,6 +21,15 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
     }));
   };
 
+  const handleDefault = (message: string) => {
+    const botMessage = createChatBotMessage(`You said: ${message}`);
+
+    setState((prev: any) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage]
+    }));
+  };
+
   return (
     <>
       {Array.isArray(children)
@@ -35,7 +44,7 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
           })
         : isValidElement(children)
         ? cloneElement(children, {
-            actions: { handleHello }
+            actions: { handleHello, handleDefault }
           })
         : children}
     </>
