@@ -8,7 +8,6 @@ export function XMarkIcon(props: SvgProps) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      style="width: 1.5rem; height: 1.5rem;"
     >
       <path
         strokeLinecap="round"

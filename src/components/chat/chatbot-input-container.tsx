@@ -1,9 +1,8 @@
 import { ChangeEvent } from 'preact/compat';
+import { createChatMessage } from 'src/actions/chatbot-message-utils';
 import { scrollIntoView } from 'src/actions/scroll-into-view';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
-import * as styles from 'src/styles/chat-widget.css';
 import { ChatbotInputContainerProps } from 'src/types/IChatbotWidget';
-import { createChatMessage } from 'src/actions/chatbot-message-utils';
 
 const ChatbotInputContainer = ({
   setState,
@@ -59,13 +58,13 @@ const ChatbotInputContainer = ({
   };
 
   return (
-    <div className="flex items-center justify-between px-4 py-2 bg-white border-t border-gray-200">
+    <div className="absolute bottom-0 flex w-full">
       <form
-        className="flex-grow mr-4"
+        className="flex w-full"
         onSubmit={handleSubmit}
       >
         <input
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+          className="w-full px-4 py-3 text-sm border border-gray-300 rounded-bl-lg"
           placeholder={placeholder}
           value={input}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
