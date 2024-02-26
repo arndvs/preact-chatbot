@@ -9,8 +9,8 @@ export const TailwindWidget = () => {
   useWebComponentEvents(islandName);
 
   return (
-    <div className="bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div className="mx-auto max-w-2xl text-center">
+   <div className="px-6 py-24 bg-white sm:py-32 lg:px-8">
+      <div className="max-w-2xl mx-auto text-center">
         <p className="text-base font-semibold leading-7 text-indigo-600">
           Tailwind CSS
         </p>
