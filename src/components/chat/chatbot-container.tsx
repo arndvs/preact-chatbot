@@ -36,7 +36,7 @@ const ChatbotContainer = ({
 
   return (
     <div className="relative w-full">
-      <div className="h-full max-h-full overflow-hidden bg-white rounded-lg shadow-md">
+      <div className="h-full bg-white rounded-md">
         <ChatbotHeaderContainer
           actionProvider={actionProvider}
           botName={botName}
