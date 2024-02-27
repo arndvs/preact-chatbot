@@ -1,12 +1,14 @@
 import { WebComponentPortal } from 'preact-island';
 
+import cx from 'clsx';
 import { FC } from 'preact/compat';
 import ActionProvider from 'src/actions/action-provider';
 import MessageParser from 'src/actions/message-parser';
-import ChatbotWidget from 'src/components/chat/chatbot-widget';
 import { Box } from 'src/components/ui';
-import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import ChatbotConfig from 'src/utils/chatbot-config';
+import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
+import * as styles from 'src/styles/chat-overlay.css';
+import ChatbotWidget from 'src/components/chat/chatbot-widget';
 
 interface ChatModalProps {
   isOpen: boolean;
@@ -32,11 +34,11 @@ function classNames(...classes: string[]) {
 const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
   return (
     <>
-      <ChatOverlay
-        name="chat-overlay"
-        parent={islandName}
-      >
-        {isOpen && (
+      {isOpen && (
+        <ChatOverlay
+          name="chat-overlay"
+          parent={islandName}
+        >
           <Box
             data-testId="overlay-content"
             className={classNames(
@@ -50,18 +52,18 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
               actionProvider={ActionProvider}
             />
           </Box>
-        )}
-      </ChatOverlay>
+        </ChatOverlay>
+      )}
       {isOpen && (
         <ChatOverlay
-          name="chat-overlay-dimmer"
+          name="chat-overylay-dimmer"
           parent={islandName}
         >
           <Box
             data-testId="overlay-dimmer"
-            className={classNames(
-              isOpen && 'block animate-show',
-              'fixed hidden z-90 top-0 left-0 right-0 bottom-0'
+            className={cx(
+              styles.chatOverlayDimmer,
+              isOpen && styles.chatOverlayDimmerVisible
             )}
             onClick={() => setIsOpen(false)}
           />

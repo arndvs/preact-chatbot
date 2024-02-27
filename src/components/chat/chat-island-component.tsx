@@ -9,11 +9,14 @@ interface ChatIslandComponentProps {
 const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const brandColor = '#FF792A';
+
   return (
     <>
       <ChatBubbleButton
         isOpen={isOpen}
         setIsOpen={setIsOpen}
+        brandColor={brandColor}
       />
       <ChatModal
         isOpen={isOpen}
