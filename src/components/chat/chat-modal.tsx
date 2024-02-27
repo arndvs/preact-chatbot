@@ -1,6 +1,5 @@
 import { WebComponentPortal } from 'preact-island';
 
-import cx from 'clsx';
 import { FC } from 'preact/compat';
 import ActionProvider from 'src/actions/action-provider';
 import MessageParser from 'src/actions/message-parser';
