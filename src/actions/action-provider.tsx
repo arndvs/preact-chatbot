@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { h, ComponentChildren, FunctionalComponent } from 'preact';
 import { isValidElement, cloneElement } from 'preact';
 
@@ -23,6 +24,20 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
 
   const handleDefault = (message: string) => {
     const botMessage = createChatBotMessage(`You said: ${message}`);
+    const req = axios.post('https://api.rmdevs.com/api/v2/external_chatbot', {
+      store_id: 20,
+      customer_store_id: 20,
+      question: message,
+      req_session: '123',
+      greeting: false
+    });
+    req.then((res) => {
+      const botMessage = createChatBotMessage(res.data.answer);
+      setState((prev: any) => ({
+        ...prev,
+        messages: [...prev.messages, botMessage]
+      }));
+    });
 
     setState((prev: any) => ({
       ...prev,
