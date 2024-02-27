@@ -34,16 +34,16 @@ function classNames(...classes: string[]) {
 const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
   return (
     <>
-      <ChatOverlay
-        name="chat-overlay"
-        parent={islandName}
-      >
-        {isOpen && (
+      {isOpen && (
+        <ChatOverlay
+          name="chat-overlay"
+          parent={islandName}
+        >
           <Box
             data-testId="overlay-content"
             className={classNames(
               isOpen && 'block animate-show',
-              'border-none fixed flex flex-col justify-between shadow bottom-20 right-4 w-72 h-85vh max-h-[824px] rounded-lg overflow-hidden bg-orange-500 z-50 outline-none'
+              'z-[888889] border-none fixed flex flex-col w-[28rem] justify-between shadow-md bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"'
             )}
           >
             <ChatbotWidget
@@ -52,11 +52,11 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
               actionProvider={ActionProvider}
             />
           </Box>
-        )}
-      </ChatOverlay>
+        </ChatOverlay>
+      )}
       {isOpen && (
         <ChatOverlay
-          name="chat-overlay-dimmer"
+          name="chat-overylay-dimmer"
           parent={islandName}
         >
           <Box

@@ -6,7 +6,6 @@ export function ChatIcon(props: SvgProps) {
       {...props}
       viewBox="0 0 24 24"
       fill="currentColor"
-      style="width: 1.5rem; height: 1.5rem;"
     >
       <path
         fillRule="evenodd"
