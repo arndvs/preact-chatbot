@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 
 import { scrollIntoView } from 'src/actions/scroll-into-view';
-import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container';
+import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container/chatbot-header-container';
 import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
 import ChatbotMessageRetriever from 'src/components/chat/chatbot-message-retriever';
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
@@ -15,12 +15,14 @@ const ChatbotContainer = ({
   customStyles,
   disableScrollToBottom,
   headerText,
+  isOpen,
   messageContainerRef,
   messageHistory,
   messageParser,
   parse,
   placeholderText,
   setState,
+  setIsOpen,
   state,
   validator,
   widgetRegistry
@@ -42,6 +44,8 @@ const ChatbotContainer = ({
           botName={botName}
           customComponents={customComponents}
           headerText={headerText}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
         />
         <ChatbotMessageRetriever
           actionProvider={actionProvider}

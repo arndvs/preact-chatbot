@@ -49,6 +49,8 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
               config={ChatbotConfig}
               messageParser={MessageParser}
               actionProvider={ActionProvider}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
             />
           </Box>
         </ChatOverlay>

@@ -1,10 +1,15 @@
+import ChatbotHeaderCloseChatButton from 'src/components/chat/chatbot-header-container/chatbot-header-close-chat-button';
 import { ChatbotHeaderContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotHeaderContainer = ({
   customComponents,
   actionProvider,
   botName,
-  headerText
+  headerText,
+  storeLogo,
+  brandColor,
+  isOpen,
+  setIsOpen
 }: ChatbotHeaderContainerProps) => {
   let header = `Conversation with ${botName}`;
   if (headerText) {
@@ -13,22 +18,29 @@ const ChatbotHeaderContainer = ({
 
   return (
     <>
-      {customComponents.header && customComponents.header(actionProvider) ? (
-        customComponents.header && customComponents.header(actionProvider)
-      ) : (
-        <div className="p-5 font-bold bg-red-500 border-none rounded-lg cursor-pointer">
-          {header}
-        </div>
-      )}
       <div className="w-full px-3">
         <div
           className="z-10 flex justify-between border-b py-1 group-cb-dark:border-#3f3f46 group-cb-light:border-#f1f1f0"
           aria-label="Chatbot Header"
         >
           <div className="flex items-center">
-            <span>logo</span>
+            {storeLogo ? (
+              <img
+                src={storeLogo ?? ''}
+                className="w-8 h-8 m-1 mr-2 rounded-full"
+                style={{ backgroundColor: brandColor }}
+              />
+            ) : (
+              <div
+                className="w-8 h-8 m-1 mr-2 rounded-full"
+                style={{ backgroundColor: brandColor }}
+              >
+                icon
+              </div>
+            )}
+
             <h1 className="text-lg font-bold group-cb-dark:text-zinc-300 group-cb-light:text-zinc-700">
-              Chatbase
+              {header}
             </h1>
           </div>
           <div className="flex items-center justify-center">
@@ -53,27 +65,10 @@ const ChatbotHeaderContainer = ({
                 ></path>
               </svg>
             </button>
-            <button
-              className="inline-flex items-center justify-center px-0 py-3 ml-3 text-sm font-medium transition-colors rounded-md whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 hover:bg-inherit group-cb-dark:text-zinc-300 group-cb-dark:hover:text-zinc-400 group-cb-light:text-zinc-700 group-cb-light:hover:text-zinc-600"
-              aria-label="Close Chat"
-              title="Close Chat"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
+            <ChatbotHeaderCloseChatButton
+              setIsOpen={setIsOpen}
+              brandColor={brandColor}
+            />
           </div>
         </div>
       </div>
