@@ -1,9 +1,8 @@
 import { ChangeEvent } from 'preact/compat';
+import { createChatMessage } from 'src/actions/chatbot-message-utils';
 import { scrollIntoView } from 'src/actions/scroll-into-view';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
-import * as styles from 'src/styles/chat-widget.css';
 import { ChatbotInputContainerProps } from 'src/types/IChatbotWidget';
-import { createChatMessage } from 'src/actions/chatbot-message-utils';
 
 const ChatbotInputContainer = ({
   setState,
@@ -59,13 +58,13 @@ const ChatbotInputContainer = ({
   };
 
   return (
-    <div className={styles.ChatInputContainer}>
+    <div className="absolute bottom-0 flex w-full">
       <form
-        className={styles.ChatInputForm}
+        className="flex w-full"
         onSubmit={handleSubmit}
       >
         <input
-          className={styles.ChatInput}
+          className="w-full px-4 py-3 text-sm border border-gray-300 rounded-bl-lg"
           placeholder={placeholder}
           value={input}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -73,13 +72,13 @@ const ChatbotInputContainer = ({
             setInputValue(target.value);
           }}
         />
-        <button
-          className={styles.ChatBtnSend}
-          style={customButtonStyle}
-        >
-          <AirplaneIcon className={styles.ChatBtnSendIcon} />
-        </button>
       </form>
+      <button
+        className={`flex items-center justify-center w-12 h-12 rounded-full bg-orange-500 text-white ${customButtonStyle}`}
+        onClick={handleSubmit}
+      >
+        <AirplaneIcon className="w-6 h-6" />
+      </button>
     </div>
   );
 };

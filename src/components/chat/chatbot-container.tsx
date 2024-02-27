@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'preact/hooks';
 
+import { scrollIntoView } from 'src/actions/scroll-into-view';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container';
 import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
 import ChatbotMessageRetriever from 'src/components/chat/chatbot-message-retriever';
-import { scrollIntoView } from 'src/actions/scroll-into-view';
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
-import * as styles from 'src/styles/chat-widget.css';
 
 const ChatbotContainer = ({
   actionProvider,
@@ -36,8 +35,8 @@ const ChatbotContainer = ({
   });
 
   return (
-    <div className={styles.ChatContainer}>
-      <div className={styles.ChatInnerContainer}>
+    <div className="relative w-full">
+      <div className="h-full max-h-full overflow-hidden bg-white rounded-lg shadow-md">
         <ChatbotHeaderContainer
           actionProvider={actionProvider}
           botName={botName}

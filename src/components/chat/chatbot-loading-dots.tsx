@@ -2,44 +2,50 @@ import React from 'react';
 
 const ChatbotLoadingDots = () => {
   return (
-    <div className="chatbot-loader-container">
+    <div className="flex items-center justify-center">
       <svg
-        id="dots"
         width="50px"
         height="21px"
         viewBox="0 0 132 58"
-        version="1.1"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g
-          stroke="none"
-          fill="none"
-        >
-          <g
-            id="chatbot-loader"
-            fill="#fff"
-          >
-            <circle
-              id="chatbot-loader-dot1"
-              cx="25"
-              cy="30"
-              r="13"
-            ></circle>
-            <circle
-              id="chatbot-loader-dot2"
-              cx="65"
-              cy="30"
-              r="13"
-            ></circle>
-            <circle
-              id="chatbot-loader-dot3"
-              cx="105"
-              cy="30"
-              r="13"
-            ></circle>
-          </g>
-        </g>
+        <circle
+          cx="25"
+          cy="30"
+          r="13"
+          fill="#fff"
+          style={{ animation: 'load 1s infinite' }}
+        />
+        <circle
+          cx="65"
+          cy="30"
+          r="13"
+          fill="#fff"
+          style={{ animation: 'load 1s infinite', animationDelay: '0.2s' }}
+        />
+        <circle
+          cx="105"
+          cy="30"
+          r="13"
+          fill="#fff"
+          style={{ animation: 'load 1s infinite', animationDelay: '0.4s' }}
+        />
       </svg>
+      <style>
+        {`
+          @keyframes load {
+            0% {
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

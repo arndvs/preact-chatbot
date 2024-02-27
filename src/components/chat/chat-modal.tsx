@@ -27,14 +27,13 @@ const ChatOverlay: FC<{ name: string; parent: string }> = ({
   return <WebComponentPortal name={name}>{children}</WebComponentPortal>;
 };
 
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ');
+}
+
 const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
   return (
     <>
-      <ChatbotWidget
-        config={ChatbotConfig}
-        messageParser={MessageParser}
-        actionProvider={ActionProvider}
-      />
       {isOpen && (
         <ChatOverlay
           name="chat-overlay"
@@ -42,9 +41,9 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
         >
           <Box
             data-testId="overlay-content"
-            className={cx(
-              styles.chatOverlay,
-              isOpen && styles.chatOverlayVisible
+            className={classNames(
+              isOpen && 'block animate-show',
+              'z-[888889] border-none fixed flex flex-col w-[28rem] justify-between shadow-md bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"'
             )}
           >
             <ChatbotWidget
@@ -62,9 +61,9 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
         >
           <Box
             data-testId="overlay-dimmer"
-            className={cx(
-              styles.chatOverlayDimmer,
-              isOpen && styles.chatOverlayDimmerVisible
+            className={classNames(
+              isOpen && 'block animate-show',
+              'fixed hidden z-90 top-0 left-0 right-0 bottom-0'
             )}
             onClick={() => setIsOpen(false)}
           />

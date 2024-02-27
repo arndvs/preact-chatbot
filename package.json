@@ -4,16 +4,16 @@
   "description": "RipeMetrics Preact Islands Repo",
   "author": "RipeMetrics",
   "main": "index.js",
-   "scripts": {
-    "build": "NODE_ENV=production webpack --env prod",
+  "scripts": {
+    "build": "set NODE_ENV=production && webpack --env prod",
     "codegen": "npx playwright codegen",
     "dev": "webpack serve --env dev",
     "test": "npx playwright test",
     "test-headed": "npx playwright test --headed",
     "test-headed-slow": "SLOW=true npx playwright test --headed",
     "tsc": "tsc --noEmit -p tsconfig.app.json",
-    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "prettier-fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint-fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@preact/preset-vite": "^2.3.0",
@@ -21,6 +21,7 @@
     "@vanilla-extract/dynamic": "^2.0.2",
     "@vanilla-extract/recipes": "^0.2.5",
     "@vanilla-extract/sprinkles": "^1.4.1",
+    "axios": "^1.6.7",
     "clsx": "^1.2.1",
     "polished": "^4.2.2",
     "preact": "^10.5.7",

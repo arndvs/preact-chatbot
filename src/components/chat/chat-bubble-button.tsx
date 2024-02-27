@@ -5,29 +5,40 @@ import * as styles from 'src/styles/chat-bubble.css';
 interface ChatBubbleButtonProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  brandColor?: string;
 }
 
-const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
+const ChatBubbleButton = ({
+  isOpen,
+  setIsOpen,
+  brandColor
+}: ChatBubbleButtonProps) => {
   return (
-    <button
-      className={styles.chatBubbleButton}
-      onClick={() => setIsOpen(!isOpen)}
-      data-testid="chat-bubble-button"
-    >
-      <div className={styles.chatBubbleButtonContent}>
-        {!isOpen ? (
-          <ChatIcon
-            className={styles.chatBubbleButtonImage}
-            aria-hidden="true"
-          />
-        ) : (
-          <XMarkIcon
-            className={styles.chatBubbleButtonImage}
-            aria-hidden="true"
-          />
-        )}
+    <>
+      <div className="cursor-pointer">
+        <button
+          className="inline-flex items-center justify-center fixed z-[888888] text-white rounded-full shadow-sm h-14 w-14 cursor-pointer hover:duration-200 hover:scale-105 bottom-4 right-4 hover:shadow-md contrast-150 hover:contrast-125"
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            backgroundColor: brandColor ?? '#e5e5e5'
+          }}
+        >
+          <div className="flex items-center justify-center w-full h-full">
+            {!isOpen ? (
+              <ChatIcon
+                className="w-8 h-8"
+                aria-hidden="true"
+              />
+            ) : (
+              <XMarkIcon
+                className="w-8 h-8"
+                aria-hidden="true"
+              />
+            )}
+          </div>
+        </button>
       </div>
-    </button>
+    </>
   );
 };
 

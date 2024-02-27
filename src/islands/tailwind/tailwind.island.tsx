@@ -1,5 +1,5 @@
+import 'src/styles/global.css';
 import 'src/styles/reset.css';
-import 'src/global.css';
 import { createIslandWebComponent } from 'preact-island';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 
