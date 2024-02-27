@@ -25,10 +25,10 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
   const handleDefault = (message: string) => {
     const botMessage = createChatBotMessage(`You said: ${message}`);
     const req = axios.post('https://api.rmdevs.com/api/v2/external_chatbot', {
-      store_id: 20,
-      customer_store_id: 20,
       question: message,
-      req_session: '123',
+      store_id: 12,
+      customer_id: 79741,
+      req_session: '0cGEgXm4oxQxWx6VGnJJyrRKM7cRNlKC0TyzgRHw',
       greeting: false
     });
     req.then((res) => {
