@@ -43,7 +43,7 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
             data-testId="overlay-content"
             className={classNames(
               isOpen && 'block animate-show',
-              'border-none fixed flex flex-col justify-between shadow bottom-20 right-4 w-72 h-85vh max-h-[824px] rounded-lg overflow-hidden bg-orange-500 z-50 outline-none'
+              'z-[888889] border-none fixed flex flex-col w-[28rem] justify-between shadow-md bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"'
             )}
           >
             <ChatbotWidget
@@ -61,9 +61,9 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
         >
           <Box
             data-testId="overlay-dimmer"
-            className={cx(
-              styles.chatOverlayDimmer,
-              isOpen && styles.chatOverlayDimmerVisible
+            className={classNames(
+              isOpen && 'block animate-show',
+              'fixed hidden z-90 top-0 left-0 right-0 bottom-0'
             )}
             onClick={() => setIsOpen(false)}
           />
