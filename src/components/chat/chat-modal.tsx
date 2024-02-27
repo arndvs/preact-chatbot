@@ -61,9 +61,9 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
         >
           <Box
             data-testId="overlay-dimmer"
-            className={cx(
-              styles.chatOverlayDimmer,
-              isOpen && styles.chatOverlayDimmerVisible
+            className={classNames(
+              isOpen && 'block animate-show',
+              'fixed hidden z-90 top-0 left-0 right-0 bottom-0'
             )}
             onClick={() => setIsOpen(false)}
           />
