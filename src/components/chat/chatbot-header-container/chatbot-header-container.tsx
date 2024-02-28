@@ -10,9 +10,12 @@ const ChatbotHeaderContainer = ({
 }: ChatbotHeaderContainerProps) => {
   return (
     <>
-      <div className="w-full px-2">
+      <div
+        className="w-full px-2"
+        style={{ backgroundColor: brandColor }}
+      >
         <div
-          className="z-10 flex justify-between border-b py-1  border-#f1f1f0"
+          className="z-10 flex justify-between py-3"
           aria-label="Chatbot Header"
         >
           <div className="flex items-center">
@@ -31,7 +34,7 @@ const ChatbotHeaderContainer = ({
               </div>
             )}
 
-            <h1 className="text-lg font-bold text-zinc-700">{storeName}</h1>
+            <h1 className="text-lg font-semibold text-white">{storeName}</h1>
           </div>
           <div className="flex items-center justify-center">
             {/* <BotHeaderResetChatButton /> */}

@@ -6,7 +6,6 @@ import MessageParser from 'src/actions/message-parser';
 import { Box } from 'src/components/ui';
 import ChatbotConfig from 'src/utils/chatbot-config';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import * as styles from 'src/styles/chat-overlay.css';
 import ChatbotWidget from 'src/components/chat/chatbot-widget';
 import useClassNames from 'src/hooks/useClassNames';
 
@@ -48,7 +47,7 @@ const ChatModal = ({
           <Box
             data-testId="overlay-content"
             className={useClassNames(
-              isOpen && styles.chatOverlayVisible,
+              isOpen && 'hidden sm:block',
               'z-[888889] border-none fixed flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"'
             )}
           >
