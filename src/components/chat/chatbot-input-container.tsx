@@ -20,7 +20,7 @@ const ChatbotInputContainer = ({
     customButtonStyle.backgroundColor = customStyles.chatButton.backgroundColor;
   }
 
-  let placeholder = 'Ask a  question...';
+  let placeholder = 'Message...';
   if (placeholderText) {
     placeholder = placeholderText;
   }
@@ -58,13 +58,14 @@ const ChatbotInputContainer = ({
   };
 
   return (
-    <div className="bottom-0 flex w-full bg-purple-500 ">
+    <div className="flex items-center w-full -mb-4 ">
       <form
         className="flex w-full"
         onSubmit={handleSubmit}
       >
         <input
-          className="w-full px-4 py-3 text-sm border border-gray-300 rounded-bl-lg"
+          //   className="w-full px-4 py-3 text-sm border rounded-bl-lg "
+          className="w-full px-4 py-3 text-sm border-none rounded-bl-lg focus:outline-none focus:ring-none "
           placeholder={placeholder}
           value={input}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -72,13 +73,13 @@ const ChatbotInputContainer = ({
             setInputValue(target.value);
           }}
         />
+        <button
+          className={`flex items-center justify-center w-12 h-12 rounded-full bg-orange-500 text-white ${customButtonStyle}`}
+          onClick={handleSubmit}
+        >
+          <AirplaneIcon className="w-6 h-6" />
+        </button>
       </form>
-      <button
-        className={`flex items-center justify-center w-12 h-12 rounded-full bg-orange-500 text-white ${customButtonStyle}`}
-        onClick={handleSubmit}
-      >
-        <AirplaneIcon className="w-6 h-6" />
-      </button>
     </div>
   );
 };
