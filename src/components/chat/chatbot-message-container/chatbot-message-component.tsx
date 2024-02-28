@@ -18,7 +18,7 @@ const ChatbotMessageComponent = ({
         </div>
       </div>
       <div class="mr-8 flex justify-start">
-        <div class="mb-3 max-w-prose overflow-auto rounded-lg px-4 py-3 bg-[#f1f1f0]  text-black">
+        <div class="mb-3 max-w-prose overflow-auto rounded-lg px-4 py-3 bg-gray-100  text-black">
           <div class="flex flex-col items-start gap-4 break-words">
             <div class="prose w-full break-words text-left text-inherit dark:prose-invert">
               {loading ? <ChatbotLoadingDots /> : <p>{message}</p>}
