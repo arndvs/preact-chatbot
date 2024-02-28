@@ -2,7 +2,12 @@
 module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
-    extend: {}
+    extend: {
+      boxShadow: {
+        custom:
+          'rgba(150, 150, 150, 0.2) 0px 10px 30px 0px, rgba(150, 150, 150, 0.2) 0px 0px 0px 1px'
+      }
+    }
   },
   plugins: []
 };

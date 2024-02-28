@@ -13,15 +13,20 @@ import ChatbotError from './chatbot-error';
 
 const ChatbotWidget = ({
   actionProvider,
+  brandColor,
   messageParser,
   config,
   headerText,
+  isOpen,
   placeholderText,
   saveMessages,
+  setIsOpen,
   messageHistory,
   runInitialMessagesWithHistory,
   disableScrollToBottom,
   validator,
+  storeName,
+  storeLogo,
   ...rest
 }: IChatbotWidgetProps) => {
   const {
@@ -61,19 +66,24 @@ const ChatbotWidget = ({
   const chatbotContainerProps = {
     state,
     setState,
+    brandColor,
     widgetRegistry,
     actionProvider: isConstructor(ActionProvider) ? actionProv : ActionProvider,
     messageParser: isConstructor(MessageParser) ? messagePars : MessageParser,
     customMessages,
     customComponents,
     botName,
+    isOpen,
+    setIsOpen,
     customStyles,
     headerText,
     placeholderText,
     validator,
     messageHistory,
     disableScrollToBottom,
-    messageContainerRef
+    messageContainerRef,
+    storeName,
+    storeLogo
   };
 
   if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {

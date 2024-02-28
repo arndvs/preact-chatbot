@@ -1,6 +1,5 @@
 import { WebComponentPortal } from 'preact-island';
 
-import cx from 'clsx';
 import { FC } from 'preact/compat';
 import ActionProvider from 'src/actions/action-provider';
 import MessageParser from 'src/actions/message-parser';
@@ -9,11 +8,15 @@ import ChatbotConfig from 'src/utils/chatbot-config';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import * as styles from 'src/styles/chat-overlay.css';
 import ChatbotWidget from 'src/components/chat/chatbot-widget';
+import useClassNames from 'src/hooks/useClassNames';
 
 interface ChatModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   islandName: string;
+  brandColor: string;
+  storeName: string;
+  storeLogo: string;
 }
 
 const ChatOverlay: FC<{ name: string; parent: string }> = ({
@@ -27,11 +30,14 @@ const ChatOverlay: FC<{ name: string; parent: string }> = ({
   return <WebComponentPortal name={name}>{children}</WebComponentPortal>;
 };
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
-
-const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
+const ChatModal = ({
+  isOpen,
+  setIsOpen,
+  islandName,
+  brandColor,
+  storeName,
+  storeLogo
+}: ChatModalProps) => {
   return (
     <>
       {isOpen && (
@@ -41,15 +47,20 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
         >
           <Box
             data-testId="overlay-content"
-            className={classNames(
-              isOpen && 'block animate-show',
-              'z-[888889] border-none fixed flex flex-col w-[28rem] justify-between shadow-md bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"'
+            className={useClassNames(
+              isOpen && styles.chatOverlayVisible,
+              'z-[888889] border-none fixed flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"'
             )}
           >
             <ChatbotWidget
               config={ChatbotConfig}
               messageParser={MessageParser}
               actionProvider={ActionProvider}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              brandColor={brandColor}
+              storeName={storeName}
+              storeLogo={storeLogo}
             />
           </Box>
         </ChatOverlay>
@@ -61,9 +72,9 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
         >
           <Box
             data-testId="overlay-dimmer"
-            className={classNames(
-              isOpen && 'block animate-show',
-              'fixed hidden z-90 top-0 left-0 right-0 bottom-0'
+            className={useClassNames(
+              'fixed hidden z-[90] top-0 left-0 right-0 bottom-0',
+              isOpen && 'hidden sm:block'
             )}
             onClick={() => setIsOpen(false)}
           />
