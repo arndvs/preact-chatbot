@@ -66,6 +66,7 @@ const ChatbotContainer = ({
           setState={setState}
           state={state}
           widgetRegistry={widgetRegistry}
+          storeLogo={storeLogo}
         />
         <ChatbotInputContainer
           customStyles={customStyles}

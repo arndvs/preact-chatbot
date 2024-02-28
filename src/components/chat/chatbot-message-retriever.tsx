@@ -4,7 +4,7 @@ import {
   userMessage
 } from 'src/actions/chatbot-message-utils';
 import { showAvatar } from 'src/actions/show-avatar';
-import ChatbotMessageContainer from 'src/components/chat/chatbot-message-container';
+import ChatbotMessageContainer from 'src/components/chat/chatbot-message-container/chatbot-message-container';
 import ChatbotUserMessageContainer from 'src/components/chat/chatbot-user-message-container';
 import {
   IChatbotMessage,
@@ -23,7 +23,8 @@ const ChatbotMessageRetriever = ({
   scrollIntoView,
   setState,
   state,
-  widgetRegistry
+  widgetRegistry,
+  storeLogo
 }: IChatbotMessageRetrieverProps) => {
   const renderMessages = () => {
     return messages.map((messageObject: IChatbotMessage, index: number) => {
@@ -133,6 +134,7 @@ const ChatbotMessageRetriever = ({
             withAvatar={withAvatar}
             {...chatbotMessageProps}
             key={messageObject.id}
+            storeLogo={storeLogo}
           />
           {chatbotMessageProps.loading !== undefined &&
             !chatbotMessageProps.loading &&
@@ -150,13 +152,14 @@ const ChatbotMessageRetriever = ({
         customComponents={customComponents}
         messages={messages}
         setState={setState}
+        storeLogo={storeLogo}
       />
     );
   };
 
   return (
     <div
-      className="px-7.5 py-10 overflow-y-auto h-[40rem] bg-green-500"
+      className="px-7.5 py-4 overflow-y-auto md:h-[40rem] sm:h-[32rem]"
       ref={messageContainerRef}
     >
       {typeof messageHistory === 'string' && Boolean(messageHistory) ? (
