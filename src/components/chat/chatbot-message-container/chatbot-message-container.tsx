@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { callIfExists } from 'src/actions/chatbot-message-utils';
 import ChatbotLoadingDots from 'src/components/chat/chatbot-loading-dots';
+import ChatbotMessageAvatar from 'src/components/chat/chatbot-message-container/chatbot-message-avatar';
+import ChatbotMessageComponent from 'src/components/chat/chatbot-message-container/chatbot-message-component';
 import { IChatbotMessageContainerProps } from 'src/types/IChatbotMessages';
-import ChatbotMessageAvatar from './chatbot-message-avatar';
 
 const ChatbotMessageContainer = ({
   message,
@@ -13,7 +14,8 @@ const ChatbotMessageContainer = ({
   setState,
   customStyles,
   delay,
-  id
+  id,
+  storeLogo
 }: IChatbotMessageContainerProps) => {
   const [show, toggleShow] = useState(false);
 
@@ -61,32 +63,28 @@ const ChatbotMessageContainer = ({
   return (
     <>
       {show && (
-        <div className="flex justify-start my-4">
-          {withAvatar && customComponents?.botAvatar ? (
-            callIfExists(customComponents.botAvatar)
-          ) : (
-            <ChatbotMessageAvatar />
-          )}
+        <div className="flow-root">
+          <div className="relative pb-8">
+            <div className="relative flex items-start space-x-3">
+              {withAvatar && customComponents?.botAvatar ? (
+                callIfExists(customComponents.botAvatar)
+              ) : (
+                <ChatbotMessageAvatar storeLogo={storeLogo} />
+              )}
 
-          {customComponents?.botChatMessage ? (
-            callIfExists(customComponents.botChatMessage, {
-              message,
-              loader: <ChatbotLoadingDots />
-            })
-          ) : (
-            <div
-              className="relative w-full p-2 ml-auto text-base font-medium text-left text-white bg-blue-500 rounded-md"
-              style={chatBoxCustomStyles}
-            >
-              {loading ? <ChatbotLoadingDots /> : <span>{message}</span>}
-              {withAvatar && (
-                <div
-                  className="absolute w-0 h-0 border-t-8 border-b-8 border-r-8 border-transparent border-blue-500 -left-1/2 top-2"
-                  style={arrowCustomStyles}
-                ></div>
+              {customComponents?.botChatMessage ? (
+                callIfExists(customComponents.botChatMessage, {
+                  message,
+                  loader: <ChatbotLoadingDots />
+                })
+              ) : (
+                <ChatbotMessageComponent
+                  loading={loading}
+                  message={message}
+                />
               )}
             </div>
-          )}
+          </div>
         </div>
       )}
     </>
