@@ -156,14 +156,14 @@ const ChatbotMessageRetriever = ({
 
   return (
     <div
-      className="px-7.5 py-10 overflow-scroll h-[40rem]"
+      className="px-7.5 py-10 overflow-y-auto h-[40rem] bg-green-500"
       ref={messageContainerRef}
     >
       {typeof messageHistory === 'string' && Boolean(messageHistory) ? (
         <div dangerouslySetInnerHTML={{ __html: messageHistory as string }} />
       ) : null}
       {renderMessages()}
-      <div className="pb-4" />
+      <div className="pb-4 bg-red-500" />
     </div>
   );
 };

@@ -30,7 +30,7 @@ export const chatOverlayVisible = style({
 export const chatOverlayDimmer = style({
   position: 'fixed',
   display: 'none',
-  zIndex: '90',
+  zIndex: '999999',
   top: '0',
   left: '0',
   right: '0',
