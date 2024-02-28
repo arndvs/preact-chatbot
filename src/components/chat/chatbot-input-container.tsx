@@ -13,7 +13,8 @@ const ChatbotInputContainer = ({
   messageParser,
   messageContainerRef,
   placeholderText,
-  customStyles
+  customStyles,
+  brandColor
 }: ChatbotInputContainerProps) => {
   const customButtonStyle = { backgroundColor: '' };
   if (customStyles && customStyles.chatButton) {
@@ -64,7 +65,6 @@ const ChatbotInputContainer = ({
         onSubmit={handleSubmit}
       >
         <input
-          //   className="w-full px-4 py-3 text-sm border rounded-bl-lg "
           className="w-full px-4 py-3 text-sm border-none rounded-bl-lg focus:outline-none focus:ring-none "
           placeholder={placeholder}
           value={input}
@@ -74,7 +74,7 @@ const ChatbotInputContainer = ({
           }}
         />
         <button
-          className={`flex items-center justify-center w-12 h-12 rounded-full bg-orange-500 text-white ${customButtonStyle}`}
+          className={`flex items-center justify-center w-12 h-12 rounded-full text-gray-600 hover:text-gray-800`}
           onClick={handleSubmit}
         >
           <AirplaneIcon className="w-6 h-6" />

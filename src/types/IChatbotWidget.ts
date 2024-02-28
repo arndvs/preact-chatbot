@@ -81,6 +81,7 @@ export interface ChatbotInputContainerProps {
   messageContainerRef: any;
   placeholderText?: string;
   customStyles: IChatbotCustomStyles;
+  brandColor: string;
 }
 
 export interface ChatbotHeaderContainerProps {

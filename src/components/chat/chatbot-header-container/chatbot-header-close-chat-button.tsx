@@ -12,7 +12,7 @@ const ChatbotHeaderCloseChatButton = ({
   <div>
     <button
       type="button"
-      className={`inline-flex items-center justify-center rounded-full border border-gray-200 bg-white p-1 shadow-sm hover:transition-all focus:duration-150 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none active:bg-gray-200 active:text-white`}
+      className="inline-flex items-center justify-center p-1 text-gray-700 bg-white border border-gray-200 rounded-full shadow-sm hover:bg-gray-50 active:bg-gray-100 focus:outline-none active:text-gray-900 focus:ring-none"
       onClick={() => setIsOpen(false)}
     >
       <XMarkIcon
