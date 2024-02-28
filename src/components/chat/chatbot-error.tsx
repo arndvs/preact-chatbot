@@ -1,13 +1,13 @@
 import React from 'react';
 
 import ChatbotMessage from './chatbot-message-container/chatbot-message-container';
-import * as styles from 'src/styles/chat-widget.css';
 
 interface IChatbotErrorProps {
   message: string;
+  storeLogo: string;
 }
 
-const ChatbotError = ({ message }: IChatbotErrorProps) => {
+const ChatbotError = ({ message, storeLogo }: IChatbotErrorProps) => {
   return (
     <div className="p-4 bg-white rounded-md">
       <h1 className="mb-8 text-lg text-gray-900">
@@ -21,6 +21,7 @@ const ChatbotError = ({ message }: IChatbotErrorProps) => {
           id={1}
           customStyles={{ backgroundColor: '' }}
           messages={[]}
+          storeLogo={storeLogo}
         />
       </div>
       <a
