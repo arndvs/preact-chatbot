@@ -13,6 +13,9 @@ interface ChatModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   islandName: string;
+  brandColor: string;
+  storeName: string;
+  storeLogo: string;
 }
 
 const ChatOverlay: FC<{ name: string; parent: string }> = ({
@@ -30,7 +33,14 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
+const ChatModal = ({
+  isOpen,
+  setIsOpen,
+  islandName,
+  brandColor,
+  storeName,
+  storeLogo
+}: ChatModalProps) => {
   return (
     <>
       {isOpen && (
@@ -42,7 +52,7 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
             data-testId="overlay-content"
             className={classNames(
               isOpen && styles.chatOverlayVisible,
-              'z-[888889] border-none fixed flex flex-col w-[28rem] justify-between shadow-lg bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"'
+              'z-[888889] border-none fixed flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"'
             )}
           >
             <ChatbotWidget
@@ -51,6 +61,9 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
               actionProvider={ActionProvider}
               isOpen={isOpen}
               setIsOpen={setIsOpen}
+              brandColor={brandColor}
+              storeName={storeName}
+              storeLogo={storeLogo}
             />
           </Box>
         </ChatOverlay>

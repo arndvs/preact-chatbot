@@ -10,6 +10,7 @@ const ChatbotContainer = ({
   actionProvider,
   actions,
   botName,
+  brandColor,
   customComponents,
   customMessages,
   customStyles,
@@ -24,6 +25,8 @@ const ChatbotContainer = ({
   setState,
   setIsOpen,
   state,
+  storeName,
+  storeLogo,
   validator,
   widgetRegistry
 }: IChatbotContainerProps) => {
@@ -42,10 +45,12 @@ const ChatbotContainer = ({
         <ChatbotHeaderContainer
           actionProvider={actionProvider}
           botName={botName}
+          brandColor={brandColor}
           customComponents={customComponents}
           headerText={headerText}
-          isOpen={isOpen}
           setIsOpen={setIsOpen}
+          storeName={storeName}
+          storeLogo={storeLogo}
         />
         <ChatbotMessageRetriever
           actionProvider={actionProvider}

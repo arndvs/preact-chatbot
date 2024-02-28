@@ -10,6 +10,9 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const brandColor = '#FF792A';
+  const storeName = 'RipeMetrics';
+  const storeLogo =
+    'https://ripemetrics.com/favicon/apple-touch-icon-57x57.png';
 
   return (
     <>
@@ -22,6 +25,9 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         islandName={islandName}
+        brandColor={brandColor}
+        storeName={storeName}
+        storeLogo={storeLogo}
       />
     </>
   );

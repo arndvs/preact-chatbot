@@ -1,4 +1,4 @@
-import React from 'react';
+import { XMarkIcon } from 'src/assets/x-mark-icon';
 
 interface ChatbotHeaderCloseButton {
   brandColor: string;
@@ -12,17 +12,13 @@ const ChatbotHeaderCloseChatButton = ({
   <div>
     <button
       type="button"
-      className={`inline-flex items-center justify-center rounded-full border border-gray-200 bg-white p-1 text-gray-900 shadow-sm transition-all duration-150 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none active:bg-gray-200 active:text-white`}
+      className={`inline-flex items-center justify-center rounded-full border border-gray-200 bg-white p-1 shadow-sm hover:transition-all focus:duration-150 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none active:bg-gray-200 active:text-white`}
       onClick={() => setIsOpen(false)}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
+      <XMarkIcon
         className="w-5 h-5"
-      >
-        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-      </svg>
+        aria-hidden="true"
+      />
     </button>
   </div>
 );
