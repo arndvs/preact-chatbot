@@ -13,21 +13,21 @@ const ChatbotLoadingDots = () => {
           cx="25"
           cy="30"
           r="13"
-          fill="#fff"
+          fill="#888888"
           style={{ animation: 'load 1s infinite' }}
         />
         <circle
           cx="65"
           cy="30"
           r="13"
-          fill="#fff"
+          fill="#555555"
           style={{ animation: 'load 1s infinite', animationDelay: '0.2s' }}
         />
         <circle
           cx="105"
           cy="30"
           r="13"
-          fill="#fff"
+          fill="#222222"
           style={{ animation: 'load 1s infinite', animationDelay: '0.4s' }}
         />
       </svg>

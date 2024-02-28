@@ -14,7 +14,7 @@ const ChatbotMessageComponent = ({
     <div className="flex-1 min-w-0 !ml-1">
       <div>
         <div className="text-xs">
-          <p className="pb-2 text-slate-500 font-xs">RipeMetrics Bot</p>
+          <p className="pb-1 text-slate-500 font-xs">RipeMetrics Bot</p>
         </div>
       </div>
       <div class="mr-8 flex justify-start">

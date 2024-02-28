@@ -2,9 +2,11 @@ import { useEffect, useState } from 'preact/hooks';
 
 import { scrollIntoView } from 'src/actions/scroll-into-view';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container/chatbot-header-container';
+
 import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
 import ChatbotMessageRetriever from 'src/components/chat/chatbot-message-retriever';
 import ChatbotPoweredBy from 'src/components/chat/chatbot-powered-by';
+
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotContainer = ({
@@ -67,6 +69,7 @@ const ChatbotContainer = ({
           state={state}
           widgetRegistry={widgetRegistry}
           storeLogo={storeLogo}
+          brandColor={brandColor}
         />
         <ChatbotInputContainer
           customStyles={customStyles}

@@ -4,15 +4,17 @@ import { IChatbotUserMessageContainerProps } from 'src/types/IChatbotMessages';
 
 const ChatbotUserMessageContainer = ({
   message,
-  customComponents
+  customComponents,
+  brandColor
 }: IChatbotUserMessageContainerProps) => {
   return (
     <div className="flex justify-end my-4">
       <ChatbotUserMessage
         customComponents={customComponents}
         message={message}
+        brandColor={brandColor}
       />
-      <ChatbotUserAvatar customComponents={customComponents} />
+      {/* <ChatbotUserAvatar customComponents={customComponents} /> */}
     </div>
   );
 };
