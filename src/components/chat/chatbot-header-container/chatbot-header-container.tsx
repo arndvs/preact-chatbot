@@ -10,7 +10,7 @@ const ChatbotHeaderContainer = ({
 }: ChatbotHeaderContainerProps) => {
   return (
     <>
-      <div className="w-full px-3">
+      <div className="w-full px-2">
         <div
           className="z-10 flex justify-between border-b py-1 group-cb-dark:border-#3f3f46 group-cb-light:border-#f1f1f0"
           aria-label="Chatbot Header"
@@ -19,7 +19,7 @@ const ChatbotHeaderContainer = ({
             {storeLogo ? (
               <img
                 src={storeLogo ?? ''}
-                className="w-8 h-8 m-1 mr-2 rounded-full"
+                className="w-8 h-8 mr-2 rounded-full"
                 // style={{ backgroundColor: brandColor }}
               />
             ) : (
