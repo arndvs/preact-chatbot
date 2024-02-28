@@ -22,7 +22,7 @@ const ChatbotInputContainer = ({
     customButtonStyle.backgroundColor = customStyles.chatButton.backgroundColor;
   }
 
-  let placeholder = 'Message...';
+  let placeholder = 'Write your message...';
   if (placeholderText) {
     placeholder = placeholderText;
   }
