@@ -61,7 +61,7 @@ const ChatbotInputContainer = ({
 
   return (
     <>
-      <div className="flex items-center w-full -mb-4 ">
+      <div className="flex items-center w-full -mb-4 border-t border-gray-200 ">
         <form
           className="flex w-full"
           onSubmit={handleSubmit}

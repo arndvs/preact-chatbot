@@ -169,7 +169,6 @@ const ChatbotMessageRetriever = ({
         <div dangerouslySetInnerHTML={{ __html: messageHistory as string }} />
       ) : null}
       {renderMessages()}
-      <div className="pb-4 bg-red-500" />
     </div>
   );
 };
