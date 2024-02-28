@@ -2,6 +2,7 @@ import { ChangeEvent } from 'preact/compat';
 import { createChatMessage } from 'src/actions/chatbot-message-utils';
 import { scrollIntoView } from 'src/actions/scroll-into-view';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
+import useClassNames from 'src/hooks/useClassNames';
 import { ChatbotInputContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotInputContainer = ({
@@ -76,8 +77,14 @@ const ChatbotInputContainer = ({
         <button
           className={`flex items-center justify-center w-12 h-12 rounded-full text-gray-600 hover:text-gray-800`}
           onClick={handleSubmit}
+          disabled={!input.trim()}
         >
-          <AirplaneIcon className="w-6 h-6" />
+          <AirplaneIcon
+            className={useClassNames(
+              'w-6 h-6 ',
+              !input ? 'text-gray-300' : 'text-gray-600 hover:text-gray-800'
+            )}
+          />
         </button>
       </form>
     </div>

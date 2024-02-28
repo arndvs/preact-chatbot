@@ -76,6 +76,7 @@ const ChatbotContainer = ({
           setState={setState}
           setInputValue={setInputValue}
           validator={validator}
+          brandColor={brandColor}
         />
       </div>
     </div>
