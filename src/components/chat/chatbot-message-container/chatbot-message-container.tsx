@@ -64,7 +64,7 @@ const ChatbotMessageContainer = ({
     <>
       {show && (
         <div className="flow-root">
-          <div className="relative pb-8">
+          <div className="relative">
             <div className="relative flex items-start space-x-3">
               {withAvatar && customComponents?.botAvatar ? (
                 callIfExists(customComponents.botAvatar)

@@ -5,7 +5,8 @@ import {
 } from 'src/actions/chatbot-message-utils';
 import { showAvatar } from 'src/actions/show-avatar';
 import ChatbotMessageContainer from 'src/components/chat/chatbot-message-container/chatbot-message-container';
-import ChatbotUserMessageContainer from 'src/components/chat/chatbot-user-message-container';
+
+import ChatbotUserMessageContainer from 'src/components/chat/chatbot-user-message-container/chatbot-user-message-container';
 import {
   IChatbotMessage,
   IChatbotMessageRetrieverProps
@@ -24,7 +25,8 @@ const ChatbotMessageRetriever = ({
   setState,
   state,
   widgetRegistry,
-  storeLogo
+  storeLogo,
+  brandColor
 }: IChatbotMessageRetrieverProps) => {
   const renderMessages = () => {
     return messages.map((messageObject: IChatbotMessage, index: number) => {
@@ -93,6 +95,7 @@ const ChatbotMessageRetriever = ({
           message={messageObject.message}
           key={messageObject.id}
           customComponents={customComponents}
+          brandColor={brandColor}
         />
         {widget ? widget : null}
       </>
@@ -159,14 +162,13 @@ const ChatbotMessageRetriever = ({
 
   return (
     <div
-      className="px-7.5 py-4 overflow-y-auto md:h-[40rem] sm:h-[32rem]"
+      className="px-7.5 py-4 overflow-y-auto md:h-[40rem] h-[32rem]"
       ref={messageContainerRef}
     >
       {typeof messageHistory === 'string' && Boolean(messageHistory) ? (
         <div dangerouslySetInnerHTML={{ __html: messageHistory as string }} />
       ) : null}
       {renderMessages()}
-      <div className="pb-4 bg-red-500" />
     </div>
   );
 };
