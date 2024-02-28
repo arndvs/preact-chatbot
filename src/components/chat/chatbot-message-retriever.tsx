@@ -5,7 +5,8 @@ import {
 } from 'src/actions/chatbot-message-utils';
 import { showAvatar } from 'src/actions/show-avatar';
 import ChatbotMessageContainer from 'src/components/chat/chatbot-message-container/chatbot-message-container';
-import ChatbotUserMessageContainer from 'src/components/chat/chatbot-user-message-container';
+
+import ChatbotUserMessageContainer from 'src/components/chat/chatbot-user-message-container/chatbot-user-message-container';
 import {
   IChatbotMessage,
   IChatbotMessageRetrieverProps
