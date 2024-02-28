@@ -43,6 +43,7 @@ export interface IChatbotMessageContainerProps {
 export interface IChatbotUserMessageContainerProps {
   message: string;
   customComponents: IChatbotCustomComponents;
+  brandColor: string;
 }
 
 export interface IChatbotMessageRetrieverProps {
@@ -59,4 +60,5 @@ export interface IChatbotMessageRetrieverProps {
   state: any;
   widgetRegistry: any;
   storeLogo: string;
+  brandColor: string;
 }
