@@ -4,7 +4,7 @@ import { scrollIntoView } from 'src/actions/scroll-into-view';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container/chatbot-header-container';
 import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
 import ChatbotMessageRetriever from 'src/components/chat/chatbot-message-retriever';
-import PoweredBy from 'src/components/chat/powered-by';
+import ChatbotPoweredBy from 'src/components/chat/chatbot-powered-by';
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotContainer = ({
@@ -80,7 +80,7 @@ const ChatbotContainer = ({
           validator={validator}
           brandColor={brandColor}
         />
-        <PoweredBy />
+        <ChatbotPoweredBy />
       </div>
     </div>
   );
