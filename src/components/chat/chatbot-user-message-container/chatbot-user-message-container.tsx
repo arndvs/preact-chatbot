@@ -8,7 +8,7 @@ const ChatbotUserMessageContainer = ({
   brandColor
 }: IChatbotUserMessageContainerProps) => {
   return (
-    <div className="flex justify-end my-4">
+    <div className="flex justify-end">
       <ChatbotUserMessage
         customComponents={customComponents}
         message={message}
