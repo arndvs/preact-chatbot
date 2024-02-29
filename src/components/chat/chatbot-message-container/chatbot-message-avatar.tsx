@@ -1,10 +1,8 @@
-import React from 'react';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
-interface ChatbotMessageAvatarProps {
-  storeLogo: string;
-}
+const ChatbotMessageAvatar = () => {
+  const { storeLogo } = useChatbotContext();
 
-const ChatbotMessageAvatar = ({ storeLogo }: ChatbotMessageAvatarProps) => {
   return (
     <div className="relative ml-1">
       <img

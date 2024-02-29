@@ -1,13 +1,10 @@
 import ChatbotHeaderCloseChatButton from 'src/components/chat/chatbot-header-container/chatbot-header-close-chat-button';
-import BotHeaderResetChatButton from 'src/components/chat/chatbot-header-container/chatbot-header-reset-chat-button';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { ChatbotHeaderContainerProps } from 'src/types/IChatbotWidget';
 
-const ChatbotHeaderContainer = ({
-  storeLogo,
-  brandColor,
-  storeName,
-  setIsOpen
-}: ChatbotHeaderContainerProps) => {
+const ChatbotHeaderContainer = ({ setIsOpen }: ChatbotHeaderContainerProps) => {
+  const { storeName, storeLogo, brandColor } = useChatbotContext();
+
   return (
     <>
       <div
@@ -23,7 +20,6 @@ const ChatbotHeaderContainer = ({
               <img
                 src={storeLogo ?? ''}
                 className="w-8 h-8 mr-2 rounded-full"
-                // style={{ backgroundColor: brandColor }}
               />
             ) : (
               <div
@@ -38,10 +34,7 @@ const ChatbotHeaderContainer = ({
           </div>
           <div className="flex items-center justify-center">
             {/* <BotHeaderResetChatButton /> */}
-            <ChatbotHeaderCloseChatButton
-              setIsOpen={setIsOpen}
-              brandColor={brandColor}
-            />
+            <ChatbotHeaderCloseChatButton setIsOpen={setIsOpen} />
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import React from 'react';
 import ChatbotLoadingDots from 'src/components/chat/chatbot-loading-dots';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ChatbotMessageComponentProps {
   message: string;
@@ -10,11 +10,12 @@ const ChatbotMessageComponent = ({
   message,
   loading
 }: ChatbotMessageComponentProps) => {
+  const { storeName } = useChatbotContext();
   return (
     <div className="flex-1 min-w-0 !ml-1">
       <div>
         <div className="text-xs">
-          <p className="pb-1 text-slate-500 font-xs">RipeMetrics Bot</p>
+          <p className="pb-1 text-slate-500 font-xs">{storeName} Bot</p>
         </div>
       </div>
       <div class="mr-8 flex justify-start">
