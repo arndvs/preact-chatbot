@@ -10,7 +10,7 @@ import {
   isConstructor,
   validateProps
 } from 'src/actions/chatbot-config-utils';
-import ChatbotWidgetRegistry from 'src/utils/chatbot-widget-registry';
+import ChatbotWidgetRegistry from 'src/actions/chatbot-widget-registry';
 import IChatbotConfig from 'src/types/IChatbotConfig';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { IChatbotWidget } from 'src/types/IChatbotWidget';

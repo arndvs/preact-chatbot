@@ -34,6 +34,7 @@ const ChatbotUserMessage = ({
             >
               {message}
             </div>
+
             {/* <span className="block text-xs font-normal text-right text-gray-500">
               <time
                 datetime="2024-02-28T20:49:08.445Z"

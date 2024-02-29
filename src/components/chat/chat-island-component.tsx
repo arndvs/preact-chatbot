@@ -1,6 +1,8 @@
 import { useState } from 'preact/compat';
+import { ChatbotContextProvider } from 'src/actions/chatbot-context-provider';
 import ChatBubbleButton from 'src/components/chat/chat-bubble-button';
 import ChatModal from 'src/components/chat/chat-modal';
+import ChatbotContextComponent from 'src/components/chat/testing-context-component';
 
 interface ChatIslandComponentProps {
   islandName: string;
@@ -16,19 +18,26 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
 
   return (
     <>
-      <ChatBubbleButton
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        brandColor={brandColor}
-      />
-      <ChatModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        islandName={islandName}
-        brandColor={brandColor}
+      <ChatbotContextProvider
         storeName={storeName}
         storeLogo={storeLogo}
-      />
+        brandColor={brandColor}
+      >
+        <ChatbotContextComponent />
+        <ChatBubbleButton
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          brandColor={brandColor}
+        />
+        <ChatModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          islandName={islandName}
+          brandColor={brandColor}
+          storeName={storeName}
+          storeLogo={storeLogo}
+        />
+      </ChatbotContextProvider>
     </>
   );
 };
