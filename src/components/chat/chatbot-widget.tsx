@@ -51,11 +51,21 @@ const ChatbotWidget = ({
   });
 
   if (configurationError) {
-    return <ChatbotError message={configurationError} />;
+    return (
+      <ChatbotError
+        message={configurationError}
+        storeLogo={storeLogo}
+      />
+    );
   }
 
   if (invalidPropsError?.length) {
-    return <ChatbotError message={invalidPropsError} />;
+    return (
+      <ChatbotError
+        message={invalidPropsError}
+        storeLogo={storeLogo}
+      />
+    );
   }
 
   const customStyles = getCustomStyles(config);
