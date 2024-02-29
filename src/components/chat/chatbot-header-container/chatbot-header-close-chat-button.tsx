@@ -12,11 +12,12 @@ const ChatbotHeaderCloseChatButton = ({
   <div>
     <button
       type="button"
-      className="inline-flex items-center justify-center p-1 text-gray-700 bg-white border border-gray-200 rounded-full shadow-sm hover:bg-gray-50 active:bg-gray-100 focus:outline-none active:text-gray-900 focus:ring-none"
+      className="inline-flex items-center justify-center p-1 text-white hover:duration-200 hover:scale-110 hover:contrast-150"
+      //   className="inline-flex items-center justify-center p-1 text-white hover:duration-200 hover:scale-110 hover:text-gray-50 focus:outline-none active:outline-none active:text-gray-100 focus:ring-none active:ring-none"
       onClick={() => setIsOpen(false)}
     >
       <XMarkIcon
-        className="w-5 h-5"
+        className="w-6 h-6"
         aria-hidden="true"
       />
     </button>

@@ -1,6 +1,5 @@
 import { ChatIcon } from 'src/assets/chat-icon';
 import { XMarkIcon } from 'src/assets/x-mark-icon';
-import * as styles from 'src/styles/chat-bubble.css';
 
 interface ChatBubbleButtonProps {
   isOpen: boolean;
