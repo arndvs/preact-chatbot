@@ -5,6 +5,9 @@ const ChatbotContextComponent = () => {
 
   return (
     <div>
+      <h2 className="pb-2 text-base font-semibold leading-7 text-gray-600">
+        Items currently available in the store's chatbot context:
+      </h2>
       <p>{storeName}</p>
       <img
         src={storeLogo}

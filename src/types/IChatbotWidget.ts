@@ -25,7 +25,6 @@ export interface IChatbotWidget {
 
 export interface IChatbotWidgetProps {
   actionProvider: any;
-  brandColor: string;
   messageParser: any;
   config: IChatbotConfig;
   headerText?: string;
@@ -37,8 +36,6 @@ export interface IChatbotWidgetProps {
   validator?: (input: string) => Boolean;
   runInitialMessagesWithHistory?: Boolean;
   disableScrollToBottom?: boolean;
-  storeName: string;
-  storeLogo: string;
 }
 
 export interface ChatbotMessageContainerProps {
@@ -53,9 +50,7 @@ export interface IChatbotContainerProps {
   widgetRegistry: any;
   messageParser: any;
   actionProvider: any;
-  brandColor: string;
   customComponents: IChatbotCustomComponents;
-  botName: string;
   customStyles: IChatbotCustomStyles;
   headerText?: string;
   customMessages: IChatbotCustomMessage;
@@ -67,8 +62,6 @@ export interface IChatbotContainerProps {
   parse?: (message: string) => void;
   actions?: object;
   messageContainerRef: any;
-  storeName: string;
-  storeLogo: string;
 }
 
 export interface ChatbotInputContainerProps {
@@ -81,7 +74,6 @@ export interface ChatbotInputContainerProps {
   messageContainerRef: any;
   placeholderText?: string;
   customStyles: IChatbotCustomStyles;
-  brandColor: string;
 }
 
 export interface ChatbotHeaderContainerProps {
@@ -89,8 +81,4 @@ export interface ChatbotHeaderContainerProps {
   actionProvider: any;
   headerText?: string;
   setIsOpen: (isOpen: boolean) => void;
-  storeName: string;
-  botName: string;
-  storeLogo?: string;
-  brandColor: string;
 }
