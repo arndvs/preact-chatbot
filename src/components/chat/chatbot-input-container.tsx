@@ -14,8 +14,7 @@ const ChatbotInputContainer = ({
   messageParser,
   messageContainerRef,
   placeholderText,
-  customStyles,
-  brandColor
+  customStyles
 }: ChatbotInputContainerProps) => {
   const customButtonStyle = { backgroundColor: '' };
   if (customStyles && customStyles.chatButton) {

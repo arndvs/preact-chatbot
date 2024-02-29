@@ -1,21 +1,17 @@
 import { WebComponentPortal } from 'preact-island';
-
 import { FC } from 'preact/compat';
 import ActionProvider from 'src/actions/action-provider';
 import MessageParser from 'src/actions/message-parser';
 import { Box } from 'src/components/ui';
-import ChatbotConfig from 'src/actions/chatbot-config';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import ChatbotWidget from 'src/components/chat/chatbot-widget';
 import useClassNames from 'src/hooks/useClassNames';
+import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
 
 interface ChatModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   islandName: string;
-  brandColor: string;
-  storeName: string;
-  storeLogo: string;
 }
 
 const ChatOverlay: FC<{ name: string; parent: string }> = ({
@@ -29,14 +25,9 @@ const ChatOverlay: FC<{ name: string; parent: string }> = ({
   return <WebComponentPortal name={name}>{children}</WebComponentPortal>;
 };
 
-const ChatModal = ({
-  isOpen,
-  setIsOpen,
-  islandName,
-  brandColor,
-  storeName,
-  storeLogo
-}: ChatModalProps) => {
+const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
+  const chatbotConfig = useChatbotConfig();
+
   return (
     <>
       {isOpen && (
@@ -53,14 +44,11 @@ const ChatModal = ({
           >
             {/* Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider */}
             <ChatbotWidget
-              config={ChatbotConfig}
+              config={chatbotConfig}
               messageParser={MessageParser}
               actionProvider={ActionProvider}
               isOpen={isOpen}
               setIsOpen={setIsOpen}
-              brandColor={brandColor}
-              storeName={storeName}
-              storeLogo={storeLogo}
             />
           </Box>
         </ChatOverlay>

@@ -13,7 +13,6 @@ import ChatbotError from './chatbot-error';
 
 const ChatbotWidget = ({
   actionProvider,
-  brandColor,
   messageParser,
   config,
   headerText,
@@ -25,8 +24,6 @@ const ChatbotWidget = ({
   runInitialMessagesWithHistory,
   disableScrollToBottom,
   validator,
-  storeName,
-  storeLogo,
   ...rest
 }: IChatbotWidgetProps) => {
   const {
@@ -51,21 +48,11 @@ const ChatbotWidget = ({
   });
 
   if (configurationError) {
-    return (
-      <ChatbotError
-        message={configurationError}
-        storeLogo={storeLogo}
-      />
-    );
+    return <ChatbotError message={configurationError} />;
   }
 
   if (invalidPropsError?.length) {
-    return (
-      <ChatbotError
-        message={invalidPropsError}
-        storeLogo={storeLogo}
-      />
-    );
+    return <ChatbotError message={invalidPropsError} />;
   }
 
   const customStyles = getCustomStyles(config);
@@ -76,7 +63,6 @@ const ChatbotWidget = ({
   const chatbotContainerProps = {
     state,
     setState,
-    brandColor,
     widgetRegistry,
     actionProvider: isConstructor(ActionProvider) ? actionProv : ActionProvider,
     messageParser: isConstructor(MessageParser) ? messagePars : MessageParser,
@@ -91,9 +77,7 @@ const ChatbotWidget = ({
     validator,
     messageHistory,
     disableScrollToBottom,
-    messageContainerRef,
-    storeName,
-    storeLogo
+    messageContainerRef
   };
 
   if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {

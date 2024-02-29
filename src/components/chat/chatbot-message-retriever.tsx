@@ -24,9 +24,7 @@ const ChatbotMessageRetriever = ({
   scrollIntoView,
   setState,
   state,
-  widgetRegistry,
-  storeLogo,
-  brandColor
+  widgetRegistry
 }: IChatbotMessageRetrieverProps) => {
   const renderMessages = () => {
     return messages.map((messageObject: IChatbotMessage, index: number) => {
@@ -95,7 +93,6 @@ const ChatbotMessageRetriever = ({
           message={messageObject.message}
           key={messageObject.id}
           customComponents={customComponents}
-          brandColor={brandColor}
         />
         {widget ? widget : null}
       </>
@@ -137,7 +134,6 @@ const ChatbotMessageRetriever = ({
             withAvatar={withAvatar}
             {...chatbotMessageProps}
             key={messageObject.id}
-            storeLogo={storeLogo}
           />
           {chatbotMessageProps.loading !== undefined &&
             !chatbotMessageProps.loading &&
@@ -155,7 +151,6 @@ const ChatbotMessageRetriever = ({
         customComponents={customComponents}
         messages={messages}
         setState={setState}
-        storeLogo={storeLogo}
       />
     );
   };

@@ -12,8 +12,6 @@ import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 const ChatbotContainer = ({
   actionProvider,
   actions,
-  botName,
-  brandColor,
   customComponents,
   customMessages,
   customStyles,
@@ -28,8 +26,6 @@ const ChatbotContainer = ({
   setState,
   setIsOpen,
   state,
-  storeName,
-  storeLogo,
   validator,
   widgetRegistry
 }: IChatbotContainerProps) => {
@@ -47,13 +43,9 @@ const ChatbotContainer = ({
       <div className="h-full bg-white rounded-md">
         <ChatbotHeaderContainer
           actionProvider={actionProvider}
-          botName={botName}
-          brandColor={brandColor}
           customComponents={customComponents}
           headerText={headerText}
           setIsOpen={setIsOpen}
-          storeName={storeName}
-          storeLogo={storeLogo}
         />
         <ChatbotMessageRetriever
           actionProvider={actionProvider}
@@ -68,8 +60,6 @@ const ChatbotContainer = ({
           setState={setState}
           state={state}
           widgetRegistry={widgetRegistry}
-          storeLogo={storeLogo}
-          brandColor={brandColor}
         />
         <ChatbotInputContainer
           customStyles={customStyles}
@@ -81,7 +71,6 @@ const ChatbotContainer = ({
           setState={setState}
           setInputValue={setInputValue}
           validator={validator}
-          brandColor={brandColor}
         />
         <ChatbotPoweredBy />
       </div>

@@ -14,8 +14,7 @@ const ChatbotMessageContainer = ({
   setState,
   customStyles,
   delay,
-  id,
-  storeLogo
+  id
 }: IChatbotMessageContainerProps) => {
   const [show, toggleShow] = useState(false);
 
@@ -69,7 +68,7 @@ const ChatbotMessageContainer = ({
               {withAvatar && customComponents?.botAvatar ? (
                 callIfExists(customComponents.botAvatar)
               ) : (
-                <ChatbotMessageAvatar storeLogo={storeLogo} />
+                <ChatbotMessageAvatar />
               )}
 
               {customComponents?.botChatMessage ? (

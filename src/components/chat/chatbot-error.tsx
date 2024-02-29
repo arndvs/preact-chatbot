@@ -1,13 +1,10 @@
-import React from 'react';
-
 import ChatbotMessage from './chatbot-message-container/chatbot-message-container';
 
 interface IChatbotErrorProps {
   message: string;
-  storeLogo: string;
 }
 
-const ChatbotError = ({ message, storeLogo }: IChatbotErrorProps) => {
+const ChatbotError = ({ message }: IChatbotErrorProps) => {
   const currentUrl = window.location.href;
 
   const linkWithReferrer = `https://ripemetrics.com/contact?via=widget&amp;utm_source=watermark&amp;referrer=${encodeURIComponent(
@@ -27,7 +24,6 @@ const ChatbotError = ({ message, storeLogo }: IChatbotErrorProps) => {
           id={1}
           customStyles={{ backgroundColor: '' }}
           messages={[]}
-          storeLogo={storeLogo}
         />
       </div>
       <a

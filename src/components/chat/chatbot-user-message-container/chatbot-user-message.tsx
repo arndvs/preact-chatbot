@@ -1,17 +1,18 @@
 import { IChatbotCustomComponents } from 'src/types/IChatbotConfig';
 import { callIfExists } from 'src/actions/chatbot-message-utils';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ChatbotUserMessageProps {
   customComponents?: IChatbotCustomComponents;
   message: string;
-  brandColor: string;
 }
 
 const ChatbotUserMessage = ({
   customComponents,
-  message,
-  brandColor
+  message
 }: ChatbotUserMessageProps) => {
+  const { brandColor } = useChatbotContext();
+
   if (customComponents?.userChatMessage) {
     return callIfExists(customComponents.userChatMessage, { message });
   } else {

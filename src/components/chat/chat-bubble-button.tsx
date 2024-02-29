@@ -1,17 +1,14 @@
 import { ChatIcon } from 'src/assets/chat-icon';
 import { XMarkIcon } from 'src/assets/x-mark-icon';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ChatBubbleButtonProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  brandColor?: string;
 }
 
-const ChatBubbleButton = ({
-  isOpen,
-  setIsOpen,
-  brandColor
-}: ChatBubbleButtonProps) => {
+const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
+  const { brandColor } = useChatbotContext();
   return (
     <>
       <div className="cursor-pointer">
