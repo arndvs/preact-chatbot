@@ -1,8 +1,8 @@
 import { useState } from 'preact/compat';
-import { ChatbotContextProvider } from 'src/actions/chatbot-context-provider';
-import ChatBubbleButton from 'src/components/chat/chat-bubble-button';
-import ChatModal from 'src/components/chat/chat-modal';
-import ChatbotContextComponent from 'src/components/chat/chatbot-context-component';
+import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
+import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
+import ChatModal from 'src/components/chat/chatbot/chat-modal';
+import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context-component';
 
 interface ChatIslandComponentProps {
   islandName: string;
@@ -15,6 +15,7 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
   const storeName = 'RipeMetrics';
   const storeLogo =
     'https://ripemetrics.com/favicon/apple-touch-icon-57x57.png';
+  const placeholderText = 'Ask a question...';
 
   return (
     <>
@@ -22,6 +23,7 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
         storeName={storeName}
         storeLogo={storeLogo}
         brandColor={brandColor}
+        placeholderText={placeholderText}
       >
         <ChatbotContextComponent />
         <ChatBubbleButton

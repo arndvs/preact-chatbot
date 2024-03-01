@@ -1,4 +1,4 @@
-import ChatbotLoadingDots from 'src/components/chat/chatbot-loading-dots';
+import ChatbotLoadingDots from 'src/components/chat/chatbot/chatbot-loading-dots';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ChatbotMessageComponentProps {

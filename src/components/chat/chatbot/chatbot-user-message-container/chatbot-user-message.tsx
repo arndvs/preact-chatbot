@@ -1,5 +1,5 @@
 import { IChatbotCustomComponents } from 'src/types/IChatbotConfig';
-import { callIfExists } from 'src/actions/chatbot-message-utils';
+import { callIfExists } from 'src/actions/chatbot/chatbot-message-utils';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ChatbotUserMessageProps {

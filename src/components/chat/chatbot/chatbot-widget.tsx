@@ -1,4 +1,4 @@
-import ChatbotContainer from 'src/components/chat/chatbot-container';
+import ChatbotContainer from 'src/components/chat/chatbot/chatbot-container';
 import useChatbot from 'src/hooks/useChatbot';
 import { IChatbotWidgetProps } from 'src/types/IChatbotWidget';
 import {
@@ -7,8 +7,8 @@ import {
   getCustomMessages,
   getCustomStyles,
   isConstructor
-} from 'src/actions/chatbot-config-utils';
-import { createChatBotMessage } from 'src/actions/chatbot-message-utils';
+} from 'src/actions/chatbot/chatbot-config-utils';
+import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import ChatbotError from './chatbot-error';
 
 const ChatbotWidget = ({
@@ -17,7 +17,6 @@ const ChatbotWidget = ({
   config,
   headerText,
   isOpen,
-  placeholderText,
   saveMessages,
   setIsOpen,
   messageHistory,
@@ -73,7 +72,6 @@ const ChatbotWidget = ({
     setIsOpen,
     customStyles,
     headerText,
-    placeholderText,
     validator,
     messageHistory,
     disableScrollToBottom,

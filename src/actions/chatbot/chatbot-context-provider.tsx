@@ -1,4 +1,4 @@
-import { ChatbotContext } from 'src/actions/chatbot-context';
+import { ChatbotContext } from 'src/actions/chatbot/chatbot-context';
 import type { ComponentChildren } from 'preact';
 
 interface ChatbotContextProviderProps {
@@ -6,6 +6,7 @@ interface ChatbotContextProviderProps {
   storeName: string;
   storeLogo: string;
   brandColor: string;
+  placeholderText: string;
 }
 
 export const ChatbotContextProvider = ({

@@ -1,6 +1,6 @@
 import { UserIcon } from 'src/assets/user-icon';
 import { IChatbotCustomComponents } from 'src/types/IChatbotConfig';
-import { callIfExists } from 'src/actions/chatbot-message-utils';
+import { callIfExists } from 'src/actions/chatbot/chatbot-message-utils';
 
 interface ChatbotUserAvatarProps {
   customComponents?: IChatbotCustomComponents;

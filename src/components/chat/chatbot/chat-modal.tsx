@@ -1,10 +1,10 @@
 import { WebComponentPortal } from 'preact-island';
 import { FC } from 'preact/compat';
-import ActionProvider from 'src/actions/action-provider';
-import MessageParser from 'src/actions/message-parser';
+import ActionProvider from 'src/actions/chatbot/action-provider';
+import MessageParser from 'src/actions/chatbot/message-parser';
 import { Box } from 'src/components/ui';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import ChatbotWidget from 'src/components/chat/chatbot-widget';
+import ChatbotWidget from 'src/components/chat/chatbot/chatbot-widget';
 import useClassNames from 'src/hooks/useClassNames';
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
 

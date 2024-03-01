@@ -29,7 +29,6 @@ export interface IChatbotWidgetProps {
   config: IChatbotConfig;
   headerText?: string;
   isOpen?: boolean;
-  placeholderText?: string;
   saveMessages?: (ref: any) => any;
   setIsOpen: (isOpen: boolean) => void;
   messageHistory?: IChatbotMessage[] | string;
@@ -54,7 +53,6 @@ export interface IChatbotContainerProps {
   customStyles: IChatbotCustomStyles;
   headerText?: string;
   customMessages: IChatbotCustomMessage;
-  placeholderText?: string;
   validator: ((input: string) => Boolean) | undefined;
   state: any;
   disableScrollToBottom?: boolean;
@@ -72,7 +70,6 @@ export interface ChatbotInputContainerProps {
   parse?: (message: string) => void;
   messageParser: any;
   messageContainerRef: any;
-  placeholderText?: string;
   customStyles: IChatbotCustomStyles;
 }
 

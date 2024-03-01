@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'preact/hooks';
 
-import { scrollIntoView } from 'src/actions/scroll-into-view';
-import ChatbotHeaderContainer from 'src/components/chat/chatbot-header-container/chatbot-header-container';
+import { scrollIntoView } from 'src/actions/chatbot/scroll-into-view';
+import ChatbotHeaderContainer from 'src/components/chat/chatbot/chatbot-header-container/chatbot-header-container';
 
-import ChatbotInputContainer from 'src/components/chat/chatbot-input-container';
-import ChatbotMessageRetriever from 'src/components/chat/chatbot-message-retriever';
-import ChatbotPoweredBy from 'src/components/chat/chatbot-powered-by';
+import ChatbotInputContainer from 'src/components/chat/chatbot/chatbot-input-container';
+import ChatbotMessageRetriever from 'src/components/chat/chatbot/chatbot-message-retriever';
+import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-powered-by';
 
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 
@@ -22,7 +22,6 @@ const ChatbotContainer = ({
   messageHistory,
   messageParser,
   parse,
-  placeholderText,
   setState,
   setIsOpen,
   state,
@@ -67,7 +66,6 @@ const ChatbotContainer = ({
           messageContainerRef={messageContainerRef}
           messageParser={messageParser}
           parse={parse}
-          placeholderText={placeholderText}
           setState={setState}
           setInputValue={setInputValue}
           validator={validator}

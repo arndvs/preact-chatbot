@@ -1,4 +1,4 @@
-import ChatbotHeaderCloseChatButton from 'src/components/chat/chatbot-header-container/chatbot-header-close-chat-button';
+import ChatbotHeaderCloseChatButton from 'src/components/chat/chatbot/chatbot-header-container/chatbot-header-close-chat-button';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { ChatbotHeaderContainerProps } from 'src/types/IChatbotWidget';
 

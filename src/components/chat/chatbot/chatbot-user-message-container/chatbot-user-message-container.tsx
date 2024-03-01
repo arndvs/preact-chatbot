@@ -1,4 +1,4 @@
-import ChatbotUserMessage from 'src/components/chat/chatbot-user-message-container/chatbot-user-message';
+import ChatbotUserMessage from 'src/components/chat/chatbot/chatbot-user-message-container/chatbot-user-message';
 import { IChatbotUserMessageContainerProps } from 'src/types/IChatbotMessages';
 
 const ChatbotUserMessageContainer = ({
