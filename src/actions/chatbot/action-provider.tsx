@@ -45,6 +45,31 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
     }));
   };
 
+  // update the last message for AI streaming
+  const updateLastMessage = (message: string) => {
+    setState((prev: any) => {
+      return {
+        ...prev,
+        messages: [
+          ...prev.messages.slice(0, -1),
+          { ...prev.messages.at(-1), message }
+        ]
+      };
+    });
+  };
+
+  //    then use this inside the action:
+
+  //     let done, value;
+  //     let messageBuffer = "";
+  //     let decoder = new TextDecoder("utf-8");
+  //     addMessageToState(createChatBotMessage("streaming...")) //You need a dummy message to update
+  //     while (!done) {
+  //       ({ done, value } = await reader.read());
+  //       messageBuffer += decoder.decode(value);
+  //       updateLastMessage(messageBuffer)
+  //     }
+
   return (
     <>
       {Array.isArray(children)
