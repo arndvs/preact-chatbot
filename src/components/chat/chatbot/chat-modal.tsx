@@ -4,7 +4,7 @@ import ActionProvider from 'src/actions/chatbot/action-provider';
 import MessageParser from 'src/actions/chatbot/message-parser';
 import { Box } from 'src/components/ui';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import ChatbotWidget from 'src/components/chat/chatbot/chatbot-widget';
+import Chatbot from 'src/components/chat/chatbot/chatbot';
 import useClassNames from 'src/hooks/useClassNames';
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
 
@@ -43,7 +43,7 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
             )}
           >
             {/* Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider */}
-            <ChatbotWidget
+            <Chatbot
               config={chatbotConfig}
               messageParser={MessageParser}
               actionProvider={ActionProvider}

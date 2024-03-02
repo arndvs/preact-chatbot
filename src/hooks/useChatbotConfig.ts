@@ -16,7 +16,9 @@ export function useChatbotConfig() {
       createChatBotMessage(`👋 Hi! I am ${storeName} Bot. How can I help?`)
     ],
     widgets: ChatbotWidgetArray,
-    state: {}
+    state: {
+      products: []
+    }
   };
 
   return ChatbotConfig;

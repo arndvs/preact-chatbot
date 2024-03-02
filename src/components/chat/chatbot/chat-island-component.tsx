@@ -1,5 +1,6 @@
 import { useState } from 'preact/compat';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
+import MySwiperComponent from 'src/components/chat/chatbot-widgets/handle-products/swiper';
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context-component';
@@ -17,6 +18,8 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
     'https://ripemetrics.com/favicon/apple-touch-icon-57x57.png';
   const placeholderText = 'Ask a question...';
 
+  //TODO - get state
+
   return (
     <>
       <ChatbotContextProvider
@@ -26,6 +29,7 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
         placeholderText={placeholderText}
       >
         <ChatbotContextComponent />
+        <MySwiperComponent />
         <ChatBubbleButton
           isOpen={isOpen}
           setIsOpen={setIsOpen}

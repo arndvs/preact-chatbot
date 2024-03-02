@@ -11,7 +11,7 @@ import {
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import ChatbotError from './chatbot-error';
 
-const ChatbotWidget = ({
+const Chatbot = ({
   actionProvider,
   messageParser,
   config,
@@ -95,4 +95,4 @@ const ChatbotWidget = ({
   }
 };
 
-export default ChatbotWidget;
+export default Chatbot;

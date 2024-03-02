@@ -68,6 +68,9 @@ const useChatbot = ({
     messages: [...config.initialMessages],
     ...initialState
   });
+
+  console.log('useChatbot state', state);
+
   const messagesRef = useRef(state.messages);
   const stateRef = useRef();
   const messageContainerRef = useRef<HTMLDivElement>();
