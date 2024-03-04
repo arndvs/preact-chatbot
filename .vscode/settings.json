@@ -86,6 +86,6 @@
   "editor.acceptSuggestionOnEnter": "on", // Specifies whether to accept suggestions when pressing the Enter key.
   "editor.tabCompletion": "on", // Specifies whether to enable tab completion.
   "diffEditor.codeLens": true, // Enables CodeLens for the Git Diff editor.
-  "workbench.colorTheme": "One Dark Pro Darker", // Specifies the color theme for the VSCode interface.
+  "workbench.colorTheme": "Nicer High Contrast", // Specifies the color theme for the VSCode interface.
   "editor.guides.bracketPairs": true // Highlights matching brackets.
 }
