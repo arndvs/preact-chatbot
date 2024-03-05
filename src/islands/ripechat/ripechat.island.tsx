@@ -4,7 +4,7 @@ import 'src/styles/reset.css';
 import { createIslandWebComponent } from 'preact-island';
 
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import ChatIslandComponent from 'src/components/chat/chat-island-component';
+import ChatIslandComponent from 'src/components/chat/chatbot/chat-island-component';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 
 const islandName = 'ripechat-island';

@@ -23,11 +23,15 @@
     "@vanilla-extract/sprinkles": "^1.4.1",
     "axios": "^1.6.7",
     "clsx": "^1.2.1",
+    "laravel-echo": "^1.16.0",
     "polished": "^4.2.2",
     "preact": "^10.5.7",
     "preact-island": "^1.1.0",
     "preact-render-to-string": "^5.1.12",
-    "redaxios": "^0.4.1"
+    "pusher-js": "^8.4.0-rc2",
+    "redaxios": "^0.4.1",
+    "swiper": "^11.0.7",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.9",

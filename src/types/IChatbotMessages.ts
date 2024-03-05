@@ -1,4 +1,4 @@
-import { MessageContainerRefProps } from 'src/actions/scroll-into-view';
+import { MessageContainerRefProps } from 'src/actions/chatbot/scroll-into-view';
 import {
   IChatbotCustomComponents,
   IChatbotCustomMessage,

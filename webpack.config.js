@@ -263,7 +263,14 @@ module.exports = ({ dev, prod }) => {
        * Define environmental variables here that you need for the islands to function.
        */
       new DefinePlugin({
-        ISLAND_API_URL: JSON.stringify(process.env.ISLAND_API_URL)
+        ISLAND_API_URL: JSON.stringify(process.env.ISLAND_API_URL),
+        'process.env.PUSHER_KEY': JSON.stringify(process.env.PUSHER_KEY),
+        'process.env.PUSHER_CLUSTER': JSON.stringify(
+          process.env.PUSHER_CLUSTER
+        ),
+        'process.env.PUSHER_AUTH_ENDPOINT': JSON.stringify(
+          process.env.PUSHER_AUTH_ENDPOINT
+        )
       }),
       ...(isProd ? [new IslandFileSizePlugin()] : [])
     ],

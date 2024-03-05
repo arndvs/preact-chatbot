@@ -1,5 +1,5 @@
 import { useContext } from 'preact/hooks';
-import { ChatbotContext } from 'src/actions/chatbot-context';
+import { ChatbotContext } from 'src/actions/chatbot/chatbot-context';
 
 // Custom hook for using chatbot context
 export function useChatbotContext() {
