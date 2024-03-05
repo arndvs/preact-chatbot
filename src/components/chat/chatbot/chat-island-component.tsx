@@ -29,7 +29,7 @@ const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
         placeholderText={placeholderText}
       >
         <ChatbotContextComponent />
-        <MySwiperComponent />
+
         <ChatBubbleButton
           isOpen={isOpen}
           setIsOpen={setIsOpen}
