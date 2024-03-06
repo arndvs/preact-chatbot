@@ -4,42 +4,63 @@ import MySwiperComponent from 'src/components/chat/chatbot-widgets/handle-produc
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context-component';
+import { useEffect } from 'preact/hooks';
+import axios from 'axios';
 
 interface ChatIslandComponentProps {
   islandName: string;
 }
 
+interface InitialBotSettings {
+  store_name: string;
+  store_logo: string;
+  brand_color: string;
+}
+
 const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState<InitialBotSettings | null>(null);
 
-  const brandColor = '#FF792A';
-  const storeName = 'RipeMetrics';
-  const storeLogo =
-    'https://ripemetrics.com/favicon/apple-touch-icon-57x57.png';
-  const placeholderText = 'Ask a question...';
+  const getInitialData = async () => {
+    try {
+      const response = await axios.get(
+        'https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/20'
+      );
+      return response.data as InitialBotSettings;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
 
-  //TODO - get state
+  useEffect(() => {
+    getInitialData().then((data) => {
+      setData(data);
+    });
+  }, []);
 
   return (
     <>
-      <ChatbotContextProvider
-        storeName={storeName}
-        storeLogo={storeLogo}
-        brandColor={brandColor}
-        placeholderText={placeholderText}
-      >
-        <ChatbotContextComponent />
+      {data && (
+        <ChatbotContextProvider
+          storeName={data.store_name}
+          storeLogo={data.store_logo}
+          brandColor={data.brand_color}
+          placeholderText={'Ask a question...'}
+        >
+          <ChatbotContextComponent />
 
-        <ChatBubbleButton
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-        />
-        <ChatModal
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          islandName={islandName}
-        />
-      </ChatbotContextProvider>
+          <ChatBubbleButton
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
+          <ChatModal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            islandName={islandName}
+          />
+        </ChatbotContextProvider>
+      )}
     </>
   );
 };
