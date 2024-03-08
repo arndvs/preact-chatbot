@@ -32,6 +32,7 @@ export const RipechatIsland = () => {
 const storeId = document.currentScript?.getAttribute(
   'data-island-props'
 ) as string | undefined;
+console.log('storeId', storeId)
 
 //get any props on the script tag and pass them to the island
 console.log('document.currentScript', document.currentScript);
