@@ -27,4 +27,7 @@ const island = createIslandWebComponent(islandName, RipechatIsland);
 island.render({
   selector: islandName,
   propsSelector: '[data-island-props="store-id"]',
+  initialProps: {
+    storeId: '12345',
+  },
 });
