@@ -21,9 +21,14 @@ export const RipechatIsland = () => {
   );
 };
 
+//get any props on the script tag and pass them to the island
+
+const storeId = document.getElementById('ripechat-island')?.getAttribute('data-island-props-storeId');
+
 const island = createIslandWebComponent(islandName, RipechatIsland);
 island.render({
   selector: islandName,
-  propsSelector: '[data-island-props="storeId"]',
+  propsSelector: '[data-island-props="data-island-props-storeId"]',
   initialProps: {}
+  
 });
