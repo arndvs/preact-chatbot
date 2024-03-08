@@ -4,6 +4,7 @@ import { ChatbotHeaderContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotHeaderContainer = ({ setIsOpen }: ChatbotHeaderContainerProps) => {
   const { storeName, storeLogo, brandColor } = useChatbotContext();
+  console.log('logo in header', storeLogo);
 
   return (
     <>
