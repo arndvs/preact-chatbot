@@ -46,6 +46,7 @@ const ChatIslandComponent = ({
 
   return (
     <>
+      test
       {data ? (
         <ChatbotContextProvider
           storeName={data.store_name}
