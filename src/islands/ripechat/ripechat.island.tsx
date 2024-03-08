@@ -22,7 +22,7 @@ export const RipechatIsland = () => {
 };
 
 //get any props on the script tag and pass them to the island
-
+console.log('document.currentScript', document.currentScript);
 const island = createIslandWebComponent(islandName, RipechatIsland);
 island.render({
   selector: islandName,
