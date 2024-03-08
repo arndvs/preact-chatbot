@@ -16,6 +16,7 @@ interface InitialBotSettings {
   store_name: string;
   store_logo: string;
   brand_color: string;
+  session_id: string; // This is the session_id that is used to identify the user
 }
 
 const ChatIslandComponent = ({
@@ -53,6 +54,8 @@ const ChatIslandComponent = ({
           storeName={data.store_name}
           storeLogo={data.store_logo}
           brandColor={data.brand_color}
+          session_id={data.session_id}
+          store_id={idToUse}
           placeholderText={'Ask a question...'}
         >
           <ChatbotContextComponent />
