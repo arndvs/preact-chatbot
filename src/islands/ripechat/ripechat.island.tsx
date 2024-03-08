@@ -25,11 +25,13 @@ export const RipechatIsland = () => {
 
 const storeId = document
   .getElementById('ripechat-island')
-  ?.getAttribute('data-island-props-storeId');
+  ?.getAttribute('data-storeId');
 console.log('storeId', storeId);
 const island = createIslandWebComponent(islandName, RipechatIsland);
 island.render({
   selector: islandName,
   propsSelector: '[data-island-props="data-island-props-storeId"]',
-  initialProps: {}
+  initialProps: {
+    storeId
+  }
 });
