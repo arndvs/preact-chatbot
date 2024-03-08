@@ -44,7 +44,7 @@ const ChatIslandComponent = ({
       setData(data);
     });
   }, []);
-
+  console.log('data first', data);
   return (
     <>
       test
