@@ -21,13 +21,25 @@ export const RipechatIsland = () => {
   );
 };
 
+{
+  /* <script data-island-props="store-id" type="text/props">
+  {"storeId": "20"}
+</script> */
+}
+
+//the above script tag is used to pass props to the island on the html page i need to get the props from the script tag and pass them to the island
+//get the storeId from the script tag
+const storeId = document.currentScript?.getAttribute(
+  'data-island-props'
+) as string | undefined;
+
 //get any props on the script tag and pass them to the island
 console.log('document.currentScript', document.currentScript);
 const island = createIslandWebComponent(islandName, RipechatIsland);
 island.render({
   selector: islandName,
-  propsSelector: '[data-island-props="store-id"]',
+  propsSelector: storeId,
   initialProps: {
-    storeId: '12345',
-  },
+    storeId: '12345'
+  }
 });
