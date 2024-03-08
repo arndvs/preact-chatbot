@@ -9,7 +9,7 @@ import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 
 const islandName = 'ripechat-island';
 
-const storeId = document.currentScript?.getAttribute('data-island-props') as
+const storeId = document.currentScript?.getAttribute('data-store-id') as
   | string
   | undefined;
 console.log('storeId', storeId);
@@ -38,6 +38,7 @@ island.render({
   selector: islandName,
   propsSelector: storeId,
   initialProps: {
+    color: '#ffffff',
     storeId: '12345'
   }
 });
