@@ -9,6 +9,7 @@ import axios from 'axios';
 
 interface ChatIslandComponentProps {
   islandName: string;
+  storeId: string | undefined;
 }
 
 interface InitialBotSettings {
@@ -17,16 +18,18 @@ interface InitialBotSettings {
   brand_color: string;
 }
 
-const ChatIslandComponent = (props: ChatIslandComponentProps) => {
-  console.log('props', props);
-  const { islandName } = props;
+const ChatIslandComponent = ({
+  islandName,
+  storeId
+}: ChatIslandComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
+
   const [data, setData] = useState<InitialBotSettings | null>(null);
 
   const getInitialData = async () => {
     try {
       const response = await axios.get(
-        'https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/20'
+        `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`
       );
       return response.data as InitialBotSettings;
     } catch (error) {
@@ -43,7 +46,7 @@ const ChatIslandComponent = (props: ChatIslandComponentProps) => {
 
   return (
     <>
-      {data && (
+      {data ? (
         <ChatbotContextProvider
           storeName={data.store_name}
           storeLogo={data.store_logo}
@@ -62,6 +65,8 @@ const ChatIslandComponent = (props: ChatIslandComponentProps) => {
             islandName={islandName}
           />
         </ChatbotContextProvider>
+      ) : (
+        <div>Waiting on data</div>
       )}
     </>
   );
