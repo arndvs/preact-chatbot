@@ -25,11 +25,12 @@ const ChatIslandComponent = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const [data, setData] = useState<InitialBotSettings | null>(null);
+  const idToUse = storeId || '20';
 
   const getInitialData = async () => {
     try {
       const response = await axios.get(
-        `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`
+        `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${idToUse}`
       );
       return response.data as InitialBotSettings;
     } catch (error) {
