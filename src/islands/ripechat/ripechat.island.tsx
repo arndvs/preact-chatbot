@@ -24,5 +24,6 @@ export const RipechatIsland = () => {
 const island = createIslandWebComponent(islandName, RipechatIsland);
 island.render({
   selector: islandName,
+  propsSelector: '[data-island-props="storeId"]',
   initialProps: {}
 });

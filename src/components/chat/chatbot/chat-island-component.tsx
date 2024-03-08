@@ -17,7 +17,9 @@ interface InitialBotSettings {
   brand_color: string;
 }
 
-const ChatIslandComponent = ({ islandName }: ChatIslandComponentProps) => {
+const ChatIslandComponent = (props: ChatIslandComponentProps) => {
+  console.log('props', props);
+  const { islandName } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState<InitialBotSettings | null>(null);
 
