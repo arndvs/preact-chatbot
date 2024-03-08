@@ -6,7 +6,7 @@ const ChatbotUserMessageContainer = ({
   customComponents
 }: IChatbotUserMessageContainerProps) => {
   return (
-    <div className="flex justify-end">
+    <div className="flex justify-end ">
       <ChatbotUserMessage
         customComponents={customComponents}
         message={message}

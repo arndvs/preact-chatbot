@@ -40,7 +40,7 @@ const ChatbotContainer = ({
 
   return (
     <div className="relative w-full">
-      <div className="h-full bg-white rounded-md">
+      <div className="h-full bg-[#f1f3f7] rounded-md">
         <ChatbotHeaderContainer
           actionProvider={actionProvider}
           customComponents={customComponents}

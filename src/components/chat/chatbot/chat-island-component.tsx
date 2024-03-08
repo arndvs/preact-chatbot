@@ -48,7 +48,6 @@ const ChatIslandComponent = ({
   console.log('data first', data);
   return (
     <>
-      test
       {data ? (
         <ChatbotContextProvider
           storeName={data.store_name}

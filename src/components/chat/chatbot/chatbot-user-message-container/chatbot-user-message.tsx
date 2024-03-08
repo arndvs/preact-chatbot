@@ -30,7 +30,7 @@ const ChatbotUserMessage = ({
               </div>
             </div>
             <div
-              className="inline-flex flex-col gap-2 px-4 py-3 font-normal text-white rounded-tr-sm rounded-xl"
+              className="inline-flex flex-col gap-2 px-4 py-3 font-normal text-white rounded-tr-sm shadow-sm rounded-xl"
               style={{ backgroundColor: brandColor }}
             >
               {message}

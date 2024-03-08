@@ -12,7 +12,6 @@ const islandName = 'ripechat-island';
 const storeId = document.currentScript?.getAttribute('data-store-id') as
   | string
   | undefined;
-console.log('storeId', storeId);
 
 export const RipechatIsland = () => {
   useWebComponentEvents(islandName);
@@ -27,18 +26,8 @@ export const RipechatIsland = () => {
   );
 };
 
-/* <script data-island-props="store-id" type="text/props">
-  {"storeId": "20"}
-</script> */
-
-//get any props on the script tag and pass them to the island
 console.log('document.currentScript', document.currentScript);
 const island = createIslandWebComponent(islandName, RipechatIsland);
 island.render({
   selector: islandName
-  //   propsSelector: storeId,
-  //   initialProps: {
-  //     color: '#ffffff',
-  //     storeId: '12345'
-  //   }
 });
