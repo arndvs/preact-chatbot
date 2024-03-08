@@ -35,10 +35,10 @@ export const RipechatIsland = () => {
 console.log('document.currentScript', document.currentScript);
 const island = createIslandWebComponent(islandName, RipechatIsland);
 island.render({
-  selector: islandName,
-  propsSelector: storeId,
-  initialProps: {
-    color: '#ffffff',
-    storeId: '12345'
-  }
+  selector: islandName
+  //   propsSelector: storeId,
+  //   initialProps: {
+  //     color: '#ffffff',
+  //     storeId: '12345'
+  //   }
 });
