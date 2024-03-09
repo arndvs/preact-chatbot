@@ -50,16 +50,16 @@ export const ChatbotWidgetArray = [
   //     widgetFunc: (props) => <HandleNewProductsWidget {...props} />,
   //     mapStateToProps: []
   //   },
-  //   {
-  //     widgetName: 'menuLink',
-  //     widgetFunc: (props) => (
-  //       <div>
-  //         <MenuLink {...props} />
-  //       </div>
-  //     )
-  //   },
-  //   {
-  //     widgetName: 'feedbackLink',
-  //     widgetFunc: (props) => <FeedbackLink {...props} />
-  //   }
+  // {
+  //   widgetName: 'menuLink',
+  //   widgetFunc: (props) => (
+  //     <div>
+  //       <MenuLink {...props} />
+  //     </div>
+  //   )
+  // },
+  // {
+  //   widgetName: 'feedbackLink',
+  //   widgetFunc: (props) => <FeedbackLink {...props} />
+  // }
 ];

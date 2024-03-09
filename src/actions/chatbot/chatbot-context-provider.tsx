@@ -1,5 +1,7 @@
-import { ChatbotContext } from 'src/actions/chatbot/chatbot-context';
 import type { ComponentChildren } from 'preact';
+import { useState } from 'preact/hooks';
+import { BotDataType, defaultBotData } from 'src/types/ChatBotDataTypes';
+import { createContext } from 'preact';
 
 interface ChatbotContextProviderProps {
   children: ComponentChildren;
@@ -10,15 +12,33 @@ interface ChatbotContextProviderProps {
   session_id: string;
   store_id: string;
 }
+interface ChatbotContextType {
+  storeName?: string;
+  storeLogo?: string;
+  brandColor?: string;
+  placeholderText?: string;
+  session_id?: string;
+  store_id?: string;
+  botData?: BotDataType;
+  setBotData?: (data: BotDataType) => void;
+}
+
+export const ChatbotContext = createContext<ChatbotContextType>({
+  botData: defaultBotData,
+  setBotData: () => {}
+});
 
 export const ChatbotContextProvider = ({
   children,
   ...props
 }: ChatbotContextProviderProps) => {
-  // You can include state management logic here if needed
+  const [botData, setBotData] = useState<BotDataType>(
+    // initialBotData ||
+    defaultBotData
+  );
 
   return (
-    <ChatbotContext.Provider value={{ ...props }}>
+    <ChatbotContext.Provider value={{ botData, setBotData, ...props }}>
       {children}
     </ChatbotContext.Provider>
   );
