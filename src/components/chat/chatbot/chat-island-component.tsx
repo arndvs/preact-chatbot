@@ -1,6 +1,6 @@
 import { useState } from 'preact/compat';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
-import MySwiperComponent from 'src/components/chat/chatbot-widgets/handle-products/swiper';
+
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context-component';

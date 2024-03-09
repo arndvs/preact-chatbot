@@ -1,6 +1,6 @@
 import React from 'react';
+import { Navigation, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Scrollbar } from 'swiper';
 
 interface Product {
   id: number;
@@ -101,10 +101,15 @@ function ChatBotProductCarousel({
                 <div className="overflow-hidden bg-gray-200 rounded-lg aspect-h-1 aspect-w-1 group-hover:opacity-75">
                   <img
                     src={
-                      product[productIdentifier().imgSrcIdentifier] ??
-                      '/images/placeholder-box-product.png'
+                      (product[
+                        productIdentifier().imgSrcIdentifier as keyof Product
+                      ] as string) ?? '/images/placeholder-box-product.png'
                     }
-                    alt={product[productIdentifier().nameIdentifier]}
+                    alt={
+                      product[
+                        productIdentifier().nameIdentifier as keyof Product
+                      ] as string
+                    }
                     className="object-cover object-center w-full h-full"
                   />
                 </div>
@@ -115,7 +120,11 @@ function ChatBotProductCarousel({
                         aria-hidden="true"
                         className="absolute inset-0"
                       />
-                      {product[productIdentifier().nameIdentifier]}
+                      {
+                        product[
+                          productIdentifier().nameIdentifier as keyof Product
+                        ] as string
+                      }
                     </a>
                   </h3>
                   <p className="mt-4 text-base font-medium text-gray-900">

@@ -64,7 +64,7 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
   };
 
   const handleDefault = (message: string) => {
-    const botMessage = createChatBotMessage(`You said: ${message}`);
+    // const botMessage = createChatBotMessage(`You said: ${message}`);
     const req = axios.post('https://api.rmdevs.com/api/v2/external_chatbot', {
       question: message,
       store_id: 12,
@@ -80,10 +80,10 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
       }));
     });
 
-    setState((prev: any) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage]
-    }));
+    // setState((prev: any) => ({
+    //   ...prev,
+    //   messages: [...prev.messages, botMessage]
+    // }));
   };
 
   // update the last message for AI streaming

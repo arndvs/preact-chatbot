@@ -31,6 +31,7 @@ const ChatbotMessageRetriever = ({
       if (botMessage(messageObject)) {
         return (
           <div key={messageObject.id}>
+            render chatbot message
             {renderChatbotMessage(messageObject, index)}
           </div>
         );
@@ -44,7 +45,9 @@ const ChatbotMessageRetriever = ({
 
       if (customMessage(messageObject, customMessages)) {
         return (
-          <div key={messageObject.id}>{renderCustomMessage(messageObject)}</div>
+          <div key={messageObject.id}>
+            renderCustomMessage{renderCustomMessage(messageObject)}
+          </div>
         );
       }
     });
