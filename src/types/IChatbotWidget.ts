@@ -1,3 +1,4 @@
+import Echo from 'laravel-echo';
 import { Ref } from 'preact';
 import IChatbotConfig, {
   IChatbotCustomComponents,
@@ -24,6 +25,7 @@ export interface IChatbotWidget {
 }
 
 export interface IChatbotWidgetProps {
+  echo: Echo | null;
   actionProvider: any;
   messageParser: any;
   config: IChatbotConfig;

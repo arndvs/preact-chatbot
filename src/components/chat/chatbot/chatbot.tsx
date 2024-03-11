@@ -95,6 +95,7 @@ const Chatbot = ({
         state={state}
         setState={setState}
         createChatBotMessage={createChatBotMessage}
+        echo={echo}
       >
         <MessageParser>
           <ChatbotContainer {...chatbotContainerProps} />

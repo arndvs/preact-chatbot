@@ -9,11 +9,13 @@ interface ActionProviderProps {
   createChatBotMessage: any; // Adjust the type as per your requirement
   setState: any; // Adjust the type as per your requirement
   children?: ComponentChildren;
+  echo: unknown;
 }
 
 const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
   createChatBotMessage,
   setState,
+  echo,
   children
 }) => {
   const { storeName, storeLogo, brandColor, session_id, store_id } =
@@ -24,10 +26,11 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
     const subscription = `chat-stream-external-${store_id}-${session_id}`;
     // console.log('user channel ID', subscription);
     let channel: unknown | null = null;
-
+    console.log('echo', echo);
     if (
       //@ts-ignore
-      window.Echo
+      echo !== undefined &&
+      echo !== null
     ) {
       // console.log('user channel is in if:', subscription);
       channel =
