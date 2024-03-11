@@ -1,15 +1,16 @@
 import axios from 'axios';
-import { h, ComponentChildren, FunctionalComponent } from 'preact';
+import { h, ComponentChildren, FunctionalComponent, Fragment } from 'preact';
 import { isValidElement, cloneElement } from 'preact';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import { usePusher } from 'src/hooks/usePusher';
 import { useChatbotContext } from '../../hooks/useChatbotContext';
+import Echo from 'laravel-echo';
 
 interface ActionProviderProps {
   createChatBotMessage: any; // Adjust the type as per your requirement
   setState: any; // Adjust the type as per your requirement
   children?: ComponentChildren;
-  echo: unknown;
+  echo: Echo | null;
 }
 
 const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
@@ -18,10 +19,18 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
   echo,
   children
 }) => {
+  // instantiate the chatbot context
   const { storeName, storeLogo, brandColor, session_id, store_id } =
     useChatbotContext();
+
+  // get the pusher instance
   const pusher = usePusher();
 
+  // set the initial state
+  const [aiUserTestResponse, setAiUserTestResponse] = useState('Loading ...');
+  const [loadingState, setLoadingState] = useState(false);
+
+  // subscribe to the chatbot channel
   useEffect(() => {
     const subscription = `chat-stream-external-${store_id}-${session_id}`;
     // console.log('user channel ID', subscription);
@@ -39,16 +48,16 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
           console.log('chatbot response:', e);
           // console.log('text:', data.text);s
 
-          // if (data?.completed === false) {
-          //   setAiUserTestResponse((prevResponse) =>
-          //     prevResponse === 'Loading ...'
-          //       ? data.text
-          //       : prevResponse + data.text
-          //   );
-          // } else if (data?.completed === true) {
-          //   setAiUserTestResponse('Loading ...');
-          //   setLoadingState(false);
-          // }
+          if (data?.completed === false) {
+            setAiUserTestResponse((prevResponse) =>
+              prevResponse === 'Loading ...'
+                ? data.text
+                : prevResponse + data.text
+            );
+          } else if (data?.completed === true) {
+            setAiUserTestResponse('Loading ...');
+            setLoadingState(false);
+          }
         });
     }
 
@@ -57,6 +66,25 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
       channel?.unsubscribe();
     };
   }, [pusher]);
+
+  // update the last message for AI streaming
+  useEffect(() => {
+    if (loadingState) {
+      setState((prev: any) => ({
+        messages: prev.messages.map((msg: any, index: number) =>
+          index === prev.messages.length - 1
+            ? {
+                ...msg,
+                message: aiUserTestResponse
+              }
+            : msg
+        )
+      }));
+    }
+  }, [aiUserTestResponse]);
+
+  console.log('aiUserTestResponse:', aiUserTestResponse);
+
   const handleHello = () => {
     const botMessage = createChatBotMessage('Hello. Nice to meet you.');
 
@@ -116,7 +144,7 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
 
   return (
     <>
-      {Array.isArray(children)
+      {/* {Array.isArray(children)
         ? children.map((child, index) => {
             if (isValidElement(child)) {
               return cloneElement(child, {
@@ -130,7 +158,19 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
         ? cloneElement(children, {
             actions: { handleHello, handleDefault }
           })
-        : children}
+        : children} */}
+      <Fragment>
+        {Array.isArray(children) &&
+          children.map((child) => {
+            return h(child.type, {
+              ...child.props,
+              actions: {
+                handleHello,
+                handleDefault
+              }
+            });
+          })}
+      </Fragment>
     </>
   );
 };

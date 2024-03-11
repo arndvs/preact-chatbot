@@ -1,5 +1,5 @@
+import { IChatbotWidget } from 'src/types/IChatbotWidget';
 import { IChatbotMessage } from './IChatbotMessages';
-import IChatbotWidget from './IChatbotWidget';
 
 interface IChatbotConfig {
   botName?: string;

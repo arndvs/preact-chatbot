@@ -27,6 +27,22 @@ export interface IChatbotMessage extends IChatbotBaseMessage {
   payload?: any;
 }
 
+export interface ICreateChatBotMessage {
+  message: string;
+  options?: IChatbotMessageOptions;
+}
+
+export interface ICreateCustomMessage {
+  message: string;
+  type: string;
+  options?: IChatbotMessageOptions;
+}
+
+export interface ICreateClientMessage {
+  message: string;
+  options?: IChatbotMessageOptions;
+}
+
 export interface IChatbotMessageContainerProps {
   message: string;
   withAvatar?: boolean;
