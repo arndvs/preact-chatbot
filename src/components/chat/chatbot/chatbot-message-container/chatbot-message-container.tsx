@@ -64,7 +64,6 @@ const ChatbotMessageContainer = ({
       {show && (
         <div className="flow-root">
           <div className="relative">
-
             <div className="relative flex items-start space-x-3">
               {withAvatar && customComponents?.botAvatar ? (
                 callIfExists(customComponents.botAvatar)
@@ -72,17 +71,17 @@ const ChatbotMessageContainer = ({
                 <ChatbotMessageAvatar />
               )}
 
-              {customComponents?.botChatMessage ? (
+              {/* {customComponents?.botChatMessage ? (
                 callIfExists(customComponents.botChatMessage, {
                   message,
                   loader: <ChatbotLoadingDots />
                 })
-              ) : (
-                <ChatbotMessageComponent
-                  loading={loading}
-                  message={message}
-                />
-              )}
+              ) : ( */}
+              <ChatbotMessageComponent
+                loading={loading}
+                message={message}
+              />
+              {/* )} */}
             </div>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 
 import { scrollIntoView } from 'src/actions/chatbot/scroll-into-view';
-import MySwiperComponent from 'src/components/chat/chatbot-widgets/handle-products/swiper';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot/chatbot-header-container/chatbot-header-container';
 
 import ChatbotInputContainer from 'src/components/chat/chatbot/chatbot-input-container';

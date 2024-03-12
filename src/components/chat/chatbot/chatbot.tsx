@@ -10,11 +10,6 @@ import {
 } from 'src/actions/chatbot/chatbot-config-utils';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import ChatbotError from './chatbot-error';
-import Pusher from 'pusher-js';
-import Echo from 'laravel-echo';
-import { useEffect, useState } from 'preact/hooks';
-import { pusherConfig } from 'src/config/pusher';
-import { usePusher } from 'src/hooks/usePusher';
 
 const Chatbot = ({
   actionProvider,
@@ -50,10 +45,6 @@ const Chatbot = ({
     runInitialMessagesWithHistory,
     ...rest
   });
-  const { echo, pusher } = usePusher();
-
-  console.log('echo', echo);
-  console.log('pusher', pusher);
 
   if (configurationError) {
     return <ChatbotError message={configurationError} />;
@@ -95,7 +86,6 @@ const Chatbot = ({
         state={state}
         setState={setState}
         createChatBotMessage={createChatBotMessage}
-        echo={echo}
       >
         <MessageParser>
           <ChatbotContainer {...chatbotContainerProps} />

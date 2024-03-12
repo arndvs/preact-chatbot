@@ -14,21 +14,19 @@ export const useChatEchoSubscription = (echo: Echo | null, setState: any) => {
 
   useEffect(() => {
     const subscription = `chat-stream-external-${store_id}-${session_id}`;
-    // console.log('user channel ID', subscription);
+
     let channel: unknown | null = null;
-    console.log('echo', echo);
+
     if (
       //@ts-ignore
-      echo !== undefined &&
-      echo !== null
+      window.Echo !== undefined &&
+      //@ts-ignore
+      window.Echo !== null
     ) {
-      // console.log('user channel is in if:', subscription);
       channel =
         //@ts-ignore
         window.Echo.private(subscription).listenToAll((e, data) => {
-          console.log('chatbot response:', e);
-          // console.log('text:', data.text);s
-
+          console.log('chatbot response text:', data.text);
           if (data?.completed === false) {
             setAiUserTestResponse((prevResponse) =>
               prevResponse === 'Loading ...'
@@ -62,8 +60,6 @@ export const useChatEchoSubscription = (echo: Echo | null, setState: any) => {
       }));
     }
   }, [aiUserTestResponse]);
-
-  console.log('aiUserTestResponse:', aiUserTestResponse);
 
   return { aiUserTestResponse, loadingState };
 };

@@ -25,7 +25,6 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
 
   // get the pusher instance
   const pusher = usePusher();
-
   // set the initial state
   const [aiUserTestResponse, setAiUserTestResponse] = useState('Loading ...');
   const [loadingState, setLoadingState] = useState(false);
@@ -33,20 +32,17 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
   // subscribe to the chatbot channel
   useEffect(() => {
     const subscription = `chat-stream-external-${store_id}-${session_id}`;
-    // console.log('user channel ID', subscription);
+
     let channel: unknown | null = null;
-    console.log('echo', echo);
     if (
       //@ts-ignore
-      echo !== undefined &&
-      echo !== null
+      window.Echo
     ) {
-      // console.log('user channel is in if:', subscription);
+      console.log('user channel is in if:', subscription);
       channel =
         //@ts-ignore
         window.Echo.private(subscription).listenToAll((e, data) => {
-          console.log('chatbot response:', e);
-          // console.log('text:', data.text);s
+          console.log('text:', data.text);
 
           if (data?.completed === false) {
             setAiUserTestResponse((prevResponse) =>
@@ -59,6 +55,7 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
             setLoadingState(false);
           }
         });
+      console.log('chatbot response:', channel);
     }
 
     return () => {
@@ -95,56 +92,39 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
   };
 
   const handleDefault = (message: string) => {
-    // const botMessage = createChatBotMessage(`You said: ${message}`);
-    const req = axios.post('https://api.rmdevs.com/api/v2/external_chatbot', {
+    setLoadingState(true);
+    axios.post('https://api.rmdevs.com/api/v2/external_chatbot', {
       question: message,
-      store_id: 12,
+      store_id: store_id,
       customer_id: 79741,
-      req_session: '0cGEgXm4oxQxWx6VGnJJyrRKM7cRNlKC0TyzgRHw',
+      req_session: session_id,
       greeting: false
     });
-    req.then((res) => {
-      const botMessage = createChatBotMessage(res.data.answer);
-      setState((prev: any) => ({
-        ...prev,
-        messages: [...prev.messages, botMessage]
-      }));
-    });
-
-    // setState((prev: any) => ({
-    //   ...prev,
-    //   messages: [...prev.messages, botMessage]
-    // }));
   };
 
-  // update the last message for AI streaming
-  const updateLastMessage = (message: string) => {
-    setState((prev: any) => {
-      return {
-        ...prev,
-        messages: [
-          ...prev.messages.slice(0, -1),
-          { ...prev.messages.at(-1), message }
-        ]
-      };
-    });
-  };
-
-  //    then use this inside the action:
-
-  //     let done, value;
-  //     let messageBuffer = "";
-  //     let decoder = new TextDecoder("utf-8");
-  //     addMessageToState(createChatBotMessage("streaming...")) //You need a dummy message to update
-  //     while (!done) {
-  //       ({ done, value } = await reader.read());
-  //       messageBuffer += decoder.decode(value);
-  //       updateLastMessage(messageBuffer)
-  //     }
+  useEffect(() => {
+    if (loadingState) {
+      setState(
+        (prev: any) => (
+          console.log('prev', prev),
+          {
+            messages: prev.messages.map((msg: any, index: number) =>
+              index === prev.messages.length - 1
+                ? {
+                    ...msg,
+                    message: aiUserTestResponse
+                  }
+                : msg
+            )
+          }
+        )
+      );
+    }
+  }, [aiUserTestResponse]);
 
   return (
     <>
-      {/* {Array.isArray(children)
+      {Array.isArray(children)
         ? children.map((child, index) => {
             if (isValidElement(child)) {
               return cloneElement(child, {
@@ -158,8 +138,8 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
         ? cloneElement(children, {
             actions: { handleHello, handleDefault }
           })
-        : children} */}
-      <Fragment>
+        : children}
+      {/* <Fragment>
         {Array.isArray(children) &&
           children.map((child) => {
             return h(child.type, {
@@ -170,7 +150,7 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
               }
             });
           })}
-      </Fragment>
+      </Fragment> */}
     </>
   );
 };

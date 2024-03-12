@@ -25,31 +25,31 @@ const MessageParser: FunctionalComponent<MessageParserProps> = ({
   const parse = (message: string): void => {
     const lowerCaseMessage = message.toLowerCase();
 
-    if (message.includes('hello')) {
-      actions.handleHello();
-    }
+    // if (message.includes('hello')) {
+    //   actions.handleHello();
+    // }
 
-    if (message.includes('hello')) {
-      console.log('hi');
-    }
+    // if (message.includes('hello')) {
+    //   console.log('hi');
+    // }
 
-    if (lowerCaseMessage.includes('menu')) {
-      actions.handleMenu();
-      return;
-    }
+    // if (lowerCaseMessage.includes('menu')) {
+    //   actions.handleMenu();
+    //   return;
+    // }
 
-    if (lowerCaseMessage.includes('feedback')) {
-      actions.handleMenu();
-      return;
-    }
+    // if (lowerCaseMessage.includes('feedback')) {
+    //   actions.handleMenu();
+    //   return;
+    // }
 
-    if (
-      lowerCaseMessage.includes('hours') ||
-      lowerCaseMessage.includes('location')
-    ) {
-      actions.handleHoursLocation();
-      return;
-    }
+    // if (
+    //   lowerCaseMessage.includes('hours') ||
+    //   lowerCaseMessage.includes('location')
+    // ) {
+    //   actions.handleHoursLocation();
+    //   return;
+    // }
 
     actions.handleDefault(message);
   };
