@@ -7,7 +7,7 @@ import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context
 import { useEffect } from 'preact/hooks';
 import axios from 'axios';
 
-interface ChatIslandComponentProps {
+interface ChatPopComponentProps {
   islandName: string;
   storeId: string | undefined;
 }
@@ -19,10 +19,7 @@ interface InitialBotSettings {
   session_id: string; // This is the session_id that is used to identify the user
 }
 
-const ChatIslandComponent = ({
-  islandName,
-  storeId
-}: ChatIslandComponentProps) => {
+const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [data, setData] = useState<InitialBotSettings | null>(null);
@@ -76,4 +73,4 @@ const ChatIslandComponent = ({
   );
 };
 
-export default ChatIslandComponent;
+export default ChatPopComponent;
