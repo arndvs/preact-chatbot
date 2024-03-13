@@ -11,6 +11,7 @@ const ChatbotMessageComponent = ({
   loading
 }: ChatbotMessageComponentProps) => {
   const { storeName } = useChatbotContext();
+
   return (
     <div className="flex-1 min-w-0 !ml-1">
       <div className="text-xs">
@@ -20,7 +21,11 @@ const ChatbotMessageComponent = ({
         <div class="mb-3 max-w-prose overflow-auto rounded-xl rounded-tl-sm px-4 py-3 bg-white text-black shadow-sm">
           <div class="flex flex-col items-start gap-4 break-words">
             <div class="prose w-full break-words text-left text-inherit dark:prose-invert">
-              {loading ? <ChatbotLoadingDots /> : <p>{message}</p>}
+              {loading || message === 'Loading ...' ? (
+                <ChatbotLoadingDots />
+              ) : (
+                <p>{message}</p>
+              )}
             </div>
           </div>
         </div>

@@ -27,8 +27,6 @@ const HandleDefaultMessage = ({
     setLoadingState(true);
     setAiUserTestResponse('Loading ...');
 
-    console.log('message:', message);
-
     try {
       const res = await axios.post(
         'https://api.rmdevs.com/api/v2/external_chatbot',
@@ -40,45 +38,22 @@ const HandleDefaultMessage = ({
           greeting: false
         }
       );
+      // not need because api call does not return a response and response is in the useChatStream hook
+      // console.log('res:', res);
 
-      console.log('res:', res);
+      // const response = res.data.message;
 
-      const response = res.data.message;
+      // console.log('response:', response);
 
-      console.log('response:', response);
-
-      const botMessage = createChatBotMessage(response);
-      setState((prev: any) => ({
-        ...prev,
-        messages: [...prev.messages, botMessage]
-      }));
+      // const botMessage = createChatBotMessage(response, {loading: true});
+      // setState((prev: any) => ({
+      //   ...prev,
+      //   messages: [...prev.messages, botMessage]
+      // }));
     } catch (error) {
       console.error('Error sending message:', error);
-    } finally {
-      setLoadingState(false);
     }
   };
-
-  // TODO - Does this belong here?
-  useEffect(() => {
-    if (loadingState) {
-      setState(
-        (prev: any) => (
-          console.log('prev', prev),
-          {
-            messages: prev.messages.map((msg: any, index: number) =>
-              index === prev.messages.length - 1
-                ? {
-                    ...msg,
-                    message: aiUserTestResponse
-                  }
-                : msg
-            )
-          }
-        )
-      );
-    }
-  }, [aiUserTestResponse]);
 
   return { handleDefault };
 };

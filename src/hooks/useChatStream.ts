@@ -5,11 +5,13 @@ import { useEffect, StateUpdater } from 'preact/hooks';
 interface useChatStreamProps {
   setAiUserTestResponse: StateUpdater<string>;
   setLoadingState: StateUpdater<boolean>;
+  setActiveLoadingMessageIndex: StateUpdater<number | null>;
 }
 
 export const useChatStream = ({
   setAiUserTestResponse,
-  setLoadingState
+  setLoadingState,
+  setActiveLoadingMessageIndex
 }: useChatStreamProps) => {
   const { session_id, store_id } = useChatbotContext();
   const pusher = usePusher();
@@ -26,7 +28,6 @@ export const useChatStream = ({
       channel =
         //@ts-ignore
         window.Echo.private(subscription).listenToAll((e, data) => {
-          console.log('chatbot response text:', data.text);
           if (data?.completed === false) {
             setAiUserTestResponse((prevResponse: string) =>
               prevResponse === 'Loading ...'
@@ -36,6 +37,7 @@ export const useChatStream = ({
           } else if (data?.completed === true) {
             setAiUserTestResponse('Loading ...');
             setLoadingState(false);
+            setActiveLoadingMessageIndex(null);
           }
         });
     }
