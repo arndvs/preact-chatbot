@@ -1,30 +1,27 @@
 import axios from 'axios';
-import { h, ComponentChildren, FunctionalComponent, Fragment } from 'preact';
-import { isValidElement, cloneElement } from 'preact';
+import { ComponentChildren, cloneElement, isValidElement } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { usePusher } from 'src/hooks/usePusher';
-import { useChatbotContext } from '../../hooks/useChatbotContext';
-import Echo from 'laravel-echo';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ActionProviderProps {
-  createChatBotMessage: any; // Adjust the type as per your requirement
-  setState: any; // Adjust the type as per your requirement
+  createChatBotMessage: any;
+  setState: any;
   children?: ComponentChildren;
-  echo: Echo | null;
 }
 
-const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
+const ActionProvider = ({
   createChatBotMessage,
   setState,
-  echo,
   children
-}) => {
+}: ActionProviderProps) => {
+  const childElements = Array.isArray(children) ? children : [children];
   // instantiate the chatbot context
-  const { storeName, storeLogo, brandColor, session_id, store_id } =
-    useChatbotContext();
+  const { session_id, store_id } = useChatbotContext();
 
   // get the pusher instance
   const pusher = usePusher();
+
   // set the initial state
   const [aiUserTestResponse, setAiUserTestResponse] = useState('Loading ...');
   const [loadingState, setLoadingState] = useState(false);
@@ -102,55 +99,19 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
     });
   };
 
-  useEffect(() => {
-    if (loadingState) {
-      setState(
-        (prev: any) => (
-          console.log('prev', prev),
-          {
-            messages: prev.messages.map((msg: any, index: number) =>
-              index === prev.messages.length - 1
-                ? {
-                    ...msg,
-                    message: aiUserTestResponse
-                  }
-                : msg
-            )
-          }
-        )
-      );
-    }
-  }, [aiUserTestResponse]);
-
   return (
     <>
-      {Array.isArray(children)
-        ? children.map((child, index) => {
-            if (isValidElement(child)) {
-              return cloneElement(child, {
-                actions: { handleHello },
-                key: index
-              });
-            }
-            return child;
-          })
-        : isValidElement(children)
-        ? cloneElement(children, {
-            actions: { handleHello, handleDefault }
-          })
-        : children}
-      {/* <Fragment>
-        {Array.isArray(children) &&
-          children.map((child) => {
-            return h(child.type, {
-              ...child.props,
-              actions: {
-                handleHello,
-                handleDefault
-              }
-            });
-          })}
-      </Fragment> */}
+      {childElements.map((child, index) => {
+        if (isValidElement(child)) {
+          return cloneElement(child, {
+            actions: {
+              handleDefault
+            },
+            key: index
+          });
+        }
+        return child;
+      })}
     </>
   );
 };
