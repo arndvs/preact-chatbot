@@ -8,10 +8,10 @@ import {
 
 interface MessageParserProps {
   actions: {
-    handleHello: () => void;
-    handleMenu: () => void;
-    handleHoursLocation: () => void;
-    // handleDeals: () => void;
+    // handleHello: () => void;
+    // handleMenu: () => void;
+    // handleHoursLocation: () => void;
+    // // handleDeals: () => void;
     handleDefault: (message: string) => void;
   };
   children?: ComponentChildren | readonly ComponentChildren[];
@@ -24,32 +24,6 @@ const MessageParser: FunctionalComponent<MessageParserProps> = ({
 }) => {
   const parse = (message: string): void => {
     const lowerCaseMessage = message.toLowerCase();
-
-    if (message.includes('hello')) {
-      actions.handleHello();
-    }
-
-    if (message.includes('hello')) {
-      console.log('hi');
-    }
-
-    if (lowerCaseMessage.includes('menu')) {
-      actions.handleMenu();
-      return;
-    }
-
-    if (lowerCaseMessage.includes('feedback')) {
-      actions.handleMenu();
-      return;
-    }
-
-    if (
-      lowerCaseMessage.includes('hours') ||
-      lowerCaseMessage.includes('location')
-    ) {
-      actions.handleHoursLocation();
-      return;
-    }
 
     actions.handleDefault(message);
   };
