@@ -1,5 +1,6 @@
 import { StateUpdater, useState } from 'preact/hooks';
 import axios from 'axios';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ChatbotHandlerProps {
   createChatBotMessage: any;
@@ -14,6 +15,7 @@ const HandleDefaultMessage = ({
   setLoadingState,
   setAiUserTestResponse
 }: ChatbotHandlerProps) => {
+  const { session_id, store_id } = useChatbotContext();
   //   const [loadingState, setLoadingState] = useState(false);
   //   const [aiUserTestResponse, setAiUserTestResponse] = useState<string>('');
 
@@ -21,25 +23,23 @@ const HandleDefaultMessage = ({
     setLoadingState(true);
     setAiUserTestResponse('Loading ...');
 
-    const botMessage = createChatBotMessage(`You said: ${message}`);
-    setState((prev: any) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage]
-    }));
-
     try {
       const res = await axios.post(
         'https://api.rmdevs.com/api/v2/external_chatbot',
         {
           question: message,
-          store_id: 12,
+          store_id: store_id,
           customer_id: 79741,
-          req_session: '0cGEgXm4oxQxWx6VGnJJyrRKM7cRNlKC0TyzgRHw',
+          req_session: session_id,
           greeting: false
         }
       );
 
-      const botMessage = createChatBotMessage(res.data.answer);
+      const response = res.data.message;
+
+      console.log('response:', response);
+
+      const botMessage = createChatBotMessage(response);
       setState((prev: any) => ({
         ...prev,
         messages: [...prev.messages, botMessage]
