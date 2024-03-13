@@ -38,41 +38,43 @@ const ChatbotContainer = ({
   });
 
   return (
-    <div className="relative w-full">
-      <div className="h-full bg-[#f1f3f7] rounded-md">
-        <ChatbotHeaderContainer
-          actionProvider={actionProvider}
-          customComponents={customComponents}
-          headerText={headerText}
-          setIsOpen={setIsOpen}
-        />
-        <ChatbotMessageRetriever
-          actionProvider={actionProvider}
-          actions={actions}
-          customComponents={customComponents}
-          customMessages={customMessages}
-          customStyles={customStyles}
-          messageContainerRef={messageContainerRef}
-          messageHistory={messageHistory}
-          messages={messages}
-          scrollIntoView={scrollIntoView}
-          setState={setState}
-          state={state}
-          widgetRegistry={widgetRegistry}
-        />
-        <ChatbotInputContainer
-          customStyles={customStyles}
-          input={input}
-          messageContainerRef={messageContainerRef}
-          messageParser={messageParser}
-          parse={parse}
-          setState={setState}
-          setInputValue={setInputValue}
-          validator={validator}
-        />
-        <ChatbotPoweredBy />
+    <>
+      <div className="relative w-full">
+        <div className="h-full bg-[#f1f3f7] rounded-md">
+          <ChatbotHeaderContainer
+            actionProvider={actionProvider}
+            customComponents={customComponents}
+            headerText={headerText}
+            setIsOpen={setIsOpen}
+          />
+          <ChatbotMessageRetriever
+            actionProvider={actionProvider}
+            actions={actions}
+            customComponents={customComponents}
+            customMessages={customMessages}
+            customStyles={customStyles}
+            messageContainerRef={messageContainerRef}
+            messageHistory={messageHistory}
+            messages={messages}
+            scrollIntoView={scrollIntoView}
+            setState={setState}
+            state={state}
+            widgetRegistry={widgetRegistry}
+          />
+          <ChatbotInputContainer
+            customStyles={customStyles}
+            input={input}
+            messageContainerRef={messageContainerRef}
+            messageParser={messageParser}
+            parse={parse}
+            setState={setState}
+            setInputValue={setInputValue}
+            validator={validator}
+          />
+          <ChatbotPoweredBy />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

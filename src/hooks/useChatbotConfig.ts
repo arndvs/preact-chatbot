@@ -14,7 +14,9 @@ export function useChatbotConfig() {
 
   const ChatbotConfig = {
     initialMessages: [
-      createChatBotMessage(`👋 Hi! I am ${storeName} Bot. How can I help?`)
+      createChatBotMessage(`👋 Hi! I am ${storeName} Bot. How can I help?`, {
+        loading: true
+      })
     ],
     widgets: ChatbotWidgetArray,
     state: {

@@ -25,7 +25,6 @@ export interface IChatbotWidget {
 }
 
 export interface IChatbotWidgetProps {
-  echo: Echo | null;
   actionProvider: any;
   messageParser: any;
   config: IChatbotConfig;

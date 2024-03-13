@@ -48,8 +48,9 @@ export const createChatBotMessage = (
 ) => {
   return {
     ...createChatMessage(message, 'bot'),
-    ...options,
-    loading: true
+    ...options
+    // loading is in the options object
+    // loading: options?.loading ?? true
   };
 };
 
