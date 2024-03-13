@@ -1,10 +1,12 @@
-import { StateUpdater, useState } from 'preact/hooks';
+import { StateUpdater, useEffect, useState } from 'preact/hooks';
 import axios from 'axios';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ChatbotHandlerProps {
   createChatBotMessage: any;
   setState: any;
+  loadingState: any;
+  aiUserTestResponse: any;
   setLoadingState: StateUpdater<boolean>;
   setAiUserTestResponse: StateUpdater<string>;
 }
@@ -12,7 +14,9 @@ interface ChatbotHandlerProps {
 const HandleDefaultMessage = ({
   createChatBotMessage,
   setState,
+  loadingState,
   setLoadingState,
+  aiUserTestResponse,
   setAiUserTestResponse
 }: ChatbotHandlerProps) => {
   const { session_id, store_id } = useChatbotContext();
@@ -22,6 +26,8 @@ const HandleDefaultMessage = ({
   const handleDefault = async (message: string) => {
     setLoadingState(true);
     setAiUserTestResponse('Loading ...');
+
+    console.log('message:', message);
 
     try {
       const res = await axios.post(
@@ -34,6 +40,8 @@ const HandleDefaultMessage = ({
           greeting: false
         }
       );
+
+      console.log('res:', res);
 
       const response = res.data.message;
 
@@ -50,6 +58,27 @@ const HandleDefaultMessage = ({
       setLoadingState(false);
     }
   };
+
+  // TODO - Does this belong here?
+  useEffect(() => {
+    if (loadingState) {
+      setState(
+        (prev: any) => (
+          console.log('prev', prev),
+          {
+            messages: prev.messages.map((msg: any, index: number) =>
+              index === prev.messages.length - 1
+                ? {
+                    ...msg,
+                    message: aiUserTestResponse
+                  }
+                : msg
+            )
+          }
+        )
+      );
+    }
+  }, [aiUserTestResponse]);
 
   return { handleDefault };
 };

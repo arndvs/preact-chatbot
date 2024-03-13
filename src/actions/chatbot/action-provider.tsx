@@ -23,11 +23,13 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
   const [aiUserTestResponse, setAiUserTestResponse] =
     useState<string>('Loading ...');
 
-  // get the handleDefaultMessage function and state variables
+  // instantiate the handleDefaultMessage
   const { handleDefault } = HandleDefaultMessage({
     createChatBotMessage,
     setState,
+    loadingState,
     setLoadingState,
+    aiUserTestResponse,
     setAiUserTestResponse
   });
 
