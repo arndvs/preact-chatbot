@@ -1,17 +1,21 @@
-import { useState } from 'preact/hooks';
+import { StateUpdater, useState } from 'preact/hooks';
 import axios from 'axios';
 
 interface ChatbotHandlerProps {
   createChatBotMessage: any;
   setState: any;
+  setLoadingState: StateUpdater<boolean>;
+  setAiUserTestResponse: StateUpdater<string>;
 }
 
 const HandleDefaultMessage = ({
   createChatBotMessage,
-  setState
+  setState,
+  setLoadingState,
+  setAiUserTestResponse
 }: ChatbotHandlerProps) => {
-  const [loadingState, setLoadingState] = useState(false);
-  const [aiUserTestResponse, setAiUserTestResponse] = useState<string>('');
+  //   const [loadingState, setLoadingState] = useState(false);
+  //   const [aiUserTestResponse, setAiUserTestResponse] = useState<string>('');
 
   const handleDefault = async (message: string) => {
     setLoadingState(true);
@@ -47,7 +51,7 @@ const HandleDefaultMessage = ({
     }
   };
 
-  return { handleDefault, loadingState, aiUserTestResponse };
+  return { handleDefault };
 };
 
 export default HandleDefaultMessage;

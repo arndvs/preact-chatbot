@@ -4,6 +4,7 @@ import {
   cloneElement,
   isValidElement
 } from 'preact';
+import { useState } from 'preact/hooks';
 import HandleDefaultMessage from 'src/actions/chatbot/handle-messages/handle-default-message';
 import { useChatStream } from 'src/hooks/useChatStream';
 
@@ -18,15 +19,20 @@ const ActionProvider: FunctionalComponent<ActionProviderProps> = ({
   setState,
   children
 }) => {
+  const [loadingState, setLoadingState] = useState<boolean>(false);
+  const [aiUserTestResponse, setAiUserTestResponse] =
+    useState<string>('Loading ...');
+
   // get the handleDefaultMessage function and state variables
-  const { handleDefault, loadingState, aiUserTestResponse } =
-    HandleDefaultMessage({
-      createChatBotMessage,
-      setState
-    });
+  const { handleDefault } = HandleDefaultMessage({
+    createChatBotMessage,
+    setState,
+    setLoadingState,
+    setAiUserTestResponse
+  });
 
   // get the chat stream store and session ID
-  useChatStream();
+  useChatStream({ setAiUserTestResponse, setLoadingState });
 
   // convert the children prop to an array
   const childElements = Array.isArray(children) ? children : [children];

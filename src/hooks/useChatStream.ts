@@ -1,8 +1,16 @@
 import { usePusher } from 'src/hooks/usePusher';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
-import { useEffect } from 'preact/hooks';
+import { useEffect, StateUpdater } from 'preact/hooks';
 
-export const useChatStream = () => {
+interface useChatStreamProps {
+  setAiUserTestResponse: StateUpdater<string>;
+  setLoadingState: StateUpdater<boolean>;
+}
+
+export const useChatStream = ({
+  setAiUserTestResponse,
+  setLoadingState
+}: useChatStreamProps) => {
   const { session_id, store_id } = useChatbotContext();
   const pusher = usePusher();
 
@@ -22,16 +30,16 @@ export const useChatStream = () => {
           console.log('chatbot response:', e);
           // console.log('text:', data.text);s
 
-          // if (data?.completed === false) {
-          //   setAiUserTestResponse((prevResponse) =>
-          //     prevResponse === 'Loading ...'
-          //       ? data.text
-          //       : prevResponse + data.text
-          //   );
-          // } else if (data?.completed === true) {
-          //   setAiUserTestResponse('Loading ...');
-          //   setLoadingState(false);
-          // }
+          if (data?.completed === false) {
+            setAiUserTestResponse((prevResponse: string) =>
+              prevResponse === 'Loading ...'
+                ? data.text
+                : prevResponse + data.text
+            );
+          } else if (data?.completed === true) {
+            setAiUserTestResponse('Loading ...');
+            setLoadingState(false);
+          }
         });
     }
 
