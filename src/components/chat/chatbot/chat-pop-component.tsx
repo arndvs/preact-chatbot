@@ -32,7 +32,6 @@ const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
   console.log('Panel data', data);
   return (
     <>
-      POP
       {data ? (
         <ChatbotContextProvider
           storeName={data.store_name}
