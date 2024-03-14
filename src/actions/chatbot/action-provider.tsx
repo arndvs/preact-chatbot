@@ -32,7 +32,6 @@ const ActionProvider = ({
       const botMessage = createChatBotMessage(aiUserTestResponse, {
         loading: activeLoadingMessageIndex === null ? true : false
       });
-
       setState((prev: any) => {
         const newMessages = [...prev.messages];
         if (activeLoadingMessageIndex !== null) {

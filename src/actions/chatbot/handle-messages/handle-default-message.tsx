@@ -1,5 +1,5 @@
-import { StateUpdater, useEffect, useState } from 'preact/hooks';
 import axios from 'axios';
+import { StateUpdater } from 'preact/hooks';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ChatbotHandlerProps {

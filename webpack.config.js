@@ -225,7 +225,8 @@ module.exports = ({ dev, prod }) => {
             }
 
             .preview::before {
-              content: 'Island';
+
+                content: '';
               position: absolute;
               display: block;
               top: -18px;
@@ -235,17 +236,18 @@ module.exports = ({ dev, prod }) => {
           </style>
             ${htmlWebpackPlugin.tags.headTags}
           </head>
-          <body>
-          ${islands
-            .map((island) => {
-              return `<div class="preview">
-            <${island.elementName}></${island.elementName}>
-          </div>`;
-            })
-            .join('')}
+            <body>
+        ${islands
+          .map((island) => {
+            return `<div class="preview">
+              <${island.elementName}></${island.elementName}>
+              <span style="position: absolute; top: -18px; font-size: 11px; color: rgba(0, 0, 0, 0.5);">${island.name} island</span>
+            </div>`;
+          })
+          .join('')}
 
-            ${htmlWebpackPlugin.tags.bodyTags}
-          </body>
+        ${htmlWebpackPlugin.tags.bodyTags}
+      </body>
         </html>
       `,
         /**

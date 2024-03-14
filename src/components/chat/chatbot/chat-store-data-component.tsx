@@ -1,28 +1,13 @@
-import { useState } from 'preact/compat';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
 
-import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
-import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context-component';
-import { useEffect } from 'preact/hooks';
-import axios from 'axios';
 import { useInitialData } from 'src/hooks/useInitialData';
 
-interface ChatPopComponentProps {
-  islandName: string;
+interface ChatStoreDataComponentProps {
   storeId: string | undefined;
 }
 
-interface InitialBotSettings {
-  store_name: string;
-  store_logo: string;
-  brand_color: string;
-  session_id: string; // This is the session_id that is used to identify the user
-}
-
-const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const ChatStoreDataComponent = ({ storeId }: ChatStoreDataComponentProps) => {
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
 
@@ -32,7 +17,7 @@ const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
   console.log('Panel data', data);
   return (
     <>
-      POP
+      STORE DATA
       {data ? (
         <ChatbotContextProvider
           storeName={data.store_name}
@@ -42,15 +27,7 @@ const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
           store_id={idToUse}
           placeholderText={'Ask a question...'}
         >
-          <ChatBubbleButton
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
-          <ChatModal
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            islandName={islandName}
-          />
+          <ChatbotContextComponent />
         </ChatbotContextProvider>
       ) : (
         <div>Waiting on data</div>
@@ -59,4 +36,4 @@ const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
   );
 };
 
-export default ChatPopComponent;
+export default ChatStoreDataComponent;
