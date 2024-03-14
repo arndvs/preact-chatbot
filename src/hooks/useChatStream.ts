@@ -28,7 +28,6 @@ export const useChatStream = ({
       channel =
         //@ts-ignore
         window.Echo.private(subscription).listenToAll((e, data) => {
-          //   console.log('chatbot response text:', data.text);
           if (data?.completed === false) {
             setAiUserTestResponse((prevResponse: string) =>
               prevResponse === 'Loading ...'
