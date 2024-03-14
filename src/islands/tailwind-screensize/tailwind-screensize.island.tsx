@@ -9,20 +9,15 @@ import TailwindScreensizeComponent from 'src/components/internal-components/tail
 
 const islandName = 'tailwind-screesize-island';
 
-export const TailwindScreensizeComponentIsland = () => {
+export const TailwindScreensizeIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
 
-  return (
-    <TailwindScreensizeComponent data-testid="TailwindScreensizeComponent" />
-  );
+  return <TailwindScreensizeComponent data-testid="TailwindScreensizeIsland" />;
 };
 
 console.log('document.currentScript', document.currentScript);
-const island = createIslandWebComponent(
-  islandName,
-  TailwindScreensizeComponentIsland
-);
+const island = createIslandWebComponent(islandName, TailwindScreensizeIsland);
 island.render({
   selector: islandName
 });

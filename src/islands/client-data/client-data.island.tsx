@@ -13,20 +13,20 @@ const storeId = document.currentScript?.getAttribute('data-store-id') as
   | string
   | undefined;
 
-export const ClientDataComponentIsland = () => {
+export const ClientDataIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
 
   return (
     <ClientDataComponent
-      data-testid="ChatContextIsland"
+      data-testid="ClientDataIsland"
       storeId={storeId}
     />
   );
 };
 
 console.log('document.currentScript', document.currentScript);
-const island = createIslandWebComponent(islandName, ClientDataComponentIsland);
+const island = createIslandWebComponent(islandName, ClientDataIsland);
 island.render({
   selector: islandName
 });
