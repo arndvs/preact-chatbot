@@ -17,11 +17,15 @@ export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
   //   useDynamicWebIsland(islandName);
 
-  if (!document.querySelector(islandName)) {
-    const element = document.createElement(islandName);
-    document.body.appendChild(element);
-  }
-
+  document.addEventListener('DOMContentLoaded', function () {
+    // Check if the element with the specified name already exists
+    if (!document.querySelector(islandName)) {
+      // If it doesn't exist, create a new element
+      const element = document.createElement(islandName);
+      // Append the newly created element to the end of the document body
+      document.body.appendChild(element);
+    }
+  });
   return (
     <ClientChatButtonComponent
       islandName={islandName}
