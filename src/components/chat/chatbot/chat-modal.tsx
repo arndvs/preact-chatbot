@@ -39,7 +39,11 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
             data-testId="overlay-content"
             className={useClassNames(
               isOpen && 'hidden sm:block',
-              'z-[888889] border-none fixed flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"'
+              'z-[888889] border-none fixed flex flex-col justify-between shadow-custom rounded-lg overflow-hidden bg-white',
+              'lg:w-[28rem] lg:max-h-[80vh] lg:bottom-4 lg:right-4', // Large screens
+              'md:w-[24rem] md:max-h-[70vh] md:bottom-8 md:right-8', // Medium screens
+              'sm:w-[20rem] sm:max-h-[60vh] sm:bottom-12 sm:right-12', // Small screens
+              'xs:w-full xs:h-full xs:inset-0' // Extra small screens (mobile)
             )}
           >
             {/* Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider */}
