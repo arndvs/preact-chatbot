@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from 'preact/hooks';
 import HandleDefaultMessage from 'src/actions/chatbot/handle-messages/handle-default-message';
 import { useChatStream } from 'src/hooks/useChatStream';
+import { useLoadingMessageHandler } from 'src/hooks/useLoadingMessageHandler';
 
 interface ActionProviderProps {
   createChatBotMessage: any;
@@ -19,36 +20,26 @@ const ActionProvider = ({
   setState,
   children
 }: ActionProviderProps) => {
+  // handle loading state
   const [loadingState, setLoadingState] = useState<boolean>(false);
+  // handle loading messages state
   const [aiUserTestResponse, setAiUserTestResponse] =
     useState<string>('Loading ...');
-
+  // handle loading messages state
   const [activeLoadingMessageIndex, setActiveLoadingMessageIndex] = useState<
     number | null
   >(null);
 
-  useEffect(() => {
-    if (loadingState) {
-      const botMessage = createChatBotMessage(aiUserTestResponse, {
-        loading: activeLoadingMessageIndex === null ? true : false
-      });
-      setState((prev: any) => {
-        const newMessages = [...prev.messages];
-        if (activeLoadingMessageIndex !== null) {
-          // Update existing loading message
-          newMessages[activeLoadingMessageIndex] = botMessage;
-        } else {
-          // Add new loading message and track its index
-          newMessages.push(botMessage);
-          setActiveLoadingMessageIndex(newMessages.length - 1);
-        }
-        return { ...prev, messages: newMessages };
-      });
-    } else if (activeLoadingMessageIndex !== null) {
-      // Reset once streaming ends
-      setActiveLoadingMessageIndex(null);
-    }
-  }, [aiUserTestResponse, loadingState]);
+  // hook to handle loading messages
+  useLoadingMessageHandler({
+    loadingState,
+    createChatBotMessage,
+    setState,
+    aiUserTestResponse,
+    setAiUserTestResponse,
+    activeLoadingMessageIndex,
+    setActiveLoadingMessageIndex
+  });
 
   // instantiate the handleDefaultMessage
   const { handleDefault } = HandleDefaultMessage({
