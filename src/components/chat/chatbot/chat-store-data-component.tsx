@@ -17,8 +17,7 @@ const ChatStoreDataComponent = ({ storeId }: ChatStoreDataComponentProps) => {
   console.log('Panel data', data);
   return (
     <>
-      STORE DATA
-      {data ? (
+      {data && (
         <ChatbotContextProvider
           storeName={data.store_name}
           storeLogo={data.store_logo}
@@ -29,8 +28,6 @@ const ChatStoreDataComponent = ({ storeId }: ChatStoreDataComponentProps) => {
         >
           <ChatbotContextComponent />
         </ChatbotContextProvider>
-      ) : (
-        <div>Waiting on data</div>
       )}
     </>
   );
