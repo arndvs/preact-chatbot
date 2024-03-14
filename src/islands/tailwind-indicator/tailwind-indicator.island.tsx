@@ -5,19 +5,19 @@ import { createIslandWebComponent } from 'preact-island';
 
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import TailwindScreensizeComponent from 'src/components/internal-components/tailwind-screensize';
+import TailwindIndicatorComponent from 'src/components/internal-components/tailwind-indicator';
 
-const islandName = 'tailwind-screesize-island';
+const islandName = 'tailwind-indicator-island';
 
-export const TailwindScreensizeIsland = () => {
+export const TailwindIndicatorIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
 
-  return <TailwindScreensizeComponent data-testid="TailwindScreensizeIsland" />;
+  return <TailwindIndicatorComponent data-testid="TailwindIndicatorIsland" />;
 };
 
 console.log('document.currentScript', document.currentScript);
-const island = createIslandWebComponent(islandName, TailwindScreensizeIsland);
+const island = createIslandWebComponent(islandName, TailwindIndicatorIsland);
 island.render({
   selector: islandName
 });

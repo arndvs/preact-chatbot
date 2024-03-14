@@ -17,9 +17,11 @@ const ActionProvider = ({
 }: ActionProviderProps) => {
   // handle loading state
   const [loadingState, setLoadingState] = useState<boolean>(false);
+
   // handle loading messages state
   const [aiUserTestResponse, setAiUserTestResponse] =
     useState<string>('Loading ...');
+
   // hook to handle loading messages
   useLoadingMessageHandler({
     loadingState,
