@@ -15,7 +15,12 @@ const storeId = document.currentScript?.getAttribute('data-store-id') as
 
 export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
-  useDynamicWebIsland(islandName);
+  //   useDynamicWebIsland(islandName);
+
+  if (!document.querySelector(islandName)) {
+    const element = document.createElement(islandName);
+    document.body.appendChild(element);
+  }
 
   return (
     <ClientChatButtonComponent
