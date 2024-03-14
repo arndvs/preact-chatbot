@@ -6,6 +6,7 @@ import { createIslandWebComponent } from 'preact-island';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import ClientChatButtonComponent from 'src/components/client-components/client-chat-button-component';
 import { useEffect, useRef } from 'preact/hooks';
+import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 
 const islandName = 'client-chat-button-island';
 
@@ -15,6 +16,7 @@ const storeId = document.currentScript?.getAttribute('data-store-id') as
 
 export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
+  useDynamicWebIsland(islandName);
 
   return (
     <ClientChatButtonComponent

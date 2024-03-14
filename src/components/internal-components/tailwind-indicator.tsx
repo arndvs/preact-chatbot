@@ -1,14 +1,37 @@
 const TailwindIndicator = () => {
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+  const screenOrientation = window.screen.orientation.type;
+  const pixelRatio = window.devicePixelRatio;
+
+  const breakpoints = {
+    xs: 0,
+    sm: 640,
+    md: 768,
+    lg: 1024,
+    xl: 1280,
+    '2xl': 1536
+  };
+
+  const currentBreakpoint = Object.entries(breakpoints)
+    .reverse()
+    .find(([, value]) => screenWidth >= value)?.[0];
+
   return (
-    <div className="fixed z-50 flex items-center justify-center w-6 h-6 p-3 font-mono text-xs text-white bg-gray-800 rounded-full bottom-1 left-1">
-      <div className="block sm:hidden">xs</div>
-      <div className="hidden sm:block md:hidden lg:hidden xl:hidden 2xl:hidden">
-        sm
+    <div className="fixed z-50 flex items-center justify-center w-auto h-6 p-3 font-mono text-xs text-white bg-gray-800 rounded-full bottom-1 left-1">
+      <div>
+        <span className="mr-2">{currentBreakpoint}</span>
+        <span className="mr-2">
+          {screenWidth} x {screenHeight}
+        </span>
+        <span className="mr-2">
+          Orientation:{' '}
+          {screenOrientation
+            .replace('portrait-primary', 'Portrait')
+            .replace('landscape-primary', 'Landscape')}
+        </span>
+        <span>Pixel Ratio: {pixelRatio}</span>
       </div>
-      <div className="hidden md:block lg:hidden xl:hidden 2xl:hidden">md</div>
-      <div className="hidden lg:block xl:hidden 2xl:hidden">lg</div>
-      <div className="hidden xl:block 2xl:hidden">xl</div>
-      <div className="hidden 2xl:block">2xl</div>
     </div>
   );
 };
