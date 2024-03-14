@@ -1,18 +1,12 @@
 import { useState } from 'preact/compat';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
 
-import axios from 'axios';
-import { useEffect } from 'preact/hooks';
-
 import ActionProvider from 'src/actions/chatbot/action-provider';
 import MessageParser from 'src/actions/chatbot/message-parser';
 import Chatbot from 'src/components/chat/chatbot/chatbot';
-import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
-import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import { FC } from 'preact/compat';
-import { useInitialData } from 'src/hooks/useInitialData';
-import useClassNames from 'src/hooks/useClassNames';
 import { Box } from 'src/components/ui';
+import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
+import { useInitialData } from 'src/hooks/useInitialData';
 
 interface ChatPanelComponentProps {
   islandName: string;
@@ -26,7 +20,10 @@ interface InitialBotSettings {
   session_id: string;
 }
 
-const ChatPopComponent = ({ islandName, storeId }: ChatPanelComponentProps) => {
+const ClientChatPanelComponent = ({
+  islandName,
+  storeId
+}: ChatPanelComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // use the If storeId is undefined, use the default storeId of 20
@@ -68,4 +65,4 @@ const ChatPopComponent = ({ islandName, storeId }: ChatPanelComponentProps) => {
   );
 };
 
-export default ChatPopComponent;
+export default ClientChatPanelComponent;

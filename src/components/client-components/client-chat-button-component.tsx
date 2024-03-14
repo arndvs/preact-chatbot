@@ -3,24 +3,17 @@ import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-prov
 
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
-import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context-component';
-import { useEffect } from 'preact/hooks';
-import axios from 'axios';
 import { useInitialData } from 'src/hooks/useInitialData';
 
-interface ChatPopComponentProps {
+interface ClientChatButtonComponentProps {
   islandName: string;
   storeId: string | undefined;
 }
 
-interface InitialBotSettings {
-  store_name: string;
-  store_logo: string;
-  brand_color: string;
-  session_id: string; // This is the session_id that is used to identify the user
-}
-
-const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
+const ClientChatButtonComponent = ({
+  islandName,
+  storeId
+}: ClientChatButtonComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // use the If storeId is undefined, use the default storeId of 20
@@ -56,4 +49,4 @@ const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
   );
 };
 
-export default ChatPopComponent;
+export default ClientChatButtonComponent;

@@ -3,11 +3,11 @@ import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-prov
 import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context-component';
 import { useInitialData } from 'src/hooks/useInitialData';
 
-interface ChatStoreDataComponentProps {
+interface ClientDataComponentProps {
   storeId: string | undefined;
 }
 
-const ChatStoreDataComponent = ({ storeId }: ChatStoreDataComponentProps) => {
+const ClientDataComponent = ({ storeId }: ClientDataComponentProps) => {
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
 
@@ -33,4 +33,4 @@ const ChatStoreDataComponent = ({ storeId }: ChatStoreDataComponentProps) => {
   );
 };
 
-export default ChatStoreDataComponent;
+export default ClientDataComponent;

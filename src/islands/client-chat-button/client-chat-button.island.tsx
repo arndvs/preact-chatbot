@@ -3,33 +3,31 @@ import 'src/styles/reset.css';
 
 import { createIslandWebComponent } from 'preact-island';
 
-import ChatStoreDataComponent from 'src/components/chat/chatbot/chat-store-data-component';
-import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
+import ClientChatButtonComponent from 'src/components/client-components/client-chat-button-component';
+import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 
-const islandName = 'chat-store-data-island';
+const islandName = 'client-chat-button-island';
 
 const storeId = document.currentScript?.getAttribute('data-store-id') as
   | string
   | undefined;
 
-export const ChatStoreDataComponentIsland = () => {
+export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
 
   return (
-    <ChatStoreDataComponent
-      data-testid="ChatContextIsland"
+    <ClientChatButtonComponent
+      islandName={islandName}
+      data-testid="ClientChatButtonIsland"
       storeId={storeId}
     />
   );
 };
 
 console.log('document.currentScript', document.currentScript);
-const island = createIslandWebComponent(
-  islandName,
-  ChatStoreDataComponentIsland
-);
+const island = createIslandWebComponent(islandName, ClientChatButtonIsland);
 island.render({
   selector: islandName
 });
