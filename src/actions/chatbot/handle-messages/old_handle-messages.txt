@@ -1,0 +1,660 @@
+import { createChatBotMessage, createClientMessage } from 'src/actions/chatbot/chatbot-message-utils';
+
+
+
+//#region  //*=========== Handle Default Message ===========
+const handleDefault = async (messageToSend: string) => {
+  setLoadingState(true);
+
+  // Create a loading message - Default message is "Loading..."
+  const loadingMessage = createChatBotMessage(aiUserTestResponse, {
+    loading: true,
+    delay: 0,
+    withAvatar: true
+  });
+
+  setState((prev: any) => ({
+    ...prev,
+    messages: [...prev.messages, loadingMessage]
+  }));
+
+  // Define the URL and overrideConfig for the fetch call
+  // let fetchURL, overrideConfig;
+  // console.log('store.name', store?.name);
+  // If the store is the Demo ApothecformattedMessage1 are store, use the Apothecare chatflow id, and store data namespace
+  // if (botData?.store?.name === 'Apothecare') {
+  // fetchURL = `https://copymuze.com/api/ai/ask-chat`;
+
+  try {
+    const response: AxiosResponse = await axios.post('/api/ask', {
+      question: messageToSend,
+      store_id: store?.id,
+      customer_id: customer?.id ?? null,
+      req_session: sessionId,
+      greeting: false
+    });
+    // console.log('response in action provider ask', response?.data);
+
+    // if (response?.data?.context) {
+    //   if (
+    //     response?.data?.context === 'other' ||
+    //     response?.data?.context === 'address' ||
+    //     response?.data?.context === 'customer_service' ||
+    //     response?.data?.context === 'help'
+    //   ) {
+    //     console.log('response.data.message', response?.data?.message);
+    //     handleDirectResponse(response?.data?.message);
+    //   }
+    //   //add the context to the botData
+    //   setBotData((prevState) => ({
+    //     ...prevState,
+    //     context: response.data.context
+    //   }));
+    // }
+  } catch (error) {
+    console.error('Error occurred during API call:', error);
+  }
+};
+
+// #endregion  //*======== Handle Default Message ===========
+
+// #region  //*=========== Handle Hours & Location ===========
+// const handleHours = async () => {
+//   const handleHoursUserChip = createClientMessage('', {
+//     loading: true,
+//     widget: '',
+//     delay: 0,
+//     payload: ''
+//   });
+//     //get the customer's ud uf uts available
+
+//   try {
+//     const response: AxiosResponse = await axios.post('/api/ask', {
+//       chosen_option: 'hours',
+//       subdomain: store?.short_name,
+//       customer_id: customer?.id,
+//       store_id: store?.id
+//     });
+//     // console.log('response parsed', response.data);
+//     const handleHoursBotMessage1 = createChatBotMessage(
+//       "We're open the following hours:",
+//       {
+//         widget: 'handle-hours-widget',
+//         withAvatar: true
+//       }
+//     );
+
+//     const handleHoursBotMessage2 = createChatBotMessage(
+//       'You can also send us a message here, or contact us for a faster response:',
+//       {
+//         widget: 'handle-phone-email-widget',
+//         withAvatar: true,
+//         delay: 1000
+//       }
+//     );
+
+//     const handleHoursBotMessage3 = createChatBotMessage(
+//       'Is there anything else I can help you with?',
+//       {
+//         withAvatar: true,
+//         widget: 'handle-anything-else-widget',
+//         delay: 2000
+//       }
+//     );
+
+//     setState((prev: any) => ({
+//       ...prev,
+//       context: response.data.context,
+//       messages: [
+//         ...prev.messages,
+//         handleHoursBotMessage1,
+//         handleHoursBotMessage2,
+//         handleHoursBotMessage3
+//       ]
+//     }));
+//   } catch (error) {
+//     console.error('Error occurred during API call:', error);
+//   }
+// };
+// #endregion  //*======== Handle Hours & Location ===========
+
+// #region  //*=========== Handle Direct Response ======================
+// const handleDirectResponse = async (aiResponseMessage: string) => {
+//   console.log('message in handle Direct response func', aiResponseMessage);
+
+//   const handleDirectResponseMessage = createChatBotMessage(aiResponseMessage, {
+//     loading: true,
+//     delay: 0,
+//     widget: '',
+//     withAvatar: true
+//   });
+// };
+// #endregion  //*=========== Handle Direct Response ======================
+
+// #region  //*=========== Handle Menu ===========
+// const handleMenu = async () => {
+//   const handleMenuUserChip = createClientMessage('Let me see your menu', {
+//     loading: true,
+//     widget: '',
+//     delay: 0,
+//     payload: ''
+//   });
+//   try {
+//     const response: AxiosResponse = await axios.post('/api/ask', {
+//       chosen_action: 'menu',
+//       subdomain: store?.short_name,
+//       customer_id: customer?.id
+//     });
+//     console.log('response parsed', response.data);
+//     const handleMenuBotMessage1 = createChatBotMessage(
+//       response.data.message,
+//       {
+//         withAvatar: true
+//       }
+//     );
+//     const handleMenuBotMessage2 = createChatBotMessage(
+//       'Is there anything else I can help you with?',
+//       {
+//         withAvatar: true,
+//         widget: 'handle-anything-else-widget',
+//         delay: 1000
+//       }
+//     );
+
+//     setState((prev: any) => ({
+//       ...prev,
+//       messages: [
+//         ...prev.messages,
+//         handleMenuUserChip,
+//         handleMenuBotMessage1,
+//         handleMenuBotMessage2
+//       ]
+//     }));
+//   } catch (error) {
+//     console.error('Error occurred during API call:', error);
+//   }
+// };
+// #endregion  //*======== Handle Menu ===========
+
+// #region  //*=========== Handle Existing Order ===========
+// const handleExistingOrder = async () => {
+//   const handleExistingOrderUserChip = createClientMessage('Existing Order', {
+//     loading: true,
+//     widget: '',
+//     delay: 0,
+//     payload: ''
+//   });
+//   try {
+//     const response: AxiosResponse = await axios.post('/api/ask', {
+//       chosen_action: 'existingOrder',
+//       subdomain: store?.short_name,
+//       customer_id: customer?.id
+//     });
+//     console.log('response parsed', response.data);
+//     const handleExistingOrderBotMessage1 = createChatBotMessage(
+//       'If you have any questions or concerns about your order, please let us know.',
+//       {
+//         withAvatar: true,
+//         delay: 0
+//       }
+//     );
+//     const handleExistingOrderBotMessage2 = createChatBotMessage(
+//       'You can send us a message here, or contact us for a faster response:',
+//       {
+//         withAvatar: true,
+//         widget: 'handle-existing-orders-widget',
+//         delay: 1000
+//       }
+//     );
+
+//     const handleExistingOrderBotMessage3 = createChatBotMessage(
+//       'Is there anything else we can help you out with?',
+//       {
+//         withAvatar: true,
+//         widget: 'handle-anything-else-widget',
+//         delay: 1000
+//       }
+//     );
+
+//     setState((prev: any) => ({
+//       ...prev,
+//       messages: [
+//         ...prev.messages,
+//         handleExistingOrderUserChip,
+//         handleExistingOrderBotMessage1,
+//         handleExistingOrderBotMessage2,
+//         handleExistingOrderBotMessage3
+//       ]
+//     }));
+//   } catch (error) {
+//     console.error('Error occurred during API call:', error);
+//   }
+// };
+// #endregion  //*======== Handle Menu ===========
+
+// #region  //*=========== Handle Recommendations ===========
+// const handleRecommendations = async () => {
+//   console.log('Handle Recommendations');
+//   const response: AxiosResponse = await axios.post('/api/ask', {
+//     chosen_option: 'recommendation',
+//     // subdomain: store?.short_name,
+//     customer_id: customer?.id,
+//     customer_store: botData?.customer ?? null,
+//     store_id: store_id
+//   });
+//   console.log('response parsed', response.data);
+//   const handleRecommendedProductsUserChip = createClientMessage(
+//     'What are some product recommendations for me?',
+//     {
+//       loading: true,
+//       widget: '',
+//       delay: 0,
+//       payload: ''
+//     }
+//   );
+
+//   const handleRecommendedProductsMessage1 = createChatBotMessage(
+//     'Sure! Here some recommended products for you:',
+//     {
+//       withAvatar: true,
+//       widget: 'handle-recommended-products-widget',
+//       delay: 0
+//     }
+//   );
+
+//   const handleRecommendedProductsMessage2 = createChatBotMessage(
+//     'Is there anything else we can help you out with?',
+//     {
+//       withAvatar: true,
+//       widget: 'handle-anything-else-widget',
+//       delay: 1000
+//     }
+//   );
+//   setState((prev: any) => ({
+//     ...prev,
+//     context: response.data.context,
+//     messages: [
+//       ...prev.messages,
+//       // handleRecommendedProductsUserChip,
+//       handleRecommendedProductsMessage1,
+//       handleRecommendedProductsMessage2
+//     ]
+//   }));
+// };
+
+// #endregion  //*======== Handle Recommendations ===========
+
+// #region  //*=========== Handle Best Sellers ===========
+// const handleBestSellers = async () => {
+//   const response: AxiosResponse = await axios.post('/api/ask', {
+//     chosen_option: 'best_sellers',
+//     subdomain: store?.short_name,
+//     customer_id: customer?.id,
+//     store_id: store?.id,
+//     req_session: sessionId
+//   });
+//   console.log('response', response.data);
+//   const handleBestSellersUserChip = createClientMessage(
+//     'What are some of your best sellers?',
+//     {
+//       loading: true,
+//       widget: '',
+//       delay: 0,
+//       payload: ''
+//     }
+//   );
+
+//   const handleBestSellersMessage1 = createChatBotMessage(
+//     'Sure! Here are some of our best sellers:',
+//     {
+//       withAvatar: true,
+//       widget: 'handle-best-sellers-widget',
+//       delay: 0
+//     }
+//   );
+
+//   const handleBestSellersMessage2 = createChatBotMessage(
+//     'Is there anything else I can help you with?',
+//     {
+//       withAvatar: true,
+//       widget: 'handle-anything-else-widget',
+//       delay: 1000
+//     }
+//   );
+
+//   setState((prev: any) => ({
+//     ...prev,
+//     bestSellers: response.data.message,
+//     messages: [
+//       ...prev.messages,
+//       // handleBestSellersUserChip,
+//       handleBestSellersMessage1,
+//       handleBestSellersMessage2
+//     ]
+//   }));
+// };
+
+// #endregion  //*======== Handle Best Sellers ===========
+
+// #region  //*=========== Handle New Products ===========
+// const handleNewProducts = async () => {
+//   const response: AxiosResponse = await axios.post('/api/ask', {
+//     chosen_option: 'new_products',
+//     subdomain: store?.short_name,
+//     customer_id: customer?.id,
+//     store_id: store?.id,
+//     req_session: sessionId
+//   });
+
+//   console.log('response', response?.data);
+//   const handleNewProductsUserChip = createClientMessage(
+//     'Do you guys have any new products?',
+//     {
+//       loading: true,
+//       widget: '',
+//       delay: 0,
+//       payload: ''
+//     }
+//   );
+
+//   const handleNewProductsMessage1 = createChatBotMessage(
+//     'Of Course! Here are some of our new products:',
+//     {
+//       withAvatar: true,
+//       widget: 'handle-new-products-widget',
+//       delay: 0
+//     }
+//   );
+
+//   const handleNewProductsMessage2 = createChatBotMessage(
+//     'Is there anything else I can help you with?',
+//     {
+//       withAvatar: true,
+//       widget: 'handle-anything-else-widget',
+//       delay: 1000
+//     }
+//   );
+
+//   setState((prev: any) => ({
+//     ...prev,
+//     newProducts: response.data.message,
+//     context: response.data.context,
+//     messages: [
+//       ...prev.messages,
+//       // handleNewProductsUserChip,
+//       handleNewProductsMessage1,
+//       handleNewProductsMessage2
+//     ]
+//   }));
+// };
+
+// #endregion  //*======== Handle New Products ===========
+
+// #region  //*=========== Handle Deals ===========
+//   const handleDeals = async () => {
+//     const response: AxiosResponse = await axios.post('/api/ask', {
+//       chosen_action: 'specials',
+//       subdomain: store?.short_name,
+//       customer_id: customer?.id
+//     });
+//     console.log('response', response?.data);
+
+//     const handleDealsUserChip = createClientMessage('What deals do you have?', {
+//       loading: true,
+//       widget: '',
+//       delay: 0,
+//       payload: ''
+//     });
+
+//     const handleDealsBotMessage1 = createChatBotMessage(
+//       'Sure! Here are our current deals:',
+//       {
+//         withAvatar: true,
+//         widget: 'handle-deals-widget',
+//         delay: 0
+//       }
+//     );
+//     const handleDealsBotMessage2 = createChatBotMessage(
+//       'Is there anything else I can help you with?',
+//       {
+//         withAvatar: true,
+//         widget: 'handle-anything-else-widget',
+//         delay: 1000
+//       }
+//     );
+
+//     setState((prev: any) => ({
+//       ...prev,
+//       currentDeals: response?.data?.message,
+//       messages: [
+//         ...prev.messages,
+//         handleDealsUserChip,
+//         handleDealsBotMessage1,
+//         handleDealsBotMessage2
+//       ]
+//     }));
+//   };
+
+// #endregion  //*======== Handle Deals ===========
+
+// #region  //*=========== Handle Feedback ===========
+// const handleFeedback = () => {
+//   const handleFeedbackUserChip = createClientMessage('Offer Feedback', {
+//     loading: true,
+//     widget: '',
+//     delay: 0,
+//     payload: ''
+//   });
+//   const handleFeedbackBotMessage1 = createChatBotMessage(
+//     `Please let us know about your experience. We care and we want to know. 😊`,
+//     {
+//       widget: 'feedbackLink',
+//       loading: true,
+//       terminateLoading: true,
+//       withAvatar: true
+//     }
+//   );
+
+//   const handleFeedbackBotMessage2 = createChatBotMessage(
+//     'Is there anything else I can help you with?',
+//     {
+//       withAvatar: true,
+//       widget: 'handle-anything-else-widget',
+//       delay: 1000
+//     }
+//   );
+
+//   setState((prev: any) => ({
+//     ...prev,
+//     messages: [
+//       ...prev.messages,
+//       // handleFeedbackUserChip,
+//       handleFeedbackBotMessage1,
+//       handleFeedbackBotMessage2
+//     ]
+//   }));
+// };
+// #endregion  //*======== Handle Feedback ===========
+
+// #region  //*=========== Handle Anything Else Yes ===========
+// const handleAnythingElseYes = () => {
+//   const handleAnythingElseYesUserChip = createClientMessage('Yes', {
+//     loading: true,
+//     widget: '',
+//     delay: 0,
+//     payload: ''
+//   });
+//   const handleAnythingElseYesBotMessage1 = createChatBotMessage(
+//     `Great! We can help you with:`,
+//     {
+//       widget: 'general-overview-widget',
+//       withAvatar: true
+//     }
+//   );
+
+//   const handleAnythingElseYesBotMessage2 = createChatBotMessage(
+//     `You can also ask a question below`
+//   );
+
+//   setState((prev: any) => ({
+//     ...prev,
+//     messages: [
+//       ...prev.messages,
+//       handleAnythingElseYesUserChip,
+//       handleAnythingElseYesBotMessage1
+//     ]
+//   }));
+
+//   setTimeout(() => {
+//     setState((prev: any) => ({
+//       ...prev,
+//       messages: [...prev.messages, handleAnythingElseYesBotMessage2]
+//     }));
+//   }, 1000); // Add a 1-second delay (1000 milliseconds)
+// };
+// #endregion  //*======== Handle Anything Else Yes ===========
+
+// #region  //*=========== Handle Anything Else No ===========
+// const handleAnythingElseNo = () => {
+//   const handleAnythingElseNoUserChip = createClientMessage('No', {
+//     loading: true,
+//     widget: '',
+//     delay: 0,
+//     payload: ''
+//   });
+//   const handleAnythingElseNoBotMessage1 = createChatBotMessage(
+//     `Thanks for chatting with us! We're here if you need anything! See you next time.`
+//   );
+
+//   setState((prev: any) => ({
+//     ...prev,
+//     messages: [
+//       ...prev.messages,
+//       handleAnythingElseNoUserChip,
+//       handleAnythingElseNoBotMessage1
+//     ]
+//   }));
+// };
+// #endregion  //*======== Handle Anything Else No ===========
+
+// #region  //*=========== Handle Something Else ===========
+// const handleSomethingElse = () => {
+//   const handleAnythingElseYesUserChip = createClientMessage('Something Else', {
+//     loading: true,
+//     widget: '',
+//     delay: 0,
+//     payload: ''
+//   });
+//   const handleAnythingElseYesBotMessage1 = createChatBotMessage(
+//     `Please let us know how we can help?`
+//     // {
+//     //   widget: 'handle-something-else-widget',
+//     //   withAvatar: true
+//     // }
+//   );
+
+//   setState((prev: any) => ({
+//     ...prev,
+//     messages: [
+//       ...prev.messages,
+//       // handleAnythingElseYesUserChip,
+//       handleAnythingElseYesBotMessage1
+//     ]
+//   }));
+// };
+// #endregion  //*======== Handle Something Else ===========
+
+// #region  //*=========== Handle Something Else Contact Us ===========
+// const handleSomethingElseContactUs = () => {
+//   const handleSomethingElseContactUsUserChip = createClientMessage(
+//     'Contact Us',
+//     {
+//       loading: true,
+//       widget: '',
+//       delay: 0,
+//       payload: ''
+//     }
+//   );
+//   const handleSomethingElseContactUsBotMessage1 = createChatBotMessage(
+//     `Feel free to give us a call at ${botData.store?.phone} and we are glad to help you out! You can also reach us via email at ${botData.store?.email}`,
+//     {
+//       withAvatar: true
+//     }
+//   );
+
+//   const handleSomethingElseContactUsBotMessage2 = createChatBotMessage(
+//     'Is there anything else I can help you with?',
+//     {
+//       withAvatar: true,
+//       widget: 'handle-anything-else-widget',
+//       delay: 1000
+//     }
+//   );
+
+//   setState((prev: any) => ({
+//     ...prev,
+//     messages: [
+//       ...prev.messages,
+//       // handleSomethingElseContactUsUserChip,
+//       handleSomethingElseContactUsBotMessage1,
+//       handleSomethingElseContactUsBotMessage2
+//     ]
+//   }));
+// };
+// #endregion  //*======== Handle Something Else Contact Us ===========
+
+// #region  //*=========== Handle Something Else Main Menu ===========
+// const handleSomethingElseMainMenu = () => {
+//   const handleSomethingElseMainMenuUserChip = createClientMessage(
+//     `Main Menu`,
+//     {
+//       loading: true,
+//       widget: '',
+//       delay: 0,
+//       payload: ''
+//     }
+//   );
+//   const handleSomethingElseMainMenuBotMessage1 = createChatBotMessage(
+//     `Sure! Here's what I can help you with. You can also type a message in below`,
+//     {
+//       widget: 'general-overview-widget',
+//       withAvatar: true
+//     }
+//   );
+
+//   setState((prev: any) => ({
+//     ...prev,
+//     messages: [
+//       ...prev.messages,
+//       handleSomethingElseMainMenuUserChip,
+//       handleSomethingElseMainMenuBotMessage1
+//     ]
+//   }));
+// };
+// #endregion  //*=========== Handle Something Else All Set ===========
+
+// #region  //*=========== Handle Something Else All Set ===========
+// const handleSomethingElseAllSet = () => {
+//   const handleSomethingElseYesUserChip = createClientMessage(
+//     `I'm all set for now`,
+//     {
+//       loading: true,
+//       widget: '',
+//       delay: 0,
+//       payload: ''
+//     }
+//   );
+//   const handleSomethingElseAllSetBotMessage1 = createChatBotMessage(
+//     `Thanks for chatting with us! See you next time.`
+//   );
+
+//   setState((prev: any) => ({
+//     ...prev,
+//     messages: [
+//       ...prev.messages,
+//       handleSomethingElseYesUserChip,
+//       handleSomethingElseAllSetBotMessage1
+//     ]
+//   }));
+// };
+// #endregion  //*=========== Handle Something Else All Set ===========
