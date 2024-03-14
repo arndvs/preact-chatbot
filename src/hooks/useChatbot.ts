@@ -55,7 +55,6 @@ const useChatbot = ({
   }
 
   const initialState = getInitialState(config);
-
   if (messageHistory && Array.isArray(messageHistory)) {
     config.initialMessages = [...messageHistory];
   } else if (typeof messageHistory === 'string' && Boolean(messageHistory)) {
@@ -68,8 +67,6 @@ const useChatbot = ({
     messages: [...config.initialMessages],
     ...initialState
   });
-
-  console.log('useChatbot state', state);
 
   const messagesRef = useRef(state.messages);
   const stateRef = useRef();

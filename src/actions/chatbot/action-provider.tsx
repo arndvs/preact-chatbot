@@ -1,10 +1,5 @@
-import {
-  ComponentChildren,
-  FunctionalComponent,
-  cloneElement,
-  isValidElement
-} from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { ComponentChildren, cloneElement, isValidElement } from 'preact';
+import { useState } from 'preact/hooks';
 import HandleDefaultMessage from 'src/actions/chatbot/handle-messages/handle-default-message';
 import { useChatStream } from 'src/hooks/useChatStream';
 import { useLoadingMessageHandler } from 'src/hooks/useLoadingMessageHandler';
@@ -25,19 +20,12 @@ const ActionProvider = ({
   // handle loading messages state
   const [aiUserTestResponse, setAiUserTestResponse] =
     useState<string>('Loading ...');
-  // handle loading messages state
-  const [activeLoadingMessageIndex, setActiveLoadingMessageIndex] = useState<
-    number | null
-  >(null);
-
   // hook to handle loading messages
   useLoadingMessageHandler({
     loadingState,
     setState,
     aiUserTestResponse,
-    setAiUserTestResponse,
-    activeLoadingMessageIndex,
-    setActiveLoadingMessageIndex
+    setAiUserTestResponse
   });
 
   // instantiate the handleDefaultMessage
@@ -52,8 +40,7 @@ const ActionProvider = ({
   // get the chat stream store and session ID
   useChatStream({
     setAiUserTestResponse,
-    setLoadingState,
-    setActiveLoadingMessageIndex
+    setLoadingState
   });
 
   // convert the children prop to an array

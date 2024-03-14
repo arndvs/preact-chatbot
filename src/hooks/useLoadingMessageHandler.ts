@@ -5,16 +5,12 @@ interface UseLoadingMessageHandlerProps {
   aiUserTestResponse: string;
   setAiUserTestResponse: (value: string) => void;
   loadingState: boolean;
-  activeLoadingMessageIndex: number | null;
-  setActiveLoadingMessageIndex: (value: number | null) => void;
 }
 
 export const useLoadingMessageHandler = ({
   setState,
   aiUserTestResponse,
-  loadingState,
-  activeLoadingMessageIndex,
-  setActiveLoadingMessageIndex
+  loadingState
 }: UseLoadingMessageHandlerProps) => {
   useEffect(() => {
     if (loadingState) {
@@ -30,10 +26,4 @@ export const useLoadingMessageHandler = ({
       }));
     }
   }, [aiUserTestResponse]);
-
-  // return {
-  //   loadingState,
-  //   activeLoadingMessageIndex,
-  //   setActiveLoadingMessageIndex
-  // };
 };
