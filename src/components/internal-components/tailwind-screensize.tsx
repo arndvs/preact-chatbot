@@ -1,5 +1,5 @@
 const TailwindScreensizeComponent = () => {
-  return <>tailwind screensize</>;
+  return <div>tailwind screensize</div>;
 };
 
 export default TailwindScreensizeComponent;
