@@ -33,7 +33,6 @@ const ActionProvider = ({
   // hook to handle loading messages
   useLoadingMessageHandler({
     loadingState,
-    createChatBotMessage,
     setState,
     aiUserTestResponse,
     setAiUserTestResponse,
@@ -45,7 +44,6 @@ const ActionProvider = ({
   const { handleDefault } = HandleDefaultMessage({
     createChatBotMessage,
     setState,
-    loadingState,
     setLoadingState,
     aiUserTestResponse,
     setAiUserTestResponse

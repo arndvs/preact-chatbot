@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useEffect } from 'preact/hooks';
 
 interface UseLoadingMessageHandlerProps {
-  createChatBotMessage: any;
   setState: any;
   aiUserTestResponse: string;
   setAiUserTestResponse: (value: string) => void;
@@ -11,7 +10,6 @@ interface UseLoadingMessageHandlerProps {
 }
 
 export const useLoadingMessageHandler = ({
-  createChatBotMessage,
   setState,
   aiUserTestResponse,
   loadingState,
@@ -20,30 +18,22 @@ export const useLoadingMessageHandler = ({
 }: UseLoadingMessageHandlerProps) => {
   useEffect(() => {
     if (loadingState) {
-      const botMessage = createChatBotMessage(aiUserTestResponse, {
-        loading: activeLoadingMessageIndex === null ? true : false
-      });
-      setState((prev: any) => {
-        const newMessages = [...prev.messages];
-        if (activeLoadingMessageIndex !== null) {
-          // Update existing loading message
-          newMessages[activeLoadingMessageIndex] = botMessage;
-        } else {
-          // Add new loading message and track its index
-          newMessages.push(botMessage);
-          setActiveLoadingMessageIndex(newMessages.length - 1);
-        }
-        return { ...prev, messages: newMessages };
-      });
-    } else if (activeLoadingMessageIndex !== null) {
-      // Reset once streaming ends
-      setActiveLoadingMessageIndex(null);
+      setState((prev: any) => ({
+        messages: prev.messages.map((msg: any, index: number) =>
+          index === prev.messages.length - 1
+            ? {
+                ...msg,
+                message: aiUserTestResponse
+              }
+            : msg
+        )
+      }));
     }
-  }, [aiUserTestResponse, loadingState]);
+  }, [aiUserTestResponse]);
 
-  return {
-    loadingState,
-    activeLoadingMessageIndex,
-    setActiveLoadingMessageIndex
-  };
+  // return {
+  //   loadingState,
+  //   activeLoadingMessageIndex,
+  //   setActiveLoadingMessageIndex
+  // };
 };
