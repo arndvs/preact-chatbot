@@ -241,7 +241,7 @@ module.exports = ({ dev, prod }) => {
           .map((island) => {
             return `<div class="preview">
               <${island.elementName}></${island.elementName}>
-              <span style="position: absolute; top: -18px; font-size: 18px; font-weight: bold, color: rgba(0, 0, 0, 0.5);">${island.name} </span>
+              <span style="position: absolute; font-size: 18px; font-weight: bold, color: rgba(0, 0, 0, 0.5);">${island.name} Island</span>
             </div>`;
           })
           .join('')}
