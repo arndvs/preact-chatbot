@@ -6,6 +6,7 @@ import { createIslandWebComponent } from 'preact-island';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import ClientChatButtonComponent from 'src/components/client-components/client-chat-button-component';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
+import { useEffect } from 'preact/hooks';
 
 const islandName = 'client-chat-button-island';
 
@@ -17,15 +18,33 @@ export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
   //   useDynamicWebIsland(islandName);
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // Check if the element with the specified name already exists
-    if (!document.querySelector(islandName)) {
-      // If it doesn't exist, create a new element
-      const element = document.createElement(islandName);
-      // Append the newly created element to the end of the document body
-      document.body.appendChild(element);
+  useEffect(() => {
+    const appendElement = () => {
+      // Check if the element with the specified name already exists
+      if (!document.querySelector(islandName)) {
+        // If it doesn't exist, create a new element
+        const element = document.createElement(islandName);
+        // Find the <body> tag
+        const body = document.querySelector('body');
+        // Check if the body exists (DOM might not be ready yet)
+        if (body && body.lastElementChild) {
+          // Insert the newly created element right before the closing </body> tag
+          body.insertBefore(element, body.lastElementChild.nextSibling);
+        } else {
+          // If body is not found, log an error
+          console.error('Body element not found. Make sure the DOM is ready.');
+        }
+      }
+    };
+
+    // Execute appendElement function when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', appendElement);
+    } else {
+      appendElement();
     }
-  });
+  }, [islandName]);
+
   return (
     <ClientChatButtonComponent
       islandName={islandName}
