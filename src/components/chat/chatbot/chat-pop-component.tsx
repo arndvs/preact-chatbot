@@ -32,7 +32,7 @@ const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
   console.log('Panel data', data);
   return (
     <>
-      {data ? (
+      {data && (
         <ChatbotContextProvider
           storeName={data.store_name}
           storeLogo={data.store_logo}
@@ -51,8 +51,6 @@ const ChatPopComponent = ({ islandName, storeId }: ChatPopComponentProps) => {
             islandName={islandName}
           />
         </ChatbotContextProvider>
-      ) : (
-        <div>Waiting on data</div>
       )}
     </>
   );
