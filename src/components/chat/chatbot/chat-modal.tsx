@@ -39,21 +39,23 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
             data-testId="overlay-content"
             className={useClassNames(
               'z-[888889] border-none fixed flex flex-col justify-between shadow-custom rounded-lg overflow-hidden bg-white',
-              'lg:w-[28rem] lg:max-h-[80vh] lg:bottom-20 lg:right-4', // Large screens
-              'md:w-[24rem] md:max-h-[70vh] md:bottom-20 md:right-4', // Medium screens
-              'sm:w-[20rem] sm:max-h-[60vh] sm:bottom-20 sm:right-4', // Small screens
+              'lg:w-[28rem] lg:max-h-[86vh] lg:bottom-20 lg:right-4', // Large screens
+              'md:w-[28rem] md:max-h-[86vh] md:bottom-20 md:right-4', // Medium screens
+              'sm:w-[28rem] sm:max-h-[86vh] sm:bottom-20 sm:right-4', // Small screens
               'xs:w-full xs:h-full xs:bottom-0 xs:right-0', // Extra small screens (mobile)
               'max-w-full max-h-full bottom-0 right-0' // Extra small screens (mobile)
             )}
           >
-            {/* Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider */}
-            <Chatbot
-              config={chatbotConfig}
-              messageParser={MessageParser}
-              actionProvider={ActionProvider}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
+            <div className="h-screen max-h-[100dvh]">
+              {/* Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider */}
+              <Chatbot
+                config={chatbotConfig}
+                messageParser={MessageParser}
+                actionProvider={ActionProvider}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
+            </div>
           </Box>
         </ChatOverlay>
       )}

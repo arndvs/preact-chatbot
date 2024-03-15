@@ -8,7 +8,7 @@ const ChatbotHeaderContainer = ({ setIsOpen }: ChatbotHeaderContainerProps) => {
   return (
     <>
       <div
-        className="w-full px-2"
+        className="w-full px-3"
         style={{ backgroundColor: brandColor }}
       >
         <div
