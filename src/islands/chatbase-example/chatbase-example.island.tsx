@@ -4,7 +4,7 @@ import 'src/styles/reset.css';
 import { createIslandWebComponent } from 'preact-island';
 
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import ChatbaseExampleComponent from 'src/components/internal-components/chatbase-example';
+import ChatbaseExampleComponent from 'src/components/internal-components/chatbase-example/chatbase-example';
 import { useEffect, useRef } from 'preact/hooks';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 
@@ -18,7 +18,12 @@ export const ChatbaseExampleIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
 
-  return <ChatbaseExampleComponent data-testid="ChatbaseExampleIsland" />;
+  return (
+    <ChatbaseExampleComponent
+      data-testid="ChatbaseExampleIsland"
+      islandName={islandName}
+    />
+  );
 };
 
 console.log('document.currentScript', document.currentScript);

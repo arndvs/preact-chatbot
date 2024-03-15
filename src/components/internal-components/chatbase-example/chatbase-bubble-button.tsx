@@ -7,13 +7,13 @@ interface ChatBubbleButtonProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
+const ChatbaseBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
   const { brandColor } = useChatbotContext();
   return (
     <>
       <div className="cursor-pointer">
         <button
-          className="inline-flex items-center justify-center fixed z-[888888] text-white rounded-full shadow-sm h-12 w-12 cursor-pointer hover:duration-200 hover:scale-105 bottom-4 right-4 hover:shadow-md hover:contrast-150"
+          className="inline-flex items-center justify-center fixed z-[888888] text-white rounded-full shadow-sm h-12 w-12 cursor-pointer hover:duration-200 hover:scale-105 bottom-4 left-4 hover:shadow-md hover:contrast-150"
           onClick={() => setIsOpen(!isOpen)}
           style={{
             backgroundColor: brandColor ?? '#e5e5e5'
@@ -38,4 +38,4 @@ const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
   );
 };
 
-export default ChatBubbleButton;
+export default ChatbaseBubbleButton;
