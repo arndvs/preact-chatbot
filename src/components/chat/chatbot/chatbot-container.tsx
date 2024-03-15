@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 
 import { scrollIntoView } from 'src/actions/chatbot/scroll-into-view';
+import ChatbotFooterContainer from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-footer-container';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot/chatbot-header-container/chatbot-header-container';
 
 import ChatbotInputContainer from 'src/components/chat/chatbot/chatbot-input-container';
@@ -29,8 +30,6 @@ const ChatbotContainer = ({
   widgetRegistry
 }: IChatbotContainerProps) => {
   const { messages } = state;
-
-  const [input, setInputValue] = useState('');
 
   useEffect(() => {
     if (disableScrollToBottom) return;
@@ -61,17 +60,14 @@ const ChatbotContainer = ({
             state={state}
             widgetRegistry={widgetRegistry}
           />
-          <ChatbotInputContainer
+          <ChatbotFooterContainer
             customStyles={customStyles}
-            input={input}
             messageContainerRef={messageContainerRef}
             messageParser={messageParser}
             parse={parse}
             setState={setState}
-            setInputValue={setInputValue}
             validator={validator}
           />
-          <ChatbotPoweredBy />
         </div>
       </div>
     </>
