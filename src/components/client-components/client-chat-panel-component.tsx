@@ -25,7 +25,6 @@ const ClientChatPanelComponent = ({
   storeId
 }: ChatPanelComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
-
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
 
@@ -44,6 +43,7 @@ const ClientChatPanelComponent = ({
           storeLogo={data.store_logo}
           brandColor={data.brand_color}
           session_id={data.session_id}
+          customer_store_id={data.customer_store_id}
           store_id={idToUse}
           placeholderText={'Ask a question...'}
         >

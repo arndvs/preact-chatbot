@@ -31,6 +31,7 @@ const ClientChatButtonComponent = ({
           storeLogo={data.store_logo}
           brandColor={data.brand_color}
           session_id={data.session_id}
+          customer_store_id={data.customer_store_id}
           store_id={idToUse}
           placeholderText={'Ask a question...'}
         >

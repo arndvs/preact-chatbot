@@ -17,7 +17,7 @@ const HandleDefaultMessage = ({
   aiUserTestResponse,
   setAiUserTestResponse
 }: ChatbotHandlerProps) => {
-  const { session_id, store_id } = useChatbotContext();
+  const { session_id, store_id, customer_store_id } = useChatbotContext();
 
   const handleDefault = async (message: string) => {
     setLoadingState(true);
@@ -39,7 +39,7 @@ const HandleDefaultMessage = ({
         {
           question: message,
           store_id: store_id,
-          customer_id: 79741,
+          customer_id: customer_store_id,
           req_session: session_id,
           greeting: false
         }
