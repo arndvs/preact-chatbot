@@ -61,10 +61,10 @@ const ChatbotInputContainer = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex items-center justify-between px-4 py-3 border-t">
+      <div className="flex items-center justify-between px-2 py-2 bg-white border-t">
         <div className="flex items-center justify-between w-full leading-none">
           <input
-            className="w-full px-4 py-3 text-sm border-none rounded-lg focus:outline-none focus:ring-none "
+            className="w-full px-4 py-3 text-sm bg-red-500 border-none focus:outline-none focus:ring-none"
             placeholder={placeholder}
             value={input}
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +79,7 @@ const ChatbotInputContainer = ({
             title={placeholder}
           />
         </div>
-        <div className="flex items-end justify-between leading-none">
+        <div className="flex items-end justify-between leading-none bg-blue-500">
           <button
             onClick={handleSubmit}
             disabled={!input.trim()}
