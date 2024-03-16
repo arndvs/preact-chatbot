@@ -8,7 +8,7 @@ import Chatbot from 'src/components/chat/chatbot/chatbot';
 import useClassNames from 'src/hooks/useClassNames';
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
 
-const ChatbasePanel = ({}) => {
+const ChatbasePanel = () => {
   return (
     <>
       {/* chatbot */}
@@ -145,7 +145,7 @@ const ChatbasePanel = ({}) => {
                     className="ml-1 font-semibold group-[.cb-dark]:text-[#f1f1f0] group-[.cb-light]:text-[#141410]"
                     href="/"
                   >
-                    Chatbase.co
+                    hello
                   </a>
                 </p>
               </div>

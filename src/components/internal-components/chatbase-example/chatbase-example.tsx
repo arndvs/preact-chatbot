@@ -26,7 +26,7 @@ const ChatbaseExample = ({ islandName }: ChatbaseExampleProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="flex justify-start w-full p-12 bg-blue-500">
+      <div className="flex justify-start w-full">
         <ChatbaseBubbleButton
           isOpen={isOpen}
           setIsOpen={setIsOpen}

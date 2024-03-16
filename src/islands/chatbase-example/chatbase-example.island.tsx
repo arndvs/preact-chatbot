@@ -10,7 +10,7 @@ import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 
 const islandName = 'chatbase-example-island';
 
-const storeId = document.currentScript?.getAttribute('data-store-id') as
+const storeId = document.currentScript?.getAttribute('chatbotId') as
   | string
   | undefined;
 

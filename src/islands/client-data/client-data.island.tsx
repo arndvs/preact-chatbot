@@ -9,7 +9,7 @@ import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 
 const islandName = 'client-data-island';
 
-const storeId = document.currentScript?.getAttribute('data-store-id') as
+const storeId = document.currentScript?.getAttribute('chatbotId') as
   | string
   | undefined;
 
