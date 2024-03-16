@@ -50,7 +50,7 @@ const OtherModal = ({ isOpen, setIsOpen, islandName }: OtherModalProps) => {
           >
             {/* chatbot panel */}
             <div
-              className="h-screen max-h-[86dvh]"
+              className="h-screen sm:max-h-[86dvh]"
               title="Chatbot"
             >
               <div className="flex flex-col h-full overflow-hidden bg-white shrink-0 group cb-light">
