@@ -18,6 +18,8 @@ const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
           style={{
             backgroundColor: brandColor ?? '#e5e5e5'
           }}
+          aria-label={isOpen ? 'Close Chat' : 'Open Chat'}
+          title={isOpen ? 'Close Chat' : 'Open Chat'}
         >
           <div className="flex items-center justify-center w-full h-full">
             {!isOpen ? (

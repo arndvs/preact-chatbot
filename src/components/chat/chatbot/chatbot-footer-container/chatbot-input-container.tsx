@@ -60,55 +60,44 @@ const ChatbotInputContainer = ({
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <div className="flex border-t px-4 py-3 group-[.cb-dark]:border-[#3f3f46] group-[.cb-light]:border-[#e4e4e7]">
-          <div className="flex items-center w-full leading-none">
-            <input
-              className="w-full px-4 py-3 text-sm border-none rounded-bl-lg focus:outline-none focus:ring-none "
-              placeholder={placeholder}
-              value={input}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                const target = e.target as HTMLInputElement;
-                setInputValue(target.value);
-              }}
-            />
-            {/* <input
-              required
-              maxLength={4000}
-              rows={1}
-              tabIndex={0}
-              style={{ height: '24px' }}
-              className="mr-3 max-h-36 w-full resize-none bg-transparent pr-3 leading-[24px] focus:outline-none focus:ring-0 focus-visible:ring-0 group-[.cb-dark]:text-white group-[.cb-light]:text-black"
-              aria-label={placeholder}
-              title={placeholder}
-              placeholder={placeholder}
-              value={input}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                const target = e.target as HTMLInputElement;
-                setInputValue(target.value);
-              }}
-            /> */}
-          </div>
-          <div className="flex items-end leading-none">
-            <button
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-50 h-9 p-1 group-[.cb-dark]:text-zinc-300 group-[.cb-light]:text-zinc-700"
-              type="submit"
-              aria-label="Send Message"
-              title="Send Message"
-              onClick={handleSubmit}
-              disabled={!input.trim()}
-            >
-              <AirplaneIcon
-                className={useClassNames(
-                  'w-6 h-6 ',
-                  !input ? 'text-gray-300' : 'text-gray-600 hover:text-gray-800'
-                )}
-              />
-            </button>
-          </div>
+    <form onSubmit={handleSubmit}>
+      <div className="flex items-center justify-between px-4 py-3 bg-red-500 border-t">
+        <div className="flex items-center justify-between w-full leading-none bg-green-500">
+          <input
+            className="w-full px-4 py-3 text-sm border-none rounded-lg focus:outline-none focus:ring-none "
+            placeholder={placeholder}
+            value={input}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              const target = e.target as HTMLInputElement;
+              setInputValue(target.value);
+            }}
+            required
+            maxLength={4000}
+            rows={1}
+            tabIndex={0}
+            aria-label={placeholder}
+            title={placeholder}
+          />
         </div>
-        {/* <div className="flex items-center w-full border-t border-gray-200 ">
+        <div className="flex items-end justify-between leading-none bg-blue-400">
+          <button
+            onClick={handleSubmit}
+            disabled={!input.trim()}
+            className="inline-flex items-center justify-center p-1 text-sm font-medium transition-colors rounded-md whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-50 h-9"
+            type="submit"
+            aria-label="Send Message"
+            title="Send Message"
+          >
+            <AirplaneIcon
+              className={useClassNames(
+                'w-6 h-6 ',
+                !input ? 'text-gray-300' : 'text-gray-600 hover:text-gray-800'
+              )}
+            />
+          </button>
+        </div>
+      </div>
+      {/* <div className="flex items-center w-full border-t border-gray-200 ">
           <div class="flex gap-2 overflow-x-auto p-3"></div>
 
           <input
@@ -133,8 +122,7 @@ const ChatbotInputContainer = ({
             />
           </button>
         </div> */}
-      </form>
-    </>
+    </form>
   );
 };
 
