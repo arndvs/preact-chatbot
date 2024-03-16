@@ -42,7 +42,7 @@ const ChatbotContainer = ({
         className="h-screen sm:max-h-[86dvh]"
         title="Chatbot"
       >
-        <div className="flex flex-col flex-auto h-full overflow-hidden bg-[#f1f3f7] shrink-0 group cb-light">
+        <div className="flex flex-col flex-auto h-full overflow-hidden bg-gray-50 shrink-0 group cb-light">
           <ChatbotHeaderContainer
             actionProvider={actionProvider}
             customComponents={customComponents}
