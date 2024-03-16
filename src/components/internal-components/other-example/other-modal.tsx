@@ -250,7 +250,7 @@ const OtherModal = ({ isOpen, setIsOpen, islandName }: OtherModalProps) => {
                           className="ml-1 font-semibold group-[.cb-dark]:text-[#f1f1f0] group-[.cb-light]:text-[#141410]"
                           href="/"
                         >
-                          Chatbase.co
+                          Other
                         </a>
                       </p>
                     </div>
