@@ -4,9 +4,9 @@ import { scrollIntoView } from 'src/actions/chatbot/scroll-into-view';
 import ChatbotFooterContainer from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-footer-container';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot/chatbot-header-container/chatbot-header-container';
 
-import ChatbotInputContainer from 'src/components/chat/chatbot/chatbot-input-container';
-import ChatbotMessageRetriever from 'src/components/chat/chatbot/chatbot-message-retriever';
-import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-powered-by';
+import ChatbotInputContainer from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-input-container';
+import ChatbotMessageRetriever from 'src/components/chat/chatbot/chatbot-message-container/chatbot-message-retriever';
+import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-powered-by';
 
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 
@@ -39,7 +39,7 @@ const ChatbotContainer = ({
   return (
     <>
       <div
-        className="h-screen max-h-[100dvh]"
+        className="h-screen sm:max-h-[86dvh]"
         title="Chatbot"
       >
         <div className="flex flex-col flex-auto h-full overflow-hidden bg-[#f1f3f7] shrink-0 group cb-light">
