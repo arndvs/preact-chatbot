@@ -65,6 +65,15 @@ const ChatbotInputContainer = ({
         <div className="flex border-t px-4 py-3 group-[.cb-dark]:border-[#3f3f46] group-[.cb-light]:border-[#e4e4e7]">
           <div className="flex items-center w-full leading-none">
             <input
+              className="w-full px-4 py-3 text-sm border-none rounded-bl-lg focus:outline-none focus:ring-none "
+              placeholder={placeholder}
+              value={input}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                const target = e.target as HTMLInputElement;
+                setInputValue(target.value);
+              }}
+            />
+            {/* <input
               required
               maxLength={4000}
               rows={1}
@@ -79,7 +88,7 @@ const ChatbotInputContainer = ({
                 const target = e.target as HTMLInputElement;
                 setInputValue(target.value);
               }}
-            />
+            /> */}
           </div>
           <div className="flex items-end leading-none">
             <button

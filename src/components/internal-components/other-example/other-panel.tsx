@@ -66,15 +66,15 @@ const OtherPanel = () => {
           </div>
           {/* / chatbot header */}
           {/* chatbot message container */}
-          <div className="h-full overflow-auto">
-            <div className="h-full react-scroll-to-bottom--css-qqqda-79elbk">
-              <div className="react-scroll-to-bottom--css-qqqda-1n7m0yu">
+          <div className="h-full overflow-auto bg-purple-100">
+            <div className="h-full bg-green-100 react-scroll-to-bottom--css-qqqda-79elbk">
+              <div className="bg-orange-100 react-scroll-to-bottom--css-qqqda-1n7m0yu">
                 <div
-                  className="px-3 pt-4"
+                  className="px-3 pt-4 bg-blue-100"
                   tabIndex={0}
                 >
                   <div>
-                    <div className="flex justify-start mr-8">
+                    <div className="flex justify-start mr-8 bg-yellow-500">
                       <div className="mb-3 max-w-prose overflow-auto rounded-lg px-4 py-3 group-[.cb-dark]:bg-[#3f3f46] group-[.cb-light]:bg-[#f1f1f0] group-[.cb-dark]:text-white group-[.cb-light]:text-black">
                         <div className="flex flex-col items-start gap-4 break-words">
                           <div className="w-full prose text-left break-words text-inherit dark:prose-invert">

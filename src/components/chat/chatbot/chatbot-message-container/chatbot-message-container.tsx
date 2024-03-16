@@ -62,7 +62,7 @@ const ChatbotMessageContainer = ({
   return (
     <>
       {show && (
-        <div className="flow-root bg-red-500">
+        <div className="flow-root ">
           <div className="relative">
             <div className="relative flex items-start space-x-3">
               {withAvatar && customComponents?.botAvatar ? (

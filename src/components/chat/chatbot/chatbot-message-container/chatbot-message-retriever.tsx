@@ -158,11 +158,20 @@ const ChatbotMessageRetriever = ({
   };
 
   return (
-    <div ref={messageContainerRef}>
-      {typeof messageHistory === 'string' && Boolean(messageHistory) ? (
-        <div dangerouslySetInnerHTML={{ __html: messageHistory as string }} />
-      ) : null}
-      {renderMessages()}
+    <div
+      ref={messageContainerRef}
+      className="h-full overflow-auto bg-purple-100"
+    >
+      <div className="h-full bg-green-100 react-scroll-to-bottom--css-qqqda-79elbk">
+        <div className="bg-orange-100 react-scroll-to-bottom--css-qqqda-1n7m0yu">
+          {typeof messageHistory === 'string' && Boolean(messageHistory) ? (
+            <div
+              dangerouslySetInnerHTML={{ __html: messageHistory as string }}
+            />
+          ) : null}
+          {renderMessages()}
+        </div>
+      </div>
     </div>
   );
 };
