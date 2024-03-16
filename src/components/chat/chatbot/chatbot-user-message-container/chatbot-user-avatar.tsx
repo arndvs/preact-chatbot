@@ -12,7 +12,7 @@ const ChatbotUserAvatar = ({ customComponents }: ChatbotUserAvatarProps) => {
     return callIfExists(customComponents.userAvatar);
   } else {
     return (
-      <div className="flex items-center justify-center w-10 h-10 ml-3 bg-red-700 rounded-full">
+      <div className="flex items-center justify-center w-10 h-10 ml-3 rounded-full">
         <UserIcon className="w-4 h-4 text-white" />
       </div>
     );
