@@ -93,6 +93,7 @@ const OtherPanel = () => {
           <div className=" bg-inherit">
             <form>
               <div className="flex gap-2 p-3 overflow-x-auto"></div>
+              {/* input form */}
               <div className="flex border-t px-4 py-3 group-[.cb-dark]:border-[#3f3f46] group-[.cb-light]:border-[#e4e4e7]">
                 <div className="flex items-center w-full leading-none">
                   <textarea
@@ -127,6 +128,8 @@ const OtherPanel = () => {
                   </button>
                 </div>
               </div>
+              {/* / input form */}
+              {/* powered by */}
               <div className="flex items-center justify-center gap-3 px-4 pt-1 pb-3">
                 <p className="grow text-nowrap text-center text-xs group-[.cb-dark]:text-[#b4b4b5] group-[.cb-light]:text-[#3f3f46]">
                   Powered By
@@ -139,6 +142,7 @@ const OtherPanel = () => {
                   </a>
                 </p>
               </div>
+              {/* / powered by */}
             </form>
           </div>
           {/* chatbot footer */}

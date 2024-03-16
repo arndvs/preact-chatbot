@@ -4,9 +4,9 @@ import { scrollIntoView } from 'src/actions/chatbot/scroll-into-view';
 import ChatbotFooterContainer from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-footer-container';
 import ChatbotHeaderContainer from 'src/components/chat/chatbot/chatbot-header-container/chatbot-header-container';
 
-import ChatbotInputContainer from 'src/components/chat/chatbot/chatbot-input-container';
-import ChatbotMessageRetriever from 'src/components/chat/chatbot/chatbot-message-retriever';
-import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-powered-by';
+import ChatbotInputContainer from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-input-container';
+import ChatbotMessageRetriever from 'src/components/chat/chatbot/chatbot-message-container/chatbot-message-retriever';
+import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-powered-by';
 
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 
