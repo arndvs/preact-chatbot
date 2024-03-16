@@ -19,7 +19,7 @@ const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
             backgroundColor: brandColor ?? '#e5e5e5'
           }}
         >
-          <div className="flex items-center justify-center w-full h-full bg-red-500">
+          <div className="flex items-center justify-center w-full h-full">
             {!isOpen ? (
               <ChatIcon
                 className="w-6 h-6"

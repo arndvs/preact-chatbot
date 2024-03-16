@@ -39,7 +39,7 @@ const ChatbaseModal = ({
           name="chat-overlay"
           parent={islandName}
         >
-          <div
+          {/* <div
             className="h-screen max-h-[100dvh]"
             title="Chatbot"
           >
@@ -170,7 +170,7 @@ const ChatbaseModal = ({
                 </form>
               </div>
             </div>
-          </div>
+          </div> */}
           <Box
             data-testId="overlay-content"
             className={useClassNames(
