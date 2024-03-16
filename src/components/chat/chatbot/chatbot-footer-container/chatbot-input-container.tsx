@@ -79,14 +79,16 @@ const ChatbotInputContainer = ({
             title={placeholder}
           />
         </div>
-        <div className="flex leading-none ">
+        <div
+          className="flex leading-none "
+          aria-label="Send Message"
+          title="Send Message"
+        >
           <button
             onClick={handleSubmit}
             disabled={!input.trim()}
             className="inline-flex items-center justify-end p-1 text-sm font-medium transition-colors rounded-md whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-50 h-9"
             type="submit"
-            aria-label="Send Message"
-            title="Send Message"
           >
             <AirplaneIcon
               className={useClassNames(

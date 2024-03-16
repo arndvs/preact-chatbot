@@ -62,24 +62,29 @@ const ChatbotMessageContainer = ({
   return (
     <>
       {show && (
-        <div>
-          {withAvatar && customComponents?.botAvatar ? (
-            callIfExists(customComponents.botAvatar)
-          ) : (
-            <ChatbotMessageAvatar />
-          )}
+        <div
+          className="px-3"
+          tabIndex={0}
+        >
+          <div>
+            {withAvatar && customComponents?.botAvatar ? (
+              callIfExists(customComponents.botAvatar)
+            ) : (
+              <ChatbotMessageAvatar />
+            )}
 
-          {/* {customComponents?.botChatMessage ? (
-                callIfExists(customComponents.botChatMessage, {
-                  message,
-                  loader: <ChatbotLoadingDots />
-                })
-              ) : ( */}
-          <ChatbotMessageComponent
-            loading={loading}
-            message={message}
-          />
-          {/* )} */}
+            {customComponents?.botChatMessage ? (
+              callIfExists(customComponents.botChatMessage, {
+                message,
+                loader: <ChatbotLoadingDots />
+              })
+            ) : (
+              <ChatbotMessageComponent
+                loading={loading}
+                message={message}
+              />
+            )}
+          </div>
         </div>
       )}
     </>
