@@ -39,7 +39,7 @@ const ChatbotContainer = ({
   return (
     <>
       <div
-        className="h-screen max-h-[100dvh]"
+        className="h-screen max-h-[86dvh]"
         title="Chatbot"
       >
         <div className="flex flex-col flex-auto h-full overflow-hidden bg-[#f1f3f7] shrink-0 group cb-light">
