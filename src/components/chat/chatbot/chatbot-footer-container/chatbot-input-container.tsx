@@ -79,7 +79,7 @@ const ChatbotInputContainer = ({
             title={placeholder}
           />
         </div>
-        <div className="flex items-end justify-between leading-none">
+        <div className="flex items-end justify-between leading-none bg-blue-500">
           <button
             onClick={handleSubmit}
             disabled={!input.trim()}
