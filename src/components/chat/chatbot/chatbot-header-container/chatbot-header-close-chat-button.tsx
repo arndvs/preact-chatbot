@@ -8,7 +8,7 @@ const ChatbotHeaderCloseChatButton = ({
   setIsOpen
 }: ChatbotHeaderCloseButton) => {
   return (
-    <div>
+    <>
       <button
         type="button"
         className="inline-flex items-center justify-center p-1 text-white hover:duration-200 hover:scale-110 hover:contrast-150"
@@ -19,7 +19,7 @@ const ChatbotHeaderCloseChatButton = ({
           aria-hidden="true"
         />
       </button>
-    </div>
+    </>
   );
 };
 

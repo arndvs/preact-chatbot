@@ -46,16 +46,14 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
               'max-w-full max-h-full bottom-0 right-0' // Extra small screens (mobile)
             )}
           >
-            <div className="h-screen max-h-[100dvh]">
-              {/* Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider */}
-              <Chatbot
-                config={chatbotConfig}
-                messageParser={MessageParser}
-                actionProvider={ActionProvider}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-              />
-            </div>
+            {/* Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider */}
+            <Chatbot
+              config={chatbotConfig}
+              messageParser={MessageParser}
+              actionProvider={ActionProvider}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
           </Box>
         </ChatOverlay>
       )}

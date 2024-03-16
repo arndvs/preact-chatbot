@@ -7,7 +7,7 @@ interface ChatBubbleButtonProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-const ChatbaseBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
+const OtherBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
   const { brandColor } = useChatbotContext();
   return (
     <>
@@ -38,4 +38,4 @@ const ChatbaseBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
   );
 };
 
-export default ChatbaseBubbleButton;
+export default OtherBubbleButton;

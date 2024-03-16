@@ -4,30 +4,26 @@ import 'src/styles/reset.css';
 import { createIslandWebComponent } from 'preact-island';
 
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import ChatbaseExampleComponent from 'src/components/internal-components/chatbase-example/chatbase-example';
+import OtherExampleComponent from 'src/components/internal-components/other-example/other-example';
 import { useEffect, useRef } from 'preact/hooks';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
+import OtherPanel from 'src/components/internal-components/other-example/other-panel';
 
-const islandName = 'chatbase-example-island';
+const islandName = 'other-panel-island';
 
 const storeId = document.currentScript?.getAttribute('chatbotId') as
   | string
   | undefined;
 
-export const ChatbaseExampleIsland = () => {
+export const OtherPanelIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
 
-  return (
-    <ChatbaseExampleComponent
-      data-testid="ChatbaseExampleIsland"
-      islandName={islandName}
-    />
-  );
+  return <OtherPanel data-testid="OtherPanelIsland" />;
 };
 
 console.log('document.currentScript', document.currentScript);
-const island = createIslandWebComponent(islandName, ChatbaseExampleIsland);
+const island = createIslandWebComponent(islandName, OtherPanelIsland);
 island.render({
   selector: islandName
 });

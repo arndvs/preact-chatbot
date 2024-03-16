@@ -7,9 +7,9 @@ import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import Chatbot from 'src/components/chat/chatbot/chatbot';
 import useClassNames from 'src/hooks/useClassNames';
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
-import ChatbasePanel from 'src/components/internal-components/chatbase-example/chatbase-panel';
+import OtherPanel from 'src/components/internal-components/other-example/other-panel';
 
-interface ChatbaseModalProps {
+interface OtherModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   islandName: string;
@@ -26,11 +26,7 @@ const ChatOverlay: FC<{ name: string; parent: string }> = ({
   return <WebComponentPortal name={name}>{children}</WebComponentPortal>;
 };
 
-const ChatbaseModal = ({
-  isOpen,
-  setIsOpen,
-  islandName
-}: ChatbaseModalProps) => {
+const OtherModal = ({ isOpen, setIsOpen, islandName }: OtherModalProps) => {
   const chatbotConfig = useChatbotConfig();
 
   return (
@@ -51,7 +47,7 @@ const ChatbaseModal = ({
               'max-w-full max-h-full bottom-0 right-0' // Extra small screens (mobile)
             )}
           >
-            <ChatbasePanel />
+            <OtherPanel />
           </Box>
         </ChatOverlay>
       )}
@@ -74,4 +70,4 @@ const ChatbaseModal = ({
   );
 };
 
-export default ChatbaseModal;
+export default OtherModal;

@@ -1,14 +1,4 @@
-import { WebComponentPortal } from 'preact-island';
-import { FC } from 'preact/compat';
-import ActionProvider from 'src/actions/chatbot/action-provider';
-import MessageParser from 'src/actions/chatbot/message-parser';
-import { Box } from 'src/components/ui';
-import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import Chatbot from 'src/components/chat/chatbot/chatbot';
-import useClassNames from 'src/hooks/useClassNames';
-import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
-
-const ChatbasePanel = () => {
+const OtherPanel = () => {
   return (
     <>
       {/* chatbot */}
@@ -99,7 +89,7 @@ const ChatbasePanel = () => {
             </div>
           </div>
           {/* / chatbot message container */}
-          {/* chatbot header */}
+          {/* chatbot footer */}
           <div className=" bg-inherit">
             <form>
               <div className="flex gap-2 p-3 overflow-x-auto"></div>
@@ -159,4 +149,4 @@ const ChatbasePanel = () => {
   );
 };
 
-export default ChatbasePanel;
+export default OtherPanel;
