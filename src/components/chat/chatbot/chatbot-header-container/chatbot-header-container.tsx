@@ -1,5 +1,6 @@
 import ChatbotHeaderAvatar from 'src/components/chat/chatbot/chatbot-header-container/chatbot-header-avatar';
 import ChatbotHeaderCloseChatButton from 'src/components/chat/chatbot/chatbot-header-container/chatbot-header-close-chat-button';
+import ChatBotHeaderResetChatButton from 'src/components/chat/chatbot/chatbot-header-container/chatbot-header-reset-chat-button';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { ChatbotHeaderContainerProps } from 'src/types/IChatbotWidget';
 
@@ -18,7 +19,7 @@ const ChatbotHeaderContainer = ({ setIsOpen }: ChatbotHeaderContainerProps) => {
         >
           <ChatbotHeaderAvatar />
           <div className="flex items-center justify-center">
-            {/* <BotHeaderResetChatButton /> */}
+            <ChatBotHeaderResetChatButton />
             <ChatbotHeaderCloseChatButton setIsOpen={setIsOpen} />
           </div>
         </div>
