@@ -12,7 +12,6 @@
 //   const botData = useContext(ChatBotContext);
 
 //   const brandColor = botData?.store?.brand_color;
-//   console.log('newProducts', newProducts);
 //   return (
 //     <div>
 //       {newProducts === null ? (

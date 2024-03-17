@@ -16,7 +16,6 @@ export const TailwindIndicatorIsland = () => {
   return <TailwindIndicatorComponent data-testid="TailwindIndicatorIsland" />;
 };
 
-console.log('document.currentScript', document.currentScript);
 const island = createIslandWebComponent(islandName, TailwindIndicatorIsland);
 island.render({
   selector: islandName

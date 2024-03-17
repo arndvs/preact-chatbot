@@ -13,6 +13,10 @@ const storeId = document.currentScript?.getAttribute('chatbotId') as
   | string
   | undefined;
 
+const domain = document.currentScript?.getAttribute('domain') as
+  | string
+  | undefined;
+
 export const ClientChatPanelIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
@@ -23,12 +27,12 @@ export const ClientChatPanelIsland = () => {
         islandName={islandName}
         data-testid="ClientChatPanelIsland"
         storeId={storeId}
+        domain={domain}
       />
     </>
   );
 };
 
-console.log('document.currentScript', document.currentScript);
 const island = createIslandWebComponent(islandName, ClientChatPanelIsland);
 island.render({
   selector: islandName

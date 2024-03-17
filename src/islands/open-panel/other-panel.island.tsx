@@ -22,7 +22,6 @@ export const OtherPanelIsland = () => {
   return <OtherPanel data-testid="OtherPanelIsland" />;
 };
 
-console.log('document.currentScript', document.currentScript);
 const island = createIslandWebComponent(islandName, OtherPanelIsland);
 island.render({
   selector: islandName

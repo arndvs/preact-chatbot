@@ -25,7 +25,6 @@ export const ClientDataIsland = () => {
   );
 };
 
-console.log('document.currentScript', document.currentScript);
 const island = createIslandWebComponent(islandName, ClientDataIsland);
 island.render({
   selector: islandName
