@@ -23,14 +23,14 @@ const ChatbotUserMessage = ({
           <div className="absolute top-0 right-0 w-0 h-0 border-t-8 border-b-8 border-l-8 border-gray-200"></div>
         </div> */}
         <div>
-          <div className="flex flex-col space-y-1.5 px-4 items-end">
+          <div className="flex flex-col space-y-1.5 px-3 items-end">
             <div className="flex items-center gap-1.5 justify-end">
               <div class="text-xs">
                 <p class="pb-1 text-slate-500 font-xs">You</p>
               </div>
             </div>
             <div
-              className="inline-flex flex-col gap-2 px-4 py-3 font-normal text-white rounded-tr-sm shadow-sm rounded-xl"
+              className="inline-flex flex-col gap-2 px-3 py-3 font-normal text-white rounded-tr-sm shadow-sm rounded-xl"
               style={{ backgroundColor: brandColor }}
             >
               {message}

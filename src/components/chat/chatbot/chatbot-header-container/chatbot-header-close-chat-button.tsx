@@ -13,6 +13,8 @@ const ChatbotHeaderCloseChatButton = ({
         type="button"
         className="inline-flex items-center justify-center p-1 text-white hover:duration-200 hover:scale-110 hover:contrast-150"
         onClick={() => setIsOpen(false)}
+        aria-label="Close Chat"
+        title="Close Chat"
       >
         <XMarkIcon
           className="w-6 h-6"

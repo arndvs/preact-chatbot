@@ -13,7 +13,7 @@ const ClientDataComponent = ({ storeId }: ClientDataComponentProps) => {
 
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse);
-  console.log('Panel data', data);
+
   return (
     <>
       {data && (

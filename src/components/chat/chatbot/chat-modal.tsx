@@ -38,12 +38,12 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
           <Box
             data-testId="overlay-content"
             className={useClassNames(
-              'z-[888889] border-none fixed flex flex-col justify-between shadow-custom rounded-lg overflow-hidden bg-white',
+              'z-[888889] border-none fixed flex flex-col justify-between shadow-custom rounded-lg overflow-hidden',
               'lg:w-[28rem] lg:max-h-[86vh] lg:bottom-20 lg:right-4', // Large screens
               'md:w-[28rem] md:max-h-[86vh] md:bottom-20 md:right-4', // Medium screens
               'sm:w-[28rem] sm:max-h-[86vh] sm:bottom-20 sm:right-4', // Small screens
               'xs:w-full xs:h-full xs:bottom-0 xs:right-0', // Extra small screens (mobile)
-              'max-w-full max-h-full bottom-0 right-0' // Extra small screens (mobile)
+              'w-full max-w-full max-h-full bottom-0 right-0' // Extra small screens (mobile)
             )}
           >
             {/* Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider */}

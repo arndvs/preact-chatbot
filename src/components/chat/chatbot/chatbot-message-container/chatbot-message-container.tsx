@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { callIfExists } from 'src/actions/chatbot/chatbot-message-utils';
-import ChatbotLoadingDots from 'src/components/chat/chatbot/chatbot-loading-dots';
+import ChatbotLoadingDots from 'src/components/chat/chatbot/chatbot-message-container/chatbot-loading-dots';
 import ChatbotMessageAvatar from 'src/components/chat/chatbot/chatbot-message-container/chatbot-message-avatar';
 import ChatbotMessageComponent from 'src/components/chat/chatbot/chatbot-message-container/chatbot-message-component';
 import { IChatbotMessageContainerProps } from 'src/types/IChatbotMessages';
@@ -62,27 +62,28 @@ const ChatbotMessageContainer = ({
   return (
     <>
       {show && (
-        <div className="flow-root">
-          <div className="relative">
-            <div className="relative flex items-start space-x-3">
-              {withAvatar && customComponents?.botAvatar ? (
-                callIfExists(customComponents.botAvatar)
-              ) : (
-                <ChatbotMessageAvatar />
-              )}
+        <div
+          className="px-3"
+          tabIndex={0}
+        >
+          <div>
+            {withAvatar && customComponents?.botAvatar ? (
+              callIfExists(customComponents.botAvatar)
+            ) : (
+              <ChatbotMessageAvatar />
+            )}
 
-              {/* {customComponents?.botChatMessage ? (
-                callIfExists(customComponents.botChatMessage, {
-                  message,
-                  loader: <ChatbotLoadingDots />
-                })
-              ) : ( */}
+            {customComponents?.botChatMessage ? (
+              callIfExists(customComponents.botChatMessage, {
+                message,
+                loader: <ChatbotLoadingDots />
+              })
+            ) : (
               <ChatbotMessageComponent
                 loading={loading}
                 message={message}
               />
-              {/* )} */}
-            </div>
+            )}
           </div>
         </div>
       )}

@@ -12,6 +12,7 @@ interface ChatbotContextProviderProps {
   session_id: string;
   store_id: string;
   customer_store_id: string;
+  domain?: string | undefined;
 }
 interface ChatbotContextType {
   storeName?: string;
@@ -20,7 +21,7 @@ interface ChatbotContextType {
   placeholderText?: string;
   session_id?: string;
   store_id?: string;
-  customer_store_id: string;
+  customer_store_id?: string;
   botData?: BotDataType;
   setBotData?: (data: BotDataType) => void;
 }

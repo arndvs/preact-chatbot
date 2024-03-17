@@ -60,13 +60,48 @@ const ChatbotInputContainer = ({
   };
 
   return (
-    <>
-      <div className="flex items-center w-full border-t border-gray-200 ">
-        <div class="flex gap-2 overflow-x-auto p-3"></div>
-        <form
-          className="flex w-full bg-white"
-          onSubmit={handleSubmit}
+    <form onSubmit={handleSubmit}>
+      <div className="flex items-center justify-between px-2 py-2 bg-white border-t">
+        <div className="flex items-center justify-between w-full leading-none">
+          <input
+            className="w-full px-2 text-sm border-none focus:outline-none focus:ring-none"
+            placeholder={placeholder}
+            value={input}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              const target = e.target as HTMLInputElement;
+              setInputValue(target.value);
+            }}
+            required
+            maxLength={4000}
+            rows={1}
+            tabIndex={0}
+            aria-label={placeholder}
+            title={placeholder}
+          />
+        </div>
+        <div
+          className="flex leading-none "
+          aria-label="Send Message"
+          title="Send Message"
         >
+          <button
+            onClick={handleSubmit}
+            disabled={!input.trim()}
+            className="inline-flex items-center justify-end p-1 text-sm font-medium transition-colors rounded-md whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-50 h-9"
+            type="submit"
+          >
+            <AirplaneIcon
+              className={useClassNames(
+                'w-6 h-6 ',
+                !input ? 'text-gray-300' : 'text-gray-600 hover:text-gray-800'
+              )}
+            />
+          </button>
+        </div>
+      </div>
+      {/* <div className="flex items-center w-full border-t border-gray-200 ">
+          <div class="flex gap-2 overflow-x-auto p-3"></div>
+
           <input
             className="w-full px-4 py-3 text-sm border-none rounded-bl-lg focus:outline-none focus:ring-none "
             placeholder={placeholder}
@@ -88,45 +123,8 @@ const ChatbotInputContainer = ({
               )}
             />
           </button>
-        </form>
-      </div>
-      {/* <form className="px-4 py-3 shrink-0">
-        <div className="relative">
-          <label
-            for="message"
-            className="sr-only"
-          >
-            {placeholder}
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder={placeholder}
-            className="min-h-8 block w-full resize-y appearance-none bg-white text-[length:--chat-fontSize] text-gray-900 caret-[--chat-color] rounded-xl border-gray-300 py-2.5 pl-3 pr-24 placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-[--chat-color] focus:border-[--chat-color]"
-            aria-label={placeholder}
-            autocomplete="off"
-            value={input}
-          />
-          <div className="absolute flex items-center bottom-0.5 right-0.5">
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center gap-2 p-2 text-sm font-semibold text-blue-600 transition-all duration-150 border border-transparent rounded-md shadow-sm hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
-              disabled={!input.trim()}
-              onClick={handleSubmit}
-            >
-              <svg
-                className="w-5 h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="m21.426 11.095-17-8A1 1 0 0 0 3.03 4.242l1.212 4.849L12 12l-7.758 2.909-1.212 4.849a.998.998 0 0 0 1.396 1.147l17-8a1 1 0 0 0 0-1.81z"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </form> */}
-    </>
+        </div> */}
+    </form>
   );
 };
 

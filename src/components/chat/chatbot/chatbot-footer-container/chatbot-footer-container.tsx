@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
-import ChatbotInputContainer from 'src/components/chat/chatbot/chatbot-input-container';
-import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-powered-by';
+import ChatbotInputContainer from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-input-container';
+import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-powered-by';
 
 interface IChatbotFooterContainerProps {
   customStyles: any;
@@ -21,7 +21,8 @@ const ChatbotFooterContainer = ({
 }: IChatbotFooterContainerProps) => {
   const [input, setInputValue] = useState('');
   return (
-    <div className="">
+    <div className="bg-inherit">
+      <div className="flex gap-2 p-3 overflow-x-auto"></div>
       <ChatbotInputContainer
         customStyles={customStyles}
         input={input}
