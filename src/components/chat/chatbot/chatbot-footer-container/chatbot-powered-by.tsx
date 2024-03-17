@@ -1,7 +1,11 @@
-const ChatbotPoweredBy = () => {
-  const currentUrl = window.location.href;
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
-  const linkWithReferrer = `https://ripemetrics.com?via=widget&amp;utm_source=watermark&amp;referrer=${encodeURIComponent(
+const ChatbotPoweredBy = () => {
+  const { store_id } = useChatbotContext();
+  const currentUrl = window.location.href;
+  const chatbot_id = store_id;
+
+  const linkWithReferrer = `https://ripemetrics.com?via=widget&amp;utm_source=watermark&amp;chatbot_id=${chatbot_id}&amp;referrer=${encodeURIComponent(
     currentUrl
   )}`;
 
