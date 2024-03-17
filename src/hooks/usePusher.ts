@@ -5,8 +5,6 @@ import { pusherConfig } from 'src/config/pusher';
 
 export const usePusher = () => {
   useEffect(() => {
-    // console.log('Pusher config:', pusherConfig);
-
     Pusher.logToConsole = true;
 
     try {
@@ -22,10 +20,6 @@ export const usePusher = () => {
           forceTLS: true,
           authEndpoint: pusherConfig.authEndpoint
         });
-
-        console.log('Pusher client created');
-        // console.log('New Echo', window.Echo);
-        // console.log('Pusher client created');
       } else {
         console.log('Pusher client already exists');
       }

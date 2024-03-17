@@ -11,6 +11,7 @@ import { useInitialData } from 'src/hooks/useInitialData';
 interface ChatPanelComponentProps {
   islandName: string;
   storeId: string | undefined;
+  domain: string | undefined;
 }
 
 interface InitialBotSettings {
@@ -22,7 +23,8 @@ interface InitialBotSettings {
 
 const ClientChatPanelComponent = ({
   islandName,
-  storeId
+  storeId,
+  domain
 }: ChatPanelComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   // use the If storeId is undefined, use the default storeId of 20
@@ -34,7 +36,7 @@ const ClientChatPanelComponent = ({
   // Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider
   const chatbotConfig = useChatbotConfig();
 
-  console.log('data first', data);
+  //TODO: Add domain check logic
   return (
     <>
       {data && (
@@ -46,6 +48,7 @@ const ClientChatPanelComponent = ({
           customer_store_id={data.customer_store_id}
           store_id={idToUse}
           placeholderText={'Ask a question...'}
+          domain={domain}
         >
           <Box
             data-testId="overlay-content"

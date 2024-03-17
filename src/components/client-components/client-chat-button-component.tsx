@@ -8,11 +8,13 @@ import { useInitialData } from 'src/hooks/useInitialData';
 interface ClientChatButtonComponentProps {
   islandName: string;
   storeId: string | undefined;
+  domain: string | undefined;
 }
 
 const ClientChatButtonComponent = ({
   islandName,
-  storeId
+  storeId,
+  domain
 }: ClientChatButtonComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,7 +24,8 @@ const ClientChatButtonComponent = ({
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse);
 
-  console.log('Panel data', data);
+  //   TODO: Add domain check logic
+
   return (
     <>
       {data && (
@@ -34,6 +37,7 @@ const ClientChatButtonComponent = ({
           customer_store_id={data.customer_store_id}
           store_id={idToUse}
           placeholderText={'Ask a question...'}
+          domain={domain}
         >
           <ChatBubbleButton
             isOpen={isOpen}
