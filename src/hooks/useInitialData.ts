@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'preact/hooks';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 
 interface InitialBotSettings {
   store_name: string;
@@ -9,6 +10,7 @@ interface InitialBotSettings {
   session_id: string;
   customer_store_id: string;
   store_id: string;
+  messages: any[];
 }
 
 export const useInitialData = (storeId: string) => {
@@ -17,33 +19,40 @@ export const useInitialData = (storeId: string) => {
 
   const getInitialData = async () => {
     try {
-      const cookie = cookies.ripemetrics_chatbot;
-      // Split the cookie to get the storeId, sessionId, and customer_store_id
-      if (cookie) {
-        const splitCookie = cookie.split('-');
+      const cookie = cookies.ripemetrics_chatbot?.split('-');
 
-        const response = await axios.post(
-          `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${splitCookie[0]}`,
-          {
-            session_id: splitCookie[1],
-            customer_store_id: splitCookie[2]
-          }
-        );
-        return response.data as InitialBotSettings;
-      } else {
-        const response = await axios.post(
-          `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}/`,
-          {
-            session_id: null,
-            customer_store_id: null
-          }
-        );
+      const response = await axios.post(
+        `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`,
+        {
+          session_id: cookie?.length ? cookie[1] : null,
+          customer_store_id: cookie?.length ? cookie[2] : null
+        }
+      );
+
+      if (!cookie?.length) {
         setCookie(
           'ripemetrics_chatbot',
           `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`
         );
-        return response.data as InitialBotSettings;
       }
+
+      return response.data as InitialBotSettings;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const getMessageHistory = async () => {
+    try {
+      const cookie = cookies.ripemetrics_chatbot?.split('-');
+
+      if (!cookie?.length) return null;
+
+      const response = await axios.get(
+        `https://api.rmdevs.com/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`
+      );
+      return response.data;
     } catch (error) {
       console.log(error);
       return null;
@@ -53,6 +62,21 @@ export const useInitialData = (storeId: string) => {
   useEffect(() => {
     getInitialData().then((data) => {
       setData(data);
+      // getMessageHistory().then((history) => {
+      //   const initialMessage = createChatBotMessage(
+      //     `👋 Hi! I am ${data?.store_name} Bot. How can I help?`,
+      //     {
+      //       loading: history?.length ? false : true
+      //     }
+      //   );
+      //   setData((prev) => {
+      //     return {
+      //       ...prev,
+      //       ...data,
+      //       messages: [initialMessage, ...history]
+      //     };
+      //   });
+      // });
     });
   }, []);
 

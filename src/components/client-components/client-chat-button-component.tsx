@@ -23,7 +23,7 @@ const ClientChatButtonComponent = ({
 
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse);
-
+  console.log('data', data);
   //   TODO: Add domain check logic
 
   return (

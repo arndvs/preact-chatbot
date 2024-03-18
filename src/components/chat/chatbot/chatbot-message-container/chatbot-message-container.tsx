@@ -58,7 +58,7 @@ const ChatbotMessageContainer = ({
     chatBoxCustomStyles.backgroundColor = customStyles.backgroundColor;
     arrowCustomStyles.borderRightColor = customStyles.backgroundColor;
   }
-
+  console.log('customComponents', customComponents);
   return (
     <>
       {show && (
@@ -72,18 +72,18 @@ const ChatbotMessageContainer = ({
             ) : (
               <ChatbotMessageAvatar />
             )}
-
-            {customComponents?.botChatMessage ? (
+            {/* This was always coming back false customComponents is null */}
+            {/* {customComponents?.botChatMessage ? (
               callIfExists(customComponents.botChatMessage, {
                 message,
                 loader: <ChatbotLoadingDots />
               })
-            ) : (
-              <ChatbotMessageComponent
-                loading={loading}
-                message={message}
-              />
-            )}
+            ) : ( */}
+            <ChatbotMessageComponent
+              loading={loading}
+              message={message}
+            />
+            {/* )} */}
           </div>
         </div>
       )}
