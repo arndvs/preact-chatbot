@@ -1,4 +1,3 @@
-import { Message } from 'src/actions/chatbot/chatbot-context-provider';
 import {
   IChatbotMessage,
   IChatbotMessageOptions
@@ -45,7 +44,7 @@ export const createChatMessage = (message: string, type: string) => {
 export const createChatBotMessage = (
   message: string,
   options?: IChatbotMessageOptions
-): Message => {
+): IChatbotMessage => {
   return {
     ...createChatMessage(message, 'bot'),
     ...options
