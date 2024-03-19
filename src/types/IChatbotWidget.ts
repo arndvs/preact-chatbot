@@ -1,4 +1,3 @@
-import Echo from 'laravel-echo';
 import { Ref } from 'preact';
 import IChatbotConfig, {
   IChatbotCustomComponents,
@@ -44,9 +43,7 @@ export interface ChatbotMessageContainerProps {
 }
 
 export interface IChatbotContainerProps {
-  setState?: (state: any) => void;
   setIsOpen: (isOpen: boolean) => void;
-  isOpen?: boolean;
   widgetRegistry: any;
   messageParser: any;
   actionProvider: any;
@@ -55,7 +52,6 @@ export interface IChatbotContainerProps {
   headerText?: string;
   customMessages: IChatbotCustomMessage;
   validator: ((input: string) => Boolean) | undefined;
-  state: any;
   disableScrollToBottom?: boolean;
   messageHistory?: IChatbotMessage[] | string;
   parse?: (message: string) => void;
@@ -64,7 +60,6 @@ export interface IChatbotContainerProps {
 }
 
 export interface ChatbotInputContainerProps {
-  setState?: (state: any) => void;
   validator: ((input: string) => Boolean) | undefined;
   input: string;
   setInputValue: any;

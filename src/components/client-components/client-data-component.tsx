@@ -1,5 +1,4 @@
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
-
 import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context-component';
 import { useInitialData } from 'src/hooks/useInitialData';
 
@@ -25,6 +24,7 @@ const ClientDataComponent = ({ storeId }: ClientDataComponentProps) => {
           customer_store_id={data.customer_store_id}
           store_id={idToUse}
           placeholderText={'Ask a question...'}
+          messages={data.messages}
         >
           <ChatbotContextComponent />
         </ChatbotContextProvider>

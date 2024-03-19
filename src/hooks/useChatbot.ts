@@ -14,6 +14,7 @@ import ChatbotWidgetRegistry from 'src/actions/chatbot/chatbot-widget-registry';
 import IChatbotConfig from 'src/types/IChatbotConfig';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 import { IChatbotWidget } from 'src/types/IChatbotWidget';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface IUseChatbotParams {
   config: IChatbotConfig | null;
@@ -33,6 +34,8 @@ const useChatbot = ({
   saveMessages,
   ...rest
 }: IUseChatbotParams) => {
+  const { messages } = useChatbotContext();
+
   let configurationError = '';
   let invalidPropsError = '';
 
@@ -53,37 +56,12 @@ const useChatbot = ({
 
     return { invalidPropsError };
   }
-
-  const initialState = getInitialState(config);
-  if (messageHistory && Array.isArray(messageHistory)) {
-    config.initialMessages = [...messageHistory];
-  } else if (typeof messageHistory === 'string' && Boolean(messageHistory)) {
-    if (!runInitialMessagesWithHistory) {
-      config.initialMessages = [];
-    }
-  }
-
-  const [state, setState] = useState({
-    messages: [...config.initialMessages],
-    ...initialState
-  });
-
-  const messagesRef = useRef(state.messages);
-  const stateRef = useRef();
+  const messagesRef = useRef(messages);
   const messageContainerRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
-    messagesRef.current = state.messages;
+    messagesRef.current = messages;
   });
-
-  useEffect(() => {
-    if (messageHistory && Array.isArray(messageHistory)) {
-      setState((prevState: any) => ({
-        ...prevState,
-        messages: messageHistory
-      }));
-    }
-  }, []);
 
   useEffect(() => {
     const refValue: HTMLDivElement | undefined = messageContainerRef.current;
@@ -98,8 +76,8 @@ const useChatbot = ({
   }, []);
 
   useEffect(() => {
-    stateRef.current = state;
-  }, [state]);
+    messagesRef.current = messages;
+  }, [messages]);
 
   let actionProv;
   let widgetRegistry: ChatbotWidgetRegistry;
@@ -112,15 +90,13 @@ const useChatbot = ({
   if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {
     actionProv = new actionProvider(
       createChatBotMessage,
-      setState,
       createClientMessage,
-      stateRef.current,
       createCustomMessage,
       rest
     );
 
-    widgetRegistry = new ChatbotWidgetRegistry(setState, actionProv);
-    messagePars = new messageParser(actionProv, stateRef.current);
+    widgetRegistry = new ChatbotWidgetRegistry(actionProv);
+    messagePars = new messageParser(actionProv);
 
     widgets = getWidgets(config);
     widgets.forEach((widget: IChatbotWidget) =>
@@ -129,7 +105,7 @@ const useChatbot = ({
   } else {
     actionProv = actionProvider;
     messagePars = messageParser;
-    widgetRegistry = new ChatbotWidgetRegistry(setState, null);
+    widgetRegistry = new ChatbotWidgetRegistry(null);
 
     widgets = getWidgets(config);
     widgets.forEach((widget: IChatbotWidget) =>
@@ -143,8 +119,6 @@ const useChatbot = ({
     messagePars,
     configurationError,
     invalidPropsError,
-    state,
-    setState,
     messageContainerRef,
     ActionProvider,
     MessageParser

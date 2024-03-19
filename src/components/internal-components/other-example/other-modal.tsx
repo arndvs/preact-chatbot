@@ -1,13 +1,9 @@
 import { WebComponentPortal } from 'preact-island';
 import { FC } from 'preact/compat';
-import ActionProvider from 'src/actions/chatbot/action-provider';
-import MessageParser from 'src/actions/chatbot/message-parser';
 import { Box } from 'src/components/ui';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import Chatbot from 'src/components/chat/chatbot/chatbot';
 import useClassNames from 'src/hooks/useClassNames';
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
-import OtherPanel from 'src/components/internal-components/other-example/other-panel';
 
 interface OtherModalProps {
   isOpen: boolean;

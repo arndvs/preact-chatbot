@@ -1,6 +1,5 @@
 import { useState } from 'preact/compat';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
-
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import { useInitialData } from 'src/hooks/useInitialData';
@@ -23,7 +22,6 @@ const ClientChatButtonComponent = ({
 
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse);
-  console.log('data', data);
   //   TODO: Add domain check logic
 
   return (
@@ -35,6 +33,7 @@ const ClientChatButtonComponent = ({
           brandColor={data.brand_color}
           session_id={data.session_id}
           customer_store_id={data.customer_store_id}
+          messages={data.messages}
           store_id={idToUse}
           placeholderText={'Ask a question...'}
           domain={domain}

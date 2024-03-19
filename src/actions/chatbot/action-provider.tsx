@@ -6,13 +6,11 @@ import { useLoadingMessageHandler } from 'src/hooks/useLoadingMessageHandler';
 
 interface ActionProviderProps {
   createChatBotMessage: any;
-  setState: any;
   children?: ComponentChildren;
 }
 
 const ActionProvider = ({
   createChatBotMessage,
-  setState,
   children
 }: ActionProviderProps) => {
   // handle loading state
@@ -25,7 +23,6 @@ const ActionProvider = ({
   // hook to handle loading messages
   useLoadingMessageHandler({
     loadingState,
-    setState,
     aiUserTestResponse,
     setAiUserTestResponse
   });
@@ -33,13 +30,11 @@ const ActionProvider = ({
   // instantiate the handleDefaultMessage
   const { handleDefault } = HandleDefaultMessage({
     createChatBotMessage,
-    setState,
     setLoadingState,
-    aiUserTestResponse,
     setAiUserTestResponse
   });
 
-  // get the chat stream store and session ID
+  // // get the chat stream store and session ID
   useChatStream({
     setAiUserTestResponse,
     setLoadingState

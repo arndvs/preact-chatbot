@@ -1,6 +1,5 @@
 import { useState } from 'preact/compat';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
-
 import ActionProvider from 'src/actions/chatbot/action-provider';
 import MessageParser from 'src/actions/chatbot/message-parser';
 import Chatbot from 'src/components/chat/chatbot/chatbot';
@@ -12,13 +11,6 @@ interface ChatPanelComponentProps {
   islandName: string;
   storeId: string | undefined;
   domain: string | undefined;
-}
-
-interface InitialBotSettings {
-  store_name: string;
-  store_logo: string;
-  brand_color: string;
-  session_id: string;
 }
 
 const ClientChatPanelComponent = ({
@@ -49,6 +41,7 @@ const ClientChatPanelComponent = ({
           store_id={idToUse}
           placeholderText={'Ask a question...'}
           domain={domain}
+          messages={data.messages}
         >
           <Box
             data-testId="overlay-content"

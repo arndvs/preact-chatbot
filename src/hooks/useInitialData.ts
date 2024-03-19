@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 
-interface InitialBotSettings {
+export interface InitialBotSettings {
   store_name: string;
   store_logo: string;
   brand_color: string;
@@ -19,10 +19,11 @@ export const useInitialData = (storeId: string) => {
 
   const getInitialData = async () => {
     try {
+      // storeId [0] - session_id [1] - customer_store_id [2]
       const cookie = cookies.ripemetrics_chatbot?.split('-');
 
       const response = await axios.post(
-        `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`,
+        `${process.env.BASE_API_URL}v2/external_chatbot_initial_settings/${storeId}`,
         {
           session_id: cookie?.length ? cookie[1] : null,
           customer_store_id: cookie?.length ? cookie[2] : null
@@ -32,7 +33,11 @@ export const useInitialData = (storeId: string) => {
       if (!cookie?.length) {
         setCookie(
           'ripemetrics_chatbot',
-          `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`
+          `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`,
+          {
+            // 2 days from now
+            expires: new Date(Date.now() + 172800000)
+          }
         );
       }
 
@@ -50,7 +55,7 @@ export const useInitialData = (storeId: string) => {
       if (!cookie?.length) return null;
 
       const response = await axios.get(
-        `https://api.rmdevs.com/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`
+        `${process.env.BASE_API_URL}v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`
       );
       return response.data;
     } catch (error) {
@@ -61,22 +66,23 @@ export const useInitialData = (storeId: string) => {
 
   useEffect(() => {
     getInitialData().then((data) => {
-      setData(data);
-      // getMessageHistory().then((history) => {
-      //   const initialMessage = createChatBotMessage(
-      //     `👋 Hi! I am ${data?.store_name} Bot. How can I help?`,
-      //     {
-      //       loading: history?.length ? false : true
-      //     }
-      //   );
-      //   setData((prev) => {
-      //     return {
-      //       ...prev,
-      //       ...data,
-      //       messages: [initialMessage, ...history]
-      //     };
-      //   });
-      // });
+      if (data) {
+        getMessageHistory().then((history) => {
+          const initialMessage = createChatBotMessage(
+            `👋 Hi! I am ${data.store_name} Bot. How can I help?`,
+            {
+              loading: false
+            }
+          );
+
+          setData({
+            ...data,
+            messages: [initialMessage, ...(history || [])]
+          });
+        });
+      } else {
+        setData(null);
+      }
     });
   }, []);
 

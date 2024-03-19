@@ -22,12 +22,10 @@ const ChatbotMessageRetriever = ({
   messageHistory,
   messages,
   scrollIntoView,
-  setState,
-  state,
   widgetRegistry
 }: IChatbotMessageRetrieverProps) => {
   const renderMessages = () => {
-    return messages.map((messageObject: IChatbotMessage, index: number) => {
+    return messages?.map((messageObject: IChatbotMessage, index: number) => {
       if (botMessage(messageObject)) {
         return (
           <div key={messageObject.id}>
@@ -56,8 +54,6 @@ const ChatbotMessageRetriever = ({
     const customMessage = customMessages[messageObject.type];
 
     const props = {
-      setState,
-      state,
       scrollIntoView,
       actionProvider,
       payload: messageObject.payload,
@@ -66,7 +62,6 @@ const ChatbotMessageRetriever = ({
 
     if (messageObject.widget) {
       const widget = widgetRegistry.getWidget(messageObject.widget, {
-        ...state,
         scrollIntoView,
         payload: messageObject.payload,
         actions
@@ -84,7 +79,6 @@ const ChatbotMessageRetriever = ({
 
   const renderUserMessage = (messageObject: IChatbotMessage) => {
     const widget = widgetRegistry.getWidget(messageObject.widget, {
-      ...state,
       scrollIntoView,
       payload: messageObject.payload,
       actions
@@ -114,8 +108,6 @@ const ChatbotMessageRetriever = ({
 
     const chatbotMessageProps = {
       ...messageObject,
-      setState,
-      state,
       customComponents,
       widgetRegistry,
       messages,
@@ -124,7 +116,6 @@ const ChatbotMessageRetriever = ({
 
     if (messageObject.widget) {
       const widget = widgetRegistry.getWidget(chatbotMessageProps.widget, {
-        ...state,
         scrollIntoView,
         payload: messageObject.payload,
         actions
@@ -152,7 +143,6 @@ const ChatbotMessageRetriever = ({
         {...chatbotMessageProps}
         customComponents={customComponents}
         messages={messages}
-        setState={setState}
       />
     );
   };

@@ -11,7 +11,6 @@ const ChatbotMessageContainer = ({
   loading,
   messages,
   customComponents,
-  setState,
   customStyles,
   delay,
   id
@@ -20,7 +19,7 @@ const ChatbotMessageContainer = ({
 
   useEffect(() => {
     let timeoutId: any;
-    const disableLoading = (messages: any[], setState: any) => {
+    const disableLoading = (messages: any[]) => {
       let defaultDisableTime = 750;
       if (delay) defaultDisableTime += delay;
 
@@ -32,12 +31,10 @@ const ChatbotMessageContainer = ({
 
           return message;
         });
-
-        setState((state: any) => ({ ...state, messages: newMessages }));
       }, defaultDisableTime);
     };
 
-    disableLoading(messages, setState);
+    disableLoading(messages);
     return () => {
       clearTimeout(timeoutId);
     };
@@ -58,7 +55,6 @@ const ChatbotMessageContainer = ({
     chatBoxCustomStyles.backgroundColor = customStyles.backgroundColor;
     arrowCustomStyles.borderRightColor = customStyles.backgroundColor;
   }
-  console.log('customComponents', customComponents);
   return (
     <>
       {show && (

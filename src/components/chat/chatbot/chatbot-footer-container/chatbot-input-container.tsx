@@ -7,7 +7,6 @@ import useClassNames from 'src/hooks/useClassNames';
 import { ChatbotInputContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotInputContainer = ({
-  setState,
   validator,
   input,
   setInputValue,
@@ -16,6 +15,8 @@ const ChatbotInputContainer = ({
   messageContainerRef,
   customStyles
 }: ChatbotInputContainerProps) => {
+  const { setMessages } = useChatbotContext();
+
   const customButtonStyle = { backgroundColor: '' };
   if (customStyles && customStyles.chatButton) {
     customButtonStyle.backgroundColor = customStyles.chatButton.backgroundColor;
@@ -48,15 +49,13 @@ const ChatbotInputContainer = ({
   };
 
   const handleValidMessage = () => {
-    if (setState) {
-      setState((state: any) => ({
-        ...state,
-        messages: [...state.messages, createChatMessage(input, 'user')]
-      }));
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      createChatMessage(input, 'user')
+    ]);
 
-      scrollIntoView(messageContainerRef);
-      setInputValue('');
-    }
+    scrollIntoView(messageContainerRef);
+    setInputValue('');
   };
 
   return (

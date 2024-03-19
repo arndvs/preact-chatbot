@@ -1,29 +1,28 @@
 import { useEffect } from 'preact/hooks';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface UseLoadingMessageHandlerProps {
-  setState: any;
   aiUserTestResponse: string;
   setAiUserTestResponse: (value: string) => void;
   loadingState: boolean;
 }
 
 export const useLoadingMessageHandler = ({
-  setState,
   aiUserTestResponse,
   loadingState
 }: UseLoadingMessageHandlerProps) => {
+  const { setMessages } = useChatbotContext();
+
   useEffect(() => {
     if (loadingState) {
-      setState((prev: any) => ({
-        messages: prev.messages.map((msg: any, index: number) =>
-          index === prev.messages.length - 1
-            ? {
-                ...msg,
-                message: aiUserTestResponse
-              }
+      setMessages((prevMessages) => {
+        const updatedMessages = prevMessages.map((msg, index) =>
+          index === prevMessages.length - 1
+            ? { ...msg, loading: false, message: aiUserTestResponse }
             : msg
-        )
-      }));
+        );
+        return updatedMessages;
+      });
     }
   }, [aiUserTestResponse]);
 };

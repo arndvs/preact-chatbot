@@ -5,12 +5,7 @@ import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils'
 import { ChatbotWidgetArray } from 'src/actions/chatbot/chatbot-widget-array';
 
 export function useChatbotConfig() {
-  const {
-    storeName
-    // storeLogo,
-    // brandColor,
-    // placeholderText
-  } = useContext(ChatbotContext);
+  const { storeName } = useContext(ChatbotContext);
 
   const ChatbotConfig = {
     initialMessages: [

@@ -7,7 +7,6 @@ interface IChatbotFooterContainerProps {
   messageContainerRef: any;
   messageParser: any;
   parse: any;
-  setState: any;
   validator: any;
 }
 
@@ -16,7 +15,6 @@ const ChatbotFooterContainer = ({
   messageContainerRef,
   messageParser,
   parse,
-  setState,
   validator
 }: IChatbotFooterContainerProps) => {
   const [input, setInputValue] = useState('');
@@ -29,7 +27,6 @@ const ChatbotFooterContainer = ({
         messageContainerRef={messageContainerRef}
         messageParser={messageParser}
         parse={parse}
-        setState={setState}
         setInputValue={setInputValue}
         validator={validator}
       />

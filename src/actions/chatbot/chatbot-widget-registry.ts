@@ -11,12 +11,10 @@ interface ParentProps {
 }
 
 class ChatbotWidgetRegistry {
-  setState: Function;
   actionProvider: any;
   [key: string]: any; // Index signature
 
-  constructor(setStateFunc: Function, actionProvider: any) {
-    this.setState = setStateFunc;
+  constructor(actionProvider: any) {
     this.actionProvider = actionProvider;
   }
 
@@ -52,7 +50,6 @@ class ChatbotWidgetRegistry {
       ...widgetObject.parentProps,
       ...getObject(widgetObject.props),
       ...this.mapStateToProps(widgetObject.mapStateToProps, options),
-      setState: this.setState,
       actionProvider: this.actionProvider || options.actions,
       actions: options.actions,
       state: options,

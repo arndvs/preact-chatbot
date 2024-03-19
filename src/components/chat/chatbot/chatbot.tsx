@@ -33,9 +33,7 @@ const Chatbot = ({
     widgetRegistry,
     messageContainerRef,
     actionProv,
-    messagePars,
-    state,
-    setState
+    messagePars
   } = useChatbot({
     config,
     actionProvider,
@@ -60,8 +58,6 @@ const Chatbot = ({
   const customMessages = getCustomMessages(config);
 
   const chatbotContainerProps = {
-    state,
-    setState,
     widgetRegistry,
     actionProvider: isConstructor(ActionProvider) ? actionProv : ActionProvider,
     messageParser: isConstructor(MessageParser) ? messagePars : MessageParser,
@@ -82,11 +78,7 @@ const Chatbot = ({
     return <ChatbotContainer {...chatbotContainerProps} />;
   } else {
     return (
-      <ActionProvider
-        state={state}
-        setState={setState}
-        createChatBotMessage={createChatBotMessage}
-      >
+      <ActionProvider createChatBotMessage={createChatBotMessage}>
         <MessageParser>
           <ChatbotContainer {...chatbotContainerProps} />
         </MessageParser>

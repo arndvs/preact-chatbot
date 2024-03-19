@@ -1,5 +1,5 @@
+import { Message } from 'src/actions/chatbot/chatbot-context-provider';
 import {
-  IChatbotBaseMessage,
   IChatbotMessage,
   IChatbotMessageOptions
 } from 'src/types/IChatbotMessages';
@@ -45,7 +45,7 @@ export const createChatMessage = (message: string, type: string) => {
 export const createChatBotMessage = (
   message: string,
   options?: IChatbotMessageOptions
-) => {
+): Message => {
   return {
     ...createChatMessage(message, 'bot'),
     ...options

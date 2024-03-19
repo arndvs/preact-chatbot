@@ -50,7 +50,6 @@ export interface IChatbotMessageContainerProps {
   messages: any[];
   delay?: number;
   id: number;
-  setState?: any;
   customComponents?: IChatbotCustomComponents;
   customStyles?: { backgroundColor: string };
 }
@@ -70,7 +69,5 @@ export interface IChatbotMessageRetrieverProps {
   messageHistory?: IChatbotMessage[] | string;
   messages: any[];
   scrollIntoView: (messageContainerRef: MessageContainerRefProps) => void;
-  setState?: any;
-  state: any;
   widgetRegistry: any;
 }
