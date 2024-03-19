@@ -30,7 +30,7 @@ const HandleDefaultMessage = ({
     setMessages((prevMessages) => [...prevMessages, loadingMessage]);
 
     try {
-      await axios.post(`${process.env.BASE_API_URL}v2/external_chatbot`, {
+      await axios.post(`https://api.rmdevs.com/api/v2/external_chatbot`, {
         question: message,
         store_id: store_id,
         customer_id: customer_store_id,

@@ -272,8 +272,7 @@ module.exports = ({ dev, prod }) => {
         ),
         'process.env.PUSHER_AUTH_ENDPOINT': JSON.stringify(
           process.env.PUSHER_AUTH_ENDPOINT
-        ),
-        'process.env.BASE_API_URL': JSON.stringify(process.env.BASE_API_URL)
+        )
       }),
       ...(isProd ? [new IslandFileSizePlugin()] : [])
     ],

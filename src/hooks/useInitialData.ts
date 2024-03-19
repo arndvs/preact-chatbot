@@ -23,7 +23,7 @@ export const useInitialData = (storeId: string) => {
       const cookie = cookies.ripemetrics_chatbot?.split('-');
 
       const response = await axios.post(
-        `${process.env.BASE_API_URL}v2/external_chatbot_initial_settings/${storeId}`,
+        `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`,
         {
           session_id: cookie?.length ? cookie[1] : null,
           customer_store_id: cookie?.length ? cookie[2] : null
@@ -55,7 +55,7 @@ export const useInitialData = (storeId: string) => {
       if (!cookie?.length) return null;
 
       const response = await axios.get(
-        `${process.env.BASE_API_URL}v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`
+        `https://api.rmdevs.com/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`
       );
       return response.data;
     } catch (error) {
