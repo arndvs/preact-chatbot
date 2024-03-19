@@ -19,11 +19,7 @@ const ChatBotHeaderResetChatButton = () => {
 
       setCookie(
         'ripemetrics_chatbot',
-        `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`,
-        {
-          // 2 day expiration
-          expires: new Date(Date.now() + 172800000)
-        }
+        `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`
       );
 
       if (response?.data) {

@@ -30,14 +30,10 @@ export const useInitialData = (storeId: string) => {
         }
       );
 
-      if (!cookie?.length) {
+      if (!cookie?.length || cookie[1] !== response.data.session_id) {
         setCookie(
           'ripemetrics_chatbot',
-          `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`,
-          {
-            // 2 days from now
-            expires: new Date(Date.now() + 172800000)
-          }
+          `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`
         );
       }
 

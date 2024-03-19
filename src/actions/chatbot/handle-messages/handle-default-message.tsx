@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { StateUpdater } from 'preact/hooks';
-import { Message } from 'src/actions/chatbot/chatbot-context-provider';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
 
 interface ChatbotHandlerProps {
   createChatBotMessage: any;
@@ -25,7 +25,7 @@ const HandleDefaultMessage = ({
       loading: true,
       delay: 0,
       withAvatar: true
-    }) as Message;
+    }) as IChatbotMessage;
 
     setMessages((prevMessages) => [...prevMessages, loadingMessage]);
 
