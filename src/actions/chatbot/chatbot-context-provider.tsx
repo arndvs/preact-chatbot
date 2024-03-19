@@ -1,17 +1,10 @@
-import { createContext, type ComponentChildren } from 'preact';
+import type { ComponentChildren } from 'preact';
+import { createContext } from 'preact';
 import { useState } from 'preact/hooks';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import { BotDataType, defaultBotData } from 'src/types/ChatBotDataTypes';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
 
-export interface Message {
-  message: string;
-  loading?: boolean;
-  id: number;
-  type: string;
-  widget?: string;
-  delay?: number;
-  payload?: any;
-}
 interface ChatbotContextProviderProps {
   children: ComponentChildren;
   storeName: string;
@@ -22,7 +15,7 @@ interface ChatbotContextProviderProps {
   store_id: string;
   customer_store_id: string;
   domain?: string;
-  messages: Message[];
+  messages: IChatbotMessage[];
 }
 
 interface ChatbotContextType {
@@ -34,9 +27,11 @@ interface ChatbotContextType {
   store_id?: string;
   customer_store_id?: string;
   domain?: string | undefined;
-  messages: Message[];
+  messages: IChatbotMessage[];
   setMessages: (
-    messages: Message[] | ((prevMessages: Message[]) => Message[])
+    messages:
+      | IChatbotMessage[]
+      | ((prevMessages: IChatbotMessage[]) => IChatbotMessage[])
   ) => void;
   botData?: BotDataType;
   setBotData?: (data: BotDataType) => void;
@@ -64,7 +59,7 @@ export const ChatbotContextProvider = ({
   messages: initialMessages
 }: ChatbotContextProviderProps) => {
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
-  const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const [messages, setMessages] = useState<IChatbotMessage[]>(initialMessages);
   const [sessionId, setSessionId] = useState<string>(session_id);
 
   const resetChatTimeline = (newSessionId: string) => {
