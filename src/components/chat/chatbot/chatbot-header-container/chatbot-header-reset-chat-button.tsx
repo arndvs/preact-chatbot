@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { chatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 const ChatBotHeaderResetChatButton = () => {
@@ -10,7 +11,7 @@ const ChatBotHeaderResetChatButton = () => {
     const cookie = cookies.ripemetrics_chatbot?.split('-');
     try {
       const response = await axios.post(
-        `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${store_id}`,
+        `https://${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`,
         {
           session_id: null,
           customer_store_id: cookie?.length && cookie[2]
