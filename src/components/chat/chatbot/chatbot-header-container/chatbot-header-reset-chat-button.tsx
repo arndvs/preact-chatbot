@@ -11,7 +11,7 @@ const ChatBotHeaderResetChatButton = () => {
     const cookie = cookies.ripemetrics_chatbot?.split('-');
     try {
       const response = await axios.post(
-        `https://${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`,
+        `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`,
         {
           session_id: null,
           customer_store_id: cookie?.length && cookie[2]
