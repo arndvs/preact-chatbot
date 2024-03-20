@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { StateUpdater } from 'preact/hooks';
+import { chatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 
@@ -30,7 +31,7 @@ const HandleDefaultMessage = ({
     setMessages((prevMessages) => [...prevMessages, loadingMessage]);
 
     try {
-      await axios.post(`https://api.rmdevs.com/api/v2/external_chatbot`, {
+      await axios.post(`https://${chatApiUrl}/api/v2/external_chatbot`, {
         question: message,
         store_id: store_id,
         customer_id: customer_store_id,
