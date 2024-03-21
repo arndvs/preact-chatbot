@@ -43,5 +43,5 @@ export const useChatStream = ({
       //@ts-ignore
       channel?.unsubscribe();
     };
-  }, [pusher]);
+  }, [pusher, session_id]);
 };

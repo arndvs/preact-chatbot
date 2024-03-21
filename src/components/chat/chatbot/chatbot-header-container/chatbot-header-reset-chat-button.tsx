@@ -24,6 +24,16 @@ const ChatBotHeaderResetChatButton = () => {
       );
 
       if (response?.data) {
+        //@ts-ignore
+        if (window.Echo !== undefined && window.Echo !== null) {
+          //@ts-ignore
+          window.Echo.leave(`chat-stream-external-${store_id}-${cookie[1]}`);
+          console.log(
+            'Chat stream left successfully',
+            `chat-stream-external-${store_id}-${cookie[1]}`
+          );
+        }
+        console.log('Chat reset successfully', response?.data.session_id);
         resetChatTimeline(response?.data.session_id);
       }
     } catch (error) {
