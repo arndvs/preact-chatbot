@@ -263,6 +263,7 @@ module.exports = ({ dev, prod }) => {
       new VanillaExtractPlugin(),
       /**
        * Define environmental variables here that you need for the islands to function.
+       * EVERY ENV VARIABLE MUST BE DEFINED HERE OR IT WILL NOT BE AVAILABLE IN THE ISLANDS.
        */
       new DefinePlugin({
         ISLAND_API_URL: JSON.stringify(process.env.ISLAND_API_URL),
