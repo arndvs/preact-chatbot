@@ -12,8 +12,7 @@ const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
   return (
     <>
       <button
-        type="button"
-        className="cursor-pointer inline-flex items-center justify-center fixed z-[888888] text-white rounded-full shadow-custom h-12 w-12 cursor-pointer hover:duration-200 hover:scale-105 bottom-4 right-4 hover:shadow-md hover:contrast-150"
+        className="inline-flex items-center justify-center fixed z-[888888] text-white rounded-full shadow-custom h-12 w-12 cursor-pointer hover:duration-200 hover:scale-105 bottom-4 right-4 hover:shadow-md hover:contrast-150"
         onClick={() => setIsOpen(!isOpen)}
         style={{
           backgroundColor: brandColor ?? '#e5e5e5'
