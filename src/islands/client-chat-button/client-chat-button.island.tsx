@@ -21,6 +21,8 @@ export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
 
+  console.log('storeId', storeId);
+
   return (
     <ClientChatButtonComponent
       islandName={islandName}

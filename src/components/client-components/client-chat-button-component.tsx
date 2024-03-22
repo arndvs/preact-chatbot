@@ -16,9 +16,11 @@ const ClientChatButtonComponent = ({
   domain
 }: ClientChatButtonComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  console.log('storeId', storeId);
 
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
+  console.log('idToUse', idToUse);
 
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse);
