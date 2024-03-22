@@ -29,6 +29,7 @@ export const useChatStream = ({
         window.Echo.private(subscription).listenToAll((e, data) => {
           console.log('Chat stream data:', data);
           if (data?.completed === false) {
+            console.log('useChatStream - data?.completed === false :', data);
             setAiUserTestResponse((prevResponse: string) =>
               prevResponse === 'Loading ...'
                 ? data.text
