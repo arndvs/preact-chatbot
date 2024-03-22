@@ -15,7 +15,8 @@ export const useChatStream = ({
   const pusher = usePusher();
 
   useEffect(() => {
-    const subscription = `chat-stream-external-${store_id}-${session_id}`;
+    // const subscription = `chat-stream-external-${store_id}-${session_id}`;
+    const subscription = `heartbeat`;
 
     let channel: unknown | null = null;
 
