@@ -40,7 +40,7 @@ export const useChatStream = ({
             setAiUserTestResponse('Loading ...');
             setLoadingState(false);
           } else {
-            console.log('useChatStream - data?.completed === else :', data);
+            console.log('useChatStream - else :', data);
           }
         });
     }
