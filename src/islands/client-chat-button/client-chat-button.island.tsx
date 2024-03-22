@@ -13,15 +13,17 @@ const storeId = document.currentScript?.getAttribute('chatbotId') as
   | string
   | undefined;
 
+console.log('client-chat-button.island - storeId', storeId);
+
 const domain = document.currentScript?.getAttribute('domain') as
   | string
   | undefined;
 
+console.log('client-chat-button.island - domain', domain);
+
 export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
-
-  console.log('storeId', storeId);
 
   return (
     <ClientChatButtonComponent
