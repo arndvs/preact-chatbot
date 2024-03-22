@@ -16,7 +16,7 @@ export const useChatStream = ({
 
   useEffect(() => {
     // const subscription = `chat-stream-external-${store_id}-${session_id}`;
-    const subscription = `private-heartbeat`;
+    const subscription = `heartbeat`;
 
     let channel: unknown | null = null;
 
