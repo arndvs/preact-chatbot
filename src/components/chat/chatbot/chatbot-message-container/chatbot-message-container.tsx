@@ -25,6 +25,7 @@ const ChatbotMessageContainer = ({
 
       timeoutId = setTimeout(() => {
         const newMessages = [...messages].map((message) => {
+          console.log('message - message.id', message.id);
           if (message.id === id) {
             return { ...message, loading: false, delay: undefined };
           }
