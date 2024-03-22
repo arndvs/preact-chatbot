@@ -35,7 +35,8 @@ export const useChatStream = ({
                 : prevResponse + data.text
             );
           } else if (data?.completed === true) {
-            setAiUserTestResponse('test');
+            console.log('Chat stream data:', data);
+            setAiUserTestResponse('Loading ...');
             setLoadingState(false);
           }
         });
