@@ -17,8 +17,8 @@ export interface InitialBotSettings {
 export const useInitialData = (storeId: string) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
-  // const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
-  const aiEndpoint = `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`;
+  const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
+  // const aiEndpoint = `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`;
 
   const getInitialData = async () => {
     try {
