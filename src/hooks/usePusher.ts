@@ -7,6 +7,10 @@ export const usePusher = () => {
   useEffect(() => {
     Pusher.logToConsole = true;
 
+    console.log(
+      'Creating Pusher client - private heartbeat channel: ',
+      pusherConfig.authEndpoint
+    );
     try {
       //@ts-ignore
       window.Pusher = Pusher;
