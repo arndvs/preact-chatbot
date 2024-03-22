@@ -18,7 +18,8 @@ export const usePusher = () => {
           key: pusherConfig.key,
           cluster: pusherConfig.cluster,
           forceTLS: true,
-          authEndpoint: pusherConfig.authEndpoint
+          authEndpoint: pusherConfig.authEndpoint,
+          enableLogging: true,
         });
       } else {
         console.log('Pusher client already exists');
