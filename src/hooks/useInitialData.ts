@@ -17,21 +17,18 @@ export interface InitialBotSettings {
 export const useInitialData = (storeId: string) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
-  // const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
-  const aiEndpoint = `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`;
+  const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
+  // const aiEndpoint = `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`;
 
   const getInitialData = async () => {
     try {
       // storeId [0] - session_id [1] - customer_store_id [2]
       const cookie = cookies.ripemetrics_chatbot?.split('-');
 
-      const response = await axios.post(
-        aiEndpoint,
-        {
-          session_id: cookie?.length ? cookie[1] : null,
-          customer_store_id: cookie?.length ? cookie[2] : null
-        }
-      );
+      const response = await axios.post(aiEndpoint, {
+        session_id: cookie?.length ? cookie[1] : null,
+        customer_store_id: cookie?.length ? cookie[2] : null
+      });
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         setCookie(
