@@ -24,6 +24,7 @@ export const useInitialData = (storeId: string) => {
     try {
       // storeId [0] - session_id [1] - customer_store_id [2]
       const cookie = cookies.ripemetrics_chatbot?.split('-');
+      console.log('Cookie:', cookie);
 
       const response = await axios.post(aiEndpoint, {
         session_id: cookie?.length ? cookie[1] : null,

@@ -6,11 +6,6 @@ import { pusherConfig } from 'src/config/pusher';
 export const usePusher = () => {
   useEffect(() => {
     Pusher.logToConsole = true;
-
-    console.log(
-      'Creating Pusher client - private heartbeat channel: ',
-      pusherConfig.authEndpoint
-    );
     try {
       //@ts-ignore
       window.Pusher = Pusher;
@@ -22,7 +17,7 @@ export const usePusher = () => {
           key: pusherConfig.key,
           cluster: pusherConfig.cluster,
           forceTLS: true,
-          authEndpoint: pusherConfig.authEndpoint,
+          authEndpoint: pusherConfig.authEndpoint
         });
       } else {
         console.log('Pusher client already exists');
