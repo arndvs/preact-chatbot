@@ -1,6 +1,7 @@
 import type { ComponentChildren } from 'preact';
 import { createContext } from 'preact';
 import { useState } from 'preact/hooks';
+import { useCookies } from 'react-cookie';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import { BotDataType, defaultBotData } from 'src/types/ChatBotDataTypes';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
@@ -61,6 +62,7 @@ export const ChatbotContextProvider = ({
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
   const [messages, setMessages] = useState<IChatbotMessage[]>(initialMessages);
   const [sessionId, setSessionId] = useState<string>(session_id);
+  const [cookie, setCookie] = useCookies(['ripemetrics_chatbot']);
 
   const resetChatTimeline = (newSessionId: string) => {
     const initialMessage = createChatBotMessage(
@@ -88,8 +90,11 @@ export const ChatbotContextProvider = ({
     setMessages,
     botData,
     setBotData,
-    resetChatTimeline
+    resetChatTimeline,
+    cookie: cookie.ripemetrics_chatbot
   };
+
+  console.log('ChatbotContextProvider - cookie:', value.cookie);
 
   return (
     <ChatbotContext.Provider value={value}>{children}</ChatbotContext.Provider>

@@ -1,4 +1,5 @@
 import { useState } from 'preact/compat';
+import { useCookies } from 'react-cookie';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
@@ -20,6 +21,7 @@ const ClientChatButtonComponent = ({
   const idToUse = storeId || '20';
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse);
+
   //   TODO: Add domain check logic
 
   return (
