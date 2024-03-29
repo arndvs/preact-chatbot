@@ -4,29 +4,25 @@ import 'src/styles/reset.css';
 import { createIslandWebComponent } from 'preact-island';
 
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import OtherExampleComponent from 'src/components/internal-components/other-example/other-example';
+import ChatMarketingComponent from 'src/components/internal-components/other-example/other-example';
 import { useEffect, useRef } from 'preact/hooks';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 
-const islandName = 'other-example-island';
+const islandName = 'chat-marketing-island';
 
-const storeId = document.currentScript?.getAttribute('chatbotId') as
-  | string
-  | undefined;
-
-export const OtherExampleIsland = () => {
+export const ChatMarketingIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
 
   return (
-    <OtherExampleComponent
-      data-testid="OtherExampleIsland"
+    <ChatMarketingComponent
+      data-testid="ChatMarketingIsland"
       islandName={islandName}
     />
   );
 };
 
-const island = createIslandWebComponent(islandName, OtherExampleIsland);
+const island = createIslandWebComponent(islandName, ChatMarketingIsland);
 island.render({
   selector: islandName
 });
