@@ -5,6 +5,9 @@ import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import useClassNames from 'src/hooks/useClassNames';
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
 import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-powered-by';
+import MarketingBotMessage from 'src/components/internal-components/marketing-example/marketing-bot-message';
+import MarketingUserMessage from 'src/components/internal-components/marketing-example/marketing-user-message';
+import MarketingHeader from 'src/components/internal-components/marketing-example/marketing-header';
 
 interface MarketingModalProps {
   isOpen: boolean;
@@ -55,60 +58,8 @@ const MarketingModal = ({
               title="Chatbot"
             >
               <div className="flex flex-col h-full overflow-hidden bg-white shrink-0 group cb-light">
-                {/* chatbot header */}
-                <div className="flex-shrink-0 w-full px-3">
-                  <div
-                    className="z-10 flex justify-between border-b py-1 group-[.cb-dark]:border-[#3f3f46] group-[.cb-light]:border-[#f1f1f0]"
-                    aria-label="Chatbot Header"
-                  >
-                    <div className="flex items-center"></div>
-                    <div className="flex items-center justify-center">
-                      <button
-                        className="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 px-0 py-3 text-sm transition-transform duration-700 ease-in-out hover:rotate-180 hover:bg-inherit group-[.cb-dark]:text-zinc-300 group-[.cb-dark]:hover:text-zinc-400 group-[.cb-light]:text-zinc-700 group-[.cb-light]:hover:text-zinc-600"
-                        aria-label="Reset Chat"
-                        title="Reset Chat"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                          className="w-5 h-5"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-                          ></path>
-                        </svg>
-                      </button>
-                      <button
-                        className="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 ml-3 px-0 py-3 text-sm hover:bg-inherit group-[.cb-dark]:text-zinc-300 group-[.cb-dark]:hover:text-zinc-400 group-[.cb-light]:text-zinc-700 group-[.cb-light]:hover:text-zinc-600"
-                        aria-label="Close Chat"
-                        title="Close Chat"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                          className="w-6 h-6"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M6 18L18 6M6 6l12 12"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                {/* / chatbot header */}
+                <MarketingHeader />
+
                 {/* chatbot message container */}
                 <div className="flex-grow overflow-y-auto">
                   <div className="h-full react-scroll-to-bottom--css-xzqzq-79elbk">
@@ -118,87 +69,12 @@ const MarketingModal = ({
                         tabIndex={0}
                       >
                         <div>
-                          <div className="flex justify-start mr-8">
-                            <div className="mb-3 max-w-prose overflow-auto rounded-lg px-4 py-3 group-[.cb-dark]:bg-[#3f3f46] group-[.cb-light]:bg-[#f1f1f0] group-[.cb-dark]:text-white group-[.cb-light]:text-black">
-                              <div className="flex flex-col items-start gap-4 break-words">
-                                <div className="w-full prose text-left break-words text-inherit dark:prose-invert">
-                                  <p>Hi! What can I help you with?</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-end ml-8">
-                            <div
-                              className="px-4 py-3 mb-3 overflow-auto rounded-lg max-w-prose"
-                              style="background-color: rgb(59, 129, 246); color: white;"
-                            >
-                              <div className="flex flex-col items-start gap-4 break-words dark">
-                                <div className="w-full prose text-left break-words text-inherit dark:prose-invert">
-                                  <p>hello</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-start mr-8">
-                            <div className="mb-3 max-w-prose overflow-auto rounded-lg px-4 py-3 group-[.cb-dark]:bg-[#3f3f46] group-[.cb-light]:bg-[#f1f1f0] group-[.cb-dark]:text-white group-[.cb-light]:text-black">
-                              <div className="flex flex-col items-start gap-4 break-words">
-                                <div className="w-full prose text-left break-words text-inherit dark:prose-invert">
-                                  <p>Hello! How can I assist you today?</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-end ml-8">
-                            <div
-                              className="px-4 py-3 mb-3 overflow-auto rounded-lg max-w-prose"
-                              style="background-color: rgb(59, 129, 246); color: white;"
-                            >
-                              <div className="flex flex-col items-start gap-4 break-words dark">
-                                <div className="w-full prose text-left break-words text-inherit dark:prose-invert">
-                                  <p>what is the thing?</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-start mr-8">
-                            <div className="mb-3 max-w-prose overflow-auto rounded-lg px-4 py-3 group-[.cb-dark]:bg-[#3f3f46] group-[.cb-light]:bg-[#f1f1f0] group-[.cb-dark]:text-white group-[.cb-light]:text-black">
-                              <div className="flex flex-col items-start gap-4 break-words">
-                                <div className="w-full prose text-left break-words text-inherit dark:prose-invert">
-                                  <p>
-                                    Based on the given information, "the thing"
-                                    is not specified. Could you please provide
-                                    more context or clarify your question?
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-end ml-8">
-                            <div
-                              className="px-4 py-3 mb-3 overflow-auto rounded-lg max-w-prose"
-                              style="background-color: rgb(59, 129, 246); color: white;"
-                            >
-                              <div className="flex flex-col items-start gap-4 break-words dark">
-                                <div className="w-full prose text-left break-words text-inherit dark:prose-invert">
-                                  <p>yea, where are you located?</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-start mr-8">
-                            <div className="mb-3 max-w-prose overflow-auto rounded-lg px-4 py-3 group-[.cb-dark]:bg-[#3f3f46] group-[.cb-light]:bg-[#f1f1f0] group-[.cb-dark]:text-white group-[.cb-light]:text-black">
-                              <div className="flex flex-col items-start gap-4 break-words">
-                                <div className="w-full prose text-left break-words text-inherit dark:prose-invert">
-                                  <p>
-                                    As an AI assistant, I don't have a physical
-                                    location. I exist in the digital realm to
-                                    provide support and assistance. Is there
-                                    anything specific you would like help with?
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          {/* <MarketingUserMessage userMessage="I'm interested in joining your fitness classes, but I'm not sure which one would be the best fit for me. Can you help?" />
+                          <MarketingBotMessage botMessage="Absolutely! We offer a variety of fitness classes tailored to different preferences and fitness levels. To find the best class for you, please let us know your fitness goals, any previous experience with specific workouts, and any physical limitations you may have. With this information, we can recommend the perfect class to help you reach your goals and enjoy your fitness journey." /> */}
+                          <MarketingUserMessage userMessage="I'm thinking about getting a membership. What's your cancellation policy." />
+                          <MarketingBotMessage botMessage="Of course! We totally get that life can throw curveballs, so we've got flexible membership options. You can cancel with 14 days' notice before the next billing cycle. Plus, we offer temporary freezes if things come up. If you need more details or have any questions, just let me know!" />
+                          <MarketingUserMessage userMessage="Perfect! I'm interested in joining. What are the next steps?" />
+                          <MarketingBotMessage botMessage="First, let's get your email and we'll get back to you shortly." />
                         </div>
                       </div>
                     </div>
@@ -206,45 +82,43 @@ const MarketingModal = ({
                 </div>
                 {/* / chatbot message container */}
                 {/* chatbot footer */}
-                <div className="flex-shrink-0 bg-inherit">
-                  <form>
-                    <div className="flex gap-2 p-3 overflow-x-auto"></div>
-                    <div className="flex border-t px-4 py-3 group-[.cb-dark]:border-[#3f3f46] group-[.cb-light]:border-[#e4e4e7]">
-                      <div className="flex items-center w-full leading-none">
-                        <textarea
-                          required
-                          maxLength={4000}
-                          rows={1}
-                          tabIndex={0}
-                          style="height:24px"
-                          className="mr-3 max-h-36 w-full resize-none bg-transparent pr-3 leading-[24px] focus:outline-none focus:ring-0 focus-visible:ring-0 group-[.cb-dark]:text-white group-[.cb-light]:text-black"
-                          placeholder="Message..."
-                          aria-label="Write a Message"
-                          title="Write a Message"
-                        ></textarea>
-                      </div>
-                      <div className="flex items-end leading-none">
-                        <button
-                          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-50 h-9 p-1 group-[.cb-dark]:text-zinc-300 group-[.cb-light]:text-zinc-700"
-                          type="submit"
-                          aria-label="Send Message"
-                          title="Send Message"
-                          disabled={false}
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="w-5 h-5"
-                          >
-                            <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"></path>
-                          </svg>
-                        </button>
-                      </div>
+                <div className=" bg-inherit">
+                  <div className="flex gap-2 px-3 pt-3 overflow-x-auto "></div>
+                  <div className="flex border-t p-4 py-2 group-[.cb-dark]:border-[#3f3f46] group-[.cb-light]:border-[#e4e4e7]">
+                    <div className="flex items-center w-full leading-none">
+                      <textarea
+                        required
+                        maxLength={4000}
+                        rows={1}
+                        tabIndex={0}
+                        style="height:24px"
+                        className="mr-3 max-h-36 w-full resize-none bg-transparent pr-3 leading-[24px] focus:outline-none focus:ring-0 focus-visible:ring-0 group-[.cb-dark]:text-white group-[.cb-light]:text-black"
+                        placeholder="Message..."
+                        aria-label="Write a Message"
+                        title="Write a Message"
+                      ></textarea>
                     </div>
-                    <ChatbotPoweredBy />
-                  </form>
+                    <div className="flex items-end leading-none">
+                      <button
+                        className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-50 h-9 p-1 group-[.cb-dark]:text-zinc-300 group-[.cb-light]:text-zinc-700"
+                        type="submit"
+                        aria-label="Send Message"
+                        title="Send Message"
+                        disabled={false}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          aria-hidden="true"
+                          className="w-5 h-5"
+                        >
+                          <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <ChatbotPoweredBy />
                 </div>
                 {/* / chatbot footer */}
               </div>
