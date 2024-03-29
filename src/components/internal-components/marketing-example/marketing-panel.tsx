@@ -1,4 +1,6 @@
-const OtherPanel = () => {
+import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-powered-by';
+
+const MarketingPanel = () => {
   return (
     <>
       {/* chatbot */}
@@ -190,18 +192,7 @@ const OtherPanel = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex items-center justify-center gap-3 px-4 pt-1 pb-3">
-                <p className="grow text-nowrap text-center text-xs group-[.cb-dark]:text-[#b4b4b5] group-[.cb-light]:text-[#3f3f46]">
-                  Powered By
-                  <a
-                    target="_blank"
-                    className="ml-1 font-semibold group-[.cb-dark]:text-[#f1f1f0] group-[.cb-light]:text-[#141410]"
-                    href="/"
-                  >
-                    Other
-                  </a>
-                </p>
-              </div>
+              <ChatbotPoweredBy />
             </form>
           </div>
         </div>
@@ -211,4 +202,4 @@ const OtherPanel = () => {
   );
 };
 
-export default OtherPanel;
+export default MarketingPanel;

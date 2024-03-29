@@ -4,12 +4,12 @@ import 'src/styles/reset.css';
 import { createIslandWebComponent } from 'preact-island';
 
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import ChatMarketingComponent from 'src/components/internal-components/other-example/other-example';
+import ChatMarketingComponent from 'src/components/internal-components/marketing-example/marketing-example';
 import { useEffect, useRef } from 'preact/hooks';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
-import OtherPanel from 'src/components/internal-components/other-example/other-panel';
+import OtherPanel from 'src/components/internal-components/marketing-example/marketing-panel';
 
-const islandName = 'other-panel-island';
+const islandName = 'marketing-panel-island';
 
 const storeId = document.currentScript?.getAttribute('chatbotId') as
   | string

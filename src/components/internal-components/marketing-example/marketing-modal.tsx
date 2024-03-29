@@ -4,8 +4,9 @@ import { Box } from 'src/components/ui';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import useClassNames from 'src/hooks/useClassNames';
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
+import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-powered-by';
 
-interface OtherModalProps {
+interface MarketingModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   islandName: string;
@@ -22,7 +23,11 @@ const ChatOverlay: FC<{ name: string; parent: string }> = ({
   return <WebComponentPortal name={name}>{children}</WebComponentPortal>;
 };
 
-const OtherModal = ({ isOpen, setIsOpen, islandName }: OtherModalProps) => {
+const MarketingModal = ({
+  isOpen,
+  setIsOpen,
+  islandName
+}: MarketingModalProps) => {
   const chatbotConfig = useChatbotConfig();
 
   return (
@@ -238,18 +243,7 @@ const OtherModal = ({ isOpen, setIsOpen, islandName }: OtherModalProps) => {
                         </button>
                       </div>
                     </div>
-                    <div className="flex items-center justify-center gap-3 px-4 pt-1 pb-3">
-                      <p className="grow text-nowrap text-center text-xs group-[.cb-dark]:text-[#b4b4b5] group-[.cb-light]:text-[#3f3f46]">
-                        Powered By
-                        <a
-                          target="_blank"
-                          className="ml-1 font-semibold group-[.cb-dark]:text-[#f1f1f0] group-[.cb-light]:text-[#141410]"
-                          href="/"
-                        >
-                          Other
-                        </a>
-                      </p>
-                    </div>
+                    <ChatbotPoweredBy />
                   </form>
                 </div>
                 {/* / chatbot footer */}
@@ -279,4 +273,4 @@ const OtherModal = ({ isOpen, setIsOpen, islandName }: OtherModalProps) => {
   );
 };
 
-export default OtherModal;
+export default MarketingModal;
