@@ -12,6 +12,7 @@ export interface InitialBotSettings {
   customer_store_id: string;
   store_id: string;
   messages: any[];
+  initial_message: string;
 }
 
 export const useInitialData = (storeId: string) => {

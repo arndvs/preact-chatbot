@@ -8,14 +8,24 @@ interface ChatBubbleButtonProps {
 }
 
 const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
-  const { brandColor } = useChatbotContext();
+  const { chatBubbleButtonColor, brandColor } = useChatbotContext();
+
+  console.log('chatBubbleButtonColor:', chatBubbleButtonColor);
+  console.log('brandColor:', brandColor);
+
+  // Determine the background color based on conditions
+  const backgroundColor =
+    chatBubbleButtonColor != null && chatBubbleButtonColor !== ''
+      ? chatBubbleButtonColor
+      : brandColor ?? '#e5e5e5';
+
   return (
     <div className="cursor-pointer">
       <button
         className="bottom-4 right-4 fixed inline-flex items-center justify-center z-[988888] text-white rounded-full shadow-custom h-12 w-12 cursor-pointer hover:duration-200 hover:scale-105  hover:shadow-md hover:contrast-150"
         onClick={() => setIsOpen(!isOpen)}
         style={{
-          backgroundColor: brandColor ?? '#e5e5e5'
+          backgroundColor: backgroundColor
         }}
         aria-label={isOpen ? 'Close Chat' : 'Open Chat'}
         title={isOpen ? 'Close Chat' : 'Open Chat'}
