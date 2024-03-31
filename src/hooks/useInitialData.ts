@@ -33,7 +33,7 @@ export const useInitialData = (storeId: string) => {
   // const aiEndpoint = `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`;
 
   const chatbotSettings = {
-    chatHeadingColor: '#000000',
+    chatHeadingColor: '',
     initialMessages: ['Hi there! How can I help you today?'],
     suggestedMessages: [
       'What are your store hours?',
@@ -41,8 +41,8 @@ export const useInitialData = (storeId: string) => {
       'What is your return policy?'
     ],
     placeholderText: 'Ask a question...',
-    profilePicture: 'https://via.placeholder.com/150',
-    displayName: 'Chatbot',
+    profilePicture: '',
+    displayName: '',
     userMessageColor: '#000000',
     chatIcon: 'https://via.placeholder.com/150',
     chatBubbleButtonColor: ''
