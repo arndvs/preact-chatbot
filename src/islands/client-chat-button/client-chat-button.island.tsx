@@ -6,6 +6,7 @@ import { createIslandWebComponent } from 'preact-island';
 import ClientChatButtonComponent from 'src/components/client-components/client-chat-button-component';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
+import { useCookies } from 'react-cookie';
 
 const islandName = 'client-chat-button-island';
 
