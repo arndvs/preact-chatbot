@@ -43,7 +43,7 @@ export const useInitialData = (storeId: string) => {
     placeholderText: 'Ask a question...',
     profilePicture: '',
     displayName: '',
-    userMessageColor: '#000000',
+    userMessageColor: '',
     chatIcon: 'https://via.placeholder.com/150',
     chatBubbleButtonColor: ''
   };
