@@ -1,4 +1,5 @@
 import { useState } from 'preact/compat';
+import { useCookies } from 'react-cookie';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
 import { userMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
