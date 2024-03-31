@@ -2,11 +2,13 @@ import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-prov
 import ChatbotContextComponent from 'src/components/chat/chatbot/chatbot-context-component';
 import { useInitialData } from 'src/hooks/useInitialData';
 
-interface ClientDataComponentProps {
+interface ChatbotContextDataComponentProps {
   storeId: string | undefined;
 }
 
-const ClientDataComponent = ({ storeId }: ClientDataComponentProps) => {
+const ChatbotContextDataComponent = ({
+  storeId
+}: ChatbotContextDataComponentProps) => {
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
 
@@ -40,4 +42,4 @@ const ClientDataComponent = ({ storeId }: ClientDataComponentProps) => {
   );
 };
 
-export default ClientDataComponent;
+export default ChatbotContextDataComponent;
