@@ -10,9 +10,6 @@ interface ChatBubbleButtonProps {
 const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
   const { chatBubbleButtonColor, brandColor } = useChatbotContext();
 
-  console.log('chatBubbleButtonColor:', chatBubbleButtonColor);
-  console.log('brandColor:', brandColor);
-
   // Determine the background color based on conditions
   const backgroundColor =
     chatBubbleButtonColor != null && chatBubbleButtonColor !== ''

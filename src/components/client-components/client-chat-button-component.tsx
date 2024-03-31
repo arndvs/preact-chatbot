@@ -24,22 +24,6 @@ const ClientChatButtonComponent = ({
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse);
 
-  const chatbotSettings = {
-    chatHeadingColor: '#000000',
-    initialMessages: ['Hi there! How can I help you today?'],
-    suggestedMessages: [
-      'What are your store hours?',
-      'Do you offer free shipping?',
-      'What is your return policy?'
-    ],
-    placeholderText: 'Ask a question...',
-    profilePicture: 'https://via.placeholder.com/150',
-    displayName: 'Chatbot',
-    userMessageColor: '#000000',
-    chatIcon: 'https://via.placeholder.com/150',
-    chatBubbleButtonColor: ''
-  };
-
   return (
     <>
       {data && (
@@ -52,15 +36,14 @@ const ClientChatButtonComponent = ({
           messages={data.messages}
           store_id={idToUse}
           domain={domain}
-          placeholderText={chatbotSettings.placeholderText}
-          chatHeadingColor={chatbotSettings.chatHeadingColor}
-          //   initialMessages={chatbotSettings.initialMessages}
-          suggestedMessages={chatbotSettings.suggestedMessages}
-          profilePicture={chatbotSettings.profilePicture}
-          displayName={chatbotSettings.displayName}
-          userMessageColor={chatbotSettings.userMessageColor}
-          chatIcon={chatbotSettings.chatIcon}
-          chatBubbleButtonColor={chatbotSettings.chatBubbleButtonColor}
+          placeholderText={data.chatbotSettings.placeholderText}
+          chatHeadingColor={data.chatbotSettings.chatHeadingColor}
+          suggestedMessages={data.chatbotSettings.suggestedMessages}
+          profilePicture={data.chatbotSettings.profilePicture}
+          displayName={data.chatbotSettings.displayName}
+          userMessageColor={data.chatbotSettings.userMessageColor}
+          chatIcon={data.chatbotSettings.chatIcon}
+          chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
         >
           <ChatBubbleButton
             isOpen={isOpen}

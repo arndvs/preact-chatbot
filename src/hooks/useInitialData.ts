@@ -13,6 +13,17 @@ export interface InitialBotSettings {
   store_id: string;
   messages: any[];
   initial_message: string;
+  chatbotSettings: {
+    chatHeadingColor: string;
+    initialMessages: string[];
+    suggestedMessages: string[];
+    placeholderText: string;
+    profilePicture: string;
+    displayName: string;
+    userMessageColor: string;
+    chatIcon: string;
+    chatBubbleButtonColor: string;
+  };
 }
 
 export const useInitialData = (storeId: string) => {
@@ -20,6 +31,22 @@ export const useInitialData = (storeId: string) => {
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
   const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
   // const aiEndpoint = `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`;
+
+  const chatbotSettings = {
+    chatHeadingColor: '#000000',
+    initialMessages: ['Hi there! How can I help you today?'],
+    suggestedMessages: [
+      'What are your store hours?',
+      'Do you offer free shipping?',
+      'What is your return policy?'
+    ],
+    placeholderText: 'Ask a question...',
+    profilePicture: 'https://via.placeholder.com/150',
+    displayName: 'Chatbot',
+    userMessageColor: '#000000',
+    chatIcon: 'https://via.placeholder.com/150',
+    chatBubbleButtonColor: ''
+  };
 
   const getInitialData = async () => {
     try {
@@ -74,7 +101,8 @@ export const useInitialData = (storeId: string) => {
 
           setData({
             ...data,
-            messages: [initialMessage, ...(history || [])]
+            messages: [initialMessage, ...(history || [])],
+            chatbotSettings
           });
         });
       } else {
