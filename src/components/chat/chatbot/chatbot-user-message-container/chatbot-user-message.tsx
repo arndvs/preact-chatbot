@@ -11,17 +11,19 @@ const ChatbotUserMessage = ({
   customComponents,
   message
 }: ChatbotUserMessageProps) => {
-  const { brandColor } = useChatbotContext();
+  const { userMessageColor, brandColor } = useChatbotContext();
+
+  // Determine the background color based on conditions
+  const backgroundColor =
+    userMessageColor != null && userMessageColor !== ''
+      ? userMessageColor
+      : brandColor ?? '#e5e5e5';
 
   if (customComponents?.userChatMessage) {
     return callIfExists(customComponents.userChatMessage, { message });
   } else {
     return (
       <>
-        {/* <div className="relative p-2 text-sm font-medium text-left text-gray-700 bg-gray-200 rounded-md">
-          {message}
-          <div className="absolute top-0 right-0 w-0 h-0 border-t-8 border-b-8 border-l-8 border-gray-200"></div>
-        </div> */}
         <div>
           <div className="flex flex-col space-y-1.5 px-3 items-end">
             <div className="flex items-center gap-1.5 justify-end">
@@ -31,7 +33,7 @@ const ChatbotUserMessage = ({
             </div>
             <div
               className="inline-flex flex-col gap-2 px-3 py-3 font-normal text-white rounded-tr-sm shadow-sm rounded-xl"
-              style={{ backgroundColor: brandColor }}
+              style={{ backgroundColor: backgroundColor }}
             >
               {message}
             </div>

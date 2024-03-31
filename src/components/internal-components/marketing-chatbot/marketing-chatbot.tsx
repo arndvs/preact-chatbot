@@ -1,12 +1,12 @@
 import { useState } from 'preact/hooks';
-import MarketingBubbleButton from 'src/components/internal-components/marketing-example/marketing-bubble-button';
-import MarketingModal from 'src/components/internal-components/marketing-example/marketing-modal';
+import MarketingBubbleButton from 'src/components/internal-components/marketing-chatbot/marketing-bubble-button';
+import MarketingModal from 'src/components/internal-components/marketing-chatbot/marketing-modal';
 
-interface MarketingExampleProps {
+interface MarketingChatbotProps {
   islandName: string;
 }
 
-const MarketingExample = ({ islandName }: MarketingExampleProps) => {
+const MarketingChatbotComponent = ({ islandName }: MarketingChatbotProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -25,4 +25,4 @@ const MarketingExample = ({ islandName }: MarketingExampleProps) => {
   );
 };
 
-export default MarketingExample;
+export default MarketingChatbotComponent;

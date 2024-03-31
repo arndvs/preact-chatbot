@@ -1,6 +1,7 @@
 import { useState } from 'preact/compat';
 import { useCookies } from 'react-cookie';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
+import { userMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import { useInitialData } from 'src/hooks/useInitialData';
@@ -18,11 +19,11 @@ const ClientChatButtonComponent = ({
 }: ClientChatButtonComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Use the storeId if it is passed in, otherwise use the default storeId
   const idToUse = storeId || '20';
+
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse);
-
-  //   TODO: Add domain check logic
 
   return (
     <>
@@ -35,8 +36,15 @@ const ClientChatButtonComponent = ({
           customer_store_id={data.customer_store_id}
           messages={data.messages}
           store_id={idToUse}
-          placeholderText={'Ask a question...'}
           domain={domain}
+          placeholderText={data.chatbotSettings.placeholderText}
+          chatHeadingColor={data.chatbotSettings.chatHeadingColor}
+          suggestedMessages={data.chatbotSettings.suggestedMessages}
+          profilePicture={data.chatbotSettings.profilePicture}
+          displayName={data.chatbotSettings.displayName}
+          userMessageColor={data.chatbotSettings.userMessageColor}
+          chatIcon={data.chatbotSettings.chatIcon}
+          chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
         >
           <ChatBubbleButton
             isOpen={isOpen}

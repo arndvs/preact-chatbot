@@ -28,7 +28,6 @@ const ClientChatPanelComponent = ({
   // Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider
   const chatbotConfig = useChatbotConfig();
 
-  //TODO: Add domain check logic
   return (
     <>
       {data && (
@@ -38,10 +37,17 @@ const ClientChatPanelComponent = ({
           brandColor={data.brand_color}
           session_id={data.session_id}
           customer_store_id={data.customer_store_id}
-          store_id={idToUse}
-          placeholderText={'Ask a question...'}
-          domain={domain}
           messages={data.messages}
+          store_id={idToUse}
+          domain={domain}
+          placeholderText={data.chatbotSettings.placeholderText}
+          chatHeadingColor={data.chatbotSettings.chatHeadingColor}
+          suggestedMessages={data.chatbotSettings.suggestedMessages}
+          profilePicture={data.chatbotSettings.profilePicture}
+          displayName={data.chatbotSettings.displayName}
+          userMessageColor={data.chatbotSettings.userMessageColor}
+          chatIcon={data.chatbotSettings.chatIcon}
+          chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
         >
           <Box
             data-testId="overlay-content"

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { callIfExists } from 'src/actions/chatbot/chatbot-message-utils';
+import ChatbotAvatar from 'src/components/chat/chatbot/chatbot-avatar';
 import ChatbotLoadingDots from 'src/components/chat/chatbot/chatbot-message-container/chatbot-loading-dots';
 import ChatbotMessageAvatar from 'src/components/chat/chatbot/chatbot-message-container/chatbot-message-avatar';
 import ChatbotMessageComponent from 'src/components/chat/chatbot/chatbot-message-container/chatbot-message-component';
@@ -66,7 +67,11 @@ const ChatbotMessageContainer = ({
             {withAvatar && customComponents?.botAvatar ? (
               callIfExists(customComponents.botAvatar)
             ) : (
-              <ChatbotMessageAvatar />
+              <>
+                <div className="relative pb-1">
+                  <ChatbotAvatar className="flex items-center justify-center w-10 h-10 rounded-full shadow-md" />
+                </div>
+              </>
             )}
             {/* This was always coming back false customComponents is null */}
             {/* {customComponents?.botChatMessage ? (

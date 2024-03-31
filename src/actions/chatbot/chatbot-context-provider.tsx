@@ -6,29 +6,27 @@ import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils'
 import { BotDataType, defaultBotData } from 'src/types/ChatBotDataTypes';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 
-interface ChatbotContextProviderProps {
+interface ChatbotContextProps {
   children: ComponentChildren;
   storeName: string;
   storeLogo: string;
   brandColor: string;
-  placeholderText: string;
   session_id: string;
   store_id: string;
   customer_store_id: string;
   domain?: string;
   messages: IChatbotMessage[];
+  chatHeadingColor: string;
+  suggestedMessages: string[];
+  placeholderText: string;
+  profilePicture: string;
+  displayName: string;
+  userMessageColor: string;
+  chatIcon: string;
+  chatBubbleButtonColor: string;
 }
 
-interface ChatbotContextType {
-  storeName?: string;
-  storeLogo?: string;
-  brandColor?: string;
-  placeholderText?: string;
-  session_id?: string;
-  store_id?: string;
-  customer_store_id?: string;
-  domain?: string | undefined;
-  messages: IChatbotMessage[];
+interface ChatbotContextType extends ChatbotContextProps {
   setMessages: (
     messages:
       | IChatbotMessage[]
@@ -40,25 +38,50 @@ interface ChatbotContextType {
 }
 
 export const ChatbotContext = createContext<ChatbotContextType>({
+  children: null,
+  storeName: '',
+  storeLogo: '',
+  brandColor: '',
+  session_id: '',
+  store_id: '',
+  customer_store_id: '',
+  messages: [],
+  chatHeadingColor: '',
+  suggestedMessages: [],
+  placeholderText: '',
+  profilePicture: '',
+  displayName: '',
+  userMessageColor: '',
+  chatIcon: '',
+  chatBubbleButtonColor: '',
+  setMessages: () => {},
   botData: defaultBotData,
   setBotData: () => {},
-  messages: [],
-  setMessages: () => {},
   resetChatTimeline: () => {}
 });
 
 export const ChatbotContextProvider = ({
   children,
-  storeName,
-  storeLogo,
-  brandColor,
-  placeholderText,
-  session_id,
-  store_id,
-  customer_store_id,
-  domain,
-  messages: initialMessages
-}: ChatbotContextProviderProps) => {
+  ...props
+}: ChatbotContextProps) => {
+  const {
+    storeName,
+    storeLogo,
+    brandColor,
+    session_id,
+    store_id,
+    domain,
+    customer_store_id,
+    messages: initialMessages,
+    chatHeadingColor,
+    suggestedMessages,
+    placeholderText,
+    profilePicture,
+    displayName,
+    userMessageColor,
+    chatIcon,
+    chatBubbleButtonColor
+  } = props;
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
   const [messages, setMessages] = useState<IChatbotMessage[]>(initialMessages);
   const [sessionId, setSessionId] = useState<string>(session_id);
@@ -78,6 +101,7 @@ export const ChatbotContextProvider = ({
 
   // Construct the value object explicitly
   const value = {
+    children,
     storeName,
     storeLogo,
     brandColor,
@@ -91,10 +115,16 @@ export const ChatbotContextProvider = ({
     botData,
     setBotData,
     resetChatTimeline,
-    cookie: cookie.ripemetrics_chatbot
+    cookie: cookie.ripemetrics_chatbot,
+    chatHeadingColor,
+    //   initialMessages,
+    suggestedMessages,
+    profilePicture,
+    displayName,
+    userMessageColor,
+    chatIcon,
+    chatBubbleButtonColor
   };
-
-  console.log('ChatbotContextProvider - cookie:', value.cookie);
 
   return (
     <ChatbotContext.Provider value={value}>{children}</ChatbotContext.Provider>

@@ -5,9 +5,9 @@ import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import useClassNames from 'src/hooks/useClassNames';
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
 import ChatbotPoweredBy from 'src/components/chat/chatbot/chatbot-footer-container/chatbot-powered-by';
-import MarketingBotMessage from 'src/components/internal-components/marketing-example/marketing-bot-message';
-import MarketingUserMessage from 'src/components/internal-components/marketing-example/marketing-user-message';
-import MarketingHeader from 'src/components/internal-components/marketing-example/marketing-header';
+import MarketingBotMessage from 'src/components/internal-components/marketing-chatbot/marketing-bot-message';
+import MarketingUserMessage from 'src/components/internal-components/marketing-chatbot/marketing-user-message';
+import MarketingHeader from 'src/components/internal-components/marketing-chatbot/marketing-header';
 
 interface MarketingModalProps {
   isOpen: boolean;
