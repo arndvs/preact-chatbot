@@ -13,8 +13,9 @@ const ChatBotHeaderResetChatButton = () => {
       const response = await axios.post(
         `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`,
         {
-          session_id: null,
-          customer_store_id: cookie?.length && cookie[2]
+          session_id: cookie?.length && cookie[1],
+          customer_store_id: cookie?.length && cookie[2],
+          refresh: true
         }
       );
 
