@@ -3,7 +3,7 @@ import Echo from 'laravel-echo';
 import { useEffect } from 'preact/hooks';
 import { pusherConfig } from 'src/config/pusher';
 
-export const usePusher = () => {
+export const usePusher = (test: boolean) => {
   useEffect(() => {
     Pusher.logToConsole = true;
     try {
@@ -14,10 +14,12 @@ export const usePusher = () => {
         //@ts-ignore
         window.Echo = new Echo({
           broadcaster: 'pusher',
-          key: pusherConfig.key,
+          key: test ? 'ba4d144ab20fb212f010' : pusherConfig.key,
           cluster: pusherConfig.cluster,
           forceTLS: true,
-          authEndpoint: pusherConfig.authEndpoint
+          authEndpoint: test
+            ? 'https://api.rmdevs.com/api/broadcasting/reputation'
+            : pusherConfig.authEndpoint
         });
       } else {
         console.log('Pusher client already exists');
