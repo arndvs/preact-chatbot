@@ -82,10 +82,11 @@ export const useInitialData = (storeId: string) => {
       const cookie = cookies.ripemetrics_chatbot?.split('-');
 
       if (!cookie?.length) return null;
-
-      const response = await axios.get(
-        `${chatApiUrl}/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`
-      );
+      let history_endpoint = `${chatApiUrl}/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`;
+      if(storeId === '97') {
+        history_endpoint = `https://api.rmdevs.com/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`;
+      }
+      const response = await axios.get(history_endpoint);
       return response.data;
     } catch (error) {
       console.log(error);
