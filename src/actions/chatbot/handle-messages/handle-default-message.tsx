@@ -29,9 +29,13 @@ const HandleDefaultMessage = ({
     }) as IChatbotMessage;
 
     setMessages((prevMessages) => [...prevMessages, loadingMessage]);
-
+    let endpoint = `${chatApiUrl}/api/v2/external_chatbot`;
+    if (store_id == '97') {
+      endpoint =
+        'https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/97';
+    }
     try {
-      await axios.post(`${chatApiUrl}/api/v2/external_chatbot`, {
+      await axios.post(endpoint, {
         question: message,
         store_id: store_id,
         customer_id: customer_store_id,
