@@ -9,15 +9,17 @@ const ChatBotHeaderResetChatButton = () => {
 
   const handleResetChat = async () => {
     const cookie = cookies.ripemetrics_chatbot?.split('-');
+    let endpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`;
+    if (store_id == '97') {
+      endpoint =
+        'https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/97';
+    }
     try {
-      const response = await axios.post(
-        `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`,
-        {
-          session_id: cookie?.length && cookie[1],
-          customer_store_id: cookie?.length && cookie[2],
-          refresh: true
-        }
-      );
+      const response = await axios.post(endpoint, {
+        session_id: cookie?.length && cookie[1],
+        customer_store_id: cookie?.length && cookie[2],
+        refresh: true
+      });
 
       setCookie(
         'ripemetrics_chatbot',
