@@ -32,7 +32,7 @@ const HandleDefaultMessage = ({
     let endpoint = `${chatApiUrl}/api/v2/external_chatbot`;
     if (store_id == '97') {
       endpoint =
-        'https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/97';
+        'https://api.rmdevs.com/api/v2/external_chatbot';
     }
     try {
       await axios.post(endpoint, {
