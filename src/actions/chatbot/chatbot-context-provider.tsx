@@ -24,6 +24,7 @@ interface ChatbotContextProps {
   userMessageColor: string;
   chatIcon: string;
   chatBubbleButtonColor: string;
+  chatType: string;
 }
 
 interface ChatbotContextType extends ChatbotContextProps {
@@ -57,7 +58,8 @@ export const ChatbotContext = createContext<ChatbotContextType>({
   setMessages: () => {},
   botData: defaultBotData,
   setBotData: () => {},
-  resetChatTimeline: () => {}
+  resetChatTimeline: () => {},
+  chatType: ''
 });
 
 export const ChatbotContextProvider = ({
@@ -80,7 +82,8 @@ export const ChatbotContextProvider = ({
     displayName,
     userMessageColor,
     chatIcon,
-    chatBubbleButtonColor
+    chatBubbleButtonColor,
+    chatType
   } = props;
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
   const [messages, setMessages] = useState<IChatbotMessage[]>(initialMessages);
@@ -123,7 +126,8 @@ export const ChatbotContextProvider = ({
     displayName,
     userMessageColor,
     chatIcon,
-    chatBubbleButtonColor
+    chatBubbleButtonColor,
+    chatType
   };
 
   return (
