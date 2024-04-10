@@ -156,11 +156,13 @@ const ChatbotContextComponent = () => {
                 <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
                   <div className="text-gray-900">profilePicture</div>
                   <div className="text-gray-900">
-                    <img
-                      className="w-20 h-20"
-                      src={profilePicture}
-                      alt="Profile Picture"
-                    />
+                    {profilePicture && (
+                      <img
+                        className="w-20 h-20"
+                        src={profilePicture}
+                        alt="Profile Picture"
+                      />
+                    )}
                   </div>
                 </dd>
               </div>
@@ -189,11 +191,13 @@ const ChatbotContextComponent = () => {
                 <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
                   <div className="text-gray-900">chatIcon</div>
                   <div className="text-gray-900">
-                    <img
-                      className="w-20 h-20"
-                      src={chatIcon}
-                      alt="Profile Picture"
-                    />
+                    {chatIcon && (
+                      <img
+                        className="w-20 h-20"
+                        src={chatIcon}
+                        alt="Profile Picture"
+                      />
+                    )}
                   </div>
                 </dd>
               </div>
