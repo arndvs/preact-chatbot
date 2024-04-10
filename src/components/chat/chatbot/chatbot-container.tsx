@@ -7,6 +7,7 @@ import ChatbotMessageRetriever from 'src/components/chat/chatbot/chatbot-message
 
 import { IChatbotContainerProps } from 'src/types/IChatbotWidget';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
+import useClassNames from 'src/hooks/useClassNames';
 
 const ChatbotContainer = ({
   actionProvider,
@@ -24,7 +25,7 @@ const ChatbotContainer = ({
   validator,
   widgetRegistry
 }: IChatbotContainerProps) => {
-  const { messages } = useChatbotContext();
+  const { messages, chatType } = useChatbotContext();
 
   useEffect(() => {
     if (disableScrollToBottom) return;
@@ -34,7 +35,11 @@ const ChatbotContainer = ({
   return (
     <>
       <div
-        className="h-screen sm:max-h-[86dvh]"
+        className={useClassNames(
+          chatType === 'panel'
+            ? 'h-screen sm:max-h-[60dvh]'
+            : 'h-screen sm:max-h-[86dvh]'
+        )}
         title="Chatbot"
       >
         <div className="flex flex-col flex-auto h-full overflow-hidden bg-gray-50 shrink-0 group cb-light">

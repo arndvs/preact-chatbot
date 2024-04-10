@@ -28,6 +28,8 @@ const ClientChatPanelComponent = ({
   // Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider
   const chatbotConfig = useChatbotConfig();
 
+  const chatType = 'panel';
+
   return (
     <>
       {data && (
@@ -48,10 +50,11 @@ const ClientChatPanelComponent = ({
           userMessageColor={data.chatbotSettings.userMessageColor}
           chatIcon={data.chatbotSettings.chatIcon}
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
+          chatType={chatType}
         >
           <Box
             data-testId="overlay-content"
-            className="z-[888889] border-none flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-55vh max-h-824 rounded-lg overflow-hidden bg-white"
+            className="z-[888889] border-none flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-75vh max-h-75vh rounded-lg overflow-hidden bg-white"
           >
             <Chatbot
               config={chatbotConfig}

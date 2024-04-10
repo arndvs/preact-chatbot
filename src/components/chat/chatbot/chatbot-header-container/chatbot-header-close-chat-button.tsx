@@ -1,4 +1,6 @@
 import { XMarkIcon } from 'src/assets/x-mark-icon';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
+import useClassNames from 'src/hooks/useClassNames';
 
 interface ChatbotHeaderCloseButton {
   setIsOpen: (isOpen: boolean) => void;
@@ -7,11 +9,15 @@ interface ChatbotHeaderCloseButton {
 const ChatbotHeaderCloseChatButton = ({
   setIsOpen
 }: ChatbotHeaderCloseButton) => {
+  const { chatType } = useChatbotContext();
   return (
     <>
       <button
         type="button"
-        className="inline-flex items-center justify-center p-1 text-white hover:duration-200 hover:scale-110 hover:contrast-150"
+        className={useClassNames(
+          'inline-flex items-center justify-center p-1 text-white hover:duration-200 hover:scale-110 hover:contrast-150',
+          chatType === 'panel' ? 'hidden' : ''
+        )}
         onClick={() => setIsOpen(false)}
         aria-label="Close Chat"
         title="Close Chat"
