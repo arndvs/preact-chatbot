@@ -4,10 +4,14 @@ import { useInitialData } from 'src/hooks/useInitialData';
 
 interface ChatbotContextDataComponentProps {
   storeId: string | undefined;
+  env: string | undefined;
+  islandType: string | undefined;
 }
 
 const ChatbotContextDataComponent = ({
-  storeId
+  storeId,
+  env,
+  islandType
 }: ChatbotContextDataComponentProps) => {
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
@@ -34,6 +38,8 @@ const ChatbotContextDataComponent = ({
           userMessageColor={data.chatbotSettings.userMessageColor}
           chatIcon={data.chatbotSettings.chatIcon}
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
+          env={env}
+          islandType={islandType}
         >
           <ChatbotContextComponent />
         </ChatbotContextProvider>

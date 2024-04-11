@@ -30,9 +30,10 @@ const ClientChatPanelComponent = ({
   // Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider
   const chatbotConfig = useChatbotConfig();
 
-  const chatType = 'panel';
+  const islandType = 'panel';
 
   console.log('chat panel env', env);
+  console.log('chat panel islandType', islandType);
 
   return (
     <>
@@ -54,7 +55,7 @@ const ClientChatPanelComponent = ({
           userMessageColor={data.chatbotSettings.userMessageColor}
           chatIcon={data.chatbotSettings.chatIcon}
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
-          chatType={chatType}
+          islandType={islandType}
           env={env}
         >
           <Box

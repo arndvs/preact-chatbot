@@ -13,6 +13,12 @@ const storeId = document.currentScript?.getAttribute('chatbotId') as
   | string
   | undefined;
 
+const islandType = document.currentScript?.getAttribute('islandType') as
+  | string
+  | undefined;
+
+const env = document.currentScript?.getAttribute('env') as string | undefined;
+
 export const ChatbotContextDataIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
@@ -21,6 +27,8 @@ export const ChatbotContextDataIsland = () => {
     <ChatbotContextDataComponent
       data-testid="ChatbotContextDataIsland"
       storeId={storeId}
+      env={env}
+      islandType={islandType}
     />
   );
 };
