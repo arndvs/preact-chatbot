@@ -34,6 +34,7 @@ export const useInitialData = (storeId: string) => {
   const { env } = useChatbotContext();
 
   const chatApiUrl = getChatApiUrl(env);
+  console.log('Chat API URL:', chatApiUrl, env);
 
   const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
 
