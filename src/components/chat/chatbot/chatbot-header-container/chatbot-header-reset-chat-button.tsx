@@ -1,19 +1,21 @@
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import { chatApiUrl } from 'src/config/chat-api-url';
+import { getChatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 const ChatBotHeaderResetChatButton = () => {
-  const { store_id, resetChatTimeline } = useChatbotContext();
+  const { store_id, resetChatTimeline, env } = useChatbotContext();
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
 
   const handleResetChat = async () => {
     const cookie = cookies.ripemetrics_chatbot?.split('-');
-    let endpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`;
-    if (store_id == '97') {
-      endpoint =
-        'https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/97';
-    }
+
+    const chatApiUrl = getChatApiUrl(env);
+
+    const endpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`;
+
+    console.log('ChatBotHeaderResetChatButton - endpoint:', endpoint);
+
     try {
       const response = await axios.post(endpoint, {
         session_id: cookie?.length && cookie[1],
