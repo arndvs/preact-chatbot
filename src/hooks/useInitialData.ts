@@ -27,11 +27,10 @@ export interface InitialBotSettings {
   };
 }
 
-export const useInitialData = (storeId: string) => {
+export const useInitialData = (storeId: string, env: string) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
 
-  const { env } = useChatbotContext();
 
   const chatApiUrl = getChatApiUrl(env);
   console.log('Chat API URL:', chatApiUrl,'env', env);
