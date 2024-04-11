@@ -9,14 +9,14 @@ interface ChatbotHeaderCloseButton {
 const ChatbotHeaderCloseChatButton = ({
   setIsOpen
 }: ChatbotHeaderCloseButton) => {
-  const { chatType } = useChatbotContext();
+  const { islandType } = useChatbotContext();
   return (
     <>
       <button
         type="button"
         className={useClassNames(
           'inline-flex items-center justify-center p-1 text-white hover:duration-200 hover:scale-110 hover:contrast-150',
-          chatType === 'panel' ? 'hidden' : ''
+          islandType === 'panel' ? 'hidden' : ''
         )}
         onClick={() => setIsOpen(false)}
         aria-label="Close Chat"

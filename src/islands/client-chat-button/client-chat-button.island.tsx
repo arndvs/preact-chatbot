@@ -18,6 +18,10 @@ const domain = document.currentScript?.getAttribute('domain') as
   | string
   | undefined;
 
+const islandType = document.currentScript?.getAttribute('islandType') as
+  | string
+  | undefined;
+
 const env = document.currentScript?.getAttribute('env') as string | undefined;
 
 export const ClientChatButtonIsland = () => {
@@ -31,6 +35,7 @@ export const ClientChatButtonIsland = () => {
       storeId={storeId}
       domain={domain}
       env={env}
+      islandType={islandType}
     />
   );
 };

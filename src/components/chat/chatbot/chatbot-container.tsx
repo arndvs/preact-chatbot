@@ -25,7 +25,7 @@ const ChatbotContainer = ({
   validator,
   widgetRegistry
 }: IChatbotContainerProps) => {
-  const { messages, chatType } = useChatbotContext();
+  const { messages, islandType } = useChatbotContext();
 
   useEffect(() => {
     if (disableScrollToBottom) return;
@@ -36,7 +36,7 @@ const ChatbotContainer = ({
     <>
       <div
         className={useClassNames(
-          chatType === 'panel'
+          islandType === 'panel'
             ? 'h-screen sm:max-h-[60dvh]'
             : 'h-screen sm:max-h-[86dvh]'
         )}

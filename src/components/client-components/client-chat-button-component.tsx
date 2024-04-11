@@ -10,6 +10,7 @@ interface ClientChatButtonComponentProps {
   islandName: string;
   storeId: string | undefined;
   domain: string | undefined;
+  islandType: string | undefined;
   env: string | undefined;
 }
 
@@ -17,6 +18,7 @@ const ClientChatButtonComponent = ({
   islandName,
   storeId,
   domain,
+  islandType,
   env
 }: ClientChatButtonComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +29,8 @@ const ClientChatButtonComponent = ({
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse);
 
-  const chatType = 'button';
-
   console.log('chat button env', env);
+  console.log('chat button islandType', islandType);
 
   return (
     <>
@@ -51,7 +52,7 @@ const ClientChatButtonComponent = ({
           userMessageColor={data.chatbotSettings.userMessageColor}
           chatIcon={data.chatbotSettings.chatIcon}
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
-          chatType={chatType}
+          islandType={islandType}
           env={env}
         >
           <ChatBubbleButton
