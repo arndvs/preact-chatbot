@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { StateUpdater } from 'preact/hooks';
-import { chatApiUrl } from 'src/config/chat-api-url';
+import { getChatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
 
@@ -15,7 +15,7 @@ const HandleDefaultMessage = ({
   setLoadingState,
   setAiUserTestResponse
 }: ChatbotHandlerProps) => {
-  const { session_id, store_id, customer_store_id, setMessages } =
+  const { session_id, store_id, customer_store_id, setMessages, env } =
     useChatbotContext();
 
   const handleDefault = async (message: string) => {
@@ -29,11 +29,10 @@ const HandleDefaultMessage = ({
     }) as IChatbotMessage;
 
     setMessages((prevMessages) => [...prevMessages, loadingMessage]);
-    let endpoint = `${chatApiUrl}/api/v2/external_chatbot`;
-    if (store_id == '97') {
-      endpoint =
-        'https://api.rmdevs.com/api/v2/external_chatbot';
-    }
+    const chatApiUrl = getChatApiUrl(env);
+
+    const endpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`;
+
     try {
       await axios.post(endpoint, {
         question: message,

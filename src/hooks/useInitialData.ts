@@ -2,7 +2,8 @@ import { useState, useEffect } from 'preact/hooks';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
-import { chatApiUrl } from 'src/config/chat-api-url';
+import { getChatApiUrl } from 'src/config/chat-api-url';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 export interface InitialBotSettings {
   store_name: string;
@@ -29,11 +30,12 @@ export interface InitialBotSettings {
 export const useInitialData = (storeId: string) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
-  let aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
-  if (storeId === '97') {
-    aiEndpoint =
-      'https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/97';
-  }
+
+  const { env } = useChatbotContext();
+
+  const chatApiUrl = getChatApiUrl(env);
+
+  const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
 
   const chatbotSettings = {
     chatHeadingColor: '',
@@ -82,10 +84,7 @@ export const useInitialData = (storeId: string) => {
       const cookie = cookies.ripemetrics_chatbot?.split('-');
 
       if (!cookie?.length) return null;
-      let history_endpoint = `${chatApiUrl}/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`;
-      if(storeId === '97') {
-        history_endpoint = `https://api.rmdevs.com/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`;
-      }
+      const history_endpoint = `${chatApiUrl}/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`;
       const response = await axios.get(history_endpoint);
       return response.data;
     } catch (error) {
