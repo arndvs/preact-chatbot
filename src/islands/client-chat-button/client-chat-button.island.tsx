@@ -18,6 +18,8 @@ const domain = document.currentScript?.getAttribute('domain') as
   | string
   | undefined;
 
+const env = document.currentScript?.getAttribute('env') as string | undefined;
+
 export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
@@ -28,6 +30,7 @@ export const ClientChatButtonIsland = () => {
       data-testid="ClientChatButtonIsland"
       storeId={storeId}
       domain={domain}
+      env={env}
     />
   );
 };

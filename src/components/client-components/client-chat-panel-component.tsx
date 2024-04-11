@@ -11,12 +11,14 @@ interface ChatPanelComponentProps {
   islandName: string;
   storeId: string | undefined;
   domain: string | undefined;
+  env: string | undefined;
 }
 
 const ClientChatPanelComponent = ({
   islandName,
   storeId,
-  domain
+  domain,
+  env
 }: ChatPanelComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   // use the If storeId is undefined, use the default storeId of 20
@@ -29,6 +31,8 @@ const ClientChatPanelComponent = ({
   const chatbotConfig = useChatbotConfig();
 
   const chatType = 'panel';
+
+  console.log('chat panel env', env);
 
   return (
     <>
@@ -51,6 +55,7 @@ const ClientChatPanelComponent = ({
           chatIcon={data.chatbotSettings.chatIcon}
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
           chatType={chatType}
+          env={env}
         >
           <Box
             data-testId="overlay-content"
