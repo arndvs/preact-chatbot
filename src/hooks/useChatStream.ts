@@ -12,15 +12,11 @@ export const useChatStream = ({
   setLoadingState
 }: useChatStreamProps) => {
   const { session_id, store_id } = useChatbotContext();
-  let test = false;
-  if(store_id  == '111') {
-    test = true;
-  }
-  const pusher = usePusher(test);
+
+  const pusher = usePusher();
 
   useEffect(() => {
     const subscription = `chat-stream-external-${store_id}-${session_id}`;
-    // const subscription = `heartbeat`;
 
     let channel: unknown | null = null;
 
