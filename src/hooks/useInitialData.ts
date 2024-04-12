@@ -64,6 +64,7 @@ export const useInitialData = (storeId: string, env: string) => {
         customer_store_id: cookie?.length ? cookie[2] : null,
         refresh: false
       });
+      console.log('Initial Data:', response.data);
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         setCookie(
