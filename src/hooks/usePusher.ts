@@ -2,8 +2,12 @@ import Pusher from 'pusher-js';
 import Echo from 'laravel-echo';
 import { useEffect } from 'preact/hooks';
 import { pusherConfig } from 'src/config/pusher';
+import { getChatApiUrl } from '../config/chat-api-url';
+import { useChatbotContext } from './useChatbotContext';
 
 export const usePusher = () => {
+  const { env } = useChatbotContext();
+  const chatApiUrl = getChatApiUrl(env);
   useEffect(() => {
     Pusher.logToConsole = true;
     try {
@@ -17,7 +21,7 @@ export const usePusher = () => {
           key: pusherConfig.key,
           cluster: pusherConfig.cluster,
           forceTLS: true,
-          authEndpoint: pusherConfig.authEndpoint
+          authEndpoint: `${chatApiUrl}/api/broadcasting/reputation`
         });
       } else {
         console.log('Pusher client already exists');
