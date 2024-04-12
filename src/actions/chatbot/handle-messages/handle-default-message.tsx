@@ -36,8 +36,8 @@ const HandleDefaultMessage = ({
     try {
       await axios.post(endpoint, {
         question: message,
-        store_id: store_id,
-        customer_id: customer_store_id,
+        store_id: Number(store_id),
+        customer_id: Number(customer_store_id),
         req_session: session_id,
         greeting: false
       });
