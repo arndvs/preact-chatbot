@@ -18,7 +18,7 @@ export const usePusher = () => {
         //@ts-ignore
         window.Echo = new Echo({
           broadcaster: 'pusher',
-          key: pusherConfig.key,
+          key: 'ba4d144ab20fb212f010',
           cluster: pusherConfig.cluster,
           forceTLS: true,
           authEndpoint: `${chatApiUrl}/api/broadcasting/reputation`
