@@ -18,9 +18,8 @@ const ChatBotHeaderResetChatButton = () => {
 
     try {
       const response = await axios.post(endpoint, {
-        session_id: cookie?.length && cookie[1] ? Number(cookie[1]) : null,
-        customer_store_id:
-          cookie?.length && cookie[1] ? Number(cookie[1]) : null,
+        session_id: cookie?.length && cookie[1],
+        customer_store_id: cookie?.length && cookie[2],
         refresh: true
       });
 

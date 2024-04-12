@@ -60,9 +60,8 @@ export const useInitialData = (storeId: string, env: string | undefined) => {
       console.log('Cookie:', cookie);
 
       const response = await axios.post(aiEndpoint, {
-        session_id: cookie?.length && cookie[1] ? Number(cookie[1]) : null,
-        customer_store_id:
-          cookie?.length && cookie[1] ? Number(cookie[1]) : null,
+        session_id: cookie?.length ? cookie[1] : null,
+        customer_store_id: cookie?.length ? cookie[2] : null,
         refresh: false
       });
       console.log('Initial Data:', response.data);
