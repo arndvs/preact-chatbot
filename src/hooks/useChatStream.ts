@@ -27,17 +27,20 @@ export const useChatStream = ({
       channel =
         //@ts-ignore
         window.Echo.private(subscription).listenToAll((e, data) => {
+          console.log('Chat stream data:', data);
           if (data?.completed === false) {
+            console.log('useChatStream - data?.completed === false :', data);
             setAiUserTestResponse((prevResponse: string) =>
               prevResponse === 'Loading ...'
                 ? data.text
                 : prevResponse + data.text
             );
           } else if (data?.completed === true) {
+            console.log('useChatStream - data?.completed === true :', data);
             setAiUserTestResponse('Loading ...');
             setLoadingState(false);
           } else {
-            console.log('useChatStream - No data received');
+            console.log('useChatStream - else :', data);
           }
         });
     }
