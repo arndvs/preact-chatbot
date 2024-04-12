@@ -27,7 +27,7 @@ export interface InitialBotSettings {
   };
 }
 
-export const useInitialData = (storeId: string, env: string) => {
+export const useInitialData = (storeId: string, env: string | undefined) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
 
