@@ -13,7 +13,7 @@ export const useChatStream = ({
 }: useChatStreamProps) => {
   const { session_id, store_id } = useChatbotContext();
   let test = false;
-  if(store_id  == '97') {
+  if(store_id  == '111') {
     test = true;
   }
   const pusher = usePusher(test);
