@@ -11,24 +11,30 @@ interface ChatPanelComponentProps {
   islandName: string;
   storeId: string | undefined;
   domain: string | undefined;
+  env: string | undefined;
 }
 
 const ClientChatPanelComponent = ({
   islandName,
   storeId,
-  domain
+  domain,
+  env
 }: ChatPanelComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
 
   // Fetch the initial store data for the chatbot
-  const data = useInitialData(idToUse);
+  const data = useInitialData(idToUse, env);
 
   // Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider
   const chatbotConfig = useChatbotConfig();
 
-  //TODO: Add domain check logic
+  const islandType = 'panel';
+
+  console.log('chat panel env', env);
+  console.log('chat panel islandType', islandType);
+
   return (
     <>
       {data && (
@@ -38,14 +44,23 @@ const ClientChatPanelComponent = ({
           brandColor={data.brand_color}
           session_id={data.session_id}
           customer_store_id={data.customer_store_id}
-          store_id={idToUse}
-          placeholderText={'Ask a question...'}
-          domain={domain}
           messages={data.messages}
+          store_id={idToUse}
+          domain={domain}
+          placeholderText={data.chatbotSettings.placeholderText}
+          chatHeadingColor={data.chatbotSettings.chatHeadingColor}
+          suggestedMessages={data.chatbotSettings.suggestedMessages}
+          profilePicture={data.chatbotSettings.profilePicture}
+          displayName={data.chatbotSettings.displayName}
+          userMessageColor={data.chatbotSettings.userMessageColor}
+          chatIcon={data.chatbotSettings.chatIcon}
+          chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
+          islandType={islandType}
+          env={env}
         >
           <Box
             data-testId="overlay-content"
-            className="z-[888889] border-none flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-85vh max-h-824 rounded-lg overflow-hidden bg-white"
+            className="z-[888889] border-none flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-75vh max-h-75vh rounded-lg overflow-hidden bg-white"
           >
             <Chatbot
               config={chatbotConfig}

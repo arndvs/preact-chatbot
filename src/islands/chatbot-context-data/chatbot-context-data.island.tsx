@@ -3,18 +3,13 @@ import 'src/styles/reset.css';
 
 import { createIslandWebComponent } from 'preact-island';
 
-import ClientChatButtonComponent from 'src/components/client-components/client-chat-button-component';
+import ChatbotContextDataComponent from 'src/components/client-components/chatbot-context-data-component';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
-import { useCookies } from 'react-cookie';
 
-const islandName = 'client-chat-button-island';
+const islandName = 'chatbot-context-data-island';
 
 const storeId = document.currentScript?.getAttribute('chatbotId') as
-  | string
-  | undefined;
-
-const domain = document.currentScript?.getAttribute('domain') as
   | string
   | undefined;
 
@@ -24,23 +19,21 @@ const islandType = document.currentScript?.getAttribute('islandType') as
 
 const env = document.currentScript?.getAttribute('env') as string | undefined;
 
-export const ClientChatButtonIsland = () => {
+export const ChatbotContextDataIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
 
   return (
-    <ClientChatButtonComponent
-      islandName={islandName}
-      data-testid="ClientChatButtonIsland"
+    <ChatbotContextDataComponent
+      data-testid="ChatbotContextDataIsland"
       storeId={storeId}
-      domain={domain}
       env={env}
       islandType={islandType}
     />
   );
 };
 
-const island = createIslandWebComponent(islandName, ClientChatButtonIsland);
+const island = createIslandWebComponent(islandName, ChatbotContextDataIsland);
 island.render({
   selector: islandName
 });

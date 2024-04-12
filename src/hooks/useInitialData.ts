@@ -2,7 +2,8 @@ import { useState, useEffect } from 'preact/hooks';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
-import { chatApiUrl } from 'src/config/chat-api-url';
+import { getChatApiUrl } from 'src/config/chat-api-url';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 export interface InitialBotSettings {
   store_name: string;
@@ -12,14 +13,45 @@ export interface InitialBotSettings {
   customer_store_id: string;
   store_id: string;
   messages: any[];
+  initial_message: string;
+  chatbotSettings: {
+    chatHeadingColor: string;
+    initialMessages: string[];
+    suggestedMessages: string[];
+    placeholderText: string;
+    profilePicture: string;
+    displayName: string;
+    userMessageColor: string;
+    chatIcon: string;
+    chatBubbleButtonColor: string;
+  };
 }
 
-export const useInitialData = (storeId: string) => {
+export const useInitialData = (storeId: string, env: string | undefined) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
+
+  const chatApiUrl = getChatApiUrl(env);
+  console.log('Chat API URL:', chatApiUrl, 'env', env);
+
   const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
   console.log('AI Endpoint:', aiEndpoint);
-  // const aiEndpoint = `https://api.rmdevs.com/api/v2/external_chatbot_initial_settings/${storeId}`;
+
+  const chatbotSettings = {
+    chatHeadingColor: '',
+    initialMessages: ['Hi there! How can I help you today?'],
+    suggestedMessages: [
+      'What are your store hours?',
+      'Do you offer free shipping?',
+      'What is your return policy?'
+    ],
+    placeholderText: 'Ask a question...',
+    profilePicture: '',
+    displayName: '',
+    userMessageColor: '',
+    chatIcon: 'https://via.placeholder.com/150',
+    chatBubbleButtonColor: ''
+  };
 
   const getInitialData = async () => {
     try {
@@ -28,9 +60,13 @@ export const useInitialData = (storeId: string) => {
       console.log('Cookie:', cookie);
 
       const response = await axios.post(aiEndpoint, {
-        session_id: cookie?.length ? cookie[1] : null,
-        customer_store_id: cookie?.length ? cookie[2] : null
+        session_id: cookie?.length && cookie[1] ? Number(cookie[1]) : null,
+        customer_store_id:
+          cookie?.length && cookie[1] ? Number(cookie[1]) : null,
+        refresh: false
       });
+      console.log('Initial Data:', response.data);
+      // console.log('Initial check:', cookie[1] !== response.data.session_id);
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         setCookie(
@@ -51,10 +87,8 @@ export const useInitialData = (storeId: string) => {
       const cookie = cookies.ripemetrics_chatbot?.split('-');
 
       if (!cookie?.length) return null;
-
-      const response = await axios.get(
-        `${chatApiUrl}/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`
-      );
+      const history_endpoint = `${chatApiUrl}/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`;
+      const response = await axios.get(history_endpoint);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -75,7 +109,8 @@ export const useInitialData = (storeId: string) => {
 
           setData({
             ...data,
-            messages: [initialMessage, ...(history || [])]
+            messages: [initialMessage, ...(history || [])],
+            chatbotSettings
           });
         });
       } else {
