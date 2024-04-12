@@ -65,8 +65,9 @@ export const useInitialData = (storeId: string, env: string) => {
         refresh: false
       });
       console.log('Initial Data:', response.data);
+      console.log('Initial check:', cookie[1] !== response.data.session_id);
 
-      if (!cookie?.length || cookie[1] !== response.data.session_id) {
+      if (!cookie?.length || (cookie[1] !== response.data.session_id)) {
         setCookie(
           'ripemetrics_chatbot',
           `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`
