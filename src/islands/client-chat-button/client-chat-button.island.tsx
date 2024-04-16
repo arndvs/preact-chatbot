@@ -7,22 +7,11 @@ import ClientChatButtonComponent from 'src/components/client-components/client-c
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import { useCookies } from 'react-cookie';
+import ClientChatIslandProps from 'src/utils/client-chat-island-props';
 
 const islandName = 'client-chat-button-island';
 
-const storeId = document.currentScript?.getAttribute('chatbotId') as
-  | string
-  | undefined;
-
-const domain = document.currentScript?.getAttribute('domain') as
-  | string
-  | undefined;
-
-const islandType = document.currentScript?.getAttribute('islandType') as
-  | string
-  | undefined;
-
-const env = document.currentScript?.getAttribute('env') as string | undefined;
+const { storeId, domain, env, islandType } = ClientChatIslandProps();
 
 export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);

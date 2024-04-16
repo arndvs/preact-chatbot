@@ -27,7 +27,11 @@ export interface InitialBotSettings {
   };
 }
 
-export const useInitialData = (storeId: string, env: string | undefined) => {
+export const useInitialData = (
+  storeId: string,
+  env: string | undefined,
+  islandType: string | undefined
+) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
 
@@ -67,10 +71,12 @@ export const useInitialData = (storeId: string, env: string | undefined) => {
       console.log('Initial Data:', response.data);
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
-        setCookie(
-          'ripemetrics_chatbot',
-          `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`
-        );
+        if (islandType !== 'panel') {
+          setCookie(
+            'ripemetrics_chatbot',
+            `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`
+          );
+        }
       }
 
       return response.data as InitialBotSettings;

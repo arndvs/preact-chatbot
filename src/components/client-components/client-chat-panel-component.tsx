@@ -12,28 +12,28 @@ interface ChatPanelComponentProps {
   storeId: string | undefined;
   domain: string | undefined;
   env: string | undefined;
+  islandType: string | undefined;
 }
 
 const ClientChatPanelComponent = ({
   islandName,
   storeId,
   domain,
-  env
+  env,
+  islandType
 }: ChatPanelComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
 
   // Fetch the initial store data for the chatbot
-  const data = useInitialData(idToUse, env);
+  const data = useInitialData(idToUse, env, islandType);
 
-  // Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider
+  // Initialize ChatbotConfig
   const chatbotConfig = useChatbotConfig();
 
-  const islandType = 'panel';
-
-  console.log('chat panel env', env);
-  console.log('chat panel islandType', islandType);
+  console.log(`${islandName} - chat panel env`, env);
+  console.log(`${islandName} - chat panel islandType`, islandType);
 
   return (
     <>

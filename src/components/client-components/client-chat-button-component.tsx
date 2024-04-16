@@ -27,10 +27,10 @@ const ClientChatButtonComponent = ({
   const idToUse = storeId || '20';
 
   // Fetch the initial store data for the chatbot
-  const data = useInitialData(idToUse, env);
+  const data = useInitialData(idToUse, env, islandType);
 
-  console.log('chat button env', env);
-  console.log('chat button islandType', islandType);
+  console.log(`${islandName} - chat button env`, env);
+  console.log(`${islandName} - chat button islandType`, islandType);
 
   return (
     <>

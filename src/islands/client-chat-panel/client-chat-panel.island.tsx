@@ -6,18 +6,11 @@ import { createIslandWebComponent } from 'preact-island';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import ClientChatPanelComponent from 'src/components/client-components/client-chat-panel-component';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
+import ClientChatIslandProps from 'src/utils/client-chat-island-props';
 
 const islandName = 'client-chat-panel-island';
 
-const storeId = document.currentScript?.getAttribute('chatbotId') as
-  | string
-  | undefined;
-
-const domain = document.currentScript?.getAttribute('domain') as
-  | string
-  | undefined;
-
-const env = document.currentScript?.getAttribute('env') as string | undefined;
+const { storeId, domain, env, islandType } = ClientChatIslandProps();
 
 export const ClientChatPanelIsland = () => {
   useWebComponentEvents(islandName);
@@ -31,6 +24,7 @@ export const ClientChatPanelIsland = () => {
         storeId={storeId}
         domain={domain}
         env={env}
+        islandType={islandType}
       />
     </>
   );
