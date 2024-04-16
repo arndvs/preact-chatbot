@@ -17,7 +17,7 @@ const ChatbotContextDataComponent = ({
   const idToUse = storeId || '20';
 
   // Fetch the initial store data for the chatbot
-  const data = useInitialData(idToUse);
+  const data = useInitialData(idToUse, env, islandType);
 
   return (
     <>
