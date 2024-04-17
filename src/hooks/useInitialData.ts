@@ -66,7 +66,8 @@ export const useInitialData = (
       const response = await axios.post(aiEndpoint, {
         session_id: cookie?.length ? cookie[1] : null,
         customer_store_id: cookie?.length ? cookie[2] : null,
-        refresh: false
+        refresh: false,
+        island_name: islandName
       });
       console.log(`${islandName} - Initial Data:`, response.data);
 
