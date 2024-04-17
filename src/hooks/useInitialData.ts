@@ -33,7 +33,12 @@ export const useInitialData = (
   islandName: string
 ) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
-  const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
+  const formattedIslandName = islandName.replace(/-/g, '_');
+
+  const cookieName = formattedIslandName
+    ? `ripemetrics_chatbot_${formattedIslandName}`
+    : 'ripemetrics_chatbot';
+  const [cookies, setCookie] = useCookies([cookieName]);
 
   const chatApiUrl = getChatApiUrl(env);
   console.log('Chat API URL:', chatApiUrl, 'env', env);
@@ -60,10 +65,10 @@ export const useInitialData = (
   const getInitialData = async () => {
     try {
       // storeId [0] - session_id [1] - customer_store_id [2]
-      const cookie = cookies.ripemetrics_chatbot?.split('-');
+      // const cookie = cookies.ripemetrics_chatbot?.split('-');
+      const cookie = cookies[cookieName]?.split('-');
       console.log(`${islandName} - Cookie:`, cookie);
       //convert island name to use underscores instead of dashes
-      const formattedIslandName = islandName.replace(/-/g, '_');
 
       const response = await axios.post(aiEndpoint, {
         session_id: cookie?.length ? cookie[1] : null,
@@ -76,7 +81,7 @@ export const useInitialData = (
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         if (islandType !== 'panel') {
           setCookie(
-            'ripemetrics_chatbot',
+            cookieName,
             `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`
           );
         }
@@ -91,7 +96,7 @@ export const useInitialData = (
 
   const getMessageHistory = async () => {
     try {
-      const cookie = cookies.ripemetrics_chatbot?.split('-');
+      const cookie = cookies[cookieName]?.split('-');
 
       if (!cookie?.length) return null;
       const history_endpoint = `${chatApiUrl}/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`;
