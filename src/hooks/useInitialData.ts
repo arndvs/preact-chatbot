@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import { getChatApiUrl } from 'src/config/chat-api-url';
+import formattedCookieName from 'src/utils/formatted-cookie-name';
 
 export interface InitialBotSettings {
   store_name: string;
@@ -35,9 +36,11 @@ export const useInitialData = (
   const [data, setData] = useState<InitialBotSettings | null>(null);
   const formattedIslandName = islandName.replace(/-/g, '_');
 
-  const cookieName = formattedIslandName
-    ? `ripemetrics_chatbot_${formattedIslandName}`
-    : 'ripemetrics_chatbot';
+  // const cookieName = formattedIslandName
+  // ? `ripemetrics_chatbot_${formattedIslandName}`
+  // : 'ripemetrics_chatbot';
+
+  const cookieName = formattedCookieName(formattedIslandName);
   const [cookies, setCookie] = useCookies([cookieName]);
 
   const chatApiUrl = getChatApiUrl(env);

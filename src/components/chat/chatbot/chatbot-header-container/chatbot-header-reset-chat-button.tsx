@@ -2,10 +2,15 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { getChatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
+import formattedCookieName from 'src/utils/formatted-cookie-name';
+import formattedIslandName from 'src/utils/formatted-island-name';
 
 const ChatBotHeaderResetChatButton = () => {
-  const { store_id, resetChatTimeline, env } = useChatbotContext();
-  const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
+  const { store_id, resetChatTimeline, env, islandName } = useChatbotContext();
+
+  const formattedName = formattedIslandName(islandName);
+  const cookieName = formattedCookieName(formattedName);
+  const [cookies, setCookie] = useCookies([cookieName]);
 
   const handleResetChat = async () => {
     const cookie = cookies.ripemetrics_chatbot?.split('-');
