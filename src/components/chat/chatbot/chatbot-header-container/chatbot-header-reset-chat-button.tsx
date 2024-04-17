@@ -16,7 +16,7 @@ const ChatBotHeaderResetChatButton = () => {
   console.log('ChatBotHeaderResetChatButton - cookies:', cookies);
 
   const handleResetChat = async () => {
-    const cookie = cookies.ripemetrics_chatbot?.split('-');
+    const cookie = cookies[cookieName]?.split('-');
 
     const chatApiUrl = getChatApiUrl(env);
 
