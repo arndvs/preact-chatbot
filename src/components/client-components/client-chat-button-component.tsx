@@ -29,9 +29,6 @@ const ClientChatButtonComponent = ({
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse, env, islandType, islandName);
 
-  console.log(`${islandName} - chat button env`, env);
-  console.log(`${islandName} - chat button islandType`, islandType);
-
   return (
     <>
       {data && (

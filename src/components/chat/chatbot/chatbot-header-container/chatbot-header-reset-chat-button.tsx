@@ -7,28 +7,14 @@ import formattedIslandName from 'src/utils/formatted-island-name';
 
 const ChatBotHeaderResetChatButton = () => {
   const { store_id, resetChatTimeline, env, islandName } = useChatbotContext();
-
   const formattedName = formattedIslandName(islandName);
-  console.log('ChatBotHeaderResetChatButton - formattedName:', formattedName);
   const cookieName = formattedCookieName(formattedName);
-  console.log('ChatBotHeaderResetChatButton - cookieName:', cookieName);
   const [cookies, setCookie] = useCookies([cookieName]);
-  console.log('ChatBotHeaderResetChatButton - cookies:', cookies);
 
   const handleResetChat = async () => {
     const cookie = cookies[cookieName]?.split('-');
-
     const chatApiUrl = getChatApiUrl(env);
-
     const endpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`;
-
-    console.log('ChatBotHeaderResetChatButton - endpoint:', endpoint);
-    console.log(
-      'check values',
-      cookie,
-
-      islandName
-    );
 
     try {
       const response = await axios.post(endpoint, {
@@ -48,12 +34,8 @@ const ChatBotHeaderResetChatButton = () => {
         if (window.Echo !== undefined && window.Echo !== null) {
           //@ts-ignore
           window.Echo.leave(`chat-stream-external-${store_id}-${cookie[1]}`);
-          console.log(
-            'Chat stream left successfully',
-            `chat-stream-external-${store_id}-${cookie[1]}`
-          );
         }
-        console.log('Chat reset successfully', response?.data.session_id);
+
         resetChatTimeline(response?.data.session_id);
       }
     } catch (error) {

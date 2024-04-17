@@ -24,7 +24,7 @@ export const usePusher = () => {
           authEndpoint: `${chatApiUrl}/api/broadcasting/reputation`
         });
       } else {
-        console.log(`${islandName} - Pusher client already exists`);
+        console.log(`Pusher client already exists`);
       }
     } catch (error) {
       console.error('Error creating Pusher client:', error);
