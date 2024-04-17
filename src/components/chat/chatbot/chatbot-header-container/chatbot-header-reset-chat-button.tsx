@@ -22,9 +22,8 @@ const ChatBotHeaderResetChatButton = () => {
     console.log('ChatBotHeaderResetChatButton - endpoint:', endpoint);
     console.log(
       'check values',
-      cookie?.length,
-      cookie[1],
-      cookie[2],
+      cookie,
+
       islandName
     );
 
