@@ -35,7 +35,7 @@ const ChatBotHeaderResetChatButton = () => {
         session_id: cookie?.length && cookie[1],
         customer_store_id: cookie?.length && cookie[2],
         refresh: true,
-        island_name: formattedIslandName
+        island_name: formattedName
       });
 
       setCookie(
