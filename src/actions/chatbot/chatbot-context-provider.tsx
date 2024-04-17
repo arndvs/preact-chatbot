@@ -5,6 +5,8 @@ import { useCookies } from 'react-cookie';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import { BotDataType, defaultBotData } from 'src/types/ChatBotDataTypes';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
+import formattedCookieName from 'src/utils/formatted-cookie-name';
+import formattedIslandName from 'src/utils/formatted-island-name';
 
 interface ChatbotContextProps {
   children: ComponentChildren;
@@ -95,7 +97,10 @@ export const ChatbotContextProvider = ({
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
   const [messages, setMessages] = useState<IChatbotMessage[]>(initialMessages);
   const [sessionId, setSessionId] = useState<string>(session_id);
-  const [cookie, setCookie] = useCookies(['ripemetrics_chatbot']);
+
+  const formattedName = formattedIslandName(islandName);
+  const cookieName = formattedCookieName(formattedName);
+  const [cookies, setCookie] = useCookies([cookieName]);
 
   const resetChatTimeline = (newSessionId: string) => {
     const initialMessage = createChatBotMessage(
@@ -125,7 +130,7 @@ export const ChatbotContextProvider = ({
     botData,
     setBotData,
     resetChatTimeline,
-    cookie: cookie.ripemetrics_chatbot,
+    cookies,
     chatHeadingColor,
     //   initialMessages,
     suggestedMessages,

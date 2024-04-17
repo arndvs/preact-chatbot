@@ -25,11 +25,12 @@ const ChatBotHeaderResetChatButton = () => {
       const response = await axios.post(endpoint, {
         session_id: cookie?.length && cookie[1],
         customer_store_id: cookie?.length && cookie[2],
-        refresh: true
+        refresh: true,
+        island_name: formattedIslandName
       });
 
       setCookie(
-        'ripemetrics_chatbot',
+        cookieName,
         `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`
       );
 
