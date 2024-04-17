@@ -9,8 +9,11 @@ const ChatBotHeaderResetChatButton = () => {
   const { store_id, resetChatTimeline, env, islandName } = useChatbotContext();
 
   const formattedName = formattedIslandName(islandName);
+  console.log('ChatBotHeaderResetChatButton - formattedName:', formattedName);
   const cookieName = formattedCookieName(formattedName);
+  console.log('ChatBotHeaderResetChatButton - cookieName:', cookieName);
   const [cookies, setCookie] = useCookies([cookieName]);
+  console.log('ChatBotHeaderResetChatButton - cookies:', cookies);
 
   const handleResetChat = async () => {
     const cookie = cookies.ripemetrics_chatbot?.split('-');
@@ -32,7 +35,7 @@ const ChatBotHeaderResetChatButton = () => {
         session_id: cookie?.length && cookie[1],
         customer_store_id: cookie?.length && cookie[2],
         refresh: true,
-        island_name: 'formattedIslandName'
+        island_name: formattedIslandName
       });
 
       setCookie(
