@@ -41,10 +41,10 @@ export const useInitialData = (
   const [cookies, setCookie] = useCookies([cookieName]);
 
   const chatApiUrl = getChatApiUrl(env);
-  console.log('Chat API URL:', chatApiUrl, 'env', env);
+  console.log(`${islandName} Chat API URL:`, chatApiUrl, 'env', env);
 
   const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
-  console.log('AI Endpoint:', aiEndpoint);
+  console.log(`${islandName} AI Endpoint:`, aiEndpoint);
 
   const chatbotSettings = {
     chatHeadingColor: '',
