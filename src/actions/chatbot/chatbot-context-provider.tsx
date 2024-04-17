@@ -26,6 +26,7 @@ interface ChatbotContextProps {
   chatBubbleButtonColor: string;
   islandType: string | undefined;
   env?: string;
+  islandName: string;
 }
 
 interface ChatbotContextType extends ChatbotContextProps {
@@ -62,7 +63,8 @@ export const ChatbotContext = createContext<ChatbotContextType>({
   resetChatTimeline: () => {},
   islandType: '',
   domain: '',
-  env: ''
+  env: '',
+  islandName: ''
 });
 
 export const ChatbotContextProvider = ({
@@ -87,7 +89,8 @@ export const ChatbotContextProvider = ({
     chatIcon,
     chatBubbleButtonColor,
     islandType,
-    env
+    env,
+    islandName
   } = props;
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
   const [messages, setMessages] = useState<IChatbotMessage[]>(initialMessages);
@@ -132,7 +135,8 @@ export const ChatbotContextProvider = ({
     chatIcon,
     chatBubbleButtonColor,
     islandType,
-    env
+    env,
+    islandName
   };
 
   return (

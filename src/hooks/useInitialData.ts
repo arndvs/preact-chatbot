@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import { getChatApiUrl } from 'src/config/chat-api-url';
-import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 export interface InitialBotSettings {
   store_name: string;
@@ -30,7 +29,8 @@ export interface InitialBotSettings {
 export const useInitialData = (
   storeId: string,
   env: string | undefined,
-  islandType: string | undefined
+  islandType: string | undefined,
+  islandName: string
 ) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
@@ -61,14 +61,14 @@ export const useInitialData = (
     try {
       // storeId [0] - session_id [1] - customer_store_id [2]
       const cookie = cookies.ripemetrics_chatbot?.split('-');
-      console.log('Cookie:', cookie);
+      console.log(`${islandName} - Cookie:`, cookie);
 
       const response = await axios.post(aiEndpoint, {
         session_id: cookie?.length ? cookie[1] : null,
         customer_store_id: cookie?.length ? cookie[2] : null,
         refresh: false
       });
-      console.log('Initial Data:', response.data);
+      console.log(`${islandName} - Initial Data:`, response.data);
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         if (islandType !== 'panel') {

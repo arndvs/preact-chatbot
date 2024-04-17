@@ -11,7 +11,9 @@ import ClientChatIslandProps from 'src/utils/client-chat-island-props';
 
 const islandName = 'client-chat-button-island';
 
-const { storeId, domain, env, islandType } = ClientChatIslandProps();
+const { storeId, domain, env } = ClientChatIslandProps();
+
+const islandType = 'button';
 
 export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);

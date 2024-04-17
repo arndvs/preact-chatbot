@@ -6,18 +6,13 @@ import { createIslandWebComponent } from 'preact-island';
 import ChatbotContextDataComponent from 'src/components/client-components/chatbot-context-data-component';
 import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
+import ClientChatIslandProps from 'src/utils/client-chat-island-props';
 
 const islandName = 'chatbot-context-data-island';
 
-const storeId = document.currentScript?.getAttribute('chatbotId') as
-  | string
-  | undefined;
+const { storeId, env } = ClientChatIslandProps();
 
-const islandType = document.currentScript?.getAttribute('islandType') as
-  | string
-  | undefined;
-
-const env = document.currentScript?.getAttribute('env') as string | undefined;
+const islandType = 'context-data';
 
 export const ChatbotContextDataIsland = () => {
   useWebComponentEvents(islandName);
@@ -29,6 +24,7 @@ export const ChatbotContextDataIsland = () => {
       storeId={storeId}
       env={env}
       islandType={islandType}
+      islandName={islandName}
     />
   );
 };

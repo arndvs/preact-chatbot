@@ -8,11 +8,11 @@ import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
 import { useInitialData } from 'src/hooks/useInitialData';
 
 interface ChatPanelComponentProps {
-  islandName: string;
   storeId: string | undefined;
-  domain: string | undefined;
   env: string | undefined;
-  islandType: string | undefined;
+  islandType?: string | undefined;
+  islandName: string;
+  domain: string | undefined;
 }
 
 const ClientChatPanelComponent = ({
@@ -27,7 +27,7 @@ const ClientChatPanelComponent = ({
   const idToUse = storeId || '20';
 
   // Fetch the initial store data for the chatbot
-  const data = useInitialData(idToUse, env, islandType);
+  const data = useInitialData(idToUse, env, islandType, islandName);
 
   // Initialize ChatbotConfig
   const chatbotConfig = useChatbotConfig();
@@ -57,6 +57,7 @@ const ClientChatPanelComponent = ({
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
           islandType={islandType}
           env={env}
+          islandName={islandName}
         >
           <Box
             data-testId="overlay-content"

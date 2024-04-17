@@ -6,7 +6,7 @@ import { getChatApiUrl } from '../config/chat-api-url';
 import { useChatbotContext } from './useChatbotContext';
 
 export const usePusher = () => {
-  const { env } = useChatbotContext();
+  const { env, islandName } = useChatbotContext();
   const chatApiUrl = getChatApiUrl(env);
   useEffect(() => {
     Pusher.logToConsole = true;
@@ -24,7 +24,7 @@ export const usePusher = () => {
           authEndpoint: `${chatApiUrl}/api/broadcasting/reputation`
         });
       } else {
-        console.log('Pusher client already exists');
+        console.log(`${islandName} - Pusher client already exists`);
       }
     } catch (error) {
       console.error('Error creating Pusher client:', error);

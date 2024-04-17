@@ -7,11 +7,11 @@ import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import { useInitialData } from 'src/hooks/useInitialData';
 
 interface ClientChatButtonComponentProps {
-  islandName: string;
   storeId: string | undefined;
-  domain: string | undefined;
-  islandType: string | undefined;
   env: string | undefined;
+  islandType?: string | undefined;
+  islandName: string;
+  domain: string | undefined;
 }
 
 const ClientChatButtonComponent = ({
@@ -27,7 +27,7 @@ const ClientChatButtonComponent = ({
   const idToUse = storeId || '20';
 
   // Fetch the initial store data for the chatbot
-  const data = useInitialData(idToUse, env, islandType);
+  const data = useInitialData(idToUse, env, islandType, islandName);
 
   console.log(`${islandName} - chat button env`, env);
   console.log(`${islandName} - chat button islandType`, islandType);
@@ -54,6 +54,7 @@ const ClientChatButtonComponent = ({
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
           islandType={islandType}
           env={env}
+          islandName={islandName}
         >
           <ChatBubbleButton
             isOpen={isOpen}
