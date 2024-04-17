@@ -20,6 +20,13 @@ const ChatBotHeaderResetChatButton = () => {
     const endpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`;
 
     console.log('ChatBotHeaderResetChatButton - endpoint:', endpoint);
+    console.log(
+      'check values',
+      cookie?.length,
+      cookie[1],
+      cookie[2],
+      islandName
+    );
 
     try {
       const response = await axios.post(endpoint, {
