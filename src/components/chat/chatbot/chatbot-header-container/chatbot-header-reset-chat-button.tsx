@@ -4,7 +4,7 @@ import { getChatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 const ChatBotHeaderResetChatButton = () => {
-  const { store_id, resetChatTimeline, env } = useChatbotContext();
+  const { store_id, resetChatTimeline, env, islandName } = useChatbotContext();
   const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
 
   const handleResetChat = async () => {
@@ -14,15 +14,14 @@ const ChatBotHeaderResetChatButton = () => {
 
     const endpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`;
 
-    console.log('ChatBotHeaderResetChatButton - endpoint:', endpoint);
-
     try {
+      const formattedIslandName = islandName.replace(/-/g, '_');
       const response = await axios.post(endpoint, {
         session_id: cookie?.length && cookie[1],
         customer_store_id: cookie?.length && cookie[2],
-        refresh: true
+        refresh: true,
+        island_name: formattedIslandName
       });
-
       setCookie(
         'ripemetrics_chatbot',
         `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`
@@ -33,12 +32,7 @@ const ChatBotHeaderResetChatButton = () => {
         if (window.Echo !== undefined && window.Echo !== null) {
           //@ts-ignore
           window.Echo.leave(`chat-stream-external-${store_id}-${cookie[1]}`);
-          console.log(
-            'Chat stream left successfully',
-            `chat-stream-external-${store_id}-${cookie[1]}`
-          );
         }
-        console.log('Chat reset successfully', response?.data.session_id);
         resetChatTimeline(response?.data.session_id);
       }
     } catch (error) {

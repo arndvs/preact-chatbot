@@ -1,7 +1,12 @@
 import { useState } from 'preact/compat';
 import { useCookies } from 'react-cookie';
+import ActionProvider from 'src/actions/chatbot/action-provider';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
-import { userMessage } from 'src/actions/chatbot/chatbot-message-utils';
+import {
+  createChatBotMessage,
+  userMessage
+} from 'src/actions/chatbot/chatbot-message-utils';
+import MessageParser from 'src/actions/chatbot/message-parser';
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import { useInitialData } from 'src/hooks/useInitialData';
@@ -29,9 +34,6 @@ const ClientChatButtonComponent = ({
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse, env, islandType, islandName);
 
-  console.log(`${islandName} - chat button env`, env);
-  console.log(`${islandName} - chat button islandType`, islandType);
-
   return (
     <>
       {data && (
@@ -56,15 +58,19 @@ const ClientChatButtonComponent = ({
           env={env}
           islandName={islandName}
         >
-          <ChatBubbleButton
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
-          <ChatModal
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            islandName={islandName}
-          />
+          <MessageParser actions={{ handleDefault: () => {} }}>
+            <ChatBubbleButton
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
+            <ActionProvider createChatBotMessage={createChatBotMessage}>
+              <ChatModal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                islandName={islandName}
+              />
+            </ActionProvider>
+          </MessageParser>
         </ChatbotContextProvider>
       )}
     </>

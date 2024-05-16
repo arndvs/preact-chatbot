@@ -1,6 +1,7 @@
 import { usePusher } from 'src/hooks/usePusher';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { useEffect, useState } from 'preact/hooks';
+import { IChatbotMessage } from 'src/types/IChatbotMessages';
 
 interface useChatStreamProps {
   setAiUserTestResponse: (response: string) => void;
@@ -20,30 +21,35 @@ export const useChatStream = ({
   >([]);
 
   useEffect(() => {
-    const subscription = `chat-stream-external-${store_id}-${session_id}`;
+    if (session_id && store_id) {
+      //@ts-ignore
+      const channel = window.Echo?.private(
+        `chat-stream-external-${store_id}-${session_id}`
+      );
 
-    let channel = null;
-    // @ts-ignore
-    if (window.Echo) {
-      // @ts-ignore
-      channel = window.Echo.private(subscription).listenToAll((event, data) => {
-        if (data?.completed === false) {
-          setStreamedConvo((prev) => [
-            ...prev,
-            { text: data.text, sequence: data.sequence }
-          ]);
-        } else {
-          setLoadingState(false);
-          setStreamedConvo([]);
-          setAiUserTestResponse('Complete');
+      channel.listenToAll(
+        (
+          event: string,
+          data: {
+            text: string;
+            sequence: number;
+            completed: boolean;
+          }
+        ) => {
+          console.log('Received event:', data);
+          if (data?.completed === false) {
+            setStreamedConvo((prev) => [
+              ...prev,
+              { text: data.text, sequence: data.sequence }
+            ]);
+          } else {
+            setLoadingState(false);
+            setStreamedConvo([]);
+            setAiUserTestResponse('Complete');
+          }
         }
-      });
+      );
     }
-
-    return () => {
-      // Properly unsubscribe to avoid memory leaks
-      channel?.unsubscribe();
-    };
   }, [pusher, session_id, store_id, setLoadingState]);
 
   useEffect(() => {
