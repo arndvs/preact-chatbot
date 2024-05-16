@@ -80,11 +80,11 @@ const Chatbot = ({
   } else {
     console.log('Else');
     return (
-      // <ActionProvider createChatBotMessage={createChatBotMessage}>
+      <ActionProvider createChatBotMessage={createChatBotMessage}>
         <MessageParser>
           <ChatbotContainer {...chatbotContainerProps} />
         </MessageParser>
-      // </ActionProvider>
+      </ActionProvider>
     );
   }
 };

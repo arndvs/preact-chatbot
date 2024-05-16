@@ -29,21 +29,19 @@ const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
         aria-label={isOpen ? 'Close Chat' : 'Open Chat'}
         title={isOpen ? 'Close Chat' : 'Open Chat'}
       >
-        <ActionProvider createChatBotMessage={createChatBotMessage}>
-          <div className="flex items-center justify-center w-full h-full">
-            {!isOpen ? (
-              <ChatIcon
-                className="w-6 h-6"
-                aria-hidden="true"
-              />
-            ) : (
-              <XMarkIcon
-                className="w-7 h-7"
-                aria-hidden="true"
-              />
-            )}
-          </div>
-        </ActionProvider>
+        <div className="flex items-center justify-center w-full h-full">
+          {!isOpen ? (
+            <ChatIcon
+              className="w-6 h-6"
+              aria-hidden="true"
+            />
+          ) : (
+            <XMarkIcon
+              className="w-7 h-7"
+              aria-hidden="true"
+            />
+          )}
+        </div>
       </button>
     </div>
   );
