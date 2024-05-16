@@ -1,6 +1,8 @@
+import ActionProvider from 'src/actions/chatbot/action-provider';
 import { ChatIcon } from 'src/assets/chat-icon';
 import { XMarkIcon } from 'src/assets/x-mark-icon';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
+import { createChatBotMessage } from '../../../actions/chatbot/chatbot-message-utils';
 
 interface ChatBubbleButtonProps {
   isOpen: boolean;
@@ -27,19 +29,21 @@ const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
         aria-label={isOpen ? 'Close Chat' : 'Open Chat'}
         title={isOpen ? 'Close Chat' : 'Open Chat'}
       >
-        <div className="flex items-center justify-center w-full h-full">
-          {!isOpen ? (
-            <ChatIcon
-              className="w-6 h-6"
-              aria-hidden="true"
-            />
-          ) : (
-            <XMarkIcon
-              className="w-7 h-7"
-              aria-hidden="true"
-            />
-          )}
-        </div>
+        <ActionProvider createChatBotMessage={createChatBotMessage}>
+          <div className="flex items-center justify-center w-full h-full">
+            {!isOpen ? (
+              <ChatIcon
+                className="w-6 h-6"
+                aria-hidden="true"
+              />
+            ) : (
+              <XMarkIcon
+                className="w-7 h-7"
+                aria-hidden="true"
+              />
+            )}
+          </div>
+        </ActionProvider>
       </button>
     </div>
   );

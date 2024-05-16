@@ -30,6 +30,7 @@ const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
 
   return (
     <>
+    
       {isOpen && (
         <ChatOverlay
           name="chat-overlay"
