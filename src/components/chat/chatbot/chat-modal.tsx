@@ -7,10 +7,9 @@ import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import Chatbot from 'src/components/chat/chatbot/chatbot';
 import useClassNames from 'src/hooks/useClassNames';
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
+import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface ChatModalProps {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
   islandName: string;
 }
 
@@ -25,8 +24,9 @@ const ChatOverlay: FC<{ name: string; parent: string }> = ({
   return <WebComponentPortal name={name}>{children}</WebComponentPortal>;
 };
 
-const ChatModal = ({ isOpen, setIsOpen, islandName }: ChatModalProps) => {
+const ChatModal = ({ islandName }: ChatModalProps) => {
   const chatbotConfig = useChatbotConfig();
+  const { setIsOpen, isOpen } = useChatbotContext();
 
   return (
     <>

@@ -1,7 +1,6 @@
 import { usePusher } from 'src/hooks/usePusher';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { useEffect, useState } from 'preact/hooks';
-import { IChatbotMessage } from 'src/types/IChatbotMessages';
 
 interface useChatStreamProps {
   setAiUserTestResponse: (response: string) => void;
@@ -12,7 +11,7 @@ export const useChatStream = ({
   setAiUserTestResponse,
   setLoadingState
 }: useChatStreamProps) => {
-  const { session_id, store_id } = useChatbotContext();
+  const { session_id, store_id, isOpen, setIsOpen } = useChatbotContext();
   const pusher = usePusher();
 
   // Manage the conversation and its stream
@@ -36,8 +35,11 @@ export const useChatStream = ({
             completed: boolean;
           }
         ) => {
-          console.log('Received event:', data);
           if (data?.completed === false) {
+            if (!isOpen) {
+              setIsOpen(true);
+            }
+
             setStreamedConvo((prev) => [
               ...prev,
               { text: data.text, sequence: data.sequence }

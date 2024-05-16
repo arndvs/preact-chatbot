@@ -1,11 +1,6 @@
-import { useState } from 'preact/compat';
-import { useCookies } from 'react-cookie';
 import ActionProvider from 'src/actions/chatbot/action-provider';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
-import {
-  createChatBotMessage,
-  userMessage
-} from 'src/actions/chatbot/chatbot-message-utils';
+import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import MessageParser from 'src/actions/chatbot/message-parser';
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
@@ -26,8 +21,6 @@ const ClientChatButtonComponent = ({
   islandType,
   env
 }: ClientChatButtonComponentProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   // Use the storeId if it is passed in, otherwise use the default storeId
   const idToUse = storeId || '20';
 
@@ -57,18 +50,13 @@ const ClientChatButtonComponent = ({
           islandType={islandType}
           env={env}
           islandName={islandName}
+          isOpen={false}
+          setIsOpen={() => {}}
         >
           <MessageParser actions={{ handleDefault: () => {} }}>
-            <ChatBubbleButton
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
+            <ChatBubbleButton />
             <ActionProvider createChatBotMessage={createChatBotMessage}>
-              <ChatModal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                islandName={islandName}
-              />
+              <ChatModal islandName={islandName} />
             </ActionProvider>
           </MessageParser>
         </ChatbotContextProvider>

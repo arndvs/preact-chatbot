@@ -27,6 +27,8 @@ interface ChatbotContextProps {
   islandType: string | undefined;
   env?: string;
   islandName: string;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 interface ChatbotContextType extends ChatbotContextProps {
@@ -64,7 +66,9 @@ export const ChatbotContext = createContext<ChatbotContextType>({
   islandType: '',
   domain: '',
   env: '',
-  islandName: ''
+  islandName: '',
+  isOpen: false,
+  setIsOpen: () => {}
 });
 
 export const ChatbotContextProvider = ({
@@ -95,6 +99,7 @@ export const ChatbotContextProvider = ({
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
   const [messages, setMessages] = useState<IChatbotMessage[]>(initialMessages);
   const [sessionId, setSessionId] = useState<string>(session_id);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [cookie, setCookie] = useCookies(['ripemetrics_chatbot']);
 
   const resetChatTimeline = (newSessionId: string) => {
@@ -136,7 +141,9 @@ export const ChatbotContextProvider = ({
     chatBubbleButtonColor,
     islandType,
     env,
-    islandName
+    islandName,
+    isOpen,
+    setIsOpen
   };
 
   return (
