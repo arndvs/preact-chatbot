@@ -22,13 +22,13 @@ const HandleDefaultMessage = ({
     setLoadingState(true);
     setAiUserTestResponse('Loading ...');
 
-    const loadingMessage = createChatBotMessage('Loading ...', {
-      loading: true,
-      delay: 0,
-      withAvatar: true
-    }) as IChatbotMessage;
+    // const loadingMessage = createChatBotMessage('Loading ...', {
+    //   loading: true,
+    //   delay: 0,
+    //   withAvatar: true
+    // }) as IChatbotMessage;
 
-    setMessages((prevMessages) => [...prevMessages, loadingMessage]);
+    // setMessages((prevMessages) => [...prevMessages, loadingMessage]);
     const chatApiUrl = getChatApiUrl(env);
 
     const endpoint = `${chatApiUrl}/api/v2/external_chatbot`;
