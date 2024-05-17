@@ -30,7 +30,9 @@ const ChatbotHeaderContainer = ({ setIsOpen }: ChatbotHeaderContainerProps) => {
         >
           <div className="flex items-center">
             <ChatbotAvatar className="w-8 h-8 mr-2 rounded-full" />
-            <h1 className="text-lg font-semibold text-white">{botName}</h1>
+            <h1 className="text-lg font-semibold text-white truncate">
+              {botName}
+            </h1>
           </div>
           <div className="flex items-center justify-center">
             <ChatBotHeaderResetChatButton />
