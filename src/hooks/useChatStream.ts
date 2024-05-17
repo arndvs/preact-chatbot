@@ -11,7 +11,7 @@ export const useChatStream = ({
   setAiUserTestResponse,
   setLoadingState
 }: useChatStreamProps) => {
-  const { session_id, store_id } = useChatbotContext();
+  const { session_id, store_id, isOpen, setIsOpen } = useChatbotContext();
   const pusher = usePusher();
 
   // Manage the conversation and its stream
@@ -20,30 +20,38 @@ export const useChatStream = ({
   >([]);
 
   useEffect(() => {
-    const subscription = `chat-stream-external-${store_id}-${session_id}`;
-    // @ts-ignore
-    let channel = null;
-    // @ts-ignore
-    if (window.Echo) {
-      // @ts-ignore
-      channel = window.Echo.private(subscription).listenToAll((event, data) => {
-        if (data?.completed === false) {
-          setStreamedConvo((prev) => [
-            ...prev,
-            { text: data.text, sequence: data.sequence }
-          ]);
-        } else {
-          setLoadingState(false);
-          setStreamedConvo([]);
-          setAiUserTestResponse('Complete');
-        }
-      });
-    }
+    if (session_id && store_id) {
+      //@ts-ignore
+      const channel = window.Echo?.private(
+        `chat-stream-external-${store_id}-${session_id}`
+      );
 
-    return () => {
-      // Properly unsubscribe to avoid memory leaks
-      channel?.unsubscribe();
-    };
+      channel.listenToAll(
+        (
+          event: string,
+          data: {
+            text: string;
+            sequence: number;
+            completed: boolean;
+          }
+        ) => {
+          if (data?.completed === false) {
+            if (!isOpen) {
+              setIsOpen(true);
+            }
+
+            setStreamedConvo((prev) => [
+              ...prev,
+              { text: data.text, sequence: data.sequence }
+            ]);
+          } else {
+            setLoadingState(false);
+            setStreamedConvo([]);
+            setAiUserTestResponse('Complete');
+          }
+        }
+      );
+    }
   }, [pusher, session_id, store_id, setLoadingState]);
 
   useEffect(() => {

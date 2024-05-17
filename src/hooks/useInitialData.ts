@@ -61,8 +61,9 @@ export const useInitialData = (
   const getInitialData = async () => {
     try {
       // storeId [0] - session_id [1] - customer_store_id [2]
-      // const cookie = cookies.ripemetrics_chatbot?.split('-');
-      const cookie = cookies[cookieName]?.split('-');
+      const cookie = cookies.ripemetrics_chatbot?.split('-');
+      //convert island name to use underscores instead of dashes
+      const formattedIslandName = islandName.replace(/-/g, '_');
 
       const response = await axios.post(aiEndpoint, {
         session_id: cookie?.length ? cookie[1] : null,

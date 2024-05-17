@@ -4,13 +4,9 @@ import { XMarkIcon } from 'src/assets/x-mark-icon';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { createChatBotMessage } from '../../../actions/chatbot/chatbot-message-utils';
 
-interface ChatBubbleButtonProps {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-}
-
-const ChatBubbleButton = ({ isOpen, setIsOpen }: ChatBubbleButtonProps) => {
-  const { chatBubbleButtonColor, brandColor } = useChatbotContext();
+const ChatBubbleButton = () => {
+  const { chatBubbleButtonColor, brandColor, setIsOpen, isOpen } =
+    useChatbotContext();
 
   // Determine the background color based on conditions
   const backgroundColor =
