@@ -14,10 +14,11 @@ export const MarketingChatbotIsland = () => {
   useDynamicWebIsland(islandName);
 
   return (
-    <MarketingChatbotComponent
-      data-testid="MarketingChatbotIsland"
-      islandName={islandName}
-    />
+    // <MarketingChatbotComponent
+    //   data-testid="MarketingChatbotIsland"
+    //   islandName={islandName}
+    // />
+    <></>
   );
 };
 
