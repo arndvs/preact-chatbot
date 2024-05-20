@@ -55,6 +55,8 @@ const ClientChatPanelComponent = ({
           islandType={islandType}
           env={env}
           islandName={islandName}
+          isOpen={false}
+          setIsOpen={() => {}}
         >
           <Box
             data-testId="overlay-content"
