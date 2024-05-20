@@ -24,7 +24,10 @@ const ChatBotHeaderResetChatButton = () => {
       });
       setCookie(
         'ripemetrics_chatbot',
-        `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`
+        `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`,
+        {
+          path: '/'
+        }
       );
 
       if (response?.data) {

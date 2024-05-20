@@ -73,7 +73,10 @@ export const useInitialData = (
         if (islandType !== 'panel') {
           setCookie(
             'ripemetrics_chatbot',
-            `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`
+            `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`,
+            {
+              path: '/'
+            }
           );
         }
       }
