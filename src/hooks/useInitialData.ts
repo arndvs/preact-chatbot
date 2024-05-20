@@ -71,11 +71,14 @@ export const useInitialData = (
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         if (islandType !== 'panel') {
+          const domain = window.location.hostname;
+          console.log('domain', domain);
           setCookie(
             'ripemetrics_chatbot',
             `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`,
             {
-              path: '/'
+              path: '/',
+              domain: domain
             }
           );
         }
