@@ -22,11 +22,14 @@ const ChatBotHeaderResetChatButton = () => {
         refresh: true,
         island_name: formattedIslandName
       });
+      const domain = window.location.hostname;
+      console.log('domain', domain);
       setCookie(
         'ripemetrics_chatbot',
         `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`,
         {
-          path: '/'
+          path: '/',
+          domain: domain
         }
       );
 
