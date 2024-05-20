@@ -20,14 +20,14 @@ export const ClientChatPanelIsland = () => {
 
   return (
     <>
-      {/* <ClientChatPanelComponent
+      <ClientChatPanelComponent
         islandName={islandName}
         data-testid="ClientChatPanelIsland"
         storeId={storeId}
         domain={domain}
         env={env}
         islandType={islandType}
-      /> */}
+      />
     </>
   );
 };
