@@ -32,9 +32,6 @@ const ClientChatPanelComponent = ({
   // Initialize ChatbotConfig
   const chatbotConfig = useChatbotConfig();
 
-  console.log(`${islandName} - chat panel env`, env);
-  console.log(`${islandName} - chat panel islandType`, islandType);
-
   return (
     <>
       {data && (
@@ -58,6 +55,8 @@ const ClientChatPanelComponent = ({
           islandType={islandType}
           env={env}
           islandName={islandName}
+          isOpen={false}
+          setIsOpen={() => {}}
         >
           <Box
             data-testId="overlay-content"
