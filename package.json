@@ -26,6 +26,7 @@
     "clsx": "^1.2.1",
     "framer-motion": "^11.0.8",
     "laravel-echo": "^1.16.0",
+    "marked": "^12.0.2",
     "polished": "^4.2.2",
     "preact": "^10.5.7",
     "preact-island": "^1.1.0",

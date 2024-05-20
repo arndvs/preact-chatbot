@@ -1,3 +1,4 @@
+import { marked } from 'marked';
 import ChatbotLoadingDots from 'src/components/chat/chatbot/chatbot-message-container/chatbot-loading-dots';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
@@ -12,6 +13,9 @@ const ChatbotMessageComponent = ({
 }: ChatbotMessageComponentProps) => {
   const { storeName } = useChatbotContext();
   // had to revert to the loading dots and message this 'Hello! How can I assist you today?' would not go away
+
+  const text = marked.parse(message ?? '');
+
   return (
     <>
       <div className="flex-1 min-w-0 !ml-1">
@@ -25,7 +29,7 @@ const ChatbotMessageComponent = ({
                 {loading || message === 'Loading ...' ? (
                   <ChatbotLoadingDots />
                 ) : (
-                  <p>{message}</p>
+                  <div dangerouslySetInnerHTML={{ __html: text as string }} />
                 )}
               </div>
             </div>
