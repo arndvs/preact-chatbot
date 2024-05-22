@@ -15,8 +15,14 @@ const HandleDefaultMessage = ({
   setLoadingState,
   setAiUserTestResponse
 }: ChatbotHandlerProps) => {
-  const { session_id, store_id, customer_store_id, setMessages, env } =
-    useChatbotContext();
+  const {
+    session_id,
+    store_id,
+    customer_store_id,
+    setMessages,
+    env,
+    islandName
+  } = useChatbotContext();
 
   const handleDefault = async (message: string) => {
     setLoadingState(true);
@@ -29,9 +35,12 @@ const HandleDefaultMessage = ({
     }) as IChatbotMessage;
 
     setMessages((prevMessages) => [...prevMessages, loadingMessage]);
+
     const chatApiUrl = getChatApiUrl(env);
 
     const endpoint = `${chatApiUrl}/api/v2/external_chatbot`;
+
+    console.log('chatbot endpoint for islandName', endpoint);
 
     try {
       await axios.post(endpoint, {
