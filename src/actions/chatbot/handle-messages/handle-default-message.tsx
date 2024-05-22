@@ -30,6 +30,8 @@ const HandleDefaultMessage = ({
 
     setMessages((prevMessages) => [...prevMessages, loadingMessage]);
 
+    console.log('chatbot endpoint for env', env);
+    console.log('chatbot endpoint for env', typeof env);
     const chatApiUrl = getChatApiUrl(env);
 
     const endpoint = `${chatApiUrl}/api/v2/external_chatbot`;
