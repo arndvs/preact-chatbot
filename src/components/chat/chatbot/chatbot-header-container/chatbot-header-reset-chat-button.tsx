@@ -4,11 +4,14 @@ import { getChatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 const ChatBotHeaderResetChatButton = () => {
-  const { store_id, resetChatTimeline, env, islandName } = useChatbotContext();
-  const [cookies, setCookie] = useCookies(['ripemetrics_chatbot']);
+  const { store_id, resetChatTimeline, env, islandName, islandType } =
+    useChatbotContext();
+  const [cookies, setCookie] = useCookies([
+    `ripemetrics_chatbot-${islandType}`
+  ]);
 
   const handleResetChat = async () => {
-    const cookie = cookies.ripemetrics_chatbot?.split('-');
+    const cookie = cookies[`ripemetrics_chatbot-${islandType}`]?.split('-');
 
     const chatApiUrl = getChatApiUrl(env);
 
@@ -25,7 +28,7 @@ const ChatBotHeaderResetChatButton = () => {
       const domain = window.location.hostname;
       console.log('domain', domain);
       setCookie(
-        'ripemetrics_chatbot',
+        `ripemetrics_chatbot-${islandType}`,
         `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`,
         {
           path: '/',
