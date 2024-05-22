@@ -6,7 +6,7 @@ import { getChatApiUrl } from '../config/chat-api-url';
 import { useChatbotContext } from './useChatbotContext';
 
 export const usePusher = () => {
-  const { env, islandName } = useChatbotContext();
+  const { env } = useChatbotContext();
   const chatApiUrl = getChatApiUrl(env);
   useEffect(() => {
     Pusher.logToConsole = true;
@@ -18,7 +18,7 @@ export const usePusher = () => {
         //@ts-ignore
         window.Echo = new Echo({
           broadcaster: 'pusher',
-          key: env === 'dev' ? 'ba4d144ab20fb212f010' : pusherConfig.key,
+          key: env === null ? pusherConfig.key : 'ba4d144ab20fb212f010',
           cluster: pusherConfig.cluster,
           forceTLS: true,
           authEndpoint: `${chatApiUrl}/api/broadcasting/reputation`
