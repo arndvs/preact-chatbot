@@ -37,7 +37,9 @@ export const useInitialData = (
 
   const formattedIslandName = islandName.replace(/-/g, '_');
   const cookieName = formattedCookieName(formattedIslandName);
-  const [cookies, setCookie] = useCookies([cookieName]);
+  const [cookies, setCookie] = useCookies([
+    `ripemetrics_chatbot-${islandType}`
+  ]);
 
   const chatApiUrl = getChatApiUrl(env);
   const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
@@ -63,7 +65,7 @@ export const useInitialData = (
   const getInitialData = async () => {
     try {
       // storeId [0] - session_id [1] - customer_store_id [2]
-      const cookie = cookies.ripemetrics_chatbot?.split('-');
+      const cookie = cookies[`ripemetrics_chatbot-${islandType}`]?.split('-');
       //convert island name to use underscores instead of dashes
       const formattedIslandName = islandName.replace(/-/g, '_');
 
@@ -98,7 +100,7 @@ export const useInitialData = (
 
   const getMessageHistory = async () => {
     try {
-      const cookie = cookies[cookieName]?.split('-');
+      const cookie = cookies[`ripemetrics_chatbot-${islandType}`]?.split('-');
 
       if (!cookie?.length) return null;
       const history_endpoint = `${chatApiUrl}/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`;
