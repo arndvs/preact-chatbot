@@ -29,6 +29,15 @@ const ClientChatPanelComponent = ({
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'panel';
 
+  console.log(
+    'chatbot params',
+    idToUse,
+    envToUse,
+    islandTypeToUse,
+    islandName,
+    domainToUse
+  );
+
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse, env, islandType, islandName);
 
