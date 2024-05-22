@@ -21,10 +21,8 @@ const ClientChatButtonComponent = ({
   islandType,
   env
 }: ClientChatButtonComponentProps) => {
-  // Use the storeId if it is passed in, otherwise use the default storeId
-
-  const idToUse = storeId || '20';
-  const envToUse = env || 'dev';
+  const idToUse = storeId || '111';
+  const envToUse = env || 'prod';
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'button';
 
