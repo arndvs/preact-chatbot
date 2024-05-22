@@ -22,15 +22,15 @@ const ClientChatButtonComponent = ({
   env
 }: ClientChatButtonComponentProps) => {
   console.log('env', env);
-  const idToUse = storeId || '111';
-  //   const envToUse = env || 'prod';
+  const idToUse = storeId || '20';
+  const envToUse = env || 'dev';
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'button';
 
   console.log(
     'chatbot params',
     idToUse,
-    // envToUse,
+    envToUse,
     islandTypeToUse,
     islandName,
     domainToUse
