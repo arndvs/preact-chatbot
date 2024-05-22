@@ -22,7 +22,11 @@ const ClientChatButtonComponent = ({
   env
 }: ClientChatButtonComponentProps) => {
   // Use the storeId if it is passed in, otherwise use the default storeId
+
   const idToUse = storeId || '20';
+  const envToUse = env || 'dev';
+  const domainToUse = domain || 'https://www.example.com';
+  const islandTypeToUse = islandType || 'button';
 
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse, env, islandType, islandName);
@@ -38,7 +42,7 @@ const ClientChatButtonComponent = ({
           customer_store_id={data.customer_store_id}
           messages={data.messages}
           store_id={idToUse}
-          domain={domain}
+          domain={domainToUse}
           placeholderText={data.chatbotSettings.placeholderText}
           chatHeadingColor={data.chatbotSettings.chatHeadingColor}
           suggestedMessages={data.chatbotSettings.suggestedMessages}
@@ -47,8 +51,8 @@ const ClientChatButtonComponent = ({
           userMessageColor={data.chatbotSettings.userMessageColor}
           chatIcon={data.chatbotSettings.chatIcon}
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
-          islandType={islandType}
-          env={env}
+          islandType={islandTypeToUse}
+          env={envToUse}
           islandName={islandName}
           isOpen={false}
           setIsOpen={() => {}}

@@ -19,12 +19,15 @@ const ClientChatPanelComponent = ({
   islandName,
   storeId,
   domain,
-  env,
-  islandType
+  islandType,
+  env
 }: ChatPanelComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
+  const envToUse = env || 'production';
+  const domainToUse = domain || 'https://www.example.com';
+  const islandTypeToUse = islandType || 'panel';
 
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse, env, islandType, islandName);
@@ -45,7 +48,7 @@ const ClientChatPanelComponent = ({
           customer_store_id={data.customer_store_id}
           messages={data.messages}
           store_id={idToUse}
-          domain={domain}
+          domain={domainToUse}
           placeholderText={data.chatbotSettings.placeholderText}
           chatHeadingColor={data.chatbotSettings.chatHeadingColor}
           suggestedMessages={data.chatbotSettings.suggestedMessages}
@@ -54,8 +57,8 @@ const ClientChatPanelComponent = ({
           userMessageColor={data.chatbotSettings.userMessageColor}
           chatIcon={data.chatbotSettings.chatIcon}
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
-          islandType={islandType}
-          env={env}
+          islandType={islandTypeToUse}
+          env={envToUse}
           islandName={islandName}
           isOpen={false}
           setIsOpen={() => {}}
