@@ -21,15 +21,16 @@ const ClientChatButtonComponent = ({
   islandType,
   env
 }: ClientChatButtonComponentProps) => {
+  console.log('env', env);
   const idToUse = storeId || '111';
-  const envToUse = env || 'prod';
+  //   const envToUse = env || 'prod';
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'button';
 
   console.log(
     'chatbot params',
     idToUse,
-    envToUse,
+    // envToUse,
     islandTypeToUse,
     islandName,
     domainToUse
@@ -59,7 +60,7 @@ const ClientChatButtonComponent = ({
           chatIcon={data.chatbotSettings.chatIcon}
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
           islandType={islandTypeToUse}
-          env={envToUse}
+          env={env}
           islandName={islandName}
           isOpen={false}
           setIsOpen={() => {}}
