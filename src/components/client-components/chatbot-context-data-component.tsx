@@ -18,6 +18,8 @@ const ChatbotContextDataComponent = ({
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '20';
 
+  const domain = 'https://www.example.com';
+
   // Fetch the initial store data for the chatbot
 
   const data = useInitialData(idToUse, env, islandType, islandName);
@@ -33,6 +35,7 @@ const ChatbotContextDataComponent = ({
           customer_store_id={data.customer_store_id}
           messages={data.messages}
           store_id={idToUse}
+          domain={domain}
           placeholderText={data.chatbotSettings.placeholderText}
           chatHeadingColor={data.chatbotSettings.chatHeadingColor}
           suggestedMessages={data.chatbotSettings.suggestedMessages}
@@ -41,9 +44,11 @@ const ChatbotContextDataComponent = ({
           userMessageColor={data.chatbotSettings.userMessageColor}
           chatIcon={data.chatbotSettings.chatIcon}
           chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
-          env={env}
           islandType={islandType}
+          env={env}
           islandName={islandName}
+          isOpen={false}
+          setIsOpen={() => {}}
         >
           <ChatbotContextComponent />
         </ChatbotContextProvider>
