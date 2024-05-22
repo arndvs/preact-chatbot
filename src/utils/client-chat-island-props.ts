@@ -8,7 +8,7 @@ const ClientChatIslandProps = () => {
   const islandType = document.currentScript?.getAttribute('islandType') as
     | string
     | undefined;
-  const env = document.currentScript?.getAttribute('env') as string | undefined;
+  const env = document.currentScript?.getAttribute('env') as string | null;
 
   return { storeId, domain, islandType, env };
 };

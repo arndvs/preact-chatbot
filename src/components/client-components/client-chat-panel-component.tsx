@@ -9,7 +9,7 @@ import { useInitialData } from 'src/hooks/useInitialData';
 
 interface ChatPanelComponentProps {
   storeId: string | undefined;
-  env: string | undefined;
+  env: string | null;
   islandType?: string | undefined;
   islandName: string;
   domain: string | undefined;
@@ -25,7 +25,7 @@ const ClientChatPanelComponent = ({
   const [isOpen, setIsOpen] = useState(false);
   // use the If storeId is undefined, use the default storeId of 20
   const idToUse = storeId || '117';
-  const envToUse = env || '';
+  const envToUse = env || null;
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'panel';
 

@@ -8,7 +8,7 @@ import { useInitialData } from 'src/hooks/useInitialData';
 
 interface ClientChatButtonComponentProps {
   storeId: string | undefined;
-  env: string | undefined;
+  env: string | null;
   islandType?: string | undefined;
   islandName: string;
   domain: string | undefined;
@@ -22,7 +22,7 @@ const ClientChatButtonComponent = ({
   env
 }: ClientChatButtonComponentProps) => {
   const idToUse = storeId || '111';
-  const envToUse = env || '';
+  const envToUse = env || null;
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'button';
 

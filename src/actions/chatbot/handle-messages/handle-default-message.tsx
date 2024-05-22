@@ -15,14 +15,8 @@ const HandleDefaultMessage = ({
   setLoadingState,
   setAiUserTestResponse
 }: ChatbotHandlerProps) => {
-  const {
-    session_id,
-    store_id,
-    customer_store_id,
-    setMessages,
-    env,
-    islandName
-  } = useChatbotContext();
+  const { session_id, store_id, customer_store_id, setMessages, env } =
+    useChatbotContext();
 
   const handleDefault = async (message: string) => {
     setLoadingState(true);

@@ -29,7 +29,7 @@ export interface InitialBotSettings {
 
 export const useInitialData = (
   storeId: string,
-  env: string | undefined,
+  env: string | null,
   islandType: string | undefined,
   islandName: string
 ) => {

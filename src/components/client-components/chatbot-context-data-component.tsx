@@ -4,7 +4,7 @@ import { useInitialData } from 'src/hooks/useInitialData';
 
 interface ChatbotContextDataComponentProps {
   storeId: string | undefined;
-  env: string | undefined;
+  env: string | null;
   islandType?: string | undefined;
   islandName: string;
 }

@@ -5,8 +5,6 @@ import { useCookies } from 'react-cookie';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import { BotDataType, defaultBotData } from 'src/types/ChatBotDataTypes';
 import { IChatbotMessage } from 'src/types/IChatbotMessages';
-import formattedCookieName from 'src/utils/formatted-cookie-name';
-import formattedIslandName from 'src/utils/formatted-island-name';
 
 interface ChatbotContextProps {
   children: ComponentChildren;
@@ -27,7 +25,7 @@ interface ChatbotContextProps {
   chatIcon: string;
   chatBubbleButtonColor: string;
   islandType: string | undefined;
-  env?: string;
+  env: string | null;
   islandName: string;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -67,7 +65,7 @@ export const ChatbotContext = createContext<ChatbotContextType>({
   resetChatTimeline: () => {},
   islandType: '',
   domain: '',
-  env: '',
+  env: null,
   islandName: '',
   isOpen: false,
   setIsOpen: () => {}
