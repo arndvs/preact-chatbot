@@ -23,7 +23,7 @@ const ClientChatButtonComponent = ({
 }: ClientChatButtonComponentProps) => {
   console.log('env', env);
   const idToUse = storeId || '111';
-  const envToUse = env || 'prod';
+  const envToUse = env || '';
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'button';
 
