@@ -42,6 +42,8 @@ export const useInitialData = (
   const chatApiUrl = getChatApiUrl(env);
   const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
 
+  console.log(`chatbot endpoint for ${islandName}`, aiEndpoint);
+
   const chatbotSettings = {
     chatHeadingColor: '',
     initialMessages: ['Hi there! How can I help you today?'],

@@ -44,8 +44,6 @@ const ClientChatPanelComponent = ({
   // Initialize ChatbotConfig
   const chatbotConfig = useChatbotConfig();
 
-  console.log('chatbot panel');
-
   return (
     <>
       {data && (
