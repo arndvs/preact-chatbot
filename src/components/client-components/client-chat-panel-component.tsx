@@ -24,7 +24,7 @@ const ClientChatPanelComponent = ({
 }: ChatPanelComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   // use the If storeId is undefined, use the default storeId of 20
-  const idToUse = storeId || '20';
+  const idToUse = storeId || '117';
   const envToUse = env || '';
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'panel';

@@ -21,7 +21,6 @@ const ClientChatButtonComponent = ({
   islandType,
   env
 }: ClientChatButtonComponentProps) => {
-  console.log('env', env);
   const idToUse = storeId || '111';
   const envToUse = env || '';
   const domainToUse = domain || 'https://www.example.com';
