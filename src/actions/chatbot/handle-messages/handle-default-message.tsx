@@ -19,24 +19,12 @@ const HandleDefaultMessage = ({
     useChatbotContext();
 
   const handleDefault = async (message: string) => {
-    setLoadingState(true);
-    setAiUserTestResponse('Loading ...');
+    // setLoadingState(true);
+    // setAiUserTestResponse('Loading ...');
 
-    const loadingMessage = createChatBotMessage('Loading ...', {
-      loading: true,
-      delay: 0,
-      withAvatar: true
-    }) as IChatbotMessage;
-
-    setMessages((prevMessages) => [...prevMessages, loadingMessage]);
-
-    console.log('chatbot endpoint for env', env);
-    console.log('chatbot endpoint for env', typeof env);
     const chatApiUrl = getChatApiUrl(env);
 
     const endpoint = `${chatApiUrl}/api/v2/external_chatbot`;
-
-    console.log('chatbot endpoint for islandName', endpoint);
 
     try {
       await axios.post(endpoint, {

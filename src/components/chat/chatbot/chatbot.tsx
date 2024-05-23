@@ -74,11 +74,9 @@ const Chatbot = ({
     messageContainerRef
   };
 
-  if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {
-    console.log('constructor');
+  if (isConstructor(MessageParser)) {
     return <ChatbotContainer {...chatbotContainerProps} />;
   } else {
-    console.log('Else');
     return (
       <ActionProvider createChatBotMessage={createChatBotMessage}>
         <MessageParser>

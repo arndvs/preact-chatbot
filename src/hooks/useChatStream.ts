@@ -1,6 +1,7 @@
 import { usePusher } from 'src/hooks/usePusher';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { useEffect, useState } from 'preact/hooks';
+import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 
 interface useChatStreamProps {
   setAiUserTestResponse: (response: string) => void;
@@ -11,7 +12,8 @@ export const useChatStream = ({
   setAiUserTestResponse,
   setLoadingState
 }: useChatStreamProps) => {
-  const { session_id, store_id, isOpen, setIsOpen } = useChatbotContext();
+  const { session_id, store_id, isOpen, setIsOpen, setMessages } =
+    useChatbotContext();
   const pusher = usePusher();
 
   // Manage the conversation and its stream
@@ -39,12 +41,23 @@ export const useChatStream = ({
             completed: boolean;
           }
         ) => {
+          console.log('isOpen', isOpen);
+          console.log('Data', data.completed);
+          console.log('Data', data.sequence);
+
           if (data?.completed === true) {
-            console.log('Completed', data);
             setDoubleCheck(data);
           }
-          if (!isOpen) {
-            setIsOpen(true);
+
+          if (data.sequence === 0) {
+            setLoadingState(true);
+            setAiUserTestResponse('Loading ...');
+            const loadingMessage = createChatBotMessage('Loading ...', {
+              loading: true,
+              delay: 0
+            });
+
+            setMessages((prevMessages) => [...prevMessages, loadingMessage]);
           }
 
           setStreamedConvo((prev) => [
@@ -67,11 +80,12 @@ export const useChatStream = ({
         doubleCheck?.sequence ===
           streamedConvo[streamedConvo.length - 1].sequence
       );
-
-      setLoadingState(false);
-      setStreamedConvo([]);
-      setAiUserTestResponse('Complete');
-      setDoubleCheck(null);
+      setTimeout(() => {
+        setLoadingState(false);
+        setStreamedConvo([]);
+        setAiUserTestResponse('Complete');
+        setDoubleCheck(null);
+      }, 1000);
     }
   }, [doubleCheck]);
 
