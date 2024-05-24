@@ -12,18 +12,12 @@ export const useChatStream = ({
   setAiUserTestResponse,
   setLoadingState
 }: useChatStreamProps) => {
-  const { session_id, store_id, isOpen, setIsOpen, setMessages } =
-    useChatbotContext();
+  const { session_id, store_id, setIsOpen, setMessages } = useChatbotContext();
   const pusher = usePusher();
 
-  // Manage the conversation and its stream
   const [streamedConvo, setStreamedConvo] = useState<
     { text: string; sequence: number }[]
   >([]);
-  const [doubleCheck, setDoubleCheck] = useState<{
-    text: string;
-    sequence: number;
-  } | null>(null);
 
   useEffect(() => {
     if (session_id && store_id) {
@@ -41,17 +35,13 @@ export const useChatStream = ({
             completed: boolean;
           }
         ) => {
-          console.log('isOpen', isOpen);
           console.log('Data', data.completed);
           console.log('Data', data.sequence);
 
-          if (data?.completed === true) {
-            setDoubleCheck(data);
-          }
-
           if (data.sequence === 0) {
-            setLoadingState(true);
-            setAiUserTestResponse('Loading ...');
+            setStreamedConvo([]);
+            setAiUserTestResponse('Complete');
+            setAiUserTestResponse('');
             const loadingMessage = createChatBotMessage('Loading ...', {
               loading: true,
               delay: 0
@@ -70,36 +60,17 @@ export const useChatStream = ({
   }, [pusher, session_id, store_id, setLoadingState]);
 
   useEffect(() => {
-    if (
-      doubleCheck &&
-      doubleCheck?.sequence === streamedConvo[streamedConvo.length - 1].sequence
-    ) {
-      console.log('Double check', doubleCheck);
-      console.log(
-        'Logic',
-        doubleCheck?.sequence ===
-          streamedConvo[streamedConvo.length - 1].sequence
-      );
-      setTimeout(() => {
-        setLoadingState(false);
-        setStreamedConvo([]);
-        setAiUserTestResponse('Complete');
-        setDoubleCheck(null);
-      }, 1000);
+    if (streamedConvo.length === 1) {
+      setIsOpen(true);
     }
-  }, [doubleCheck]);
-
-  useEffect(() => {
     if (streamedConvo.length > 0) {
-      // Sort conversation pieces by sequence to ensure correct order
       const orderedConvo = streamedConvo.sort(
         (a, b) => a.sequence - b.sequence
       );
-      // Join texts into a single message
       const text = orderedConvo.map((item) => item.text).join('');
 
       setAiUserTestResponse(text);
-      setLoadingState(true); // Possibly indicate loading of the message is complete
+      setLoadingState(true);
     }
   }, [streamedConvo]);
 };
