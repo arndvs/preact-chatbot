@@ -40,7 +40,6 @@ export const useChatStream = ({
 
           if (data.sequence === 0) {
             setStreamedConvo([]);
-            setAiUserTestResponse('Complete');
             setAiUserTestResponse('');
             const loadingMessage = createChatBotMessage('Loading ...', {
               loading: true,
