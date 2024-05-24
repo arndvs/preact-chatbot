@@ -8,7 +8,6 @@ import {
   getCustomStyles,
   isConstructor
 } from 'src/actions/chatbot/chatbot-config-utils';
-import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import ChatbotError from './chatbot-error';
 
 const Chatbot = ({
@@ -78,11 +77,9 @@ const Chatbot = ({
     return <ChatbotContainer {...chatbotContainerProps} />;
   } else {
     return (
-      <ActionProvider createChatBotMessage={createChatBotMessage}>
-        <MessageParser>
-          <ChatbotContainer {...chatbotContainerProps} />
-        </MessageParser>
-      </ActionProvider>
+      <MessageParser>
+        <ChatbotContainer {...chatbotContainerProps} />
+      </MessageParser>
     );
   }
 };

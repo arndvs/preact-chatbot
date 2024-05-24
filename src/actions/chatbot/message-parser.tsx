@@ -5,6 +5,7 @@ import {
   cloneElement,
   VNode
 } from 'preact';
+import HandleDefaultMessage from 'src/actions/chatbot/handle-messages/handle-default-message';
 
 interface MessageParserProps {
   actions: {
@@ -12,7 +13,7 @@ interface MessageParserProps {
     // handleMenu: () => void;
     // handleHoursLocation: () => void;
     // // handleDeals: () => void;
-    handleDefault: (message: string) => void;
+    // handleDefault: (message: string) => void;
   };
   children?: ComponentChildren | readonly ComponentChildren[];
 }
@@ -22,10 +23,11 @@ const MessageParser: FunctionalComponent<MessageParserProps> = ({
   actions,
   ...props
 }) => {
-  const parse = (message: string): void => {
-    const lowerCaseMessage = message.toLowerCase();
+  // instantiate the handleDefaultMessage
+  const { handleDefault } = HandleDefaultMessage();
 
-    actions.handleDefault(message);
+  const parse = (message: string): void => {
+    handleDefault(message);
   };
 
   // Filter out non-VNode elements from children

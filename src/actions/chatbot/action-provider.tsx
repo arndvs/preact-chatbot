@@ -1,18 +1,13 @@
 import { ComponentChildren, cloneElement, isValidElement } from 'preact';
 import { useState } from 'preact/hooks';
-import HandleDefaultMessage from 'src/actions/chatbot/handle-messages/handle-default-message';
 import { useChatStream } from 'src/hooks/useChatStream';
 import { useLoadingMessageHandler } from 'src/hooks/useLoadingMessageHandler';
 
 interface ActionProviderProps {
-  createChatBotMessage: any;
   children?: ComponentChildren;
 }
 
-const ActionProvider = ({
-  createChatBotMessage,
-  children
-}: ActionProviderProps) => {
+const ActionProvider = ({ children }: ActionProviderProps) => {
   // handle loading state
   const [loadingState, setLoadingState] = useState<boolean>(false);
 
@@ -23,15 +18,7 @@ const ActionProvider = ({
   // hook to handle loading messages
   useLoadingMessageHandler({
     loadingState,
-    aiUserTestResponse,
-    setAiUserTestResponse
-  });
-
-  // instantiate the handleDefaultMessage
-  const { handleDefault } = HandleDefaultMessage({
-    createChatBotMessage,
-    setLoadingState,
-    setAiUserTestResponse
+    aiUserTestResponse
   });
 
   // // get the chat stream store and session ID
@@ -48,7 +35,7 @@ const ActionProvider = ({
         if (isValidElement(child)) {
           return cloneElement(child, {
             actions: {
-              handleDefault
+              // handleDefault
             },
             key: index
           });

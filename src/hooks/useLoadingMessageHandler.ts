@@ -3,7 +3,6 @@ import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 interface UseLoadingMessageHandlerProps {
   aiUserTestResponse: string;
-  setAiUserTestResponse: (value: string) => void;
   loadingState: boolean;
 }
 

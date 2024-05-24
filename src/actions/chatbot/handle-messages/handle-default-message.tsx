@@ -1,27 +1,12 @@
 import axios from 'axios';
-import { StateUpdater } from 'preact/hooks';
 import { getChatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
-import { IChatbotMessage } from 'src/types/IChatbotMessages';
 
-interface ChatbotHandlerProps {
-  createChatBotMessage: any;
-  setLoadingState: StateUpdater<boolean>;
-  setAiUserTestResponse: StateUpdater<string>;
-}
-
-const HandleDefaultMessage = ({
-  createChatBotMessage,
-  setLoadingState,
-  setAiUserTestResponse
-}: ChatbotHandlerProps) => {
+const HandleDefaultMessage = () => {
   const { session_id, store_id, customer_store_id, setMessages, env } =
     useChatbotContext();
 
   const handleDefault = async (message: string) => {
-    // setLoadingState(true);
-    // setAiUserTestResponse('Loading ...');
-
     const chatApiUrl = getChatApiUrl(env);
 
     const endpoint = `${chatApiUrl}/api/v2/external_chatbot`;

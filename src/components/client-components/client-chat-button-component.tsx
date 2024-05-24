@@ -1,6 +1,5 @@
 import ActionProvider from 'src/actions/chatbot/action-provider';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
-import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import { useInitialData } from 'src/hooks/useInitialData';
@@ -63,9 +62,10 @@ const ClientChatButtonComponent = ({
           isOpen={false}
           setIsOpen={() => {}}
         >
-          <ChatBubbleButton />
-
-          <ChatModal islandName={islandName} />
+          <ActionProvider>
+            <ChatBubbleButton />
+            <ChatModal islandName={islandName} />
+          </ActionProvider>
         </ChatbotContextProvider>
       )}
     </>
