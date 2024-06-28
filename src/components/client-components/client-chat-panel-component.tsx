@@ -74,13 +74,15 @@ const ClientChatPanelComponent = ({
             data-testId="overlay-content"
             className="z-[888889] border-none flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-75vh max-h-75vh rounded-lg overflow-hidden bg-white"
           >
-            <Chatbot
-              config={chatbotConfig}
-              messageParser={MessageParser}
-              actionProvider={ActionProvider}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
+            <ActionProvider>
+              <Chatbot
+                config={chatbotConfig}
+                messageParser={MessageParser}
+                actionProvider={ActionProvider}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
+            </ActionProvider>
           </Box>
         </ChatbotContextProvider>
       )}
