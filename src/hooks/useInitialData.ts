@@ -77,7 +77,7 @@ export const useInitialData = (
       });
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
-        if (islandType !== 'panel') {
+        // if (islandType !== 'panel') {
           const domain = window.location.hostname;
           console.log('domain', domain);
           setCookie(
@@ -88,7 +88,7 @@ export const useInitialData = (
               domain: domain
             }
           );
-        }
+        // }
       }
 
       return response.data as InitialBotSettings;
