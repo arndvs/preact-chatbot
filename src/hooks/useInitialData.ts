@@ -124,12 +124,9 @@ export const useInitialData = (
     getInitialData().then((data) => {
       if (data) {
         getMessageHistory().then((history) => {
-          const initialMessage = createChatBotMessage(
-            `👋 Hi! I am ${data.store_name} Bot. How can I help?`,
-            {
-              loading: false
-            }
-          );
+          const initialMessage = createChatBotMessage(`${data.bot_greeting}`, {
+            loading: false
+          });
 
           setData({
             ...data,

@@ -113,7 +113,7 @@ export const ChatbotContextProvider = ({
 
   const resetChatTimeline = (newSessionId: string) => {
     const initialMessage = createChatBotMessage(
-      `👋 Hi! I am ${storeName} Bot. How can I help?`,
+      `👋 Hi! I am ${botGreeting} Bot. How can I help?`,
       {
         loading: false
       }
