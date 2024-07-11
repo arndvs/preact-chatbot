@@ -11,13 +11,16 @@ const ChatbotContextComponent = () => {
     customer_store_id,
     messages,
     chatHeadingColor,
-    suggestedMessages,
     placeholderText,
     profilePicture,
     displayName,
     userMessageColor,
     chatIcon,
-    chatBubbleButtonColor
+    chatBubbleButtonColor,
+    chatHeadingFontColor,
+    botGreeting,
+    userMessageTextColor,
+    chatBubbleButtonIconColor
   } = useChatbotContext();
 
   return (
@@ -138,17 +141,7 @@ const ChatbotContextComponent = () => {
                   <div className="text-gray-900">{chatHeadingColor}</div>
                 </dd>
               </div>
-              <div className="pt-6 sm:flex">
-                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
-                  Suggested Messages
-                </dt>
-                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
-                  <div className="text-gray-900">suggestedMessages</div>
-                  <div className="text-gray-900">
-                    {suggestedMessages.join(', ')}
-                  </div>
-                </dd>
-              </div>
+
               <div className="pt-6 sm:flex">
                 <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
                   Profile Picture

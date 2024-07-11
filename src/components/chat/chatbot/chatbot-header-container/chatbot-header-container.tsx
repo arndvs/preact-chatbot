@@ -5,8 +5,13 @@ import { useChatbotContext } from 'src/hooks/useChatbotContext';
 import { ChatbotHeaderContainerProps } from 'src/types/IChatbotWidget';
 
 const ChatbotHeaderContainer = ({ setIsOpen }: ChatbotHeaderContainerProps) => {
-  const { chatHeadingColor, brandColor, storeName, displayName } =
-    useChatbotContext();
+  const {
+    chatHeadingColor,
+    chatHeadingFontColor,
+    brandColor,
+    storeName,
+    displayName
+  } = useChatbotContext();
 
   // Determine the background color based on conditions
   const backgroundColor =
@@ -30,7 +35,12 @@ const ChatbotHeaderContainer = ({ setIsOpen }: ChatbotHeaderContainerProps) => {
         >
           <div className="flex items-center">
             <ChatbotAvatar className="w-8 h-8 mr-2 rounded-full" />
-            <h1 className="text-lg font-semibold text-white truncate">
+            <h1
+              className="text-lg font-semibold truncate"
+              style={{
+                color: chatHeadingFontColor ?? '#fff'
+              }}
+            >
               {botName}
             </h1>
           </div>

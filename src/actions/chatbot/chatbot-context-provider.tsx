@@ -17,7 +17,6 @@ interface ChatbotContextProps {
   domain?: string;
   messages: IChatbotMessage[];
   chatHeadingColor: string;
-  suggestedMessages: string[];
   placeholderText: string;
   profilePicture: string;
   displayName: string;
@@ -29,6 +28,10 @@ interface ChatbotContextProps {
   islandName: string;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  chatHeadingFontColor: string;
+  botGreeting: string;
+  userMessageTextColor: string;
+  chatBubbleButtonIconColor: string;
 }
 
 interface ChatbotContextType extends ChatbotContextProps {
@@ -52,13 +55,16 @@ export const ChatbotContext = createContext<ChatbotContextType>({
   customer_store_id: '',
   messages: [],
   chatHeadingColor: '',
-  suggestedMessages: [],
   placeholderText: '',
   profilePicture: '',
   displayName: '',
   userMessageColor: '',
   chatIcon: '',
   chatBubbleButtonColor: '',
+  chatHeadingFontColor: '',
+  botGreeting: '',
+  userMessageTextColor: '',
+  chatBubbleButtonIconColor: '',
   setMessages: () => {},
   botData: defaultBotData,
   setBotData: () => {},
@@ -85,7 +91,6 @@ export const ChatbotContextProvider = ({
     customer_store_id,
     messages: initialMessages,
     chatHeadingColor,
-    suggestedMessages,
     placeholderText,
     profilePicture,
     displayName,
@@ -94,7 +99,11 @@ export const ChatbotContextProvider = ({
     chatBubbleButtonColor,
     islandType,
     env,
-    islandName
+    islandName,
+    chatHeadingFontColor,
+    botGreeting,
+    userMessageTextColor,
+    chatBubbleButtonIconColor
   } = props;
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
   const [messages, setMessages] = useState<IChatbotMessage[]>(initialMessages);
@@ -132,8 +141,11 @@ export const ChatbotContextProvider = ({
     resetChatTimeline,
     cookie,
     chatHeadingColor,
+    chatHeadingFontColor,
+    botGreeting,
+    userMessageTextColor,
+    chatBubbleButtonIconColor,
     //   initialMessages,
-    suggestedMessages,
     profilePicture,
     displayName,
     userMessageColor,

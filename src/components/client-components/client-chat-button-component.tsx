@@ -19,7 +19,7 @@ const ClientChatButtonComponent = ({
   islandType,
   env
 }: ClientChatButtonComponentProps) => {
-  const idToUse = storeId || '111';
+  const idToUse = storeId || '143';
   const envToUse = env || null;
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'button';
@@ -40,27 +40,30 @@ const ClientChatButtonComponent = ({
     <>
       {data && (
         <ChatbotContextProvider
-          storeName={data.store_name}
-          storeLogo={data.store_logo}
-          brandColor={data.brand_color}
           session_id={data.session_id}
           customer_store_id={data.customer_store_id}
           messages={data.messages}
-          store_id={idToUse}
-          domain={domainToUse}
-          placeholderText={data.chatbotSettings.placeholderText}
-          chatHeadingColor={data.chatbotSettings.chatHeadingColor}
-          suggestedMessages={data.chatbotSettings.suggestedMessages}
-          profilePicture={data.chatbotSettings.profilePicture}
-          displayName={data.chatbotSettings.displayName}
-          userMessageColor={data.chatbotSettings.userMessageColor}
-          chatIcon={data.chatbotSettings.chatIcon}
-          chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
           islandType={islandTypeToUse}
-          env={env}
+          env={envToUse}
           islandName={islandName}
           isOpen={false}
           setIsOpen={() => {}}
+          store_id={idToUse}
+          domain={domainToUse}
+          storeName={data.store_name}
+          storeLogo={data.store_logo}
+          brandColor={data.brand_color}
+          profilePicture={data.profile_picture_url}
+          chatHeadingColor={data.header_background_color}
+          chatHeadingFontColor={data.header_font_color}
+          displayName={data.chatbot_name}
+          botGreeting={data.bot_greeting}
+          userMessageColor={data.user_text_color}
+          userMessageTextColor={data.user_text_color}
+          placeholderText={data.bot_placeholder}
+          chatBubbleButtonColor={data.button_color}
+          chatBubbleButtonIconColor={data.button_icon_color}
+          chatIcon={data.chat_icon_url}
         >
           <ActionProvider>
             <ChatBubbleButton />

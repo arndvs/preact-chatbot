@@ -17,7 +17,6 @@ export interface InitialBotSettings {
   chatbotSettings: {
     chatHeadingColor: string;
     initialMessages: string[];
-    suggestedMessages: string[];
     placeholderText: string;
     profilePicture: string;
     displayName: string;
@@ -25,6 +24,19 @@ export interface InitialBotSettings {
     chatIcon: string;
     chatBubbleButtonColor: string;
   };
+  header_background_color: string;
+  header_font_color: string;
+  chat_button_background_color: string;
+  button_icon_color: string;
+  chat_button_font_color: string;
+  profile_picture_url: string;
+  chat_icon_url: string;
+  bot_greeting: string;
+  bot_placeholder: string;
+  user_text_color: string;
+  chatbot_name: string;
+  button_color: string;
+  button_font_color: string;
 }
 
 export const useInitialData = (
@@ -44,16 +56,10 @@ export const useInitialData = (
   const chatApiUrl = getChatApiUrl(env);
   const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
 
-  console.log(`chatbot endpoint for ${islandName}`, aiEndpoint);
-
   const chatbotSettings = {
     chatHeadingColor: '',
     initialMessages: ['Hi there! How can I help you today?'],
-    suggestedMessages: [
-      'What are your store hours?',
-      'Do you offer free shipping?',
-      'What is your return policy?'
-    ],
+
     placeholderText: 'Ask a question...',
     profilePicture: '',
     displayName: '',
@@ -76,18 +82,20 @@ export const useInitialData = (
         island_name: formattedIslandName
       });
 
+      console.log('response', response.data);
+
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         // if (islandType !== 'panel') {
-          const domain = window.location.hostname;
-          console.log('domain', domain);
-          setCookie(
-            `ripemetrics_chatbot-${islandType}`,
-            `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`,
-            {
-              path: '/',
-              domain: domain
-            }
-          );
+        const domain = window.location.hostname;
+        console.log('domain', domain);
+        setCookie(
+          `ripemetrics_chatbot-${islandType}`,
+          `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`,
+          {
+            path: '/',
+            domain: domain
+          }
+        );
         // }
       }
 
