@@ -10,13 +10,13 @@ const ChatbotContextComponent = () => {
     domain,
     customer_store_id,
     messages,
-    chatHeadingColor,
     placeholderText,
     profilePicture,
     displayName,
     userMessageColor,
     chatIcon,
     chatBubbleButtonColor,
+    chatHeadingColor,
     chatHeadingFontColor,
     botGreeting,
     userMessageTextColor,
@@ -47,6 +47,15 @@ const ChatbotContextComponent = () => {
               </div>
               <div className="pt-6 sm:flex">
                 <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  Display Name
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">displayName</div>
+                  <div className="text-gray-900">{displayName}</div>
+                </dd>
+              </div>
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
                   Store Logo
                 </dt>
                 <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
@@ -62,6 +71,23 @@ const ChatbotContextComponent = () => {
               </div>
               <div className="pt-6 sm:flex">
                 <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  Profile Picture
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">profilePicture</div>
+                  <div className="text-gray-900">
+                    {profilePicture && (
+                      <img
+                        className="w-20 h-20"
+                        src={profilePicture}
+                        alt="Profile Picture"
+                      />
+                    )}
+                  </div>
+                </dd>
+              </div>
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
                   Brand Color
                 </dt>
                 <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
@@ -69,6 +95,25 @@ const ChatbotContextComponent = () => {
                   <div className="text-gray-900">{brandColor}</div>
                 </dd>
               </div>
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  Chat Heading Background Color
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">chatHeadingColor</div>
+                  <div className="text-gray-900">{chatHeadingColor}</div>
+                </dd>
+              </div>
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  Chat Heading Font Color
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">chatHeadingFontColor</div>
+                  <div className="text-gray-900">{chatHeadingFontColor}</div>
+                </dd>
+              </div>
+
               <div className="pt-6 sm:flex">
                 <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
                   Placeholder Text
@@ -142,32 +187,6 @@ const ChatbotContextComponent = () => {
                 </dd>
               </div>
 
-              <div className="pt-6 sm:flex">
-                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
-                  Profile Picture
-                </dt>
-                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
-                  <div className="text-gray-900">profilePicture</div>
-                  <div className="text-gray-900">
-                    {profilePicture && (
-                      <img
-                        className="w-20 h-20"
-                        src={profilePicture}
-                        alt="Profile Picture"
-                      />
-                    )}
-                  </div>
-                </dd>
-              </div>
-              <div className="pt-6 sm:flex">
-                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
-                  Display Name
-                </dt>
-                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
-                  <div className="text-gray-900">displayName</div>
-                  <div className="text-gray-900">{displayName}</div>
-                </dd>
-              </div>
               <div className="pt-6 sm:flex">
                 <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
                   User Message Color

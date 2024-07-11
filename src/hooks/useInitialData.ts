@@ -25,7 +25,7 @@ export interface InitialBotSettings {
     chatBubbleButtonColor: string;
   };
   header_background_color: string;
-  header_font_color: string;
+  header_text_color: string;
   chat_button_background_color: string;
   button_icon_color: string;
   chat_button_font_color: string;

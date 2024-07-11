@@ -4,8 +4,14 @@ import { getChatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
 
 const ChatBotHeaderResetChatButton = () => {
-  const { store_id, resetChatTimeline, env, islandName, islandType } =
-    useChatbotContext();
+  const {
+    store_id,
+    resetChatTimeline,
+    env,
+    islandName,
+    islandType,
+    chatHeadingFontColor
+  } = useChatbotContext();
   const [cookies, setCookie] = useCookies([
     `ripemetrics_chatbot-${islandType}`
   ]);
@@ -53,9 +59,12 @@ const ChatBotHeaderResetChatButton = () => {
     <>
       <button
         onClick={handleResetChat}
-        className="inline-flex items-center justify-center px-0 py-3 text-sm font-medium text-white transition-transform duration-700 ease-in-out rounded-md whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 hover:text-gray-50 h-9 hover:rotate-180 hover:bg-inherit "
+        className="inline-flex items-center justify-center px-0 py-3 text-sm font-medium transition-transform duration-700 ease-in-out rounded-md whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 hover:text-gray-50 h-9 hover:rotate-180 hover:bg-inherit "
         aria-label="Reset Chat"
         title="Reset Chat"
+        style={{
+          color: chatHeadingFontColor ?? '#fff'
+        }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
