@@ -11,8 +11,10 @@ const ChatbotMessageComponent = ({
   message,
   loading
 }: ChatbotMessageComponentProps) => {
-  const { storeName } = useChatbotContext();
-  // had to revert to the loading dots and message this 'Hello! How can I assist you today?' would not go away
+  const { storeName, displayName } = useChatbotContext();
+
+  const botName =
+    displayName != null && displayName !== '' ? displayName : storeName;
 
   const text = marked.parse(message ?? '');
 
@@ -20,7 +22,7 @@ const ChatbotMessageComponent = ({
     <>
       <div className="flex-1 min-w-0 !ml-1">
         <div className="text-xs">
-          <p className="pb-1 text-slate-500 font-xs">{storeName} Bot</p>
+          <p className="pb-1 text-slate-500 font-xs">{botName}</p>
         </div>
         <div class="mr-8 flex justify-start">
           <div class="mb-3 max-w-prose overflow-auto rounded-xl rounded-tl-sm px-4 py-3 bg-white text-black shadow-sm">
