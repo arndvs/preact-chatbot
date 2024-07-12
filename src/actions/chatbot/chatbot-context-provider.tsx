@@ -17,11 +17,10 @@ interface ChatbotContextProps {
   domain?: string;
   messages: IChatbotMessage[];
   chatHeadingColor: string;
-  suggestedMessages: string[];
   placeholderText: string;
   profilePicture: string;
   displayName: string;
-  userMessageColor: string;
+  userMessageBackgroundColor: string;
   chatIcon: string;
   chatBubbleButtonColor: string;
   islandType: string | undefined;
@@ -29,6 +28,11 @@ interface ChatbotContextProps {
   islandName: string;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  chatHeadingFontColor: string;
+  botGreeting: string;
+
+  userMessageFontColor: string;
+  chatBubbleButtonIconColor: string;
 }
 
 interface ChatbotContextType extends ChatbotContextProps {
@@ -52,13 +56,17 @@ export const ChatbotContext = createContext<ChatbotContextType>({
   customer_store_id: '',
   messages: [],
   chatHeadingColor: '',
-  suggestedMessages: [],
   placeholderText: '',
   profilePicture: '',
   displayName: '',
-  userMessageColor: '',
+  userMessageBackgroundColor: '',
   chatIcon: '',
   chatBubbleButtonColor: '',
+  chatHeadingFontColor: '',
+  botGreeting: '',
+
+  userMessageFontColor: '',
+  chatBubbleButtonIconColor: '',
   setMessages: () => {},
   botData: defaultBotData,
   setBotData: () => {},
@@ -85,16 +93,19 @@ export const ChatbotContextProvider = ({
     customer_store_id,
     messages: initialMessages,
     chatHeadingColor,
-    suggestedMessages,
     placeholderText,
     profilePicture,
     displayName,
-    userMessageColor,
+    userMessageBackgroundColor,
+    userMessageFontColor,
     chatIcon,
     chatBubbleButtonColor,
     islandType,
     env,
-    islandName
+    islandName,
+    chatHeadingFontColor,
+    botGreeting,
+    chatBubbleButtonIconColor
   } = props;
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
   const [messages, setMessages] = useState<IChatbotMessage[]>(initialMessages);
@@ -103,12 +114,9 @@ export const ChatbotContextProvider = ({
   const [cookie, setCookie] = useCookies(['ripemetrics_chatbot']);
 
   const resetChatTimeline = (newSessionId: string) => {
-    const initialMessage = createChatBotMessage(
-      `👋 Hi! I am ${storeName} Bot. How can I help?`,
-      {
-        loading: false
-      }
-    );
+    const initialMessage = createChatBotMessage(`${botGreeting}`, {
+      loading: false
+    });
 
     setSessionId(newSessionId);
     setMessages([initialMessage]);
@@ -132,11 +140,15 @@ export const ChatbotContextProvider = ({
     resetChatTimeline,
     cookie,
     chatHeadingColor,
+    chatHeadingFontColor,
+    botGreeting,
+
+    userMessageFontColor,
+    chatBubbleButtonIconColor,
     //   initialMessages,
-    suggestedMessages,
     profilePicture,
     displayName,
-    userMessageColor,
+    userMessageBackgroundColor,
     chatIcon,
     chatBubbleButtonColor,
     islandType,

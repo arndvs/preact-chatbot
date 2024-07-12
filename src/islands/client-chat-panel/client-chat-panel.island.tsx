@@ -17,7 +17,7 @@ const islandType = 'panel';
 export const ClientChatPanelIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
-  console.log('islandName', storeId, domain, env);
+
   return (
     <>
       <ClientChatPanelComponent

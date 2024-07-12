@@ -16,7 +16,7 @@ const ChatbotContextDataComponent = ({
   islandName
 }: ChatbotContextDataComponentProps) => {
   // use the If storeId is undefined, use the default storeId of 20
-  const idToUse = storeId || '20';
+  const idToUse = storeId || '144';
 
   const domain = 'https://www.example.com';
 
@@ -24,31 +24,36 @@ const ChatbotContextDataComponent = ({
 
   const data = useInitialData(idToUse, env, islandType, islandName);
 
+  console.log('data', data);
+
   return (
     <>
       {data && (
         <ChatbotContextProvider
-          storeName={data.store_name}
-          storeLogo={data.store_logo}
-          brandColor={data.brand_color}
-          session_id={data.session_id}
-          customer_store_id={data.customer_store_id}
-          messages={data.messages}
-          store_id={idToUse}
           domain={domain}
-          placeholderText={data.chatbotSettings.placeholderText}
-          chatHeadingColor={data.chatbotSettings.chatHeadingColor}
-          suggestedMessages={data.chatbotSettings.suggestedMessages}
-          profilePicture={data.chatbotSettings.profilePicture}
-          displayName={data.chatbotSettings.displayName}
-          userMessageColor={data.chatbotSettings.userMessageColor}
-          chatIcon={data.chatbotSettings.chatIcon}
-          chatBubbleButtonColor={data.chatbotSettings.chatBubbleButtonColor}
           islandType={islandType}
           env={env}
           islandName={islandName}
+          session_id={data.session_id}
+          customer_store_id={data.customer_store_id}
+          messages={data.messages}
           isOpen={false}
           setIsOpen={() => {}}
+          store_id={idToUse}
+          storeName={data.store_name}
+          storeLogo={data.store_logo}
+          brandColor={data.brand_color}
+          profilePicture={data.profile_picture_url}
+          chatHeadingColor={data.header_background_color}
+          chatHeadingFontColor={data.header_text_color}
+          displayName={data.chatbot_name}
+          botGreeting={data.bot_greeting}
+          userMessageBackgroundColor={data.user_text_color}
+          userMessageFontColor={data.user_font_color}
+          placeholderText={data.bot_placeholder}
+          chatBubbleButtonColor={data.button_color}
+          chatBubbleButtonIconColor={data.button_icon_color}
+          chatIcon={data.chat_icon_url}
         >
           <ChatbotContextComponent />
         </ChatbotContextProvider>

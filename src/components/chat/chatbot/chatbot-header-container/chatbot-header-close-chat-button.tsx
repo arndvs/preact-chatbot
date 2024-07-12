@@ -9,18 +9,22 @@ interface ChatbotHeaderCloseButton {
 const ChatbotHeaderCloseChatButton = ({
   setIsOpen
 }: ChatbotHeaderCloseButton) => {
-  const { islandType } = useChatbotContext();
+  const { islandType, chatHeadingFontColor } = useChatbotContext();
+
   return (
     <>
       <button
         type="button"
         className={useClassNames(
-          'inline-flex items-center justify-center p-1 text-white hover:duration-200 hover:scale-110 hover:contrast-150',
+          'inline-flex items-center justify-center p-1 hover:duration-200 hover:scale-110 hover:contrast-150',
           islandType === 'panel' ? 'hidden' : ''
         )}
         onClick={() => setIsOpen(false)}
         aria-label="Close Chat"
         title="Close Chat"
+        style={{
+          color: chatHeadingFontColor ?? '#fff'
+        }}
       >
         <XMarkIcon
           className="w-6 h-6"
