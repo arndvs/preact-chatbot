@@ -32,7 +32,7 @@ const ChatBotHeaderResetChatButton = () => {
         island_name: formattedIslandName
       });
       const domain = window.location.hostname;
-      console.log('domain', domain);
+
       setCookie(
         `ripemetrics_chatbot-${islandType}`,
         `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`,

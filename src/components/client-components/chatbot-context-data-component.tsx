@@ -24,8 +24,6 @@ const ChatbotContextDataComponent = ({
 
   const data = useInitialData(idToUse, env, islandType, islandName);
 
-  console.log('data', data);
-
   return (
     <>
       {data && (

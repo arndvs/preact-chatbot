@@ -35,9 +35,6 @@ export const useChatStream = ({
             completed: boolean;
           }
         ) => {
-          console.log('Data', data.completed);
-          console.log('Data', data.sequence);
-
           if (data.sequence === 0) {
             setStreamedConvo([]);
             setAiUserTestResponse('');
