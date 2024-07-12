@@ -9,7 +9,7 @@ export function useChatbotConfig() {
 
   const ChatbotConfig = {
     initialMessages: [
-      createChatBotMessage(`👋 Hi! I am ${botGreeting} Bot. How can I help?`, {
+      createChatBotMessage(`${botGreeting}`, {
         loading: true
       })
     ],

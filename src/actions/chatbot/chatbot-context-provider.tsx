@@ -114,12 +114,9 @@ export const ChatbotContextProvider = ({
   const [cookie, setCookie] = useCookies(['ripemetrics_chatbot']);
 
   const resetChatTimeline = (newSessionId: string) => {
-    const initialMessage = createChatBotMessage(
-      `👋 Hi! I am ${botGreeting} Bot. How can I help?`,
-      {
-        loading: false
-      }
-    );
+    const initialMessage = createChatBotMessage(`${botGreeting}`, {
+      loading: false
+    });
 
     setSessionId(newSessionId);
     setMessages([initialMessage]);
