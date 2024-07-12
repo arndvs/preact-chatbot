@@ -20,7 +20,7 @@ interface ChatbotContextProps {
   placeholderText: string;
   profilePicture: string;
   displayName: string;
-  userMessageColor: string;
+  userMessageBackgroundColor: string;
   chatIcon: string;
   chatBubbleButtonColor: string;
   islandType: string | undefined;
@@ -30,7 +30,8 @@ interface ChatbotContextProps {
   setIsOpen: (isOpen: boolean) => void;
   chatHeadingFontColor: string;
   botGreeting: string;
-  userMessageTextColor: string;
+
+  userMessageFontColor: string;
   chatBubbleButtonIconColor: string;
 }
 
@@ -58,12 +59,13 @@ export const ChatbotContext = createContext<ChatbotContextType>({
   placeholderText: '',
   profilePicture: '',
   displayName: '',
-  userMessageColor: '',
+  userMessageBackgroundColor: '',
   chatIcon: '',
   chatBubbleButtonColor: '',
   chatHeadingFontColor: '',
   botGreeting: '',
-  userMessageTextColor: '',
+
+  userMessageFontColor: '',
   chatBubbleButtonIconColor: '',
   setMessages: () => {},
   botData: defaultBotData,
@@ -94,7 +96,8 @@ export const ChatbotContextProvider = ({
     placeholderText,
     profilePicture,
     displayName,
-    userMessageColor,
+    userMessageBackgroundColor,
+    userMessageFontColor,
     chatIcon,
     chatBubbleButtonColor,
     islandType,
@@ -102,7 +105,6 @@ export const ChatbotContextProvider = ({
     islandName,
     chatHeadingFontColor,
     botGreeting,
-    userMessageTextColor,
     chatBubbleButtonIconColor
   } = props;
   const [botData, setBotData] = useState<BotDataType>(defaultBotData);
@@ -143,12 +145,13 @@ export const ChatbotContextProvider = ({
     chatHeadingColor,
     chatHeadingFontColor,
     botGreeting,
-    userMessageTextColor,
+
+    userMessageFontColor,
     chatBubbleButtonIconColor,
     //   initialMessages,
     profilePicture,
     displayName,
-    userMessageColor,
+    userMessageBackgroundColor,
     chatIcon,
     chatBubbleButtonColor,
     islandType,

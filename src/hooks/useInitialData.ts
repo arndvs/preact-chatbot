@@ -20,7 +20,7 @@ export interface InitialBotSettings {
     placeholderText: string;
     profilePicture: string;
     displayName: string;
-    userMessageColor: string;
+    userMessageBackgroundColor: string;
     chatIcon: string;
     chatBubbleButtonColor: string;
   };
@@ -34,6 +34,7 @@ export interface InitialBotSettings {
   bot_greeting: string;
   bot_placeholder: string;
   user_text_color: string;
+  user_font_color: string;
   chatbot_name: string;
   button_color: string;
   button_font_color: string;
@@ -63,7 +64,7 @@ export const useInitialData = (
     placeholderText: 'Ask a question...',
     profilePicture: '',
     displayName: '',
-    userMessageColor: '',
+    userMessageBackgroundColor: '',
     chatIcon: 'https://via.placeholder.com/150',
     chatBubbleButtonColor: ''
   };

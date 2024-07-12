@@ -16,7 +16,7 @@ const ChatbotContextDataComponent = ({
   islandName
 }: ChatbotContextDataComponentProps) => {
   // use the If storeId is undefined, use the default storeId of 20
-  const idToUse = storeId || '143';
+  const idToUse = storeId || '144';
 
   const domain = 'https://www.example.com';
 
@@ -48,8 +48,8 @@ const ChatbotContextDataComponent = ({
           chatHeadingFontColor={data.header_text_color}
           displayName={data.chatbot_name}
           botGreeting={data.bot_greeting}
-          userMessageColor={data.user_text_color}
-          userMessageTextColor={data.user_text_color}
+          userMessageBackgroundColor={data.user_text_color}
+          userMessageFontColor={data.user_font_color}
           placeholderText={data.bot_placeholder}
           chatBubbleButtonColor={data.button_color}
           chatBubbleButtonIconColor={data.button_icon_color}

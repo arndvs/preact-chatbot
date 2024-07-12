@@ -13,13 +13,13 @@ const ChatbotContextComponent = () => {
     placeholderText,
     profilePicture,
     displayName,
-    userMessageColor,
+    userMessageBackgroundColor,
     chatIcon,
     chatBubbleButtonColor,
     chatHeadingColor,
     chatHeadingFontColor,
     botGreeting,
-    userMessageTextColor,
+    userMessageFontColor,
     chatBubbleButtonIconColor
   } = useChatbotContext();
 
@@ -113,7 +113,37 @@ const ChatbotContextComponent = () => {
                   <div className="text-gray-900">{chatHeadingFontColor}</div>
                 </dd>
               </div>
-
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  Bot Greeting
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">botGreeting</div>
+                  <div className="text-gray-900">{botGreeting}</div>
+                </dd>
+              </div>
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  User Message Background Color
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">
+                    userMessageBackgroundColor
+                  </div>
+                  <div className="text-gray-900">
+                    {userMessageBackgroundColor}
+                  </div>
+                </dd>
+              </div>
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  User Message Font Color
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">userMessageFontColor</div>
+                  <div className="text-gray-900">{userMessageFontColor}</div>
+                </dd>
+              </div>
               <div className="pt-6 sm:flex">
                 <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
                   Placeholder Text
@@ -123,6 +153,44 @@ const ChatbotContextComponent = () => {
                   <div className="text-gray-900">{placeholderText}</div>
                 </dd>
               </div>
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  Chat Bubble Button Color
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">chatBubbleButtonColor</div>
+                  <div className="text-gray-900">{chatBubbleButtonColor}</div>
+                </dd>
+              </div>
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  Chat Bubble Button Icon Color
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">chatBubbleButtonIconColor</div>
+                  <div className="text-gray-900">
+                    {chatBubbleButtonIconColor}
+                  </div>
+                </dd>
+              </div>
+              <div className="pt-6 sm:flex">
+                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                  Chat Icon
+                </dt>
+                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div className="text-gray-900">chatIcon</div>
+                  <div className="text-gray-900">
+                    {chatIcon && (
+                      <img
+                        className="w-20 h-20"
+                        src={chatIcon}
+                        alt="Profile Picture"
+                      />
+                    )}
+                  </div>
+                </dd>
+              </div>
+
               <div className="pt-6 sm:flex">
                 <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
                   Session ID
@@ -175,51 +243,6 @@ const ChatbotContextComponent = () => {
                 <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
                   <div className="text-gray-900">customer_store_id</div>
                   <div className="text-gray-900">{customer_store_id}</div>
-                </dd>
-              </div>
-              <div className="pt-6 sm:flex">
-                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
-                  Chat Heading Color
-                </dt>
-                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
-                  <div className="text-gray-900">chatHeadingColor</div>
-                  <div className="text-gray-900">{chatHeadingColor}</div>
-                </dd>
-              </div>
-
-              <div className="pt-6 sm:flex">
-                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
-                  User Message Color
-                </dt>
-                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
-                  <div className="text-gray-900">userMessageColor</div>
-                  <div className="text-gray-900">{userMessageColor}</div>
-                </dd>
-              </div>
-              <div className="pt-6 sm:flex">
-                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
-                  Chat Icon
-                </dt>
-                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
-                  <div className="text-gray-900">chatIcon</div>
-                  <div className="text-gray-900">
-                    {chatIcon && (
-                      <img
-                        className="w-20 h-20"
-                        src={chatIcon}
-                        alt="Profile Picture"
-                      />
-                    )}
-                  </div>
-                </dd>
-              </div>
-              <div className="pt-6 sm:flex">
-                <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
-                  Chat Bubble Button Color
-                </dt>
-                <dd className="flex justify-between mt-1 gap-x-6 sm:mt-0 sm:flex-auto">
-                  <div className="text-gray-900">chatBubbleButtonColor</div>
-                  <div className="text-gray-900">{chatBubbleButtonColor}</div>
                 </dd>
               </div>
             </dl>
