@@ -1,11 +1,12 @@
+import { useEffect, useState } from 'react';
 import {
   botMessage,
   customMessage,
   userMessage
 } from 'src/actions/chatbot/chatbot-message-utils';
 import { showAvatar } from 'src/actions/chatbot/show-avatar';
+import ChatbotLoadingMessage from 'src/components/chat/chatbot/chatbot-message-container/chatbot-loading-message';
 import ChatbotMessageContainer from 'src/components/chat/chatbot/chatbot-message-container/chatbot-message-container';
-
 import ChatbotUserMessageContainer from 'src/components/chat/chatbot/chatbot-user-message-container/chatbot-user-message-container';
 import {
   IChatbotMessage,
@@ -24,7 +25,20 @@ const ChatbotMessageRetriever = ({
   scrollIntoView,
   widgetRegistry
 }: IChatbotMessageRetrieverProps) => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (messages.length > 0 && userMessage(messages[messages.length - 1])) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [messages]);
+
   const renderMessages = () => {
+    const latestMessageId =
+      messages.length > 0 ? messages[messages.length - 1].id : null;
+
     return messages?.map((messageObject: IChatbotMessage, index: number) => {
       if (botMessage(messageObject)) {
         return (
@@ -36,7 +50,12 @@ const ChatbotMessageRetriever = ({
 
       if (userMessage(messageObject)) {
         return (
-          <div key={messageObject.id}>{renderUserMessage(messageObject)}</div>
+          <div key={messageObject.id}>
+            {renderUserMessage(messageObject)}
+            {loading && messageObject.id === latestMessageId && (
+              <ChatbotLoadingMessage />
+            )}
+          </div>
         );
       }
 

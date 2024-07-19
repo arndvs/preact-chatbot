@@ -20,8 +20,6 @@ const ChatbotUserMessage = ({
       ? userMessageBackgroundColor
       : brandColor ?? '#e5e5e5';
 
-  console.log('userMessageFontColor', userMessageFontColor);
-
   if (customComponents?.userChatMessage) {
     return callIfExists(customComponents.userChatMessage, { message });
   } else {
