@@ -37,6 +37,9 @@ const ChatbotMessageRetriever = ({
   }, [messages]);
 
   const renderMessages = () => {
+    const latestMessageId =
+      messages.length > 0 ? messages[messages.length - 1].id : null;
+
     return messages?.map((messageObject: IChatbotMessage, index: number) => {
       if (botMessage(messageObject)) {
         return (
@@ -51,7 +54,9 @@ const ChatbotMessageRetriever = ({
         return (
           <div key={messageObject.id}>
             {renderUserMessage(messageObject)}
-            {loading && <ChatbotLoadingMessage />}
+            {loading && messageObject.id === latestMessageId && (
+              <ChatbotLoadingMessage />
+            )}
           </div>
         );
       }
