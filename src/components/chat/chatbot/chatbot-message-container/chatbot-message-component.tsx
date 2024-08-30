@@ -74,7 +74,12 @@ const ChatbotMessageComponent: FunctionComponent<
                 </ReactMarkdown>
               ) : (
                 <>
-                  {console.log('streaming')}
+                  {console.log('streaming - message', message)}
+                  {console.log(
+                    'streaming - displayedMessage',
+                    displayedMessage
+                  )}
+
                   <div>{stripMarkdown(displayedMessage)}</div>
                 </>
               )}
