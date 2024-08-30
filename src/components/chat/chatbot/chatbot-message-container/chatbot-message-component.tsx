@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'preact';
+import { FunctionComponent, useState, useEffect } from 'preact/compat';
 import { JSX } from 'preact/jsx-runtime';
 import ChatbotLoadingDots from 'src/components/chat/chatbot/chatbot-message-container/chatbot-loading-dots';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
@@ -9,13 +9,36 @@ interface ChatbotMessageComponentProps {
   loading: boolean | undefined;
 }
 
+const stripMarkdown = (text: string): string => {
+  // Basic stripping of common markdown syntax
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '$1') // Bold
+    .replace(/\*(.*?)\*/g, '$1') // Italic
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Links
+    .replace(/`(.*?)`/g, '$1') // Inline code
+    .replace(/^#+\s/gm, '') // Headers
+    .replace(/^[*-]\s/gm, ''); // List items
+};
+
 const ChatbotMessageComponent: FunctionComponent<
   ChatbotMessageComponentProps
 > = ({ message, loading }) => {
   const { storeName, displayName } = useChatbotContext();
+  const [isComplete, setIsComplete] = useState(false);
+  const [displayedMessage, setDisplayedMessage] = useState('');
 
   const botName =
     displayName != null && displayName !== '' ? displayName : storeName;
+
+  useEffect(() => {
+    if (!loading && message !== 'Loading ...') {
+      setDisplayedMessage(message);
+      setIsComplete(true);
+    } else {
+      setIsComplete(false);
+      setDisplayedMessage('');
+    }
+  }, [loading, message]);
 
   return (
     <div className="flex-1 min-w-0 !ml-1">
@@ -28,7 +51,7 @@ const ChatbotMessageComponent: FunctionComponent<
             <div class="prose w-full break-words text-left text-inherit dark:prose-invert text-base">
               {loading || message === 'Loading ...' ? (
                 <ChatbotLoadingDots />
-              ) : (
+              ) : isComplete ? (
                 <ReactMarkdown
                   components={{
                     a: ({ node, ...props }) => (
@@ -49,6 +72,8 @@ const ChatbotMessageComponent: FunctionComponent<
                 >
                   {message ?? 'No Content Provided'}
                 </ReactMarkdown>
+              ) : (
+                <div>{stripMarkdown(displayedMessage)}</div>
               )}
             </div>
           </div>
