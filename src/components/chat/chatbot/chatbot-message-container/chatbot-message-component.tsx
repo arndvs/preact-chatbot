@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 interface ChatbotMessageComponentProps {
   message: string;
   loading: boolean | undefined;
+  completed?: boolean;
 }
 
 const stripMarkdown = (text: string): string => {
@@ -22,9 +23,8 @@ const stripMarkdown = (text: string): string => {
 
 const ChatbotMessageComponent: FunctionComponent<
   ChatbotMessageComponentProps
-> = ({ message, loading }) => {
+> = ({ message, loading, completed }) => {
   const { storeName, displayName } = useChatbotContext();
-  const [isComplete, setIsComplete] = useState(false);
   const [displayedMessage, setDisplayedMessage] = useState('');
 
   const botName =
@@ -33,9 +33,7 @@ const ChatbotMessageComponent: FunctionComponent<
   useEffect(() => {
     if (!loading && message !== 'Loading ...') {
       setDisplayedMessage(message);
-      setIsComplete(true);
     } else {
-      setIsComplete(false);
       setDisplayedMessage('');
     }
   }, [loading, message]);
@@ -47,11 +45,11 @@ const ChatbotMessageComponent: FunctionComponent<
       </div>
       <div class="mr-8 flex justify-start">
         <div class="mb-3 max-w-prose overflow-auto rounded-xl rounded-tl-sm px-4 py-3 bg-white text-black shadow-sm">
-          <div class="flex flex-col items-start gap-4 break-words">
+          <div class="flex flesx-col items-start gap-4 break-words">
             <div class="prose w-full break-words text-left text-inherit dark:prose-invert text-base">
               {loading || message === 'Loading ...' ? (
                 <ChatbotLoadingDots />
-              ) : isComplete ? (
+              ) : completed ? (
                 <ReactMarkdown
                   components={{
                     a: ({ node, ...props }) => (
@@ -73,15 +71,7 @@ const ChatbotMessageComponent: FunctionComponent<
                   {message ?? 'No Content Provided'}
                 </ReactMarkdown>
               ) : (
-                <>
-                  {console.log('streaming - message', message)}
-                  {console.log(
-                    'streaming - displayedMessage',
-                    displayedMessage
-                  )}
-
-                  <div>{stripMarkdown(displayedMessage)}</div>
-                </>
+                <div>{stripMarkdown(displayedMessage)}</div>
               )}
             </div>
           </div>

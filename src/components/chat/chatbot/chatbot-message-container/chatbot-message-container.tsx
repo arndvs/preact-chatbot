@@ -14,7 +14,8 @@ const ChatbotMessageContainer = ({
   customComponents,
   customStyles,
   delay,
-  id
+  id,
+  completed
 }: IChatbotMessageContainerProps) => {
   const [show, toggleShow] = useState(false);
 
@@ -83,6 +84,7 @@ const ChatbotMessageContainer = ({
             <ChatbotMessageComponent
               loading={loading}
               message={message}
+              completed={completed}
             />
             {/* )} */}
           </div>

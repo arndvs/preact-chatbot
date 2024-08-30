@@ -57,6 +57,7 @@ export interface IChatbotContainerProps {
   parse?: (message: string) => void;
   actions?: object;
   messageContainerRef: any;
+  completed?: boolean;
 }
 
 export interface ChatbotInputContainerProps {

@@ -133,33 +133,13 @@ const ChatbotMessageRetriever = ({
       actions
     };
 
-    if (messageObject.widget) {
-      const widget = widgetRegistry.getWidget(chatbotMessageProps.widget, {
-        scrollIntoView,
-        payload: messageObject.payload,
-        actions
-      });
-      return (
-        <>
-          <ChatbotMessageContainer
-            customStyles={customStyles.botMessageBox}
-            withAvatar={withAvatar}
-            {...chatbotMessageProps}
-            key={messageObject.id}
-          />
-          {chatbotMessageProps.loading !== undefined &&
-            !chatbotMessageProps.loading &&
-            (widget ? widget : null)}
-        </>
-      );
-    }
-
     return (
       <ChatbotMessageContainer
         customStyles={customStyles.botMessageBox}
         key={messageObject.id}
         withAvatar={withAvatar}
         {...chatbotMessageProps}
+        completed={messageObject.completed || false} // Add this line
         customComponents={customComponents}
         messages={messages}
       />

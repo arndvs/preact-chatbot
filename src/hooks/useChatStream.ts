@@ -16,7 +16,7 @@ export const useChatStream = ({
   const pusher = usePusher();
 
   const [streamedConvo, setStreamedConvo] = useState<
-    { text: string; sequence: number }[]
+    { text: string; sequence: number; completed: boolean }[]
   >([]);
 
   useEffect(() => {
@@ -48,7 +48,11 @@ export const useChatStream = ({
 
           setStreamedConvo((prev) => [
             ...prev,
-            { text: data.text, sequence: data.sequence }
+            {
+              text: data.text,
+              sequence: data.sequence,
+              completed: data.completed
+            }
           ]);
         }
       );
@@ -64,9 +68,25 @@ export const useChatStream = ({
         (a, b) => a.sequence - b.sequence
       );
       const text = orderedConvo.map((item) => item.text).join('');
+      const isCompleted = orderedConvo[orderedConvo.length - 1].completed;
 
       setAiUserTestResponse(text);
-      setLoadingState(true);
+      setLoadingState(!isCompleted);
+
+      setMessages((prevMessages) => {
+        const lastMessage = prevMessages[prevMessages.length - 1];
+        if (lastMessage && lastMessage.loading) {
+          const updatedMessages = [...prevMessages];
+          updatedMessages[updatedMessages.length - 1] = {
+            ...lastMessage,
+            message: text,
+            loading: false,
+            completed: isCompleted
+          };
+          return updatedMessages;
+        }
+        return prevMessages;
+      });
     }
   }, [streamedConvo]);
 };

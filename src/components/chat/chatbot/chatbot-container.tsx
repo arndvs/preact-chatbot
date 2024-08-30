@@ -23,7 +23,8 @@ const ChatbotContainer = ({
   parse,
   setIsOpen,
   validator,
-  widgetRegistry
+  widgetRegistry,
+  completed
 }: IChatbotContainerProps) => {
   const { messages, islandType } = useChatbotContext();
 
