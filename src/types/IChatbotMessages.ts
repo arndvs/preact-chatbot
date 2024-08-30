@@ -25,6 +25,7 @@ export interface IChatbotMessage extends IChatbotBaseMessage {
   delay?: number;
   withAvatar?: boolean;
   payload?: any;
+  completed?: boolean;
 }
 
 export interface ICreateChatBotMessage {
@@ -52,6 +53,7 @@ export interface IChatbotMessageContainerProps {
   id: number;
   customComponents?: IChatbotCustomComponents;
   customStyles?: { backgroundColor: string };
+  completed?: boolean;
 }
 
 export interface IChatbotUserMessageContainerProps {
