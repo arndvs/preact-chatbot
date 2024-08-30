@@ -73,7 +73,10 @@ const ChatbotMessageComponent: FunctionComponent<
                   {message ?? 'No Content Provided'}
                 </ReactMarkdown>
               ) : (
-                <div>{stripMarkdown(displayedMessage)}</div>
+                <>
+                  {console.log('streaming')}
+                  <div>{stripMarkdown(displayedMessage)}</div>
+                </>
               )}
             </div>
           </div>
