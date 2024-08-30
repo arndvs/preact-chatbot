@@ -10,33 +10,22 @@ interface ChatbotMessageComponentProps {
   completed?: boolean;
 }
 
-const stripMarkdown = (text: string): string => {
-  // Basic stripping of common markdown syntax
-  return text
-    .replace(/\*\*(.*?)\*\*/g, '$1') // Bold
-    .replace(/\*(.*?)\*/g, '$1') // Italic
-    .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Links
-    .replace(/`(.*?)`/g, '$1') // Inline code
-    .replace(/^#+\s/gm, '') // Headers
-    .replace(/^[*-]\s/gm, ''); // List items
-};
-
 const ChatbotMessageComponent: FunctionComponent<
   ChatbotMessageComponentProps
-> = ({ message, loading, completed }) => {
+> = ({ message, loading, completed = false }) => {
   const { storeName, displayName } = useChatbotContext();
-  const [displayedMessage, setDisplayedMessage] = useState('');
+  //   const [displayedMessage, setDisplayedMessage] = useState('');
 
   const botName =
     displayName != null && displayName !== '' ? displayName : storeName;
 
-  useEffect(() => {
-    if (!loading && message !== 'Loading ...') {
-      setDisplayedMessage(message);
-    } else {
-      setDisplayedMessage('');
-    }
-  }, [loading, message]);
+  //   useEffect(() => {
+  //     if (!loading && message !== 'Loading ...') {
+  //       setDisplayedMessage(message);
+  //     } else {
+  //       setDisplayedMessage('');
+  //     }
+  //   }, [loading, message]);
 
   return (
     <div className="flex-1 min-w-0 !ml-1">
@@ -45,11 +34,12 @@ const ChatbotMessageComponent: FunctionComponent<
       </div>
       <div class="mr-8 flex justify-start">
         <div class="mb-3 max-w-prose overflow-auto rounded-xl rounded-tl-sm px-4 py-3 bg-white text-black shadow-sm">
-          <div class="flex flesx-col items-start gap-4 break-words">
+          <div class="flex flex-col items-start gap-4 break-words">
             <div class="prose w-full break-words text-left text-inherit dark:prose-invert text-base">
               {loading || message === 'Loading ...' ? (
                 <ChatbotLoadingDots />
-              ) : completed ? (
+              ) : (
+                //   ) : completed ? (
                 <ReactMarkdown
                   components={{
                     a: ({ node, ...props }) => (
@@ -70,8 +60,8 @@ const ChatbotMessageComponent: FunctionComponent<
                 >
                   {message ?? 'No Content Provided'}
                 </ReactMarkdown>
-              ) : (
-                <div>{stripMarkdown(displayedMessage)}</div>
+                //   ) : (
+                // <div>{stripMarkdown(displayedMessage)}</div>
               )}
             </div>
           </div>

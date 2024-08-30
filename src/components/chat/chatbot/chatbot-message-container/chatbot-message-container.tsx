@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { callIfExists } from 'src/actions/chatbot/chatbot-message-utils';
 import ChatbotAvatar from 'src/components/chat/chatbot/chatbot-avatar';
-import ChatbotLoadingDots from 'src/components/chat/chatbot/chatbot-message-container/chatbot-loading-dots';
-import ChatbotMessageAvatar from 'src/components/chat/chatbot/chatbot-message-container/chatbot-message-avatar';
 import ChatbotMessageComponent from 'src/components/chat/chatbot/chatbot-message-container/chatbot-message-component';
 import { IChatbotMessageContainerProps } from 'src/types/IChatbotMessages';
 
