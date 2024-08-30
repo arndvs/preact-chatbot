@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'preact';
+import { FunctionComponent, useState, useEffect } from 'preact/compat';
 import { JSX } from 'preact/jsx-runtime';
 import ChatbotLoadingDots from 'src/components/chat/chatbot/chatbot-message-container/chatbot-loading-dots';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
@@ -14,9 +14,18 @@ const ChatbotMessageComponent: FunctionComponent<
   ChatbotMessageComponentProps
 > = ({ message, loading, completed = false }) => {
   const { storeName, displayName } = useChatbotContext();
+  //   const [displayedMessage, setDisplayedMessage] = useState('');
 
   const botName =
     displayName != null && displayName !== '' ? displayName : storeName;
+
+  //   useEffect(() => {
+  //     if (!loading && message !== 'Loading ...') {
+  //       setDisplayedMessage(message);
+  //     } else {
+  //       setDisplayedMessage('');
+  //     }
+  //   }, [loading, message]);
 
   return (
     <div className="flex-1 min-w-0 !ml-1">
@@ -30,6 +39,7 @@ const ChatbotMessageComponent: FunctionComponent<
               {loading || message === 'Loading ...' ? (
                 <ChatbotLoadingDots />
               ) : (
+                //   ) : completed ? (
                 <ReactMarkdown
                   components={{
                     a: ({ node, ...props }) => (
@@ -50,6 +60,8 @@ const ChatbotMessageComponent: FunctionComponent<
                 >
                   {message ?? 'No Content Provided'}
                 </ReactMarkdown>
+                //   ) : (
+                // <div>{stripMarkdown(displayedMessage)}</div>
               )}
             </div>
           </div>
