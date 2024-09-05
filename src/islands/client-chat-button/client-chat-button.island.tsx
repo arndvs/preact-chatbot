@@ -8,6 +8,8 @@ import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import { useCookies } from 'react-cookie';
 import ClientChatIslandProps from 'src/utils/client-chat-island-props';
+import { inject } from '@vercel/analytics';
+import { useEffect } from 'preact/hooks';
 
 const islandName = 'client-chat-button-island';
 
@@ -18,6 +20,10 @@ const islandType = 'button';
 export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
+
+  useEffect(() => {
+    inject();
+  }, []);
 
   return (
     <ClientChatButtonComponent
