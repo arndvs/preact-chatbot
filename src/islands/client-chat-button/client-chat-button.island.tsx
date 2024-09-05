@@ -22,6 +22,7 @@ export const ClientChatButtonIsland = () => {
   useDynamicWebIsland(islandName);
 
   useEffect(() => {
+    console.log('injecting analytics');
     inject();
   }, []);
 
