@@ -3,6 +3,7 @@ import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-prov
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
 import ChatModal from 'src/components/chat/chatbot/chat-modal';
 import { useInitialData } from 'src/hooks/useInitialData';
+import { inject } from '@vercel/analytics';
 
 interface ClientChatButtonComponentProps {
   storeId: string | undefined;
@@ -62,6 +63,7 @@ const ClientChatButtonComponent = ({
           </ActionProvider>
         </ChatbotContextProvider>
       )}
+      inject();
     </>
   );
 };
