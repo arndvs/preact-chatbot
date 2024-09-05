@@ -22,7 +22,7 @@ export const ClientChatButtonIsland = () => {
   useDynamicWebIsland(islandName);
 
   useEffect(() => {
-    console.log('injecting analytics');
+    console.log('chatbot analytics');
     inject();
   }, []);
 
