@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'preact/compat';
+import { ChangeEvent, useState, useEffect } from 'preact/compat';
 import { createChatMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import { scrollIntoView } from 'src/actions/chatbot/scroll-into-view';
 import { AirplaneIcon } from 'src/assets/airplane-icon';
@@ -28,57 +28,77 @@ const ChatbotInputContainer = ({
     placeholder = placeholderText;
   }
 
-  const [lastMessageTimestamp, setLastMessageTimestamp] = useState<
-    number | null
-  >(null);
-  const [messageCount, setMessageCount] = useState(0);
+  const [lastMessageTimestamp, setLastMessageTimestamp] = useState<number>(
+    Date.now()
+  );
+  const [messageCount, setMessageCount] = useState<number>(0);
+  const [isRateLimited, setIsRateLimited] = useState<boolean>(false);
+
+  const rateLimitWindow = 60000;
+  const maxMessagesPerWindow = 10;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (Date.now() - lastMessageTimestamp > rateLimitWindow) {
+        setMessageCount(0);
+        setIsRateLimited(false);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [lastMessageTimestamp]);
+
+  const sanitizeInput = (input: string) => {
+    const sanitized = input.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return sanitized;
+  };
 
   const handleSubmit = (e: Event) => {
     e.preventDefault();
 
-    // get the current timestamp for rate limiting purposes
-    const currentTimestamp = Date.now();
+    if (isRateLimited) {
+      alert(
+        'You are sending messages too quickly. Please wait a moment and try again.'
+      );
+      return;
+    }
 
-    // rate limit the number of messages a user can send in a row
-    // if the last message was sent within the last 4 minutes
-    if (
-      lastMessageTimestamp &&
-      currentTimestamp - lastMessageTimestamp <= 240000
-    ) {
-      if (messageCount >= 20) {
-        // Rate limit exceeded
-        alert('Too many messages in a row');
+    const sanitizedInput = sanitizeInput(input);
+
+    const currentTimestamp = Date.now();
+    if (currentTimestamp - lastMessageTimestamp <= rateLimitWindow) {
+      if (messageCount >= maxMessagesPerWindow) {
+        setIsRateLimited(true);
+        alert('Rate limit exceeded. Please wait before sending more messages.');
         return;
-      } else {
-        setMessageCount((prevCount) => prevCount + 1);
       }
+      setMessageCount((prevCount) => prevCount + 1);
     } else {
-      // Reset message count for a new time window
       setMessageCount(1);
       setLastMessageTimestamp(currentTimestamp);
     }
 
     if (validator && typeof validator === 'function') {
-      if (validator(input)) {
-        handleValidMessage();
+      if (validator(sanitizedInput)) {
+        handleValidMessage(sanitizedInput);
         if (parse) {
-          return parse(input);
+          return parse(sanitizedInput);
         }
-        messageParser.parse(input);
+        messageParser.parse(sanitizedInput);
       }
     } else {
-      handleValidMessage();
+      handleValidMessage(sanitizedInput);
       if (parse) {
-        return parse(input);
+        return parse(sanitizedInput);
       }
-      messageParser.parse(input);
+      messageParser.parse(sanitizedInput);
     }
   };
 
-  const handleValidMessage = () => {
+  const handleValidMessage = (sanitizedInput: string) => {
     setMessages((prevMessages) => [
       ...prevMessages,
-      createChatMessage(input, 'user')
+      createChatMessage(sanitizedInput, 'user')
     ]);
 
     scrollIntoView(messageContainerRef);
@@ -112,14 +132,16 @@ const ChatbotInputContainer = ({
         >
           <button
             onClick={handleSubmit}
-            disabled={!input.trim()}
+            disabled={!input.trim() || isRateLimited}
             className="inline-flex items-center justify-end p-1 text-sm font-medium transition-colors rounded-md whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-50 h-9"
             type="submit"
           >
             <AirplaneIcon
               className={useClassNames(
                 'w-6 h-6 ',
-                !input ? 'text-gray-300' : 'text-gray-600 hover:text-gray-800'
+                !input || isRateLimited
+                  ? 'text-gray-300'
+                  : 'text-gray-600 hover:text-gray-800'
               )}
             />
           </button>
