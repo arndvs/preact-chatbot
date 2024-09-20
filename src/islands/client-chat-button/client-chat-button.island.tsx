@@ -42,14 +42,19 @@ export const ClientChatButtonIsland = () => {
   );
 };
 
-// Wrap the island component with Sentry
-const SentryWrappedClientChatButtonIsland = withSentry(ClientChatButtonIsland);
-
-// Create and render the island using the Sentry-wrapped component
-const island = createIslandWebComponent(
-  islandName,
-  SentryWrappedClientChatButtonIsland
-);
+const island = createIslandWebComponent(islandName, ClientChatButtonIsland);
 island.render({
   selector: islandName
 });
+
+// Wrap the island component with Sentry
+// const SentryWrappedClientChatButtonIsland = withSentry(ClientChatButtonIsland);
+
+// Create and render the island using the Sentry-wrapped component
+// const island = createIslandWebComponent(
+//   islandName,
+//   SentryWrappedClientChatButtonIsland
+// );
+// island.render({
+//   selector: islandName
+// });
