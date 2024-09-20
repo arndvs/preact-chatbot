@@ -283,17 +283,17 @@ module.exports = ({ dev, prod }) => {
         )
       }),
 
-      sentryWebpackPlugin({
-        org: 'ripemetrics',
-        project: 'preact',
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-        release: process.env.npm_package_version,
-        include: './dist',
-        ignore: ['node_modules', 'webpack.config.js']
-      }),
+      //   sentryWebpackPlugin({
+      //     org: 'ripemetrics',
+      //     project: 'preact',
+      //     authToken: process.env.SENTRY_AUTH_TOKEN,
+      //     release: process.env.npm_package_version,
+      //     include: './dist',
+      //     ignore: ['node_modules', 'webpack.config.js']
+      //   }),
       ...(isProd ? [new IslandFileSizePlugin()] : [])
     ],
-    devtool: 'source-map', // Source map generation must be turned on
+    // devtool: 'source-map', // Source map generation must be turned on
     stats: 'errors-warnings',
     experiments: {
       layers: true
