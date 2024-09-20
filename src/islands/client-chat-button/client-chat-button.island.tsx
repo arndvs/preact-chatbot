@@ -10,6 +10,10 @@ import { useCookies } from 'react-cookie';
 import ClientChatIslandProps from 'src/utils/client-chat-island-props';
 import { inject } from '@vercel/analytics';
 import { useEffect } from 'preact/hooks';
+import { initSentry, withSentry } from 'src/utils/sentry';
+
+// Initialize Sentry
+initSentry();
 
 const islandName = 'client-chat-button-island';
 
@@ -38,7 +42,14 @@ export const ClientChatButtonIsland = () => {
   );
 };
 
-const island = createIslandWebComponent(islandName, ClientChatButtonIsland);
+// Wrap the island component with Sentry
+const SentryWrappedClientChatButtonIsland = withSentry(ClientChatButtonIsland);
+
+// Create and render the island using the Sentry-wrapped component
+const island = createIslandWebComponent(
+  islandName,
+  SentryWrappedClientChatButtonIsland
+);
 island.render({
   selector: islandName
 });
