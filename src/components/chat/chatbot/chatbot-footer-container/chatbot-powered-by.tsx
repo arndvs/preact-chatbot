@@ -9,6 +9,10 @@ const ChatbotPoweredBy = () => {
     currentUrl
   )}`;
 
+  const breakTheWorld = () => {
+    throw new Error('This is a test error for Sentry');
+  };
+
   return (
     <>
       <div className="flex items-center justify-center gap-3 px-4 py-2 border-t border-gray-200 bg-gray-50">
@@ -28,7 +32,7 @@ const ChatbotPoweredBy = () => {
                 alt=""
               />
               <span className="text-xs font-semibold tracking-tight text-gray-900 isomorphic-link isomorphic-link--external hover:text-blue-900 hover:underline">
-                RipeMetrics
+                RipeMetric <button onClick={breakTheWorld}>s</button>
               </span>
             </div>
           </a>
