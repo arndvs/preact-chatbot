@@ -276,7 +276,11 @@ module.exports = ({ dev, prod }) => {
         'process.env.PUSHER_AUTH_ENDPOINT': JSON.stringify(
           process.env.PUSHER_AUTH_ENDPOINT
         ),
-        'process.env.CHAT_API_URL': JSON.stringify(process.env.CHAT_API_URL)
+        'process.env.CHAT_API_URL': JSON.stringify(process.env.CHAT_API_URL),
+        'process.env.SENTRY_DSN': JSON.stringify(process.env.SENTRY_DSN),
+        'process.env.SENTRY_AUTH_TOKEN': JSON.stringify(
+          process.env.SENTRY_AUTH_TOKEN
+        )
       }),
 
       sentryWebpackPlugin({
