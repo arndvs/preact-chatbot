@@ -293,7 +293,7 @@ module.exports = ({ dev, prod }) => {
       }),
       ...(isProd ? [new IslandFileSizePlugin()] : [])
     ],
-    devtool: isProd ? 'hidden-source-map' : 'eval-source-map',
+    devtool: 'source-map', // Source map generation must be turned on
     stats: 'errors-warnings',
     experiments: {
       layers: true
