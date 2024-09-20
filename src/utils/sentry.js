@@ -3,7 +3,11 @@ import * as Sentry from '@sentry/react';
 export function initSentry() {
   Sentry.init({
     dsn: process.env.SENTRY_DSN,
-    integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
+    integrations: [
+      new Sentry.BrowserTracing(),
+      new Sentry.Replay(),
+      new Sentry.browserProfilingIntegration()
+    ],
     // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
     tracesSampleRate: 1,
 
