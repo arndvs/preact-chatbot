@@ -1,3 +1,5 @@
+const { sentryWebpackPlugin } = require('@sentry/webpack-plugin');
+
 const path = require('path');
 const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -276,8 +278,18 @@ module.exports = ({ dev, prod }) => {
         ),
         'process.env.CHAT_API_URL': JSON.stringify(process.env.CHAT_API_URL)
       }),
+
+      sentryWebpackPlugin({
+        org: 'ripemetrics',
+        project: 'preact',
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+        release: process.env.npm_package_version,
+        include: './dist',
+        ignore: ['node_modules', 'webpack.config.js']
+      }),
       ...(isProd ? [new IslandFileSizePlugin()] : [])
     ],
+    devtool: isProd ? 'hidden-source-map' : 'eval-source-map',
     stats: 'errors-warnings',
     experiments: {
       layers: true
