@@ -13,7 +13,7 @@ import { useEffect } from 'preact/hooks';
 import { initSentry, withSentry } from 'src/utils/sentry';
 
 // Initialize Sentry
-initSentry();
+// initSentry();
 
 const islandName = 'client-chat-button-island';
 
