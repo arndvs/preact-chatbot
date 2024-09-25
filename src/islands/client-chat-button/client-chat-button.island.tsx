@@ -25,6 +25,8 @@ const islandType = 'button';
 export const ClientChatButtonIsland = () => {
   const [showChatbot, setShowChatbot] = useState(true);
 
+  console.log('AA storeId', storeId);
+
   useEffect(() => {
     const fetchChatbotSettings = async () => {
       try {
