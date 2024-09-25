@@ -46,7 +46,7 @@ export const ClientChatButtonIsland = () => {
   useDynamicWebIsland(islandName);
 
   useEffect(() => {
-    console.log('chatbot analytics');
+    console.log('chatbot analyticss');
     inject();
   }, []);
 
