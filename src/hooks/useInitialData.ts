@@ -6,7 +6,6 @@ import { getChatApiUrl } from 'src/config/chat-api-url';
 import formattedCookieName from 'src/utils/formatted-cookie-name';
 
 export interface InitialBotSettings {
-  show_chatbot: boolean | null;
   store_name: string;
   store_logo: string;
   brand_color: string;
@@ -58,6 +57,18 @@ export const useInitialData = (
   const chatApiUrl = getChatApiUrl(env);
   const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
 
+  const chatbotSettings = {
+    chatHeadingColor: '',
+    initialMessages: ['Hi there! How can I help you today?'],
+
+    placeholderText: 'Ask a question...',
+    profilePicture: '',
+    displayName: '',
+    userMessageBackgroundColor: '',
+    chatIcon: 'https://via.placeholder.com/150',
+    chatBubbleButtonColor: ''
+  };
+
   const getInitialData = async () => {
     try {
       // storeId [0] - session_id [1] - customer_store_id [2]
@@ -71,13 +82,6 @@ export const useInitialData = (
         refresh: false,
         island_name: formattedIslandName
       });
-
-      //   if (response.data.show_chatbot !== false) {
-      //     console.log(
-      //       'response.data.show_chatbot !== false response.data',
-      //       response.data
-      //     );
-      //   }
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         // if (islandType !== 'panel') {
@@ -116,29 +120,23 @@ export const useInitialData = (
   };
 
   useEffect(() => {
-    if (data && data.show_chatbot !== false) {
-      getInitialData().then((data) => {
-        if (data) {
-          getMessageHistory().then((history) => {
-            const initialMessage = createChatBotMessage(
-              `${data.bot_greeting}`,
-              {
-                loading: false
-              }
-            );
-
-            setData({
-              ...data,
-              messages: [initialMessage, ...(history || [])]
-            });
+    getInitialData().then((data) => {
+      if (data) {
+        getMessageHistory().then((history) => {
+          const initialMessage = createChatBotMessage(`${data.bot_greeting}`, {
+            loading: false
           });
-        } else {
-          setData(null);
-        }
-      });
-    } else {
-      setData(null);
-    }
+
+          setData({
+            ...data,
+            messages: [initialMessage, ...(history || [])],
+            chatbotSettings
+          });
+        });
+      } else {
+        setData(null);
+      }
+    });
   }, []);
 
   return data;
