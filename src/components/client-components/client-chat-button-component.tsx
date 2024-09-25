@@ -54,9 +54,9 @@ const ClientChatButtonComponent = ({
     fetchChatbotSettings();
   }, [idToUse, envToUse]);
 
-  if (showChatbot === null) {
-    return null; // Or a loading indicator
-  }
+  //   if (showChatbot === null) {
+  //     return null; // Or a loading indicator
+  //   }
 
   if (!showChatbot) {
     console.log('Chatbot is not enabled for this store.');
