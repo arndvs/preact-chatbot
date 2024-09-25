@@ -72,12 +72,12 @@ export const useInitialData = (
         island_name: formattedIslandName
       });
 
-      if (response.data.show_chatbot !== false) {
-        console.log(
-          'response.data.show_chatbot !== false response.data',
-          response.data
-        );
-      }
+      //   if (response.data.show_chatbot !== false) {
+      //     console.log(
+      //       'response.data.show_chatbot !== false response.data',
+      //       response.data
+      //     );
+      //   }
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         // if (islandType !== 'panel') {
