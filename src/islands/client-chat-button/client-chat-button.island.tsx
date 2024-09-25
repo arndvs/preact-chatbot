@@ -21,8 +21,6 @@ const islandName = 'client-chat-button-island';
 const { storeId, domain, env } = ClientChatIslandProps();
 
 const islandType = 'button';
-console.log('AA storeId', storeId);
-console.log('process.env.CHAT_API_URL', process.env.CHAT_API_URL);
 
 export const ClientChatButtonIsland = () => {
   const [showChatbot, setShowChatbot] = useState(true);
@@ -30,8 +28,11 @@ export const ClientChatButtonIsland = () => {
   useEffect(() => {
     const fetchChatbotSettings = async () => {
       try {
+        const chatApiUrl =
+          env === 'dev' ? 'https://api.rmdevs.com' : process.env.CHAT_API_URL;
+        console.log('chatApiUrl', chatApiUrl);
         const response = await axios.get(
-          `${process.env.CHAT_API_URL}/v2/external_chatbot_initial_settings/${storeId}`
+          `${chatApiUrl}/v2/external_chatbot_initial_settings/${storeId}`
         );
         setShowChatbot(response.data.show_chatbot);
       } catch (error) {
@@ -40,7 +41,7 @@ export const ClientChatButtonIsland = () => {
     };
 
     fetchChatbotSettings();
-  }, [storeId]);
+  }, [storeId, env]);
 
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
