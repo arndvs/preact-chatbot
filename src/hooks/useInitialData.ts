@@ -38,6 +38,7 @@ export interface InitialBotSettings {
   chatbot_name: string;
   button_color: string;
   button_font_color: string;
+  show_chatbot?: boolean | null;
 }
 
 export const useInitialData = (
