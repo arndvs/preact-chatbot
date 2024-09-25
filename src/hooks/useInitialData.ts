@@ -82,6 +82,7 @@ export const useInitialData = (
         refresh: false,
         island_name: formattedIslandName
       });
+      console.log('response.data', response.data);
 
       if (!cookie?.length || cookie[1] !== response.data.session_id) {
         // if (islandType !== 'panel') {
