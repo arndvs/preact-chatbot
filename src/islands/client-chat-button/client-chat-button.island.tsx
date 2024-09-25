@@ -21,8 +21,6 @@ const islandName = 'client-chat-button-island';
 const { storeId, domain, env } = ClientChatIslandProps();
 
 const islandType = 'button';
-console.log('AA storeId', storeId);
-console.log('process.env.CHAT_API_URL', process.env.CHAT_API_URL);
 
 export const ClientChatButtonIsland = () => {
   const [showChatbot, setShowChatbot] = useState(true);
@@ -32,6 +30,7 @@ export const ClientChatButtonIsland = () => {
       try {
         const chatApiUrl =
           env === 'dev' ? 'https://api.rmdevs.com' : process.env.CHAT_API_URL;
+        console.log('chatApiUrl', chatApiUrl);
         const response = await axios.get(
           `${chatApiUrl}/v2/external_chatbot_initial_settings/${storeId}`
         );
