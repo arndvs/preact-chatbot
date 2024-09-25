@@ -22,6 +22,7 @@ const { storeId, domain, env } = ClientChatIslandProps();
 
 const islandType = 'button';
 console.log('AA storeId', storeId);
+console.log('process.env.CHAT_API_URL', process.env.CHAT_API_URL);
 
 export const ClientChatButtonIsland = () => {
   const [showChatbot, setShowChatbot] = useState(true);
