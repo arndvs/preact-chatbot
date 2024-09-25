@@ -40,8 +40,7 @@ const ClientChatButtonComponent = ({
         console.log('chatApiUrl', chatApiUrl);
         console.log('Fetching chatbot settings...');
         const response = await axios.get(
-          `${chatApiUrl}/v2/external_chatbot_initial_settings/${idToUse}`,
-          { withCredentials: true }
+          `${chatApiUrl}/v2/external_chatbot_initial_settings/${idToUse}`
         );
         console.log('Fetched chatbot settings:', response.data);
         setShowChatbot(response.data.show_chatbot);
