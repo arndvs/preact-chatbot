@@ -31,10 +31,11 @@ export const ClientChatButtonIsland = () => {
         const chatApiUrl =
           env === 'dev' ? 'https://api.rmdevs.com' : process.env.CHAT_API_URL;
         console.log('chatApiUrl', chatApiUrl);
+        console.log('fetchingChatbotSettings response');
         const response = await axios.get(
           `${chatApiUrl}/v2/external_chatbot_initial_settings/${storeId}`
         );
-        console.log('fetchChatbotSettings response', response.data);
+        console.log('fetchedChatbotSettings response', response.data);
         setShowChatbot(response.data.show_chatbot);
       } catch (error) {
         console.error('Error fetching chatbot settings:', error);
