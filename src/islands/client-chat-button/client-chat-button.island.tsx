@@ -21,11 +21,10 @@ const islandName = 'client-chat-button-island';
 const { storeId, domain, env } = ClientChatIslandProps();
 
 const islandType = 'button';
+console.log('AA storeId', storeId);
 
 export const ClientChatButtonIsland = () => {
   const [showChatbot, setShowChatbot] = useState(true);
-
-  console.log('AA storeId', storeId);
 
   useEffect(() => {
     const fetchChatbotSettings = async () => {
