@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import ActionProvider from 'src/actions/chatbot/action-provider';
 import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-provider';
 import ChatBubbleButton from 'src/components/chat/chatbot/chat-bubble-button';
@@ -19,6 +21,7 @@ const ClientChatButtonComponent = ({
   islandType,
   env
 }: ClientChatButtonComponentProps) => {
+  const [showChatbot, setShowChatbot] = useState<boolean | null>(null);
   const idToUse = storeId || '144';
   const envToUse = env || null;
   const domainToUse = domain || 'https://www.example.com';
@@ -26,6 +29,39 @@ const ClientChatButtonComponent = ({
 
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse, env, islandType, islandName);
+
+  useEffect(() => {
+    const fetchChatbotSettings = async () => {
+      try {
+        const chatApiUrl =
+          envToUse === 'dev'
+            ? 'https://api.rmdevs.com'
+            : process.env.CHAT_API_URL;
+        console.log('chatApiUrl', chatApiUrl);
+        console.log('Fetching chatbot settings...');
+        const response = await axios.get(
+          `${chatApiUrl}/v2/external_chatbot_initial_settings/${idToUse}`,
+          { withCredentials: true }
+        );
+        console.log('Fetched chatbot settings:', response.data);
+        setShowChatbot(response.data.show_chatbot);
+      } catch (error) {
+        console.error('Error fetching chatbot settings:', error);
+        setShowChatbot(false);
+      }
+    };
+
+    fetchChatbotSettings();
+  }, [idToUse, envToUse]);
+
+  if (showChatbot === null) {
+    return null; // Or a loading indicator
+  }
+
+  if (!showChatbot) {
+    console.log('Chatbot is not enabled for this store.');
+    return null;
+  }
 
   return (
     <>
