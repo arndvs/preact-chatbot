@@ -64,7 +64,6 @@ export const ChatbotContext = createContext<ChatbotContextType>({
   chatBubbleButtonColor: '',
   chatHeadingFontColor: '',
   botGreeting: '',
-
   userMessageFontColor: '',
   chatBubbleButtonIconColor: '',
   setMessages: () => {},
