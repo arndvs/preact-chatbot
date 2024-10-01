@@ -27,8 +27,6 @@ const ClientChatButtonComponent = ({
   // Fetch the initial store data for the chatbot
   const data = useInitialData(idToUse, env, islandType, islandName);
 
-  console.log('data', data);
-
   if (data && data?.show_chatbot !== false) {
     return (
       <ChatbotContextProvider
