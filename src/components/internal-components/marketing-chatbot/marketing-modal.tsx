@@ -44,7 +44,7 @@ const MarketingModal = ({
           <Box
             data-testId="overlay-content"
             className={useClassNames(
-              'z-[888889]  border-none fixed flex flex-col justify-between shadow-custom rounded-lg overflow-hidden bg-white',
+              'z-[8888888889]  border-none fixed flex flex-col justify-between shadow-custom rounded-lg overflow-hidden bg-white',
               'lg:w-[28rem] lg:max-h-[86vh] lg:bottom-20 lg:right-4', // Large screens
               'md:w-[28rem] md:max-h-[86vh] md:bottom-20 md:right-4', // Medium screens
               'sm:w-[28rem] sm:max-h-[86vh] sm:bottom-20 sm:right-4', // Small screens
