@@ -16,7 +16,7 @@ const MarketingBubbleButton = ({
     <>
       <div className="cursor-pointer">
         <button
-          className=" inline-flex items-center justify-center fixed z-[8888888888] text-white rounded-full shadow-sm h-12 w-12 cursor-pointer hover:duration-200 hover:scale-105 bottom-4 left-1/2 hover:shadow-md hover:contrast-150"
+          className="bg-pink-500 inline-flex items-center justify-center fixed z-[888888]  text-white rounded-full shadow-sm h-12 w-12 cursor-pointer hover:duration-200 hover:scale-105 bottom-4 left-1/2 hover:shadow-md hover:contrast-150"
           onClick={() => setIsOpen(!isOpen)}
         >
           <div className="flex items-center justify-center w-full h-full">

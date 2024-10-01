@@ -66,7 +66,7 @@ const ClientChatPanelComponent = ({
         >
           <Box
             data-testId="overlay-content"
-            className="z-[9999999999] border-none flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-75vh max-h-75vh rounded-lg overflow-hidden bg-white"
+            className="z-[888889]  border-none flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-75vh max-h-75vh rounded-lg overflow-hidden bg-white"
           >
             <ActionProvider>
               <Chatbot
