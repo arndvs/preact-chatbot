@@ -94,37 +94,37 @@ const buildCssLayersFromEntryPoints = () => {
                 `
                 :host {
                   font-size: 16px !important;
-                  --base-font-size: 16px !important;
-                  --text-base-size: 16px !important;
                   font-size-adjust: none !important;
+                  text-size-adjust: none !important;
+                  -webkit-text-size-adjust: none !important;
                 }
 
-                .!text-lg, h1.!text-lg, h2.!text-lg, p.!text-lg, span.!text-lg {
-                  font-size: 18px !important;
-                  line-height: 1.5 !important;
-                }
-
-                .!text-base, p.!text-base, span.!text-base, div.!text-base {
-                  font-size: 16px !important;
-                  line-height: 1.5 !important;
-                }
-
-                .!text-sm, p.!text-sm, span.!text-sm, input.!text-sm {
-                  font-size: 14px !important;
-                  line-height: 1.5 !important;
-                }
-
-                .!text-xs, p.!text-xs, span.!text-xs {
-                  font-size: 12px !important;
-                  line-height: 1.5 !important;
-                }
-
-                * {
+                :host * {
                   font-size: inherit;
+                  font-size-adjust: inherit !important;
+                  text-size-adjust: inherit !important;
+                  -webkit-text-size-adjust: inherit !important;
                 }
 
-                [style*="rem"] {
+                /* Reset any rem-based calculations */
+                :host [style*="rem"] {
                   --rem-base: 16 !important;
+                }
+
+                /* Enforce specific text sizes */
+                :host .text-xs, :host .!text-xs { font-size: 12px !important; line-height: 1.5 !important; }
+                :host .text-sm, :host .!text-sm { font-size: 14px !important; line-height: 1.5 !important; }
+                :host .text-base, :host .!text-base { font-size: 16px !important; line-height: 1.5 !important; }
+                :host .text-lg, :host .!text-lg { font-size: 18px !important; line-height: 1.5 !important; }
+                :host .text-xl, :host .!text-xl { font-size: 20px !important; line-height: 1.5 !important; }
+                :host .text-2xl, :host .!text-2xl { font-size: 24px !important; line-height: 1.5 !important; }
+
+                /* Ensure inputs and other form elements also respect the font size */
+                :host input,
+                :host textarea,
+                :host select,
+                :host button {
+                  font-size: 16px !important;
                 }
               ` + styleTag.textContent;
 

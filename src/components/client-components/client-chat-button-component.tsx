@@ -56,8 +56,19 @@ const ClientChatButtonComponent = ({
         chatIcon={data.chat_icon_url}
       >
         <ActionProvider>
-          <ChatBubbleButton />
-          <ChatModal islandName={islandName} />
+          <div
+            style={{
+              fontSize: '16px !important',
+              '--base-font-size': '16px',
+              '--text-base-size': '16px',
+              fontSizeAdjust: 'none',
+              textSizeAdjust: 'none',
+              WebkitTextSizeAdjust: 'none'
+            }}
+          >
+            <ChatBubbleButton />
+            <ChatModal islandName={islandName} />
+          </div>
         </ActionProvider>
       </ChatbotContextProvider>
     );

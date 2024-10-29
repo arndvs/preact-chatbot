@@ -45,11 +45,6 @@ const ChatModal = ({ islandName }: ChatModalProps) => {
               'xs:w-full xs:h-full xs:bottom-0 xs:right-0', // Extra small screens (mobile)
               'w-full max-w-full max-h-full bottom-0 right-0' // Extra small screens (mobile)
             )}
-            style={{
-              fontSize: '16px',
-              '--base-font-size': '16px',
-              '--text-base-size': '16px'
-            }}
           >
             {/* Initialize Chatbot, ChatbotConfig, MessageParser, ActionProvider */}
             <Chatbot
