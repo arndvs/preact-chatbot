@@ -79,60 +79,59 @@ const buildCssLayersFromEntryPoints = () => {
               // Reset all font-related CSS custom properties and add strict font controls
               styleTag.textContent =
                 `
-                /* Root level reset */
                 :host {
                   all: initial !important;
-                  contain: content !important;
                   display: block !important;
                   font: initial !important;
                   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
                   font-size: 16px !important;
                   line-height: 1.5 !important;
                   box-sizing: border-box !important;
-                }
 
-                /* Aggressive reset for all child elements */
-                :host > * {
-                  all: revert !important;
-                  font-size: 16px !important;
-                  line-height: 1.5 !important;
-                  font-family: inherit !important;
-                  box-sizing: border-box !important;
-                }
+                  /* Reset all possible font-size related custom properties */
+                  --font-body-scale: 1 !important;
+                  --base-font-size: 16px !important;
+                  --text-base-size: 16px !important;
+                  --font-size-root: 16px !important;
+                  --font-size-base: 16px !important;
 
-                /* Force proper font scaling for rem units */
-                :host {
-                  font-size: 16px !important;
-                }
-
-                /* Reset for all elements */
-                :host *,
-                :host *::before,
-                :host *::after {
-                  box-sizing: border-box !important;
-                  font-family: inherit !important;
-                  font-size: 16px !important;
-                  line-height: 1.5 !important;
+                  /* Prevent any font size adjustments */
+                  font-size-adjust: none !important;
                   text-size-adjust: none !important;
                   -webkit-text-size-adjust: none !important;
+                  -moz-text-size-adjust: none !important;
+                  -ms-text-size-adjust: none !important;
                 }
 
-                /* Text size classes */
-                :host .text-xs, :host [class*="!text-xs"] { font-size: 12px !important; }
-                :host .text-sm, :host [class*="!text-sm"] { font-size: 14px !important; }
-                :host .text-base, :host [class*="!text-base"] { font-size: 16px !important; }
-                :host .text-lg, :host [class*="!text-lg"] { font-size: 18px !important; }
-                :host .text-xl, :host [class*="!text-xl"] { font-size: 20px !important; }
-                :host .text-2xl, :host [class*="!text-2xl"] { font-size: 24px !important; }
+                /* Apply to all elements inside the shadow DOM */
+                :host * {
+                  box-sizing: border-box !important;
+                  font-family: inherit !important;
+                  /* Prevent inheritance of external rem units */
+                  font-size: ${1 / 0.625}em !important;
+                }
 
-                /* Reset custom properties */
-                :host {
-                  --font-body-scale: none !important;
-                  --base-font-size: none !important;
-                  --text-base-size: none !important;
-                  --font-size-root: none !important;
-                  --font-size-base: none !important;
-                  --rem-base: 16 !important;
+                /* Reset specific elements to desired sizes */
+                :host .text-xs, :host [class*="!text-xs"] { font-size: 12px !important; line-height: 1.5 !important; }
+                :host .text-sm, :host [class*="!text-sm"] { font-size: 14px !important; line-height: 1.5 !important; }
+                :host .text-base, :host [class*="!text-base"] { font-size: 16px !important; line-height: 1.5 !important; }
+                :host .text-lg, :host [class*="!text-lg"] { font-size: 18px !important; line-height: 1.5 !important; }
+                :host .text-xl, :host [class*="!text-xl"] { font-size: 20px !important; line-height: 1.5 !important; }
+                :host .text-2xl, :host [class*="!text-2xl"] { font-size: 24px !important; line-height: 1.5 !important; }
+
+                /* Force correct sizes for form elements */
+                :host input,
+                :host textarea,
+                :host select,
+                :host button {
+                  font-size: 16px !important;
+                  font-family: inherit !important;
+                  line-height: 1.5 !important;
+                }
+
+                /* Ensure rem units are calculated correctly */
+                :host [style*="rem"] {
+                  font-size: calc(var(--base-font-size) * 1) !important;
                 }
               ` + styleTag.textContent;
 
@@ -153,23 +152,21 @@ const buildCssLayersFromEntryPoints = () => {
                   return;
                 }
 
-                // Insert a style reset before any other styles
-                const resetStyles = document.createElement('style');
-                resetStyles.textContent = `
+                // Create a new style element for the base styles
+                const baseStyles = document.createElement('style');
+                baseStyles.textContent = `
                   :host {
-                    all: initial !important;
-                    display: block !important;
-                    contain: content !important;
                     font-size: 16px !important;
                   }
-
                   * {
-                    font-size: 16px !important;
-                    line-height: 1.5 !important;
+                    box-sizing: border-box !important;
+                    font-size: ${1 / 0.625}em !important;
                   }
                 `;
 
-                target.prepend(resetStyles);
+                // Insert base styles first
+                target.prepend(baseStyles);
+                // Then insert component styles
                 target.prepend(styleTag.cloneNode(true));
               });
             }
