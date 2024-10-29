@@ -59,11 +59,6 @@ const buildCssLayersFromEntryPoints = () => {
     return {
       issuerLayer: layer,
       use: [
-        /**
-         * This injects the built styles as a single style tag in the UMD bundle for the project.
-         * This makes it to where consumers do not need to worry about an external stylesheet and
-         * saves a request on shopify websites where the waterfall is normally clogged.
-         */
         {
           loader: 'style-loader',
           options: {
@@ -71,14 +66,6 @@ const buildCssLayersFromEntryPoints = () => {
             attributes: {
               'data-style-for': elementName
             },
-            /**
-             * It appears the node given to you is initially blank with styles applied after the fact so you
-             * can't rely on it to have information you need immediately.
-             *
-             * See: https://github.com/webpack-contrib/style-loader/blob/43bede4415c5ccb4680d558725e0066f715aa175/src/runtime/singletonStyleDomAPI.js#L83
-             *
-             * NOTE: This runs untranspiled in the browser so watch out!
-             */
             insert: (styleTag) => {
               var styleTarget = styleTag.dataset.styleFor;
 
@@ -86,45 +73,66 @@ const buildCssLayersFromEntryPoints = () => {
                 console.error(
                   'Did not get a style target in the insert command from the style loader. No styles will be inserted. Did you override something in getIslands incorrectly?'
                 );
-
                 return;
               }
 
+              // Reset all font-related CSS custom properties and add strict font controls
               styleTag.textContent =
                 `
+                /* Root level reset */
+                :host {
+                  all: initial !important;
+                  contain: content !important;
+                  display: block !important;
+                  font: initial !important;
+                  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+                  font-size: 16px !important;
+                  line-height: 1.5 !important;
+                  box-sizing: border-box !important;
+                }
+
+                /* Aggressive reset for all child elements */
+                :host > * {
+                  all: revert !important;
+                  font-size: 16px !important;
+                  line-height: 1.5 !important;
+                  font-family: inherit !important;
+                  box-sizing: border-box !important;
+                }
+
+                /* Force proper font scaling for rem units */
                 :host {
                   font-size: 16px !important;
-                  font-size-adjust: none !important;
+                }
+
+                /* Reset for all elements */
+                :host *,
+                :host *::before,
+                :host *::after {
+                  box-sizing: border-box !important;
+                  font-family: inherit !important;
+                  font-size: 16px !important;
+                  line-height: 1.5 !important;
                   text-size-adjust: none !important;
                   -webkit-text-size-adjust: none !important;
                 }
 
-                :host * {
-                  font-size: inherit;
-                  font-size-adjust: inherit !important;
-                  text-size-adjust: inherit !important;
-                  -webkit-text-size-adjust: inherit !important;
-                }
+                /* Text size classes */
+                :host .text-xs, :host [class*="!text-xs"] { font-size: 12px !important; }
+                :host .text-sm, :host [class*="!text-sm"] { font-size: 14px !important; }
+                :host .text-base, :host [class*="!text-base"] { font-size: 16px !important; }
+                :host .text-lg, :host [class*="!text-lg"] { font-size: 18px !important; }
+                :host .text-xl, :host [class*="!text-xl"] { font-size: 20px !important; }
+                :host .text-2xl, :host [class*="!text-2xl"] { font-size: 24px !important; }
 
-                /* Reset any rem-based calculations */
-                :host [style*="rem"] {
+                /* Reset custom properties */
+                :host {
+                  --font-body-scale: none !important;
+                  --base-font-size: none !important;
+                  --text-base-size: none !important;
+                  --font-size-root: none !important;
+                  --font-size-base: none !important;
                   --rem-base: 16 !important;
-                }
-
-                /* Enforce specific text sizes */
-                :host .text-xs, :host .!text-xs { font-size: 12px !important; line-height: 1.5 !important; }
-                :host .text-sm, :host .!text-sm { font-size: 14px !important; line-height: 1.5 !important; }
-                :host .text-base, :host .!text-base { font-size: 16px !important; line-height: 1.5 !important; }
-                :host .text-lg, :host .!text-lg { font-size: 18px !important; line-height: 1.5 !important; }
-                :host .text-xl, :host .!text-xl { font-size: 20px !important; line-height: 1.5 !important; }
-                :host .text-2xl, :host .!text-2xl { font-size: 24px !important; line-height: 1.5 !important; }
-
-                /* Ensure inputs and other form elements also respect the font size */
-                :host input,
-                :host textarea,
-                :host select,
-                :host button {
-                  font-size: 16px !important;
                 }
               ` + styleTag.textContent;
 
@@ -140,18 +148,28 @@ const buildCssLayersFromEntryPoints = () => {
 
                 if (!target) {
                   console.error(
-                    `Could not find a web component query selector target for "${styleTarget}". No styles will be appended. Did you name the web component at createIslandWebComponent something different than your file name? If so, you will need to override it at getIslands inside of the webpack config. This is what is expected
-
-                    createIslandWebComponent('${styleTarget}', YourComponent).render({
-                    selector: ${styleTarget},
-                    initialProps: {},
-                    })`
+                    `Could not find a web component query selector target for "${styleTarget}". No styles will be appended.`
                   );
                   return;
                 }
 
-                // We need to clone because it's going to be inserted into separate shadow doms. If you don't clone it
-                // the tag can only be active in one context
+                // Insert a style reset before any other styles
+                const resetStyles = document.createElement('style');
+                resetStyles.textContent = `
+                  :host {
+                    all: initial !important;
+                    display: block !important;
+                    contain: content !important;
+                    font-size: 16px !important;
+                  }
+
+                  * {
+                    font-size: 16px !important;
+                    line-height: 1.5 !important;
+                  }
+                `;
+
+                target.prepend(resetStyles);
                 target.prepend(styleTag.cloneNode(true));
               });
             }

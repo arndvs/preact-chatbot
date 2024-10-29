@@ -57,14 +57,31 @@ const ClientChatButtonComponent = ({
       >
         <ActionProvider>
           <div
-            style={{
-              fontSize: '16px !important',
-              '--base-font-size': '16px',
-              '--text-base-size': '16px',
-              fontSizeAdjust: 'none',
-              textSizeAdjust: 'none',
-              WebkitTextSizeAdjust: 'none'
-            }}
+            className="ripe-metrics-chat-root"
+            style={
+              {
+                all: 'initial',
+                display: 'block',
+                contain: 'content',
+                isolation: 'isolate',
+                fontSize: '16px !important',
+                fontFamily:
+                  '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                lineHeight: '1.5',
+                boxSizing: 'border-box',
+                // Remove CSS custom properties that might interfere
+                '--font-body-scale': 'none',
+                '--base-font-size': 'none',
+                '--text-base-size': 'none',
+                '--font-size-root': 'none',
+                '--font-size-base': 'none',
+                fontSizeAdjust: 'none',
+                textSizeAdjust: 'none',
+                WebkitTextSizeAdjust: 'none',
+                MozTextSizeAdjust: 'none',
+                msTextSizeAdjust: 'none'
+              } as any
+            }
           >
             <ChatBubbleButton />
             <ChatModal islandName={islandName} />
