@@ -22,7 +22,7 @@ const ChatbotSelectButton = ({ options }: ChatbotSelectButtonProps) => {
             key={option.id}
             type="button"
             onClick={option.handler}
-            className={`rounded px-1 py-1 bg-white hover:text-white text-base m-1 text-black font-semibold border ${borderColorClass} ${hoverBgColorClass}`}
+            className={`rounded px-1 py-1 bg-white hover:text-white !text-base m-1 text-black font-semibold border ${borderColorClass} ${hoverBgColorClass}`}
           >
             {option.name}
           </button>

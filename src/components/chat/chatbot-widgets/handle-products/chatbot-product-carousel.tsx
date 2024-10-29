@@ -114,7 +114,7 @@ function ChatBotProductCarousel({
                   />
                 </div>
                 <div className="pt-5 pb-4 text-center">
-                  <h3 className="text-sm font-medium text-gray-900">
+                  <h3 className="!text-sm font-medium text-gray-900">
                     <a href={product.product_menu_url ?? ''}>
                       <span
                         aria-hidden="true"
@@ -127,7 +127,7 @@ function ChatBotProductCarousel({
                       }
                     </a>
                   </h3>
-                  <p className="mt-4 text-base font-medium text-gray-900">
+                  <p className="mt-4 !text-base font-medium text-gray-900">
                     {product.product_price}
                   </p>
                 </div>

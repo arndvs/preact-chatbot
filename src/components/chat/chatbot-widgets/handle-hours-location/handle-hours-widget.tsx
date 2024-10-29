@@ -88,7 +88,7 @@
 //             >
 //               <div>{hour.day}</div>
 
-//               <div className="flex items-center gap-x-2.5 px-2 text-xs leading-5 text-gray-400">
+//               <div className="flex items-center gap-x-2.5 px-2 !text-xs leading-5 text-gray-400">
 //                 <p className="truncate"> {hour.open}</p>
 //                 <span className="flex-none w-2 h-2 pl-2 pr-2 mx-2 text-gray-300">
 //                   —

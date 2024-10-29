@@ -32,11 +32,11 @@
 //           <div>
 //             <div className="flex items-center justify-between">
 //               <div>phone:</div>
-//               <div className="text-sm font-bold">{storePhone ?? 'N/A'}</div>
+//               <div className="!text-sm font-bold">{storePhone ?? 'N/A'}</div>
 //             </div>
 //             <div className="flex items-center justify-between">
 //               <div>email:</div>
-//               <div className="text-sm font-bold">{storeEmail ?? 'N/A'}</div>
+//               <div className="!text-sm font-bold">{storeEmail ?? 'N/A'}</div>
 //             </div>
 //           </div>
 //         </div>

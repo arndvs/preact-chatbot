@@ -27,15 +27,15 @@ const ChatbotContextComponent = () => {
     <>
       <div className="max-w-2xl p-4 mx-auto space-y-16 sm:space-y-20 lg:mx-0 lg:max-w-none">
         <div className="max-w-2xl ">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">
+          <h2 className="!text-base font-semibold leading-7 text-gray-900">
             Chatbot Context
           </h2>
-          <p className="mt-1 text-sm leading-6 text-gray-500">
+          <p className="mt-1 !text-sm leading-6 text-gray-500">
             This information is currently available in the chatbot context.
           </p>
 
           <div className="flex justify-center mx-auto ">
-            <dl className="mt-6 space-y-6 text-sm leading-6 border-t border-gray-200 divide-y divide-gray-100 ">
+            <dl className="mt-6 space-y-6 !text-sm leading-6 border-t border-gray-200 divide-y divide-gray-100 ">
               <div className="pt-6 sm:flex">
                 <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
                   Store Name

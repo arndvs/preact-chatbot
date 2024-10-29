@@ -34,7 +34,7 @@ const TailwindIndicator = () => {
   }, []);
 
   return (
-    <div className="fixed z-50 flex items-center justify-center w-auto h-6 p-3 font-mono text-xs text-white bg-gray-800 rounded-full bottom-1 left-1">
+    <div className="fixed z-50 flex items-center justify-center w-auto h-6 p-3 font-mono !text-xs text-white bg-gray-800 rounded-full bottom-1 left-1">
       <div>
         <span className="mr-2">{currentBreakpoint}</span>
         <span className="mr-2">

@@ -110,7 +110,7 @@ const ChatbotInputContainer = ({
       <div className="flex items-center justify-between px-2 py-2 bg-white border-t">
         <div className="flex items-center justify-between w-full leading-none">
           <input
-            className="w-full px-2 text-sm border-none focus:outline-none focus:ring-none"
+            className="w-full px-2 !text-sm border-none focus:outline-none focus:ring-none"
             placeholder={placeholder}
             value={input}
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -133,7 +133,7 @@ const ChatbotInputContainer = ({
           <button
             onClick={handleSubmit}
             disabled={!input.trim() || isRateLimited}
-            className="inline-flex items-center justify-end p-1 text-sm font-medium transition-colors rounded-md whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-50 h-9"
+            className="inline-flex items-center justify-end p-1 !text-sm font-medium transition-colors rounded-md whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80 text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-50 h-9"
             type="submit"
           >
             <AirplaneIcon
@@ -151,7 +151,7 @@ const ChatbotInputContainer = ({
           <div class="flex gap-2 overflow-x-auto p-3"></div>
 
           <input
-            className="w-full px-4 py-3 text-sm border-none rounded-bl-lg focus:outline-none focus:ring-none "
+            className="w-full px-4 py-3 !text-sm border-none rounded-bl-lg focus:outline-none focus:ring-none "
             placeholder={placeholder}
             value={input}
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
