@@ -90,6 +90,44 @@ const buildCssLayersFromEntryPoints = () => {
                 return;
               }
 
+              styleTag.textContent =
+                `
+                :host {
+                  font-size: 16px !important;
+                  --base-font-size: 16px !important;
+                  --text-base-size: 16px !important;
+                  font-size-adjust: none !important;
+                }
+
+                .!text-lg, h1.!text-lg, h2.!text-lg, p.!text-lg, span.!text-lg {
+                  font-size: 18px !important;
+                  line-height: 1.5 !important;
+                }
+
+                .!text-base, p.!text-base, span.!text-base, div.!text-base {
+                  font-size: 16px !important;
+                  line-height: 1.5 !important;
+                }
+
+                .!text-sm, p.!text-sm, span.!text-sm, input.!text-sm {
+                  font-size: 14px !important;
+                  line-height: 1.5 !important;
+                }
+
+                .!text-xs, p.!text-xs, span.!text-xs {
+                  font-size: 12px !important;
+                  line-height: 1.5 !important;
+                }
+
+                * {
+                  font-size: inherit;
+                }
+
+                [style*="rem"] {
+                  --rem-base: 16 !important;
+                }
+              ` + styleTag.textContent;
+
               window.addEventListener('web-component-mount', (e) => {
                 if (
                   styleTarget !== e.detail.target &&
