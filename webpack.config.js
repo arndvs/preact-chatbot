@@ -59,6 +59,11 @@ const buildCssLayersFromEntryPoints = () => {
     return {
       issuerLayer: layer,
       use: [
+        /**
+         * This injects the built styles as a single style tag in the UMD bundle for the project.
+         * This makes it to where consumers do not need to worry about an external stylesheet and
+         * saves a request on shopify websites where the waterfall is normally clogged.
+         */
         {
           loader: 'style-loader',
           options: {
@@ -66,6 +71,14 @@ const buildCssLayersFromEntryPoints = () => {
             attributes: {
               'data-style-for': elementName
             },
+            /**
+             * It appears the node given to you is initially blank with styles applied after the fact so you
+             * can't rely on it to have information you need immediately.
+             *
+             * See: https://github.com/webpack-contrib/style-loader/blob/43bede4415c5ccb4680d558725e0066f715aa175/src/runtime/singletonStyleDomAPI.js#L83
+             *
+             * NOTE: This runs untranspiled in the browser so watch out!
+             */
             insert: (styleTag) => {
               var styleTarget = styleTag.dataset.styleFor;
 
@@ -73,67 +86,68 @@ const buildCssLayersFromEntryPoints = () => {
                 console.error(
                   'Did not get a style target in the insert command from the style loader. No styles will be inserted. Did you override something in getIslands incorrectly?'
                 );
+
                 return;
               }
 
               // Reset all font-related CSS custom properties and add strict font controls
-              styleTag.textContent =
-                `
-                :host {
-                  all: initial !important;
-                  display: block !important;
-                  font: initial !important;
-                  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
-                  font-size: 16px !important;
-                  line-height: 1.5 !important;
-                  box-sizing: border-box !important;
+              //   styleTag.textContent =
+              //     `
+              //     :host {
+              //       all: initial !important;
+              //       display: block !important;
+              //       font: initial !important;
+              //       font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+              //       font-size: 16px !important;
+              //       line-height: 1.5 !important;
+              //       box-sizing: border-box !important;
 
-                  /* Reset all possible font-size related custom properties */
-                  --font-body-scale: 1 !important;
-                  --base-font-size: 16px !important;
-                  --text-base-size: 16px !important;
-                  --font-size-root: 16px !important;
-                  --font-size-base: 16px !important;
+              //       /* Reset all possible font-size related custom properties */
+              //       --font-body-scale: 1 !important;
+              //       --base-font-size: 16px !important;
+              //       --text-base-size: 16px !important;
+              //       --font-size-root: 16px !important;
+              //       --font-size-base: 16px !important;
 
-                  /* Prevent any font size adjustments */
-                  font-size-adjust: none !important;
-                  text-size-adjust: none !important;
-                  -webkit-text-size-adjust: none !important;
-                  -moz-text-size-adjust: none !important;
-                  -ms-text-size-adjust: none !important;
-                }
+              //       /* Prevent any font size adjustments */
+              //       font-size-adjust: none !important;
+              //       text-size-adjust: none !important;
+              //       -webkit-text-size-adjust: none !important;
+              //       -moz-text-size-adjust: none !important;
+              //       -ms-text-size-adjust: none !important;
+              //     }
 
-                /* Apply to all elements inside the shadow DOM */
-                :host * {
-                  box-sizing: border-box !important;
-                  font-family: inherit !important;
-                  /* Prevent inheritance of external rem units */
-                  font-size: ${1 / 0.625}em !important;
-                }
+              //     /* Apply to all elements inside the shadow DOM */
+              //     :host * {
+              //       box-sizing: border-box !important;
+              //       font-family: inherit !important;
+              //       /* Prevent inheritance of external rem units */
+              //       font-size: ${1 / 0.625}em !important;
+              //     }
 
-                /* Reset specific elements to desired sizes */
-                :host .text-xs, :host [class*="!text-xs"] { font-size: 12px !important; line-height: 1.5 !important; }
-                :host .text-sm, :host [class*="!text-sm"] { font-size: 14px !important; line-height: 1.5 !important; }
-                :host .text-base, :host [class*="!text-base"] { font-size: 16px !important; line-height: 1.5 !important; }
-                :host .text-lg, :host [class*="!text-lg"] { font-size: 18px !important; line-height: 1.5 !important; }
-                :host .text-xl, :host [class*="!text-xl"] { font-size: 20px !important; line-height: 1.5 !important; }
-                :host .text-2xl, :host [class*="!text-2xl"] { font-size: 24px !important; line-height: 1.5 !important; }
+              //     /* Reset specific elements to desired sizes */
+              //     :host .text-xs, :host [class*="!text-xs"] { font-size: 12px !important; line-height: 1.5 !important; }
+              //     :host .text-sm, :host [class*="!text-sm"] { font-size: 14px !important; line-height: 1.5 !important; }
+              //     :host .text-base, :host [class*="!text-base"] { font-size: 16px !important; line-height: 1.5 !important; }
+              //     :host .text-lg, :host [class*="!text-lg"] { font-size: 18px !important; line-height: 1.5 !important; }
+              //     :host .text-xl, :host [class*="!text-xl"] { font-size: 20px !important; line-height: 1.5 !important; }
+              //     :host .text-2xl, :host [class*="!text-2xl"] { font-size: 24px !important; line-height: 1.5 !important; }
 
-                /* Force correct sizes for form elements */
-                :host input,
-                :host textarea,
-                :host select,
-                :host button {
-                  font-size: 16px !important;
-                  font-family: inherit !important;
-                  line-height: 1.5 !important;
-                }
+              //     /* Force correct sizes for form elements */
+              //     :host input,
+              //     :host textarea,
+              //     :host select,
+              //     :host button {
+              //       font-size: 16px !important;
+              //       font-family: inherit !important;
+              //       line-height: 1.5 !important;
+              //     }
 
-                /* Ensure rem units are calculated correctly */
-                :host [style*="rem"] {
-                  font-size: calc(var(--base-font-size) * 1) !important;
-                }
-              ` + styleTag.textContent;
+              //     /* Ensure rem units are calculated correctly */
+              //     :host [style*="rem"] {
+              //       font-size: calc(var(--base-font-size) * 1) !important;
+              //     }
+              //   ` + styleTag.textContent;
 
               window.addEventListener('web-component-mount', (e) => {
                 if (
@@ -147,26 +161,31 @@ const buildCssLayersFromEntryPoints = () => {
 
                 if (!target) {
                   console.error(
-                    `Could not find a web component query selector target for "${styleTarget}". No styles will be appended.`
+                    `Could not find a web component query selector target for "${styleTarget}". No styles will be appended. Did you name the web component at createIslandWebComponent something different than your file name? If so, you will need to override it at getIslands inside of the webpack config. This is what is expected
+
+                    createIslandWebComponent('${styleTarget}', YourComponent).render({
+                    selector: ${styleTarget},
+                    initialProps: {},
+                    })`
                   );
                   return;
                 }
 
-                // Create a new style element for the base styles
-                const baseStyles = document.createElement('style');
-                baseStyles.textContent = `
-                  :host {
-                    font-size: 16px !important;
-                  }
-                  * {
-                    box-sizing: border-box !important;
-                    font-size: ${1 / 0.625}em !important;
-                  }
-                `;
+                // // Create a new style element for the base styles
+                // const baseStyles = document.createElement('style');
+                // baseStyles.textContent = `
+                //   :host {
+                //     font-size: 16px !important;
+                //   }
+                //   * {
+                //     box-sizing: border-box !important;
+                //     font-size: ${1 / 0.625}em !important;
+                //   }
+                // `;
 
-                // Insert base styles first
-                target.prepend(baseStyles);
-                // Then insert component styles
+                // // Insert base styles first
+                // target.prepend(baseStyles);
+                // // Then insert component styles
                 target.prepend(styleTag.cloneNode(true));
               });
             }
