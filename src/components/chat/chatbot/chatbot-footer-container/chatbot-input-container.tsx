@@ -119,7 +119,6 @@ const ChatbotInputContainer = ({
             }}
             required
             maxLength={4000}
-            rows={1}
             tabIndex={0}
             aria-label={placeholder}
             title={placeholder}
