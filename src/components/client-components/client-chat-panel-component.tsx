@@ -3,7 +3,7 @@ import { ChatbotContextProvider } from 'src/actions/chatbot/chatbot-context-prov
 import ActionProvider from 'src/actions/chatbot/action-provider';
 import MessageParser from 'src/actions/chatbot/message-parser';
 import Chatbot from 'src/components/chat/chatbot/chatbot';
-import { Box } from 'src/components/ui';
+
 import { useChatbotConfig } from 'src/hooks/useChatbotConfig';
 import { useInitialData } from 'src/hooks/useInitialData';
 
@@ -23,8 +23,8 @@ const ClientChatPanelComponent = ({
   env
 }: ChatPanelComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  // use the If storeId is undefined, use the default storeId of 20
-  const idToUse = storeId || '148';
+  if (!storeId) throw new Error('storeId prop is required');
+  const idToUse = storeId;
   const envToUse = env || null;
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'panel';
@@ -64,7 +64,7 @@ const ClientChatPanelComponent = ({
           chatBubbleButtonIconColor={data.button_icon_color}
           chatIcon={data.chat_icon_url}
         >
-          <Box
+          <div
             data-testId="overlay-content"
             className="z-[2147483647]  border-none flex flex-col w-[28rem] justify-between shadow-custom bottom-20 right-4 h-75vh max-h-75vh rounded-lg overflow-hidden bg-white"
           >
@@ -77,7 +77,7 @@ const ClientChatPanelComponent = ({
                 setIsOpen={setIsOpen}
               />
             </ActionProvider>
-          </Box>
+          </div>
         </ChatbotContextProvider>
       )}
     </>

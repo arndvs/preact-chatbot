@@ -1,7 +1,4 @@
-const { sentryWebpackPlugin } = require('@sentry/webpack-plugin');
-
 const path = require('path');
-const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { DefinePlugin } = require('webpack');
@@ -256,7 +253,7 @@ module.exports = ({ dev, prod }) => {
                     { targets: { node: 16 }, modules: false }
                   ]
                 ],
-                plugins: ['@vanilla-extract/babel-plugin']
+                plugins: []
               }
             }
           ]
@@ -334,13 +331,12 @@ module.exports = ({ dev, prod }) => {
         publicPath: isDev ? '/' : '/islands',
         filename: isDev ? 'index.html' : '../index.html'
       }),
-      new VanillaExtractPlugin(),
+
       /**
        * Define environmental variables here that you need for the islands to function.
        * EVERY ENV VARIABLE MUST BE DEFINED HERE OR IT WILL NOT BE AVAILABLE IN THE ISLANDS.
        */
       new DefinePlugin({
-        ISLAND_API_URL: JSON.stringify(process.env.ISLAND_API_URL),
         'process.env.PUSHER_KEY': JSON.stringify(process.env.PUSHER_KEY),
         'process.env.PUSHER_CLUSTER': JSON.stringify(
           process.env.PUSHER_CLUSTER
@@ -348,21 +344,9 @@ module.exports = ({ dev, prod }) => {
         'process.env.PUSHER_AUTH_ENDPOINT': JSON.stringify(
           process.env.PUSHER_AUTH_ENDPOINT
         ),
-        'process.env.CHAT_API_URL': JSON.stringify(process.env.CHAT_API_URL),
-        'process.env.SENTRY_DSN': JSON.stringify(process.env.SENTRY_DSN),
-        'process.env.SENTRY_AUTH_TOKEN': JSON.stringify(
-          process.env.SENTRY_AUTH_TOKEN
-        )
+        'process.env.CHAT_API_URL': JSON.stringify(process.env.CHAT_API_URL)
       }),
 
-      //   sentryWebpackPlugin({
-      //     org: 'ripemetrics',
-      //     project: 'preact',
-      //     authToken: process.env.SENTRY_AUTH_TOKEN,
-      //     release: process.env.npm_package_version,
-      //     include: './dist',
-      //     ignore: ['node_modules', 'webpack.config.js']
-      //   }),
       ...(isProd ? [new IslandFileSizePlugin()] : [])
     ],
     // devtool: 'source-map', // Source map generation must be turned on
