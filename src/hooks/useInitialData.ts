@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'preact/hooks';
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
 import { createChatBotMessage } from 'src/actions/chatbot/chatbot-message-utils';
 import { getChatApiUrl } from 'src/config/chat-api-url';
-import formattedCookieName from 'src/utils/formatted-cookie-name';
+import { useSession } from './useSession';
 
 export interface InitialBotSettings {
   store_name: string;
@@ -49,11 +48,7 @@ export const useInitialData = (
 ) => {
   const [data, setData] = useState<InitialBotSettings | null>(null);
 
-  const formattedIslandName = islandName.replace(/-/g, '_');
-  const cookieName = formattedCookieName(formattedIslandName);
-  const [cookies, setCookie] = useCookies([
-    `ripemetrics_chatbot-${islandType}`
-  ]);
+  const { session, setSession } = useSession(islandType || 'default');
 
   const chatApiUrl = getChatApiUrl(env);
   const aiEndpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${storeId}`;
@@ -72,31 +67,21 @@ export const useInitialData = (
 
   const getInitialData = async () => {
     try {
-      // storeId [0] - session_id [1] - customer_store_id [2]
-      const cookie = cookies[`ripemetrics_chatbot-${islandType}`]?.split('-');
-      //convert island name to use underscores instead of dashes
       const formattedIslandName = islandName.replace(/-/g, '_');
 
       const response = await axios.post(aiEndpoint, {
-        session_id: cookie?.length ? cookie[1] : null,
-        customer_store_id: cookie?.length ? cookie[2] : null,
+        session_id: session.sessionId ?? null,
+        customer_store_id: session.customerStoreId ?? null,
         refresh: false,
         island_name: formattedIslandName
       });
 
-      if (!cookie?.length || cookie[1] !== response.data.session_id) {
-        // if (islandType !== 'panel') {
-        const domain = window.location.hostname;
-
-        setCookie(
-          `ripemetrics_chatbot-${islandType}`,
-          `${storeId}-${response.data.session_id}-${response.data.customer_store_id}`,
-          {
-            path: '/',
-            domain: domain
-          }
+      if (!session.sessionId || session.sessionId !== response.data.session_id) {
+        setSession(
+          storeId,
+          response.data.session_id,
+          response.data.customer_store_id
         );
-        // }
       }
 
       return response.data as InitialBotSettings;
@@ -108,10 +93,8 @@ export const useInitialData = (
 
   const getMessageHistory = async () => {
     try {
-      const cookie = cookies[`ripemetrics_chatbot-${islandType}`]?.split('-');
-
-      if (!cookie?.length) return null;
-      const history_endpoint = `${chatApiUrl}/api/v2/external_chatbot/message_history/${cookie[2]}/${cookie[1]}`;
+      if (!session.customerStoreId || !session.sessionId) return null;
+      const history_endpoint = `${chatApiUrl}/api/v2/external_chatbot/message_history/${session.customerStoreId}/${session.sessionId}`;
       const response = await axios.get(history_endpoint);
       return response.data;
     } catch (error) {

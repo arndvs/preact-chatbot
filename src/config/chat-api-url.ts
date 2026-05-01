@@ -1,3 +1,7 @@
 export const getChatApiUrl = (env: string | null) => {
-  return env === null ? process.env.CHAT_API_URL : 'https://api.rmdevs.com';
+  const url = process.env.CHAT_API_URL;
+  if (!url) {
+    throw new Error('CHAT_API_URL environment variable is required');
+  }
+  return url;
 };

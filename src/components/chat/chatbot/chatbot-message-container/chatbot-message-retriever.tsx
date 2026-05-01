@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import {
   botMessage,
   customMessage,
@@ -62,7 +63,7 @@ const ChatbotMessageRetriever = ({
       if (customMessage(messageObject, customMessages)) {
         return (
           <div key={messageObject.id}>
-            renderCustomMessage{renderCustomMessage(messageObject)}
+            {renderCustomMessage(messageObject)}
           </div>
         );
       }
@@ -153,7 +154,9 @@ const ChatbotMessageRetriever = ({
     >
       <div className="h-full">
         {typeof messageHistory === 'string' && Boolean(messageHistory) ? (
-          <div dangerouslySetInnerHTML={{ __html: messageHistory as string }} />
+          <div className="px-4 py-2">
+            <ReactMarkdown>{messageHistory as string}</ReactMarkdown>
+          </div>
         ) : null}
         {renderMessages()}
       </div>

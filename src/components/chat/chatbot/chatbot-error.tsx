@@ -5,12 +5,6 @@ interface IChatbotErrorProps {
 }
 
 const ChatbotError = ({ message }: IChatbotErrorProps) => {
-  const currentUrl = window.location.href;
-
-  const linkWithReferrer = `https://ripemetrics.com/contact?via=widget&amp;utm_source=watermark&amp;referrer=${encodeURIComponent(
-    currentUrl
-  )}`;
-
   return (
     <div className="p-4 bg-white rounded-md">
       <h1 className="mb-8 !text-lg text-gray-900">
@@ -27,12 +21,12 @@ const ChatbotError = ({ message }: IChatbotErrorProps) => {
         />
       </div>
       <a
-        href={linkWithReferrer}
-        rel="noopener norefferer"
+        href="https://arndvs.com/work-with-me"
+        rel="noopener noreferrer"
         target="_blank"
         className="block w-32 px-2 py-1 mx-auto !text-base text-center text-blue-600 no-underline border border-blue-400"
       >
-        Contact RipeMetrics Customer Support
+        Contact Support
       </a>
     </div>
   );

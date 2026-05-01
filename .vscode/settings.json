@@ -81,7 +81,7 @@
     }
   },
   // Specifies custom words for the Code Spell Checker extension.
-  "cSpell.words": ["Ripechat", "ripemetrics"],
+  "cSpell.words": ["arndvs", "chatbot"],
   // Other settings
   "editor.acceptSuggestionOnEnter": "on", // Specifies whether to accept suggestions when pressing the Enter key.
   "editor.tabCompletion": "on", // Specifies whether to enable tab completion.

@@ -2,7 +2,6 @@ import { WebComponentPortal } from 'preact-island';
 import { FC } from 'preact/compat';
 import ActionProvider from 'src/actions/chatbot/action-provider';
 import MessageParser from 'src/actions/chatbot/message-parser';
-import { Box } from 'src/components/ui';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import Chatbot from 'src/components/chat/chatbot/chatbot';
 import useClassNames from 'src/hooks/useClassNames';
@@ -35,7 +34,7 @@ const ChatModal = ({ islandName }: ChatModalProps) => {
           name="chat-overlay"
           parent={islandName}
         >
-          <Box
+          <div
             data-testId="overlay-content"
             className={useClassNames(
               'z-[2147483647] border-none fixed flex flex-col justify-between shadow-custom rounded-lg overflow-hidden',
@@ -54,7 +53,7 @@ const ChatModal = ({ islandName }: ChatModalProps) => {
               isOpen={isOpen}
               setIsOpen={setIsOpen}
             />
-          </Box>
+          </div>
         </ChatOverlay>
       )}
       {isOpen && (
@@ -62,7 +61,7 @@ const ChatModal = ({ islandName }: ChatModalProps) => {
           name="chat-overylay-dimmer"
           parent={islandName}
         >
-          <Box
+          <div
             data-testId="overlay-dimmer"
             className={useClassNames(
               'fixed hidden z-[90] top-0 left-0 right-0 bottom-0',
