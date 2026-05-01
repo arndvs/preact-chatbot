@@ -19,7 +19,8 @@ const ClientChatButtonComponent = ({
   islandType,
   env
 }: ClientChatButtonComponentProps) => {
-  const idToUse = storeId || '144';
+  if (!storeId) throw new Error('storeId prop is required');
+  const idToUse = storeId;
   const envToUse = env || null;
   const domainToUse = domain || 'https://www.example.com';
   const islandTypeToUse = islandType || 'button';

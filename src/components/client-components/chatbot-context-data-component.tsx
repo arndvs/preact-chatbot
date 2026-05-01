@@ -15,8 +15,8 @@ const ChatbotContextDataComponent = ({
   islandType,
   islandName
 }: ChatbotContextDataComponentProps) => {
-  // use the If storeId is undefined, use the default storeId of 20
-  const idToUse = storeId || '144';
+  if (!storeId) throw new Error('storeId prop is required');
+  const idToUse = storeId;
 
   const domain = 'https://www.example.com';
 
