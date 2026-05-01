@@ -9,12 +9,7 @@ import { useDynamicWebIsland } from 'src/hooks/useDynamicWebComponent';
 import { useWebComponentEvents } from 'src/hooks/useWebComponentEvents';
 import { useCookies } from 'react-cookie';
 import ClientChatIslandProps from 'src/utils/client-chat-island-props';
-// import { inject } from '@vercel/analytics';
 import { useEffect, useState } from 'preact/hooks';
-import { initSentry, withSentry } from 'src/utils/sentry';
-
-// Initialize Sentry
-// initSentry();
 
 const islandName = 'client-chat-button-island';
 
@@ -25,11 +20,6 @@ const islandType = 'button';
 export const ClientChatButtonIsland = () => {
   useWebComponentEvents(islandName);
   useDynamicWebIsland(islandName);
-
-  useEffect(() => {
-    console.log('Initializing chatbot analytics');
-    // inject();
-  }, []);
 
   return (
     <ClientChatButtonComponent
@@ -47,15 +37,3 @@ const island = createIslandWebComponent(islandName, ClientChatButtonIsland);
 island.render({
   selector: islandName
 });
-
-// Wrap the island component with Sentry
-// const SentryWrappedClientChatButtonIsland = withSentry(ClientChatButtonIsland);
-
-// Create and render the island using the Sentry-wrapped component
-// const island = createIslandWebComponent(
-//   islandName,
-//   SentryWrappedClientChatButtonIsland
-// );
-// island.render({
-//   selector: islandName
-// });
