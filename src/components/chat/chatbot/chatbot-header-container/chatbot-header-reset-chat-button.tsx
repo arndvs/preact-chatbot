@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
 import { getChatApiUrl } from 'src/config/chat-api-url';
 import { useChatbotContext } from 'src/hooks/useChatbotContext';
+import { useSession } from 'src/hooks/useSession';
 
 const ChatBotHeaderResetChatButton = () => {
   const {
@@ -12,13 +12,9 @@ const ChatBotHeaderResetChatButton = () => {
     islandType,
     chatHeadingFontColor
   } = useChatbotContext();
-  const [cookies, setCookie] = useCookies([
-    `ripemetrics_chatbot-${islandType}`
-  ]);
+  const { session, setSession } = useSession(islandType || 'default');
 
   const handleResetChat = async () => {
-    const cookie = cookies[`ripemetrics_chatbot-${islandType}`]?.split('-');
-
     const chatApiUrl = getChatApiUrl(env);
 
     const endpoint = `${chatApiUrl}/api/v2/external_chatbot_initial_settings/${store_id}`;
@@ -26,27 +22,22 @@ const ChatBotHeaderResetChatButton = () => {
     try {
       const formattedIslandName = islandName.replace(/-/g, '_');
       const response = await axios.post(endpoint, {
-        session_id: cookie?.length && cookie[1],
-        customer_store_id: cookie?.length && cookie[2],
+        session_id: session.sessionId ?? null,
+        customer_store_id: session.customerStoreId ?? null,
         refresh: true,
         island_name: formattedIslandName
       });
-      const domain = window.location.hostname;
 
-      setCookie(
-        `ripemetrics_chatbot-${islandType}`,
-        `${store_id}-${response.data.session_id}-${response.data.customer_store_id}`,
-        {
-          path: '/',
-          domain: domain
-        }
+      setSession(
+        store_id,
+        response.data.session_id,
+        response.data.customer_store_id
       );
 
       if (response?.data) {
-        //@ts-ignore
-        if (window.Echo !== undefined && window.Echo !== null) {
-          //@ts-ignore
-          window.Echo.leave(`chat-stream-external-${store_id}-${cookie[1]}`);
+        const pusherClient = (window as any).__pusherClient;
+        if (pusherClient && session.sessionId) {
+          pusherClient.unsubscribe(`chat-stream-external-${store_id}-${session.sessionId}`);
         }
         resetChatTimeline(response?.data.session_id);
       }
